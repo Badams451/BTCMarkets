@@ -63,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				DD49F4F42008BA8100B1D6C0 /* BTCMarkets */,
+				DD49F4F32008BA8100B1D6C0 /* Products */,
 				9D0DABE8CEBDE80F9018D023 /* Pods */,
 				B03E0B21324A42E022FF491F /* Frameworks */,
 			);
@@ -74,20 +75,18 @@
 				DD49F4F22008BA8100B1D6C0 /* BTCMarkets.app */,
 			);
 			name = Products;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		DD49F4F42008BA8100B1D6C0 /* BTCMarkets */ = {
 			isa = PBXGroup;
 			children = (
 				DD49F4F52008BA8100B1D6C0 /* AppDelegate.swift */,
+				DDA3FA5C2008CABF002FAA41 /* API.swift */,
 				DD49F5072008C3F800B1D6C0 /* CurrenciesViewController.swift */,
-				DD49F4F32008BA8100B1D6C0 /* Products */,
-				DD49F4F92008BA8100B1D6C0 /* Main.storyboard */,
 				DD49F4FC2008BA8100B1D6C0 /* Assets.xcassets */,
+				DD49F4F92008BA8100B1D6C0 /* Main.storyboard */,
 				DD49F4FE2008BA8100B1D6C0 /* LaunchScreen.storyboard */,
 				DD49F5012008BA8100B1D6C0 /* Info.plist */,
-				DDA3FA5C2008CABF002FAA41 /* API.swift */,
 			);
 			path = BTCMarkets;
 			sourceTree = "<group>";
