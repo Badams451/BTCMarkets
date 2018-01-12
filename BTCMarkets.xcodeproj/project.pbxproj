@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		DD49F4F62008BA8100B1D6C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD49F4F52008BA8100B1D6C0 /* AppDelegate.swift */; };
-		DD49F4F82008BA8100B1D6C0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD49F4F72008BA8100B1D6C0 /* ViewController.swift */; };
 		DD49F4FB2008BA8100B1D6C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD49F4F92008BA8100B1D6C0 /* Main.storyboard */; };
 		DD49F4FD2008BA8100B1D6C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD49F4FC2008BA8100B1D6C0 /* Assets.xcassets */; };
 		DD49F5002008BA8100B1D6C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD49F4FE2008BA8100B1D6C0 /* LaunchScreen.storyboard */; };
@@ -23,7 +22,6 @@
 		CF064DAD14E469472E151A06 /* Pods_BTCMarkets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BTCMarkets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD49F4F22008BA8100B1D6C0 /* BTCMarkets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BTCMarkets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD49F4F52008BA8100B1D6C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DD49F4F72008BA8100B1D6C0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DD49F4FA2008BA8100B1D6C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DD49F4FC2008BA8100B1D6C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DD49F4FF2008BA8100B1D6C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -85,7 +83,6 @@
 				DD49F4F52008BA8100B1D6C0 /* AppDelegate.swift */,
 				DD49F5072008C3F800B1D6C0 /* CurrenciesViewController.swift */,
 				DD49F4F32008BA8100B1D6C0 /* Products */,
-				DD49F4F72008BA8100B1D6C0 /* ViewController.swift */,
 				DD49F4F92008BA8100B1D6C0 /* Main.storyboard */,
 				DD49F4FC2008BA8100B1D6C0 /* Assets.xcassets */,
 				DD49F4FE2008BA8100B1D6C0 /* LaunchScreen.storyboard */,
@@ -231,7 +228,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD49F5082008C3F800B1D6C0 /* CurrenciesViewController.swift in Sources */,
-				DD49F4F82008BA8100B1D6C0 /* ViewController.swift in Sources */,
 				DDA3FA5D2008CABF002FAA41 /* API.swift in Sources */,
 				DD49F4F62008BA8100B1D6C0 /* AppDelegate.swift in Sources */,
 			);
