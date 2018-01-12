@@ -1,0 +1,15 @@
+Pods/
+*.pbxuser
+*.perspective
+*.xcuserdatad
+*project.xcworkspace
+*.log
+*.xccheckout
+*.xcscmblueprint
+.DS_Store
+*.orig
+*.BACKUP.*
+*.REMOTE.*
+*.LOCAL.*
+*.BASE.*
+xcuserdata
