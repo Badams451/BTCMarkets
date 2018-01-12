@@ -16,18 +16,21 @@ PODS:
   - Realm/Headers (2.10.2)
   - RealmSwift (2.10.2):
     - Realm (= 2.10.2)
+  - Starscream (3.0.2)
 
 DEPENDENCIES:
   - ObjectMapper
   - PromiseKit
   - RealmSwift
+  - Starscream (~> 3.0.2)
 
 SPEC CHECKSUMS:
   ObjectMapper: 92230db59bf8f341a5c3a3cf0b9fbdde3cf0d87f
   PromiseKit: fbb52a0d154402c57eeb6eccd36dd7724fcf6117
   Realm: 0ef72b837fb67e9f4b098bac771ddd72c7fdbb69
   RealmSwift: 07a9ae0505091eda6b2ee7c190c3786d6e90a7b0
+  Starscream: b512c62f6706421221b5ceb2ba01a9f58aca5bea
 
-PODFILE CHECKSUM: e6a7fc72ae78917ec6f1ae5938e63144ab0b250e
+PODFILE CHECKSUM: 3d14bb481dcb457127bb035d2910bb50c1bb9b8d
 
 COCOAPODS: 1.3.1

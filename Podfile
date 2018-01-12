@@ -7,4 +7,5 @@ target 'BTCMarkets' do
   pod 'RealmSwift'
   pod 'PromiseKit'
   pod 'ObjectMapper'
+  pod 'Starscream', '~> 3.0.2'
 end
