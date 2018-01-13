@@ -13,14 +13,14 @@ import SocketIO
 private let rootCurrency = "AUD"
 
 protocol CurrencyFetcher {
-  func fetchCurrency(currency: String, instrument: String) -> Promise<Currency?>
+  func fetchCurrency(currency: String, instrument: String) -> Promise<Coin?>
 }
 
 extension CurrencyFetcher {
-  func fetchCurrency(currency: String, instrument: String) -> Promise<Currency?> {
+  func fetchCurrency(currency: String, instrument: String) -> Promise<Coin?> {
     let api = RestfulAPI()
     return api.tick(currency: rootCurrency, instrument: instrument).then { json in
-      Currency(JSON: json)
+      Coin(JSON: json)
     }
   }
 }
@@ -33,7 +33,9 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher {
   @IBOutlet var coinNameLabel: UILabel!
   @IBOutlet var volumeLabel: UILabel!
   
-  let socketManager: SocketManager = SocketManager(socketURL: URL(string: "https://socket.btcmarkets.net")!,  config: [.compress, .secure(true), .connectParams(["transports":["websocket"]])])
+  private var coin: Coin?
+  
+  let socketManager: SocketManager = SocketManager(socketURL: URL(string: "https://socket.btcmarkets.net")!,  config: [.compress, .secure(true), .forceWebsockets(true)])
   lazy var socket: SocketIOClient? = {
     return socketManager.defaultSocket
   }()
@@ -52,14 +54,39 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher {
       }
 
       DispatchQueue.main.async {
-        self.priceLabel.text = "$\(coin.displayPrice)"
-        self.volumeLabel.text = "Volume(24h): \(coin.displayVolume)"
-        self.bidLabel.text = "Bid: \(coin.displayBestBid)"
-        self.askLabel.text = "Ask: \(coin.displayBestAsk)"
+        self.updateUI(coin: coin)
       }
       
       self.setupSocket(currency: currency, instrument: instrument)
     }.catch { error in print(error) }
+  }
+  
+  private func updateUI(coin: Coin) {
+    updateValue(forLabel: priceLabel, previousValue: self.coin?.lastPrice, newValue: coin.lastPrice, displayValue: coin.displayPrice)
+    updateValue(forLabel: bidLabel, previousValue: self.coin?.bestBid, newValue: coin.bestBid, displayValue: coin.displayBestBid)
+    updateValue(forLabel: askLabel, previousValue: self.coin?.bestAsk, newValue: coin.bestAsk, displayValue: coin.displayBestAsk)
+    volumeLabel.text = coin.displayVolume
+    self.coin = coin
+  }
+  
+  private func updateValue(forLabel label: UILabel, previousValue: Float?, newValue: Float?, displayValue: String) {
+    guard let previousValue = previousValue, let newValue = newValue else {
+      label.text = displayValue
+      return
+    }
+    
+    guard previousValue != newValue else { return }
+    
+    let color: UIColor = previousValue < newValue ? .green : .red
+    
+    label.text = displayValue
+    label.textColor = color
+
+    Timer.scheduledTimer(withTimeInterval: 0.7, repeats: false) { _ in
+      UIView.transition(with: label, duration: 0.3, options: [.transitionCrossDissolve, .curveEaseIn], animations: {
+        label.textColor = .black
+      }, completion: nil)
+    }
   }
   
   private func setupSocket(currency: String, instrument: String) {
@@ -68,9 +95,13 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher {
       self?.socket?.emit("join", with: [channelName])
     }
     
-    socket?.on("newTicker") { data, ack in
-      print(data)
-      print(ack)
+    socket?.on("newTicker") { [weak self] data, ack in
+      guard let json = data.first as? JSONResponse, var coin = Coin(JSON: json) else {
+        return
+      }
+      coin.normaliseValues()
+      
+      self?.updateUI(coin: coin)
     }
     
     socket?.connect()
