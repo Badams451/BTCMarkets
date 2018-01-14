@@ -123,16 +123,16 @@
             </objects>
             <point key="canvasLocation" x="975" y="-7"/>
         </scene>
-        <!--Coin Profile View Controller-->
+        <!--Currencies View Controller-->
         <scene sceneID="Mu0-IN-fdp">
             <objects>
-                <tableViewController storyboardIdentifier="CoinProfileViewController" id="oHW-Qk-DX7" customClass="CoinProfileViewController" customModule="BTCMarkets" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CoinProfileViewController" id="oHW-Qk-DX7" customClass="CurrenciesViewController" customModule="BTCMarkets" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="vrt-c7-TZ5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="9rO-kg-TGe">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CurrencyViewControllerCell" id="9rO-kg-TGe">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9rO-kg-TGe" id="Ako-A3-o8x">

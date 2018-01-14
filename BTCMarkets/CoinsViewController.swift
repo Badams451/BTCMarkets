@@ -10,11 +10,26 @@ import UIKit
 import PromiseKit
 import ObjectMapper
 
-private let rootCurrency = "AUD"
-private let instruments = ["BTC", "LTC", "XRP", "ETH", "BCH"]
-private let coins = ["Bitcoin", "Litecoin", "Ripple", "Ethereum", "BCash"]
+enum Currency: String {
+  case aud = "AUD"
+  case btc = "BTC"
+}
 
 class CoinsViewController: UITableViewController {
+  private var currency: String! = "BTC"
+  private var instruments: [String] = ["BTC", "LTC", "XRP", "ETH", "BCH"]
+  private var filteredInstruments: [String] {
+    return instruments.filter { $0 != currency }
+  }
+  
+  private var coinNames = [
+    "BTC": "Bitcoin",
+    "LTC": "Litecoin",
+    "XRP": "Ripple",
+    "ETH": "Ethereum",
+    "BCH": "BCash"
+  ]
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
@@ -37,7 +52,7 @@ class CoinsViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return instruments.count
+    return filteredInstruments.count
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -47,8 +62,14 @@ class CoinsViewController: UITableViewController {
       return cell
     }
     
-    currencyCell.configure(currency: rootCurrency, instrument: instruments[indexPath.row], coinName: coins[indexPath.row])
+    let instrument = instruments[indexPath.row]
+    currencyCell.configure(currency: currency, instrument: filteredInstruments[indexPath.row], coinName: coinNames[instrument]!)
     
     return currencyCell
+  }
+  
+  func configure(withCurrency currency: String, instruments: [String]) {
+    self.currency = currency
+    self.instruments = instruments
   }
 }

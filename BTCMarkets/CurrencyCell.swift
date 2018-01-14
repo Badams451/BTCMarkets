@@ -10,8 +10,6 @@ import UIKit
 import PromiseKit
 import SocketIO
 
-private let rootCurrency = "AUD"
-
 protocol CurrencyFetcher {
   func fetchCurrency(currency: String, instrument: String) -> Promise<Coin?>
 }
@@ -19,7 +17,7 @@ protocol CurrencyFetcher {
 extension CurrencyFetcher {
   func fetchCurrency(currency: String, instrument: String) -> Promise<Coin?> {
     let api = RestfulAPI()
-    return api.tick(currency: rootCurrency, instrument: instrument).then { json in
+    return api.tick(currency: currency, instrument: instrument).then { json in
       Coin(JSON: json)
     }
   }
