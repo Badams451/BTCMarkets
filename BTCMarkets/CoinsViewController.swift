@@ -10,26 +10,6 @@ import UIKit
 import PromiseKit
 import ObjectMapper
 
-enum Currency: String {
-  case aud = "AUD"
-  case btc = "BTC"
-  case ltc = "LTC"
-  case xrp = "XRP"
-  case eth = "ETH"
-  case bch = "BCH"
-  
-  func coinName() -> String {
-    switch self {
-    case .aud: return "AUD"
-    case .btc: return "Bitcoin"
-    case .ltc: return "Litecoin"
-    case .xrp: return "Ripple"
-    case .eth: return "Ethereum"
-    case .bch: return "BCash"
-    }
-  }
-}
-
 class CoinsViewController: UITableViewController {
   private var currency: Currency! = .aud
   private var instruments: [Currency] = [.btc, .ltc, .xrp, .eth, .bch]
