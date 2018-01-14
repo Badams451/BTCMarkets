@@ -14,7 +14,7 @@ private let rootCurrency = "AUD"
 private let instruments = ["BTC", "LTC", "XRP", "ETH", "BCH"]
 private let coins = ["Bitcoin", "Litecoin", "Ripple", "Ethereum", "BCash"]
 
-class CurrenciesViewController: UITableViewController {
+class CoinsViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
