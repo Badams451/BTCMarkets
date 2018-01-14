@@ -30,22 +30,7 @@ class CoinsViewController: UITableViewController {
     "BCH": "BCash"
   ]
   
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    setupUI()
-  }
-  
-  private func setupUI() {
-    let refreshControl = UIRefreshControl()
-    refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
-    
-    tableView.refreshControl = refreshControl
-  }
-  
-  @objc private func loadData() {
-    self.tableView.reloadData()
-    tableView.refreshControl?.endRefreshing()
-  }
+  // MARK: TableView
   
   override func numberOfSections(in tableView: UITableView) -> Int {
     return 1
@@ -67,6 +52,8 @@ class CoinsViewController: UITableViewController {
     
     return currencyCell
   }
+  
+  // MARK: Configure
   
   func configure(withCurrency currency: String, instruments: [String]) {
     self.currency = currency
