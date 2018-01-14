@@ -62,7 +62,11 @@ struct ApplicationData {
   var profiles: [Profile] = []
   private let profilesKey = "profiles"
   
-  mutating func retrieveProfiles() {
+  init() {
+    self.retrieveProfiles()
+  }
+  
+  private mutating func retrieveProfiles() {
     let userDefaults = UserDefaults.standard
     guard let encodedProfiles = userDefaults.object(forKey: profilesKey) as? Data else {
       return

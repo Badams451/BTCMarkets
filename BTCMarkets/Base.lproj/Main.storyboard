@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -108,28 +107,6 @@
             </objects>
             <point key="canvasLocation" x="1312.8" y="-7.6461769115442282"/>
         </scene>
-        <!--Profiles-->
-        <scene sceneID="ElS-hE-3Kw">
-            <objects>
-                <viewController id="S6X-Nf-0yk" customClass="ProfilesViewController" customModule="BTCMarkets" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="YNs-wJ-idS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="kEq-Vr-NVy"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Profiles" id="ENL-qF-K9b">
-                        <barButtonItem key="leftBarButtonItem" title="Close" id="dvD-9o-tTW">
-                            <connections>
-                                <action selector="closeButtonTapped:" destination="S6X-Nf-0yk" id="NLf-Pf-dmp"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FhD-eu-gAl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3628" y="14"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="9nh-66-loL">
             <objects>
@@ -159,12 +136,47 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="S6X-Nf-0yk" kind="relationship" relationship="rootViewController" id="YBX-IE-JUC"/>
+                        <segue destination="RNU-7P-EuN" kind="relationship" relationship="rootViewController" id="OVp-ff-Lw5"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bmo-fI-jQg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2610" y="14"/>
+        </scene>
+        <!--Profiles-->
+        <scene sceneID="5X7-lB-3O6">
+            <objects>
+                <tableViewController id="RNU-7P-EuN" customClass="ProfilesViewController" customModule="BTCMarkets" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Agn-KR-7BP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProfilesViewCell" id="GdC-IC-fph">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GdC-IC-fph" id="Q3d-Bw-5bw">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="RNU-7P-EuN" id="3w8-5M-JPY"/>
+                            <outlet property="delegate" destination="RNU-7P-EuN" id="LS8-1p-1rH"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Profiles" id="jVP-nf-X0v">
+                        <barButtonItem key="leftBarButtonItem" title="Close" id="SBt-xA-sTX">
+                            <connections>
+                                <action selector="closeButtonTapped:" destination="RNU-7P-EuN" id="Yaj-iS-3LB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NZS-CF-3ZA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3745" y="-11"/>
         </scene>
     </scenes>
 </document>
