@@ -44,7 +44,7 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher {
 
   func configure(currency: Currency, instrument: Currency) {
     currencyLabel.text = "\(instrument.rawValue)/\(currency.rawValue)"
-    coinNameLabel.text = instrument.coinName()
+    coinNameLabel.text = instrument.coinName
     
     self.fetchCurrency(currency: currency, instrument: instrument).then { coin -> Void in
       guard let coin = coin else {

@@ -16,7 +16,7 @@ enum Currency: String, Codable {
   case eth = "ETH"
   case bch = "BCH"
   
-  func coinName() -> String {
+  var coinName: String {
     switch self {
     case .aud: return "AUD"
     case .btc: return "Bitcoin"
@@ -25,6 +25,10 @@ enum Currency: String, Codable {
     case .eth: return "Ethereum"
     case .bch: return "BCash"
     }
+  }
+  
+  static var allValues: [Currency] {
+    return [.aud, .btc, .ltc, .xrp, .eth, .bch]
   }
 }
 

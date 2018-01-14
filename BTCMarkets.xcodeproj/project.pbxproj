@@ -12,6 +12,7 @@
 		DD49F4FD2008BA8100B1D6C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD49F4FC2008BA8100B1D6C0 /* Assets.xcassets */; };
 		DD49F5002008BA8100B1D6C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD49F4FE2008BA8100B1D6C0 /* LaunchScreen.storyboard */; };
 		DD49F5082008C3F800B1D6C0 /* CoinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD49F5072008C3F800B1D6C0 /* CoinsViewController.swift */; };
+		DD860899200C1A4400883E8C /* NewProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD860898200C1A4400883E8C /* NewProfileViewController.swift */; };
 		DDA3FA5D2008CABF002FAA41 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA3FA5C2008CABF002FAA41 /* API.swift */; };
 		DDCA592F200B5C8A00389148 /* ProfilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCA592E200B5C8A00389148 /* ProfilesViewController.swift */; };
 		DDCA5931200B5E2300389148 /* ApplicationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCA5930200B5E2300389148 /* ApplicationData.swift */; };
@@ -31,6 +32,7 @@
 		DD49F4FF2008BA8100B1D6C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DD49F5012008BA8100B1D6C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD49F5072008C3F800B1D6C0 /* CoinsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsViewController.swift; sourceTree = "<group>"; };
+		DD860898200C1A4400883E8C /* NewProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProfileViewController.swift; sourceTree = "<group>"; };
 		DDA3FA5C2008CABF002FAA41 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		DDCA592E200B5C8A00389148 /* ProfilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesViewController.swift; sourceTree = "<group>"; };
 		DDCA5930200B5E2300389148 /* ApplicationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationData.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				DDF8CA2F2008E8E900C010D7 /* CurrencyCell.swift */,
 				DD49F5072008C3F800B1D6C0 /* CoinsViewController.swift */,
 				DDCA592E200B5C8A00389148 /* ProfilesViewController.swift */,
+				DD860898200C1A4400883E8C /* NewProfileViewController.swift */,
 				DD49F4FC2008BA8100B1D6C0 /* Assets.xcassets */,
 				DD49F4F92008BA8100B1D6C0 /* Main.storyboard */,
 				DD49F4FE2008BA8100B1D6C0 /* LaunchScreen.storyboard */,
@@ -245,6 +248,7 @@
 				DDF8CA302008E8E900C010D7 /* CurrencyCell.swift in Sources */,
 				DDF8CA2E2008E8A900C010D7 /* Coin.swift in Sources */,
 				DD49F5082008C3F800B1D6C0 /* CoinsViewController.swift in Sources */,
+				DD860899200C1A4400883E8C /* NewProfileViewController.swift in Sources */,
 				DDCA5931200B5E2300389148 /* ApplicationData.swift in Sources */,
 				DDA3FA5D2008CABF002FAA41 /* API.swift in Sources */,
 				DDCA592F200B5C8A00389148 /* ProfilesViewController.swift in Sources */,
