@@ -13,12 +13,27 @@ import ObjectMapper
 enum Currency: String {
   case aud = "AUD"
   case btc = "BTC"
+  case ltc = "LTC"
+  case xrp = "XRP"
+  case eth = "ETH"
+  case bch = "BCH"
+  
+  func coinName() -> String {
+    switch self {
+    case .aud: return "AUD"
+    case .btc: return "Bitcoin"
+    case .ltc: return "Litecoin"
+    case .xrp: return "Ripple"
+    case .eth: return "Ethereum"
+    case .bch: return "BCash"
+    }
+  }
 }
 
 class CoinsViewController: UITableViewController {
-  private var currency: String! = "BTC"
-  private var instruments: [String] = ["BTC", "LTC", "XRP", "ETH", "BCH"]
-  private var filteredInstruments: [String] {
+  private var currency: Currency! = .aud
+  private var instruments: [Currency] = [.btc, .ltc, .xrp, .eth, .bch]
+  private var filteredInstruments: [Currency] {
     return instruments.filter { $0 != currency }
   }
   
@@ -47,16 +62,8 @@ class CoinsViewController: UITableViewController {
       return cell
     }
     
-    let instrument = instruments[indexPath.row]
-    currencyCell.configure(currency: currency, instrument: filteredInstruments[indexPath.row], coinName: coinNames[instrument]!)
+    currencyCell.configure(currency: currency, instrument: filteredInstruments[indexPath.row])
     
     return currencyCell
-  }
-  
-  // MARK: Configure
-  
-  func configure(withCurrency currency: String, instruments: [String]) {
-    self.currency = currency
-    self.instruments = instruments
   }
 }

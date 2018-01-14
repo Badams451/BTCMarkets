@@ -11,13 +11,13 @@ import PromiseKit
 import SocketIO
 
 protocol CurrencyFetcher {
-  func fetchCurrency(currency: String, instrument: String) -> Promise<Coin?>
+  func fetchCurrency(currency: Currency, instrument: Currency) -> Promise<Coin?>
 }
 
 extension CurrencyFetcher {
-  func fetchCurrency(currency: String, instrument: String) -> Promise<Coin?> {
+  func fetchCurrency(currency: Currency, instrument: Currency) -> Promise<Coin?> {
     let api = RestfulAPI()
-    return api.tick(currency: currency, instrument: instrument).then { json in
+    return api.tick(currency: currency.rawValue, instrument: instrument.rawValue).then { json in
       Coin(JSON: json)
     }
   }
@@ -42,9 +42,9 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher {
     super.prepareForReuse()
   }
 
-  func configure(currency: String, instrument: String, coinName: String) {
-    currencyLabel.text = "\(instrument)/\(currency)"
-    coinNameLabel.text = coinName
+  func configure(currency: Currency, instrument: Currency) {
+    currencyLabel.text = "\(instrument.rawValue)/\(currency.rawValue)"
+    coinNameLabel.text = instrument.coinName()
     
     self.fetchCurrency(currency: currency, instrument: instrument).then { coin -> Void in
       guard let coin = coin else {
@@ -87,9 +87,9 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher {
     }
   }
   
-  private func setupSocket(currency: String, instrument: String) {
+  private func setupSocket(currency: Currency, instrument: Currency) {
     socket?.on(clientEvent: .connect) { [weak self] data, ack in
-      let channelName = "Ticker-BTCMarkets-\(instrument)-\(currency)"
+      let channelName = "Ticker-BTCMarkets-\(instrument.rawValue)-\(currency.rawValue)"
       self?.socket?.emit("join", with: [channelName])
     }
     
