@@ -12,11 +12,10 @@ import ObjectMapper
 
 class CoinsViewController: UITableViewController {
   private let applicationData = ApplicationData.sharedInstance
-  private var defaultProfile = Profile(profileName: "CoinTracker", currency: .aud, instruments: [.btc, .ltc, .xrp, .eth, .bch])
   private var instruments: [Currency] = [.btc, .ltc, .xrp, .eth, .bch]
   
   private var profile: Profile {
-    return applicationData.selectedProfile ?? defaultProfile
+    return applicationData.selectedProfile ?? applicationData.defaultProfile
   }
   
   override func viewDidLoad() {

@@ -8,60 +8,6 @@
 
 import Foundation
 
-enum Currency: String, Codable {
-  case aud = "AUD"
-  case btc = "BTC"
-  case ltc = "LTC"
-  case xrp = "XRP"
-  case eth = "ETH"
-  case bch = "BCH"
-  
-  var coinName: String {
-    switch self {
-    case .aud: return "AUD"
-    case .btc: return "Bitcoin"
-    case .ltc: return "Litecoin"
-    case .xrp: return "Ripple"
-    case .eth: return "Ethereum"
-    case .bch: return "BCash"
-    }
-  }
-  
-  static var allValues: [Currency] {
-    return [.aud, .btc, .ltc, .xrp, .eth, .bch]
-  }    
-}
-
-struct Profile: Codable {
-  var profileName: String
-  var currency: Currency
-  var instruments: [Currency]
-
-  private enum CodingKeys: CodingKey {
-    case profileName, currency, instruments
-  }
-  
-  init(profileName: String, currency: Currency, instruments: [Currency]) {
-    self.profileName = profileName
-    self.currency = currency
-    self.instruments = instruments
-  }
-
-  init(from decoder: Decoder) throws {
-    let container = try decoder.container(keyedBy: CodingKeys.self)
-    profileName = try container.decode(String.self, forKey: .profileName)
-    currency = try container.decode(Currency.self, forKey: .currency)
-    instruments = try container.decode(Array<Currency>.self, forKey: .instruments)
-  }
-
-  func encode(to encoder: Encoder) throws {
-    var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(profileName, forKey: .profileName)
-    try container.encode(currency, forKey: .currency)
-    try container.encode(instruments, forKey: .instruments)
-  }
-}
-
 class ApplicationData {
   typealias ProfilesChanged = ([Profile]) -> Void
   typealias SelectedProfileChanged = (Profile?) -> Void
@@ -73,6 +19,7 @@ class ApplicationData {
   private let selectedProfileKey = "selectedProfile"
   private var profileSubscribers: [(Subscriber, ProfilesChanged)] = []
   private var selectedProfileSubscribers: [(Subscriber, SelectedProfileChanged)] = []
+  let defaultProfile = Profile(profileName: "CoinTracker", currency: .aud, instruments: [.btc, .ltc, .xrp, .eth, .bch])
   
   init() {
     retrieveProfiles()
@@ -95,6 +42,8 @@ class ApplicationData {
   private func retrieveProfiles() {
     let userDefaults = UserDefaults.standard
     guard let encodedProfiles = userDefaults.object(forKey: profilesKey) as? Data else {
+      addOrUpdateProfile(profile: defaultProfile)
+      setSelectedProfile(profile: defaultProfile)
       return
     }
     
@@ -104,18 +53,23 @@ class ApplicationData {
     
     self.profiles = decodedProfiles
   }
-  
+
+}
+
+// Mark: CRUD
+
+extension ApplicationData {
   private func saveProfiles() {
     let userDefaults = UserDefaults.standard
     let encodedProfiles = try? PropertyListEncoder().encode(profiles)
     userDefaults.set(encodedProfiles, forKey: profilesKey)
   }
-
+  
   func addOrUpdateProfile(profile: Profile) {
     if let existingProfileIndex = (profiles.index { $0.profileName == profile.profileName }) {
       profiles.remove(at: existingProfileIndex)
     }
-    profiles.insert(profile, at: 0)    
+    profiles.insert(profile, at: 0)
     saveProfiles()
   }
   
@@ -135,7 +89,7 @@ class ApplicationData {
   }
 }
 
-// Subscribe
+// Mark: Subscribe
 extension ApplicationData {
   func subscribeSelectedProfile(target: Subscriber, callback: @escaping SelectedProfileChanged)  {
     selectedProfileSubscribers.append((target, callback))
