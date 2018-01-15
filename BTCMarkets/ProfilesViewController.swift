@@ -14,6 +14,10 @@ class ProfilesViewController: UITableViewController {
     return applicationData.profiles
   }
   
+  var selectedProfile: Profile? {
+    return applicationData.selectedProfile
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()    
     applicationData.subscribeProfileChange(target: String(describing: self)) { [weak self] profiles in
@@ -41,7 +45,13 @@ class ProfilesViewController: UITableViewController {
     let cell = tableView.dequeueReusableCell(withIdentifier: "ProfilesViewCell", for: indexPath)
     let profile = profiles[indexPath.row]
     
-    cell.textLabel?.text = "\(profile.profileName) \(profile.currency) \(profile.instruments)"
+    if profile.profileName == selectedProfile?.profileName {
+      cell.accessoryType = .checkmark
+    } else {
+      cell.accessoryType = .none
+    }
+    
+    cell.textLabel?.text = "\(profile.profileName)"
     
     return cell
   }
@@ -59,7 +69,7 @@ class ProfilesViewController: UITableViewController {
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let profile = self.profiles[indexPath.row]
-    
     applicationData.setSelectedProfile(profile: profile)
+    self.dismiss(animated: true, completion: nil)
   }
 }
