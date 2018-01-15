@@ -33,12 +33,22 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher {
   
   private var coin: Coin?
   
-  let socketManager: SocketManager = SocketManager(socketURL: URL(string: "https://socket.btcmarkets.net")!,  config: [.compress, .secure(true), .forceWebsockets(true)])
+  var socketManager: SocketManager = SocketManager(socketURL: URL(string: "https://socket.btcmarkets.net")!,  config: [.compress, .secure(true), .forceWebsockets(true)])
   lazy var socket: SocketIOClient? = {
     return socketManager.defaultSocket
   }()
 
   override func prepareForReuse() {
+    self.coin = nil
+    
+    priceLabel.text = "-"
+    bidLabel.text = "-"
+    askLabel.text = "-"
+    
+    socket?.disconnect()
+    socketManager = SocketManager(socketURL: URL(string: "https://socket.btcmarkets.net")!,  config: [.compress, .secure(true), .forceWebsockets(true)])
+    socket = socketManager.defaultSocket
+    
     super.prepareForReuse()
   }
 
@@ -54,7 +64,7 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher {
       DispatchQueue.main.async {
         self.updateUI(coin: coin)
       }
-      
+
       self.setupSocket(currency: currency, instrument: instrument)
     }.catch { error in print(error) }
   }
