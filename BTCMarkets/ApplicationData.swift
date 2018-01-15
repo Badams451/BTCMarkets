@@ -8,15 +8,15 @@
 
 import Foundation
 
+private let profilesKey = "profiles"
+private let selectedProfileKey = "selectedProfile"
+
 class ApplicationData {
   typealias ProfilesChanged = ([Profile]) -> Void
   typealias SelectedProfileChanged = (Profile?) -> Void
   typealias Subscriber = String
   
   static var sharedInstance: ApplicationData = ApplicationData()
-  
-  private let profilesKey = "profiles"
-  private let selectedProfileKey = "selectedProfile"
   private var profileSubscribers: [(Subscriber, ProfilesChanged)] = []
   private var selectedProfileSubscribers: [(Subscriber, SelectedProfileChanged)] = []
   let defaultProfile = Profile(profileName: "CoinTracker", currency: .aud, instruments: [.btc, .ltc, .xrp, .eth, .bch])
