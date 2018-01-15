@@ -102,6 +102,7 @@
                                 <segue destination="2KE-Yo-bPh" kind="presentation" id="FRf-nJ-as8"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="km9-2u-dFA"/>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e1b-za-ngQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -176,7 +177,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="New" id="DUy-oL-9H7">
                             <connections>
-                                <segue destination="P6C-o9-W8N" kind="show" id="3W0-ws-COq"/>
+                                <segue destination="a7B-d5-S51" kind="show" id="ZX2-KL-u23"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -185,39 +186,23 @@
             </objects>
             <point key="canvasLocation" x="3319" y="-11"/>
         </scene>
-        <!--New Profile View Controller-->
+        <!--Title-->
         <scene sceneID="lHY-bw-7yr">
             <objects>
-                <viewController id="P6C-o9-W8N" customClass="NewProfileViewController" customModule="BTCMarkets" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="P6C-o9-W8N" customClass="ConfigureProfileViewController" customModule="BTCMarkets" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yWP-cB-OB3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Profile name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YHC-qK-W8E">
-                                <rect key="frame" x="126.5" y="84" width="122" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="kXb-7q-vxp"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="RTP-4J-qWA">
-                                <rect key="frame" x="145" y="164" width="85" height="29"/>
-                                <segments>
-                                    <segment title="AUD"/>
-                                    <segment title="BTC"/>
-                                </segments>
-                            </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wJk-dg-GIb">
-                                <rect key="frame" x="40" y="222" width="295" height="355"/>
+                                <rect key="frame" x="0.0" y="132" width="375" height="535"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProfileCurrencyCell" id="KYX-6k-KZ7">
-                                        <rect key="frame" x="0.0" y="28" width="295" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="335" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KYX-6k-KZ7" id="7Xl-Up-pF3">
-                                            <rect key="frame" x="0.0" y="0.0" width="295" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -227,39 +212,82 @@
                                     <outlet property="delegate" destination="P6C-o9-W8N" id="Jor-NV-Y9D"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cow-Sz-LfO">
-                                <rect key="frame" x="170" y="607" width="34" height="30"/>
-                                <state key="normal" title="Save"/>
-                                <connections>
-                                    <action selector="saveTapped:" destination="P6C-o9-W8N" eventType="touchUpInside" id="qW2-9Y-EXG"/>
-                                </connections>
-                            </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="RTP-4J-qWA">
+                                <rect key="frame" x="145" y="84" width="85" height="29"/>
+                                <segments>
+                                    <segment title="AUD"/>
+                                    <segment title="BTC"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="RTP-4J-qWA" firstAttribute="top" secondItem="YHC-qK-W8E" secondAttribute="bottom" constant="30" id="2x8-N3-8Cl"/>
-                            <constraint firstItem="Cow-Sz-LfO" firstAttribute="top" secondItem="wJk-dg-GIb" secondAttribute="bottom" constant="30" id="62s-Xf-YB5"/>
-                            <constraint firstItem="YHC-qK-W8E" firstAttribute="centerX" secondItem="Mlh-O9-7Fi" secondAttribute="centerX" id="6Nk-Uf-7jh"/>
-                            <constraint firstItem="Mlh-O9-7Fi" firstAttribute="trailing" secondItem="wJk-dg-GIb" secondAttribute="trailing" constant="40" id="7Ic-fd-yKI"/>
-                            <constraint firstItem="wJk-dg-GIb" firstAttribute="top" secondItem="RTP-4J-qWA" secondAttribute="bottom" constant="30" id="MZh-nh-eiP"/>
+                            <constraint firstItem="Mlh-O9-7Fi" firstAttribute="trailing" secondItem="wJk-dg-GIb" secondAttribute="trailing" id="7Ic-fd-yKI"/>
                             <constraint firstItem="RTP-4J-qWA" firstAttribute="centerX" secondItem="Mlh-O9-7Fi" secondAttribute="centerX" id="Mri-Jh-Gj0"/>
-                            <constraint firstItem="YHC-qK-W8E" firstAttribute="top" secondItem="Mlh-O9-7Fi" secondAttribute="top" constant="20" id="b0H-5Y-EbY"/>
-                            <constraint firstItem="wJk-dg-GIb" firstAttribute="leading" secondItem="Mlh-O9-7Fi" secondAttribute="leading" constant="40" id="fEf-CJ-ItK"/>
+                            <constraint firstItem="wJk-dg-GIb" firstAttribute="top" secondItem="RTP-4J-qWA" secondAttribute="bottom" constant="20" id="X1y-uF-XbP"/>
+                            <constraint firstItem="wJk-dg-GIb" firstAttribute="leading" secondItem="Mlh-O9-7Fi" secondAttribute="leading" id="fEf-CJ-ItK"/>
                             <constraint firstItem="wJk-dg-GIb" firstAttribute="centerX" secondItem="Mlh-O9-7Fi" secondAttribute="centerX" id="fxV-Zi-mhA"/>
-                            <constraint firstItem="Mlh-O9-7Fi" firstAttribute="bottom" secondItem="Cow-Sz-LfO" secondAttribute="bottom" constant="30" id="pHd-Sf-bEC"/>
-                            <constraint firstItem="Cow-Sz-LfO" firstAttribute="centerX" secondItem="Mlh-O9-7Fi" secondAttribute="centerX" id="yXw-1e-gxa"/>
+                            <constraint firstItem="Mlh-O9-7Fi" firstAttribute="bottom" secondItem="wJk-dg-GIb" secondAttribute="bottom" id="mxG-79-GDD"/>
+                            <constraint firstItem="RTP-4J-qWA" firstAttribute="top" secondItem="Mlh-O9-7Fi" secondAttribute="top" constant="20" id="yny-kF-fRo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Mlh-O9-7Fi"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="I7P-Jy-e1H">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="zwB-Qi-9BC">
+                            <connections>
+                                <action selector="saveTapped:" destination="P6C-o9-W8N" id="5ip-ii-NnO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="currencySegmentedControl" destination="RTP-4J-qWA" id="JZR-1L-POk"/>
                         <outlet property="instrumentsTableView" destination="wJk-dg-GIb" id="VFc-mG-sx6"/>
-                        <outlet property="textField" destination="YHC-qK-W8E" id="Vcm-z2-jvK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zDG-9T-Tln" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4247" y="-9"/>
+            <point key="canvasLocation" x="4945" y="-9"/>
+        </scene>
+        <!--New Profile-->
+        <scene sceneID="nmB-Da-tXa">
+            <objects>
+                <viewController id="a7B-d5-S51" customClass="NewProfileViewController" customModule="BTCMarkets" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nCL-E6-ocL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A3s-CI-XOm">
+                                <rect key="frame" x="62.5" y="335.5" width="250" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="0Qn-Na-6Ov"/>
+                                    <constraint firstAttribute="height" constant="60" id="eKl-yJ-g4k"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="A3s-CI-XOm" firstAttribute="centerX" secondItem="pWx-nS-oBD" secondAttribute="centerX" id="WJN-35-p4X"/>
+                            <constraint firstItem="A3s-CI-XOm" firstAttribute="centerY" secondItem="pWx-nS-oBD" secondAttribute="centerY" id="wFC-AS-FhT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="pWx-nS-oBD"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="New Profile" id="PPf-9H-d8Q">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="twF-Iq-S3r">
+                            <connections>
+                                <segue destination="P6C-o9-W8N" kind="show" identifier="NewToConfigureProfileSegue" id="ulw-37-Efd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="textField" destination="A3s-CI-XOm" id="Fqh-Df-k5S"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x9R-wZ-rbb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4076" y="-9"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="bDP-y9-yEa">
