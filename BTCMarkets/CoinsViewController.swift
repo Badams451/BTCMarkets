@@ -11,19 +11,22 @@ import PromiseKit
 import ObjectMapper
 
 class CoinsViewController: UITableViewController {
-  private var currency: Currency! = .aud
+  private let applicationData = ApplicationData.sharedInstance
+  private var defaultProfile = Profile(profileName: "CoinTracker", currency: .aud, instruments: [.btc, .ltc, .xrp, .eth, .bch])
   private var instruments: [Currency] = [.btc, .ltc, .xrp, .eth, .bch]
-  private var filteredInstruments: [Currency] {
-    return instruments.filter { $0 != currency }
+  
+  private var profile: Profile {
+    return applicationData.selectedProfile ?? defaultProfile
   }
   
-  private var coinNames = [
-    "BTC": "Bitcoin",
-    "LTC": "Litecoin",
-    "XRP": "Ripple",
-    "ETH": "Ethereum",
-    "BCH": "BCash"
-  ]
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    navigationItem.title = profile.profileName
+    applicationData.subscribeSelectedProfile(target: String(describing: self)) { [weak self] _ in
+      self?.navigationItem.title = self?.profile.profileName
+      self?.tableView.reloadData()
+    }
+  }
   
   // MARK: TableView
   
@@ -32,7 +35,7 @@ class CoinsViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return filteredInstruments.count
+    return profile.instruments.count
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -42,8 +45,12 @@ class CoinsViewController: UITableViewController {
       return cell
     }
     
-    currencyCell.configure(currency: currency, instrument: filteredInstruments[indexPath.row])
+    currencyCell.configure(currency: profile.currency, instrument: profile.instruments[indexPath.row])
     
     return currencyCell
+  }
+  
+  deinit {
+    applicationData.unsubscribe(target: String(describing: self))
   }
 }

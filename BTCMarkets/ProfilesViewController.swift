@@ -16,7 +16,7 @@ class ProfilesViewController: UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()    
-    applicationData.subscribe(target: String(describing: self)) { [weak self] profiles in
+    applicationData.subscribeProfileChange(target: String(describing: self)) { [weak self] profiles in
       self?.tableView.reloadData()
     }
   }
@@ -55,5 +55,11 @@ class ProfilesViewController: UITableViewController {
     deleteAction.backgroundColor = .red
     
     return UISwipeActionsConfiguration(actions: [deleteAction])
+  }
+  
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let profile = self.profiles[indexPath.row]
+    
+    applicationData.setSelectedProfile(profile: profile)
   }
 }

@@ -63,13 +63,16 @@ struct Profile: Codable {
 }
 
 class ApplicationData {
-  typealias ProfilesChangedCallback = ([Profile]) -> Void
+  typealias ProfilesChanged = ([Profile]) -> Void
+  typealias SelectedProfileChanged = (Profile?) -> Void
   typealias Subscriber = String
   
   static var sharedInstance: ApplicationData = ApplicationData()
   
   private let profilesKey = "profiles"
-  private var subscribers: [(Subscriber, ProfilesChangedCallback)] = []
+  private let selectedProfileKey = "selectedProfile"
+  private var profileSubscribers: [(Subscriber, ProfilesChanged)] = []
+  private var selectedProfileSubscribers: [(Subscriber, SelectedProfileChanged)] = []
   
   init() {
     retrieveProfiles()
@@ -77,8 +80,16 @@ class ApplicationData {
   
   var profiles: [Profile] = [] {
     didSet {
-      subscribers.forEach { subscriber in subscriber.1(profiles) }
+      profileSubscribers.forEach { subscriber in subscriber.1(profiles) }
     }
+  }
+  
+  var selectedProfile: Profile? {
+    guard let profileName = UserDefaults.standard.object(forKey: selectedProfileKey) as? String else {
+      return nil
+    }
+    let profile = profiles.filter { $0.profileName == profileName }.first
+    return profile
   }
   
   private func retrieveProfiles() {
@@ -105,6 +116,12 @@ class ApplicationData {
     saveProfiles()
   }
   
+  func setSelectedProfile(profile: Profile) {
+    let userDefaults = UserDefaults.standard
+    userDefaults.set(profile.profileName, forKey: selectedProfileKey)
+    selectedProfileSubscribers.forEach { $0.1(selectedProfile) }
+  }
+  
   func delete(profile: Profile) {
     let index = profiles.index { $0.profileName == profile.profileName }
     
@@ -113,19 +130,35 @@ class ApplicationData {
       saveProfiles()
     }
   }
+}
+
+// Subscribe
+extension ApplicationData {
+  func subscribeSelectedProfile(target: Subscriber, callback: @escaping SelectedProfileChanged)  {
+    selectedProfileSubscribers.append((target, callback))
+    callback(selectedProfile)
+  }
   
-  func subscribe(target: Subscriber, callback: @escaping ProfilesChangedCallback)  {
-    subscribers.append((target, callback))
+  func subscribeProfileChange(target: Subscriber, callback: @escaping ProfilesChanged)  {
+    profileSubscribers.append((target, callback))
     callback(profiles)
   }
   
   func unsubscribe(target: Subscriber) {
-    let index = subscribers.index { (result) -> Bool in
+    let profileSubscriberIndex = profileSubscribers.index { (result) -> Bool in
       return result.0 == target
     }
     
-    if let index = index {
-      subscribers.remove(at: index)
+    if let profileSubscriberIndex = profileSubscriberIndex {
+      profileSubscribers.remove(at: profileSubscriberIndex)
+    }
+    
+    let selectedProfileSubscriberIndex = selectedProfileSubscribers.index { (result) -> Bool in
+      return result.0 == target
+    }
+    
+    if let selectedProfileSubscriberIndex = selectedProfileSubscriberIndex {
+      selectedProfileSubscribers.remove(at: selectedProfileSubscriberIndex)
     }
   }
 }
