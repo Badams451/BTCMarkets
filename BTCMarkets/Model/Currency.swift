@@ -30,4 +30,8 @@ enum Currency: String, Codable {
   static var allValues: [Currency] {
     return [.aud, .btc, .ltc, .xrp, .eth, .bch]
   }
+  
+  static var allExceptAud: [Currency] {
+    return [.aud, .btc, .ltc, .xrp, .eth, .bch]
+  }
 }

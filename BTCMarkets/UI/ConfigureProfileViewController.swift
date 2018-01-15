@@ -130,7 +130,6 @@ class ConfigureProfileViewController: UIViewController, UITableViewDataSource, U
     let selectedInstruments = possibleInstruments.filter { selectedCurrencies.contains($0) }
 
     let updatedProfile = Profile(profileName: profile.profileName, currency: selectedIndex.currency, instruments: selectedInstruments)
-//    print(updatedProfile)
     applicationData.addOrUpdateProfile(profile: updatedProfile)
     applicationData.setSelectedProfile(profile: updatedProfile)
     navigationController?.popToRootViewController(animated: true)

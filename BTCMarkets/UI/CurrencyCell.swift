@@ -98,7 +98,7 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher {
   }
   
   private func setupSocket(currency: Currency, instrument: Currency) {
-    socket?.on(clientEvent: .connect) { [weak self] data, ack in
+    socket?.on(clientEvent: .connect) { [weak self] _, _ in
       let channelName = "Ticker-BTCMarkets-\(instrument.rawValue)-\(currency.rawValue)"
       self?.socket?.emit("join", with: [channelName])
     }
