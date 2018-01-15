@@ -9,11 +9,21 @@
 import Foundation
 
 private let holdingsKey = "holdings"
-private typealias Holdings = [Currency: Float]
 
 class ApplicationHoldingsStore {
-  private var holdings: Holdings = Holdings()
+  typealias Subscriber = String
+  typealias Holdings = [Currency: Float]
+  typealias HoldingsChanged = (Holdings) -> Void
+  
+  private var holdings: Holdings = Holdings() {
+    didSet {
+      subscribers.forEach { $0.1(holdings) }
+    }
+  }
   private let userDefaults = UserDefaults.standard
+  private var subscribers: [(Subscriber, HoldingsChanged)] = []
+  
+  static var sharedInstance: ApplicationHoldingsStore = ApplicationHoldingsStore()
   
   init() {
     instantiateStore()
@@ -51,5 +61,16 @@ class ApplicationHoldingsStore {
   
   func holdingsAmount(forCurrency currency: Currency) -> Float {
     return holdings[currency] ?? 0
+  }
+  
+  func subscribe(subscriber: Subscriber, callback: @escaping HoldingsChanged) {
+    subscribers.append((subscriber, callback))
+    callback(holdings)
+  }
+  
+  func unsubscribe(subscriber: Subscriber) {
+    if let subscriberIndex = (subscribers.index { return $0.0 == subscriber }) {
+      subscribers.remove(at: subscriberIndex)
+    }
   }
 }
