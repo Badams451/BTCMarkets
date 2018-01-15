@@ -193,9 +193,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Profile name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YHC-qK-W8E">
-                                <rect key="frame" x="87.5" y="84" width="200" height="50"/>
+                                <rect key="frame" x="126.5" y="84" width="122" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="ZzQ-w8-WJY"/>
                                     <constraint firstAttribute="height" constant="50" id="kXb-7q-vxp"/>
                                 </constraints>
                                 <nil key="textColor"/>
@@ -230,6 +229,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cow-Sz-LfO">
                                 <rect key="frame" x="170" y="607" width="34" height="30"/>
                                 <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveTapped:" destination="P6C-o9-W8N" eventType="touchUpInside" id="qW2-9Y-EXG"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -251,6 +253,7 @@
                     <connections>
                         <outlet property="currencySegmentedControl" destination="RTP-4J-qWA" id="JZR-1L-POk"/>
                         <outlet property="instrumentsTableView" destination="wJk-dg-GIb" id="VFc-mG-sx6"/>
+                        <outlet property="textField" destination="YHC-qK-W8E" id="Vcm-z2-jvK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zDG-9T-Tln" userLabel="First Responder" sceneMemberID="firstResponder"/>

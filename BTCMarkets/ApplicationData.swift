@@ -62,15 +62,41 @@ struct Profile: Codable {
   }
 }
 
-struct ApplicationData {
-  var profiles: [Profile] = []
+class ApplicationData {
+  typealias ProfilesChangedCallback = ([Profile]) -> Void
+  typealias Subscriber = String
+  
+  static var sharedInstance: ApplicationData = ApplicationData()
+  
   private let profilesKey = "profiles"
+  private var subscribers: [(Subscriber, ProfilesChangedCallback)] = []
   
   init() {
-    self.retrieveProfiles()
+    retrieveProfiles()
   }
   
-  private mutating func retrieveProfiles() {
+  var profiles: [Profile] = [] {
+    didSet {
+      subscribers.forEach { subscriber in subscriber.1(profiles) }
+    }
+  }
+  
+  func subscribe(target: Subscriber, callback: @escaping ProfilesChangedCallback)  {
+    subscribers.append((target, callback))
+    callback(profiles)
+  }
+  
+  func unsubscribe(target: Subscriber) {
+    let index = subscribers.index { (result) -> Bool in
+      return result.0 == target
+    }
+    
+    if let index = index {
+      subscribers.remove(at: index)
+    }
+  }
+  
+  private func retrieveProfiles() {
     let userDefaults = UserDefaults.standard
     guard let encodedProfiles = userDefaults.object(forKey: profilesKey) as? Data else {
       return
@@ -82,15 +108,11 @@ struct ApplicationData {
     
     self.profiles = decodedProfiles
   }
-  
-  func storeProfiles() {
+
+  func addProfile(profile: Profile) {
+    profiles.append(profile)
     let userDefaults = UserDefaults.standard
     let encodedProfiles = try? PropertyListEncoder().encode(profiles)
     userDefaults.set(encodedProfiles, forKey: profilesKey)
   }
-  
-  mutating func addProfile(profile: Profile) {
-    profiles.append(profile)
-  }
-  
 }

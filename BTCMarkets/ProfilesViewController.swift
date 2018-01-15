@@ -10,14 +10,20 @@ import UIKit
 
 class ProfilesViewController: UITableViewController {
   var profiles: [Profile] = []
+  let applicationData = ApplicationData.sharedInstance
   
   override func viewDidLoad() {
-    super.viewDidLoad()
-    
-    let applicationData = ApplicationData()
-    profiles = applicationData.profiles
+    super.viewDidLoad()    
+    applicationData.subscribe(target: String(describing: self)) { [weak self] profiles in
+      self?.profiles = profiles
+      self?.tableView.reloadData()
+    }
   }
   
+  deinit {
+    applicationData.unsubscribe(target: String(describing: self))
+  }
+
   @IBAction func closeButtonTapped(_ sender: Any) {
     dismiss(animated: true, completion: nil)
   }
@@ -38,5 +44,4 @@ class ProfilesViewController: UITableViewController {
     
     return cell
   }
-  
 }
