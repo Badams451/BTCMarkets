@@ -21,34 +21,53 @@ private enum CurrencySegmentedControlIndex: Int {
 }
 
 class NewProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-  @IBOutlet var textField: UITextField!
+  @IBOutlet private var textField: UITextField!
   @IBOutlet private var currencySegmentedControl: UISegmentedControl!
   @IBOutlet private var instrumentsTableView: UITableView!
-  private var instruments: [Currency] = []
-  private var selectedIndices: Set<Int> = Set()
+  
   private let applicationData = ApplicationData.sharedInstance
+  private var profile: Profile = Profile(profileName: "", currency: .aud, instruments: Currency.allValues.filter { $0 != .aud })
+  private var selectedCurrencies: Set<Currency> = Set()
+  
+  private var possibleInstruments: [Currency] {
+    guard let selectedCurrencyIndex = CurrencySegmentedControlIndex(rawValue: currencySegmentedControl.selectedSegmentIndex) else {
+      return []
+    }
+    
+    switch selectedCurrencyIndex {
+    case .aud: return Currency.allValues.filter { $0 != .aud }
+    case .btc: return Currency.allValues.filter { $0 != .aud && $0 != .btc }
+    }
+  }
+
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    loadTableView()
     currencySegmentedControl.addTarget(self, action: #selector(loadTableView), for: .valueChanged)
+    
+    textField.text = profile.profileName
+    currencySegmentedControl.selectedSegmentIndex = getSelectedSegmentIndex(forProfile: profile).rawValue
+    selectedCurrencies = Set(profile.instruments)
+  }
+  
+  // MARK: Configure
+  
+  func configure(withProfile profile: Profile) {
+    self.profile = profile
+  }
+  
+  private func getSelectedSegmentIndex(forProfile profile: Profile) -> CurrencySegmentedControlIndex {
+    switch profile.currency {
+    case .aud: return .aud
+    case .btc: return .btc
+    default: return .aud
+    }
   }
   
   // MARK: TableView
   
   @objc private func loadTableView() {
-    guard let selectedIndex = CurrencySegmentedControlIndex(rawValue: currencySegmentedControl.selectedSegmentIndex) else {
-      return
-    }
-    
-    switch selectedIndex {
-    case .aud:
-      instruments = Currency.allValues.filter { $0 != .aud }
-    case .btc:
-      instruments = Currency.allValues.filter { $0 != .aud && $0 != .btc }
-    }
-
     instrumentsTableView.reloadData()
   }
   
@@ -57,25 +76,33 @@ class NewProfileViewController: UIViewController, UITableViewDataSource, UITable
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return instruments.count
+    return possibleInstruments.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCurrencyCell", for: indexPath)
+    let currency = possibleInstruments[indexPath.row]
     
-    cell.textLabel?.text = instruments[indexPath.row].coinName
+    cell.textLabel?.text = possibleInstruments[indexPath.row].coinName
+    
+    if selectedCurrencies.contains(currency) {
+      cell.accessoryType = .checkmark
+    } else {
+      cell.accessoryType = .none
+    }
     
     return cell
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let selectedIndex = indexPath.row
-    let wasSelected = selectedIndices.contains(selectedIndex)
+    let selectedCurrency = possibleInstruments[indexPath.row]
+    
+    let wasSelected = selectedCurrencies.contains(selectedCurrency)
     
     if wasSelected {
-      selectedIndices.remove(selectedIndex)
+      selectedCurrencies.remove(selectedCurrency)
     } else {
-      selectedIndices.insert(selectedIndex)
+      selectedCurrencies.insert(selectedCurrency)
     }
     
     let selected = !wasSelected
@@ -91,24 +118,20 @@ class NewProfileViewController: UIViewController, UITableViewDataSource, UITable
       displayAlert(message: "Profile must have a name")
       return
     }
-    
+
     if profileName.isEmpty {
       displayAlert(message: "Profile must have a name")
     }
-    
+
     guard let selectedIndex = CurrencySegmentedControlIndex(rawValue: currencySegmentedControl.selectedSegmentIndex) else {
       displayAlert(message: "Must select a currency")
       return
     }
     
-    let selectedInstruments = instruments.enumerated().filter { index, _ -> Bool in
-      return selectedIndices.contains(index)
-    }.map { index, instrument -> Currency in
-      return instrument
-    }
-      
+    let selectedInstruments = possibleInstruments.filter { selectedCurrencies.contains($0) }
+
     let profile = Profile(profileName: profileName, currency: selectedIndex.currency, instruments: selectedInstruments)
-    applicationData.addProfile(profile: profile)
+    applicationData.addOrUpdateProfile(profile: profile)
     navigationController?.popViewController(animated: true)
   }
   

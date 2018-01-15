@@ -29,7 +29,7 @@ enum Currency: String, Codable {
   
   static var allValues: [Currency] {
     return [.aud, .btc, .ltc, .xrp, .eth, .bch]
-  }
+  }    
 }
 
 struct Profile: Codable {
@@ -111,8 +111,11 @@ class ApplicationData {
     userDefaults.set(encodedProfiles, forKey: profilesKey)
   }
 
-  func addProfile(profile: Profile) {
-    profiles.append(profile)
+  func addOrUpdateProfile(profile: Profile) {
+    if let existingProfileIndex = (profiles.index { $0.profileName == profile.profileName }) {
+      profiles.remove(at: existingProfileIndex)
+    }
+    profiles.insert(profile, at: 0)    
     saveProfiles()
   }
   
