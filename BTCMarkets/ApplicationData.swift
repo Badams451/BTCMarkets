@@ -81,6 +81,39 @@ class ApplicationData {
     }
   }
   
+  private func retrieveProfiles() {
+    let userDefaults = UserDefaults.standard
+    guard let encodedProfiles = userDefaults.object(forKey: profilesKey) as? Data else {
+      return
+    }
+    
+    guard let decodedProfiles = (try? PropertyListDecoder().decode(Array<Profile>.self, from: encodedProfiles)) else {
+      return
+    }
+    
+    self.profiles = decodedProfiles
+  }
+  
+  private func saveProfiles() {
+    let userDefaults = UserDefaults.standard
+    let encodedProfiles = try? PropertyListEncoder().encode(profiles)
+    userDefaults.set(encodedProfiles, forKey: profilesKey)
+  }
+
+  func addProfile(profile: Profile) {
+    profiles.append(profile)
+    saveProfiles()
+  }
+  
+  func delete(profile: Profile) {
+    let index = profiles.index { $0.profileName == profile.profileName }
+    
+    if let index = index {
+      profiles.remove(at: index)
+      saveProfiles()
+    }
+  }
+  
   func subscribe(target: Subscriber, callback: @escaping ProfilesChangedCallback)  {
     subscribers.append((target, callback))
     callback(profiles)
@@ -94,25 +127,5 @@ class ApplicationData {
     if let index = index {
       subscribers.remove(at: index)
     }
-  }
-  
-  private func retrieveProfiles() {
-    let userDefaults = UserDefaults.standard
-    guard let encodedProfiles = userDefaults.object(forKey: profilesKey) as? Data else {
-      return
-    }
-    
-    guard let decodedProfiles = (try? PropertyListDecoder().decode(Array<Profile>.self, from: encodedProfiles)) else {
-      return
-    }
-    
-    self.profiles = decodedProfiles
-  }
-
-  func addProfile(profile: Profile) {
-    profiles.append(profile)
-    let userDefaults = UserDefaults.standard
-    let encodedProfiles = try? PropertyListEncoder().encode(profiles)
-    userDefaults.set(encodedProfiles, forKey: profilesKey)
   }
 }

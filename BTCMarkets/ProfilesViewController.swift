@@ -9,13 +9,14 @@
 import UIKit
 
 class ProfilesViewController: UITableViewController {
-  var profiles: [Profile] = []
   let applicationData = ApplicationData.sharedInstance
+  var profiles: [Profile] {
+    return applicationData.profiles
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()    
     applicationData.subscribe(target: String(describing: self)) { [weak self] profiles in
-      self?.profiles = profiles
       self?.tableView.reloadData()
     }
   }
@@ -43,5 +44,16 @@ class ProfilesViewController: UITableViewController {
     cell.textLabel?.text = "\(profile.profileName) \(profile.currency) \(profile.instruments)"
     
     return cell
+  }
+  
+  override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    let deleteAction = UIContextualAction(style: .normal, title: "Delete") { (action, view, success) in
+      let profile = self.profiles[indexPath.row]
+      self.applicationData.delete(profile: profile)
+    }
+    
+    deleteAction.backgroundColor = .red
+    
+    return UISwipeActionsConfiguration(actions: [deleteAction])
   }
 }
