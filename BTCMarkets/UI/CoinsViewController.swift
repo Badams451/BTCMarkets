@@ -11,7 +11,7 @@ import PromiseKit
 import ObjectMapper
 
 class CoinsViewController: UITableViewController {
-  private let applicationData = ApplicationData.sharedInstance
+  private let applicationData = ProfileStore.sharedInstance
   private var instruments: [Currency] = [.btc, .ltc, .xrp, .eth, .bch]
   
   private var profile: Profile {

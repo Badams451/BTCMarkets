@@ -24,7 +24,7 @@ class ConfigureProfileViewController: UIViewController, UITableViewDataSource, U
   @IBOutlet private var currencySegmentedControl: UISegmentedControl!
   @IBOutlet private var instrumentsTableView: UITableView!
   
-  private let applicationData = ApplicationData.sharedInstance
+  private let applicationData = ProfileStore.sharedInstance
   private var profile: Profile?
   private var selectedCurrencies: Set<Currency> = Set()
   

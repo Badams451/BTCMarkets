@@ -12,7 +12,7 @@ private let reuseIdentifier = "HoldingsViewControllerCell"
 
 class HoldingsViewController: UITableViewController {
   let holdingTypes = Currency.allValues
-  let store = ApplicationHoldingsStore.sharedInstance
+  let store = HoldingsStore.sharedInstance
   
   override func viewDidLoad() {
     super.viewDidLoad()

@@ -10,7 +10,7 @@ import Foundation
 
 private let holdingsKey = "holdings"
 
-class ApplicationHoldingsStore {
+class HoldingsStore {
   typealias Subscriber = String
   typealias Holdings = [Currency: Float]
   typealias HoldingsChanged = (Holdings) -> Void
@@ -23,7 +23,7 @@ class ApplicationHoldingsStore {
   private let userDefaults = UserDefaults.standard
   private var subscribers: [(Subscriber, HoldingsChanged)] = []
   
-  static var sharedInstance: ApplicationHoldingsStore = ApplicationHoldingsStore()
+  static var sharedInstance: HoldingsStore = HoldingsStore()
   
   init() {
     instantiateStore()

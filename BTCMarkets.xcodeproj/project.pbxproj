@@ -18,10 +18,10 @@
 		DD86089F200C6C1F00883E8C /* Segues.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD86089E200C6C1F00883E8C /* Segues.swift */; };
 		DDA3FA5D2008CABF002FAA41 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA3FA5C2008CABF002FAA41 /* API.swift */; };
 		DDCA592F200B5C8A00389148 /* ProfilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCA592E200B5C8A00389148 /* ProfilesViewController.swift */; };
-		DDCA5931200B5E2300389148 /* ApplicationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCA5930200B5E2300389148 /* ApplicationData.swift */; };
+		DDCA5931200B5E2300389148 /* ProfileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCA5930200B5E2300389148 /* ProfileStore.swift */; };
 		DDD70B96200CBB69000C6AF6 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD70B95200CBB69000C6AF6 /* Profile.swift */; };
 		DDD70B98200CBB7E000C6AF6 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD70B97200CBB7E000C6AF6 /* Currency.swift */; };
-		DDD70B9A200CBC1F000C6AF6 /* ApplicationHoldingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD70B99200CBC1F000C6AF6 /* ApplicationHoldingsStore.swift */; };
+		DDD70B9A200CBC1F000C6AF6 /* HoldingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD70B99200CBC1F000C6AF6 /* HoldingsStore.swift */; };
 		DDD70B9C200CC08A000C6AF6 /* HoldingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD70B9B200CC08A000C6AF6 /* HoldingsViewController.swift */; };
 		DDF8CA2E2008E8A900C010D7 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF8CA2D2008E8A900C010D7 /* Coin.swift */; };
 		DDF8CA302008E8E900C010D7 /* CurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF8CA2F2008E8E900C010D7 /* CurrencyCell.swift */; };
@@ -45,10 +45,10 @@
 		DD86089E200C6C1F00883E8C /* Segues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segues.swift; sourceTree = "<group>"; };
 		DDA3FA5C2008CABF002FAA41 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		DDCA592E200B5C8A00389148 /* ProfilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesViewController.swift; sourceTree = "<group>"; };
-		DDCA5930200B5E2300389148 /* ApplicationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationData.swift; sourceTree = "<group>"; };
+		DDCA5930200B5E2300389148 /* ProfileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStore.swift; sourceTree = "<group>"; };
 		DDD70B95200CBB69000C6AF6 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		DDD70B97200CBB7E000C6AF6 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
-		DDD70B99200CBC1F000C6AF6 /* ApplicationHoldingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationHoldingsStore.swift; sourceTree = "<group>"; };
+		DDD70B99200CBC1F000C6AF6 /* HoldingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoldingsStore.swift; sourceTree = "<group>"; };
 		DDD70B9B200CC08A000C6AF6 /* HoldingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoldingsViewController.swift; sourceTree = "<group>"; };
 		DDF8CA2D2008E8A900C010D7 /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 		DDF8CA2F2008E8E900C010D7 /* CurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCell.swift; sourceTree = "<group>"; };
@@ -104,12 +104,11 @@
 		DD49F4F42008BA8100B1D6C0 /* BTCMarkets */ = {
 			isa = PBXGroup;
 			children = (
+				DDD70B9D200CC94F000C6AF6 /* Stores */,
 				DDD70B94200CBA97000C6AF6 /* Utils */,
 				DDD70B93200CBA8A000C6AF6 /* Model */,
 				DDD70B92200CBA7A000C6AF6 /* UI */,
 				DD49F4F52008BA8100B1D6C0 /* AppDelegate.swift */,
-				DDCA5930200B5E2300389148 /* ApplicationData.swift */,
-				DDD70B99200CBC1F000C6AF6 /* ApplicationHoldingsStore.swift */,
 				DDA3FA5C2008CABF002FAA41 /* API.swift */,
 				DD49F4FC2008BA8100B1D6C0 /* Assets.xcassets */,
 				DD49F4F92008BA8100B1D6C0 /* Main.storyboard */,
@@ -149,6 +148,15 @@
 				DD86089E200C6C1F00883E8C /* Segues.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		DDD70B9D200CC94F000C6AF6 /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				DDCA5930200B5E2300389148 /* ProfileStore.swift */,
+				DDD70B99200CBC1F000C6AF6 /* HoldingsStore.swift */,
+			);
+			path = Stores;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,13 +294,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDD70B9A200CBC1F000C6AF6 /* ApplicationHoldingsStore.swift in Sources */,
+				DDD70B9A200CBC1F000C6AF6 /* HoldingsStore.swift in Sources */,
 				DDF8CA302008E8E900C010D7 /* CurrencyCell.swift in Sources */,
 				DDD70B96200CBB69000C6AF6 /* Profile.swift in Sources */,
 				DDF8CA2E2008E8A900C010D7 /* Coin.swift in Sources */,
 				DD49F5082008C3F800B1D6C0 /* CoinsViewController.swift in Sources */,
 				DD860899200C1A4400883E8C /* ConfigureProfileViewController.swift in Sources */,
-				DDCA5931200B5E2300389148 /* ApplicationData.swift in Sources */,
+				DDCA5931200B5E2300389148 /* ProfileStore.swift in Sources */,
 				DDD70B9C200CC08A000C6AF6 /* HoldingsViewController.swift in Sources */,
 				DDA3FA5D2008CABF002FAA41 /* API.swift in Sources */,
 				DDCA592F200B5C8A00389148 /* ProfilesViewController.swift in Sources */,

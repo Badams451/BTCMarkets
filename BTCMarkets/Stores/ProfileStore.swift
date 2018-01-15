@@ -11,12 +11,12 @@ import Foundation
 private let profilesKey = "profiles"
 private let selectedProfileKey = "selectedProfile"
 
-class ApplicationData {
+class ProfileStore {
   typealias ProfilesChanged = ([Profile]) -> Void
   typealias SelectedProfileChanged = (Profile?) -> Void
   typealias Subscriber = String
   
-  static var sharedInstance: ApplicationData = ApplicationData()
+  static var sharedInstance: ProfileStore = ProfileStore()
   private var profileSubscribers: [(Subscriber, ProfilesChanged)] = []
   private var selectedProfileSubscribers: [(Subscriber, SelectedProfileChanged)] = []
   let defaultProfile = Profile(profileName: "CoinTracker", currency: .aud, instruments: [.btc, .ltc, .xrp, .eth, .bch])
@@ -58,7 +58,7 @@ class ApplicationData {
 
 // Mark: CRUD
 
-extension ApplicationData {
+extension ProfileStore {
   private func saveProfiles() {
     let userDefaults = UserDefaults.standard
     let encodedProfiles = try? PropertyListEncoder().encode(profiles)
@@ -90,7 +90,7 @@ extension ApplicationData {
 }
 
 // Mark: Subscribe
-extension ApplicationData {
+extension ProfileStore {
   func subscribeSelectedProfile(target: Subscriber, callback: @escaping SelectedProfileChanged)  {
     selectedProfileSubscribers.append((target, callback))
     callback(selectedProfile)

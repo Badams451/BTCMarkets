@@ -9,7 +9,7 @@
 import UIKit
 
 class ProfilesViewController: UITableViewController {
-  let applicationData = ApplicationData.sharedInstance
+  let applicationData = ProfileStore.sharedInstance
   var profiles: [Profile] {
     return applicationData.profiles
   }
