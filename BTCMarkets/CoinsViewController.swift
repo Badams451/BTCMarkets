@@ -28,6 +28,14 @@ class CoinsViewController: UITableViewController {
     }
   }
   
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == CoinToConfigureProfileSegue {
+      if let configureProfileViewController = segue.destination as? ConfigureProfileViewController {
+        configureProfileViewController.configure(withProfile: profile)
+      }
+    }
+  }
+  
   // MARK: TableView
   
   override func numberOfSections(in tableView: UITableView) -> Int {

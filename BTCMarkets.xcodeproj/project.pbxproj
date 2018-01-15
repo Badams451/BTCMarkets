@@ -15,6 +15,7 @@
 		DD860899200C1A4400883E8C /* ConfigureProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD860898200C1A4400883E8C /* ConfigureProfileViewController.swift */; };
 		DD86089B200C670500883E8C /* NewProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD86089A200C670500883E8C /* NewProfileViewController.swift */; };
 		DD86089D200C675900883E8C /* UIViewController+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD86089C200C675900883E8C /* UIViewController+Common.swift */; };
+		DD86089F200C6C1F00883E8C /* Segues.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD86089E200C6C1F00883E8C /* Segues.swift */; };
 		DDA3FA5D2008CABF002FAA41 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA3FA5C2008CABF002FAA41 /* API.swift */; };
 		DDCA592F200B5C8A00389148 /* ProfilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCA592E200B5C8A00389148 /* ProfilesViewController.swift */; };
 		DDCA5931200B5E2300389148 /* ApplicationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCA5930200B5E2300389148 /* ApplicationData.swift */; };
@@ -37,6 +38,7 @@
 		DD860898200C1A4400883E8C /* ConfigureProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureProfileViewController.swift; sourceTree = "<group>"; };
 		DD86089A200C670500883E8C /* NewProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProfileViewController.swift; sourceTree = "<group>"; };
 		DD86089C200C675900883E8C /* UIViewController+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Common.swift"; sourceTree = "<group>"; };
+		DD86089E200C6C1F00883E8C /* Segues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segues.swift; sourceTree = "<group>"; };
 		DDA3FA5C2008CABF002FAA41 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		DDCA592E200B5C8A00389148 /* ProfilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesViewController.swift; sourceTree = "<group>"; };
 		DDCA5930200B5E2300389148 /* ApplicationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationData.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				DD49F4FE2008BA8100B1D6C0 /* LaunchScreen.storyboard */,
 				DD49F5012008BA8100B1D6C0 /* Info.plist */,
 				DD86089C200C675900883E8C /* UIViewController+Common.swift */,
+				DD86089E200C6C1F00883E8C /* Segues.swift */,
 			);
 			path = BTCMarkets;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				DDA3FA5D2008CABF002FAA41 /* API.swift in Sources */,
 				DDCA592F200B5C8A00389148 /* ProfilesViewController.swift in Sources */,
 				DD49F4F62008BA8100B1D6C0 /* AppDelegate.swift in Sources */,
+				DD86089F200C6C1F00883E8C /* Segues.swift in Sources */,
 				DD86089B200C670500883E8C /* NewProfileViewController.swift in Sources */,
 				DD86089D200C675900883E8C /* UIViewController+Common.swift in Sources */,
 			);

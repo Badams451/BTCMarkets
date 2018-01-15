@@ -8,8 +8,6 @@
 
 import UIKit
 
-private let segueIdentifer = "NewToConfigureProfileSegue"
-
 class NewProfileViewController: UIViewController {
 
   @IBOutlet var textField: UITextField!

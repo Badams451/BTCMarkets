@@ -131,6 +131,7 @@ class ConfigureProfileViewController: UIViewController, UITableViewDataSource, U
 
     let updatedProfile = Profile(profileName: profile.profileName, currency: selectedIndex.currency, instruments: selectedInstruments)
     applicationData.addOrUpdateProfile(profile: updatedProfile)
+    applicationData.setSelectedProfile(profile: updatedProfile)
     navigationController?.popToRootViewController(animated: true)
   }
 }
