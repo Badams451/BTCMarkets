@@ -15,7 +15,10 @@ extension UITableViewCell {
       return
     }
     
-    guard previousValue != newValue else { return }
+    guard previousValue != newValue else {
+      label.text = displayValue
+      return
+    }
     
     let color: UIColor = previousValue < newValue ? .green : .red
     

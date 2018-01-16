@@ -85,7 +85,6 @@ class HoldingsViewController: UITableViewController {
       let holdingsValue = holdingsAmount * currencyValue
       
       holdingsCell.currencyLabel?.text = holdingName
-      holdingsCell.audAmountLabel?.text = "$ \(holdingsAmount)"
       holdingsCell.holdingsAmountLabel.text = "\(holdingsAmount) \(currency.rawValue)"
       holdingsCell.updateValue(forLabel: holdingsCell.audAmountLabel, previousValue: holdingsCell.holdingValue, newValue: holdingsValue, displayValue: "$ \(holdingsValue)")
       holdingsCell.holdingValue = holdingsValue
@@ -101,7 +100,8 @@ class HoldingsViewController: UITableViewController {
       }
       
       guard let equityCell = cell as? EquityCell else { return cell }
-      equityCell.equityAmountLabel.text = "$ \(value)"
+
+      equityCell.updateValue(forLabel: equityCell.equityAmountLabel, previousValue: equityCell.equityValue, newValue: value, displayValue: "$ \(value)")
     }
     
     return cell
@@ -156,4 +156,5 @@ class HoldingsCell: UITableViewCell {
 
 class EquityCell: UITableViewCell {
   @IBOutlet var equityAmountLabel: UILabel!
+  var equityValue: Float = 0
 }
