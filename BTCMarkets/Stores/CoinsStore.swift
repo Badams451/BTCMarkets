@@ -46,6 +46,10 @@ class CoinsStore: CurrencyFetcher {
     self.socket = socketManager.defaultSocket
   }
   
+  func coin(forCurrency currency: Currency) -> Coin? {
+    return currencyCoins[currency]
+  }
+  
   func start() {
     let promises = Currency.allExceptAud.map { fetchCurrency(currency: currency, instrument: $0) }
     

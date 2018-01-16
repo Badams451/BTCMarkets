@@ -13,7 +13,7 @@ private let reuseIdentifier = "HoldingsViewControllerCell"
 class HoldingsViewController: UITableViewController {
   let holdingTypes = Currency.allValues
   let holdingsStore = HoldingsStore.sharedInstance
-  let currencyValuesStore = CurrencyValuesStore.sharedInstance
+  let currencyValuesStore = CoinsStoreAud.sharedInstance
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -38,18 +38,21 @@ class HoldingsViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
     let currency = holdingTypes[indexPath.row]
+    
+    guard let coin = currencyValuesStore.coin(forCurrency: currency),
+          let holdingsCell = cell as? HoldingsCell else {
+      return cell
+    }
     let holdingName = currency.rawValue.uppercased()
     let holdingsAmount = holdingsStore.holdingsAmount(forCurrency: currency)
-    let currencyValue = currencyValuesStore.value(forCurrency: currency)
+    let currencyValue = coin.lastPrice
     let holdingsValue = holdingsAmount * currencyValue
     
-    if let holdingsCell = cell as? HoldingsCell {
-      holdingsCell.textLabel?.text = holdingName
-      holdingsCell.detailTextLabel?.text = "\(holdingsAmount)"
-      holdingsCell.updateValue(forLabel: holdingsCell.amountLabel, previousValue: holdingsCell.holdingValue, newValue: holdingsValue, displayValue: "$ \(holdingsValue)")      
-      holdingsCell.amountLabel.text = "$ \(holdingsValue)"
-      holdingsCell.holdingValue = holdingsValue
-    }
+    holdingsCell.textLabel?.text = holdingName
+    holdingsCell.detailTextLabel?.text = "\(holdingsAmount)"
+    holdingsCell.updateValue(forLabel: holdingsCell.amountLabel, previousValue: holdingsCell.holdingValue, newValue: holdingsValue, displayValue: "$ \(holdingsValue)")
+    holdingsCell.amountLabel.text = "$ \(holdingsValue)"
+    holdingsCell.holdingValue = holdingsValue
     
     return cell
   }

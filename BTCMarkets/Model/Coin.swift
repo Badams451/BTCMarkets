@@ -10,13 +10,13 @@ import Foundation
 import ObjectMapper
 
 struct Coin: Mappable {
-  var bestBid: Float?
-  var bestAsk: Float?
-  var lastPrice: Float?
+  var bestBid: Float = 0
+  var bestAsk: Float = 0
+  var lastPrice: Float = 0
   var currency: String = ""
   var instrument: String = ""
-  var timeStamp: Int?
-  var volume24h: Int?
+  var timeStamp: Int = 0
+  var volume24h: Int = 0
   
   init?(map: Map) {
   }
@@ -33,11 +33,11 @@ struct Coin: Mappable {
   
   // Due to websocket api returning data that is 8 magnitudes bigger than the actual data
   mutating func normaliseValues() {
-    bestBid = normalise(value: bestBid)
-    bestAsk = normalise(value: bestAsk)
-    lastPrice = normalise(value: lastPrice)
-    timeStamp = normalise(value: timeStamp)
-    volume24h = normalise(value: volume24h)
+    bestBid /= 100000000
+    bestAsk /= 100000000
+    lastPrice /= 100000000
+    timeStamp /= 100000000
+    volume24h /= 100000000
   }
   
   private func normalise(value: Float?) -> Float? {
@@ -53,18 +53,18 @@ struct Coin: Mappable {
 
 extension Coin {
   var displayPrice: String {
-    return lastPrice != nil ? "$\(lastPrice!)" : ""
+    return lastPrice != 0 ? "$\(lastPrice)" : ""
   }
   
   var displayBestBid: String {
-    return bestBid != nil ? "Bid: \(bestBid!)" : ""
+    return bestBid != 0 ? "Bid: \(bestBid)" : ""
   }
   
   var displayBestAsk: String {
-    return bestAsk != nil ? "Ask: \(bestAsk!)" : ""
+    return bestAsk != 0 ? "Ask: \(bestAsk)" : ""
   }
   
   var displayVolume: String {
-    return volume24h != nil ? "Vol(24h): \(volume24h!)" : ""
+    return volume24h != 0 ? "Vol(24h): \(volume24h)" : ""
   }
 }
