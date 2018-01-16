@@ -20,6 +20,7 @@
 		DDCA592F200B5C8A00389148 /* ProfilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCA592E200B5C8A00389148 /* ProfilesViewController.swift */; };
 		DDCA5931200B5E2300389148 /* ProfileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCA5930200B5E2300389148 /* ProfileStore.swift */; };
 		DDCE9AD9200E1BB1008B582C /* CoinsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE9AD8200E1BB1008B582C /* CoinsStore.swift */; };
+		DDCE9ADB200E326D008B582C /* UITableViewCell+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE9ADA200E326D008B582C /* UITableViewCell+Common.swift */; };
 		DDD70B96200CBB69000C6AF6 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD70B95200CBB69000C6AF6 /* Profile.swift */; };
 		DDD70B98200CBB7E000C6AF6 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD70B97200CBB7E000C6AF6 /* Currency.swift */; };
 		DDD70B9A200CBC1F000C6AF6 /* HoldingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD70B99200CBC1F000C6AF6 /* HoldingsStore.swift */; };
@@ -48,6 +49,7 @@
 		DDCA592E200B5C8A00389148 /* ProfilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesViewController.swift; sourceTree = "<group>"; };
 		DDCA5930200B5E2300389148 /* ProfileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStore.swift; sourceTree = "<group>"; };
 		DDCE9AD8200E1BB1008B582C /* CoinsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsStore.swift; sourceTree = "<group>"; };
+		DDCE9ADA200E326D008B582C /* UITableViewCell+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Common.swift"; sourceTree = "<group>"; };
 		DDD70B95200CBB69000C6AF6 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		DDD70B97200CBB7E000C6AF6 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		DDD70B99200CBC1F000C6AF6 /* HoldingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoldingsStore.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				DD86089C200C675900883E8C /* UIViewController+Common.swift */,
+				DDCE9ADA200E326D008B582C /* UITableViewCell+Common.swift */,
 				DD86089E200C6C1F00883E8C /* Segues.swift */,
 			);
 			path = Utils;
@@ -297,6 +300,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDCE9ADB200E326D008B582C /* UITableViewCell+Common.swift in Sources */,
 				DDD70B9A200CBC1F000C6AF6 /* HoldingsStore.swift in Sources */,
 				DDF8CA302008E8E900C010D7 /* CurrencyCell.swift in Sources */,
 				DDD70B96200CBB69000C6AF6 /* Profile.swift in Sources */,

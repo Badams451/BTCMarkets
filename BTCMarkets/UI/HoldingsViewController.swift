@@ -13,7 +13,7 @@ private let reuseIdentifier = "HoldingsViewControllerCell"
 class HoldingsViewController: UITableViewController {
   let holdingTypes = Currency.allValues
   let holdingsStore = HoldingsStore.sharedInstance
-  let currencyValuesStore = CoinsStoreAud.sharedInstance
+  let currencyStoreAud = CoinsStoreAud.sharedInstance
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -22,7 +22,7 @@ class HoldingsViewController: UITableViewController {
       self?.tableView.reloadData()
     }
     
-    currencyValuesStore.subscribe(subscriber: String(describing: self)) { [weak self] _ in
+    currencyStoreAud.subscribe(subscriber: String(describing: self)) { [weak self] _ in
       self?.tableView.reloadData()
     }
   }
@@ -39,7 +39,7 @@ class HoldingsViewController: UITableViewController {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
     let currency = holdingTypes[indexPath.row]
     
-    guard let coin = currencyValuesStore.coin(forCurrency: currency),
+    guard let coin = currencyStoreAud.coin(forCurrency: currency),
           let holdingsCell = cell as? HoldingsCell else {
       return cell
     }
@@ -88,7 +88,7 @@ class HoldingsViewController: UITableViewController {
   
   deinit {
     holdingsStore.unsubscribe(subscriber: String(describing: self))
-    currencyValuesStore.unsubscribe(subscriber: String(describing: self))
+    currencyStoreAud.unsubscribe(subscriber: String(describing: self))
   }
 }
 
@@ -96,24 +96,4 @@ class HoldingsCell: UITableViewCell {
   @IBOutlet var amountLabel: UILabel!
   
   var holdingValue: Float = 0
-  
-  func updateValue(forLabel label: UILabel, previousValue: Float?, newValue: Float?, displayValue: String) {
-    guard let previousValue = previousValue, let newValue = newValue else {
-      label.text = displayValue
-      return
-    }
-    
-    guard previousValue != newValue else { return }
-    
-    let color: UIColor = previousValue < newValue ? .green : .red
-    
-    label.text = displayValue
-    label.textColor = color
-    
-    Timer.scheduledTimer(withTimeInterval: 0.7, repeats: false) { _ in
-      UIView.transition(with: label, duration: 0.3, options: [.transitionCrossDissolve, .curveEaseIn], animations: {
-        label.textColor = .black
-      }, completion: nil)
-    }
-  }
 }
