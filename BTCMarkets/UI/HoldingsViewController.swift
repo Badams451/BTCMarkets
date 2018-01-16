@@ -58,6 +58,7 @@ class HoldingsViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: true)
     let alert = UIAlertController(title: "Holdings amount", message: "Enter holdings amount", preferredStyle: .alert)
     let currency = holdingTypes[indexPath.row]
     let holdingsAmount = holdingsStore.holdingsAmount(forCurrency: currency)
