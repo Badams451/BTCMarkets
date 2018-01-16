@@ -11,7 +11,7 @@ import UIKit
 private let reuseIdentifier = "HoldingsViewControllerCell"
 
 class HoldingsViewController: UITableViewController {
-  let holdingTypes = Currency.allValues
+  let holdingTypes = Currency.allExceptAud
   let holdingsStore = HoldingsStore.sharedInstance
   let currencyStoreAud = CoinsStoreAud.sharedInstance
   
