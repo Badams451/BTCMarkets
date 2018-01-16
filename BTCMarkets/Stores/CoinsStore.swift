@@ -27,12 +27,12 @@ final class CoinsStoreBtc: CoinsStore {
 }
 
 class CoinsStore: CurrencyFetcher {
-  typealias CurrencyCoins = [Currency: Coin]
+  typealias CoinCollection = [Currency: Coin]
   typealias Subscriber = String
-  typealias CurrencyCoinsChanged = (CurrencyCoins) -> Void
+  typealias CoinCollectionChanged = (CoinCollection) -> Void
   
-  private var subscribers: [(Subscriber, CurrencyCoinsChanged)] = []
-  private var currencyCoins: CurrencyCoins = CurrencyCoins()
+  private var subscribers: [(Subscriber, CoinCollectionChanged)] = []
+  private var coins: CoinCollection = CoinCollection()
   
   // Abstract implementation. Must override.
   var currency: Currency! {
@@ -47,7 +47,7 @@ class CoinsStore: CurrencyFetcher {
   }
   
   func coin(forCurrency currency: Currency) -> Coin? {
-    return currencyCoins[currency]
+    return coins[currency]
   }
   
   func start() {
@@ -59,7 +59,7 @@ class CoinsStore: CurrencyFetcher {
           return
         }
         
-        self.currencyCoins[currency] = coin
+        self.coins[currency] = coin
         self.setupSocket(currency: self.currency)
         self.notifySubscribers()
       }.catch { error in print(error) }
@@ -85,16 +85,16 @@ class CoinsStore: CurrencyFetcher {
       }
       
       coin.normaliseValues()
-      strongSelf.currencyCoins[currency] = coin
-      strongSelf.subscribers.forEach { $0.1(strongSelf.currencyCoins) }
+      strongSelf.coins[currency] = coin
+      strongSelf.subscribers.forEach { $0.1(strongSelf.coins) }
     }
     
     socket?.connect()
   }
   
-  func subscribe(subscriber: Subscriber, callback: @escaping CurrencyCoinsChanged) {
+  func subscribe(subscriber: Subscriber, callback: @escaping CoinCollectionChanged) {
     subscribers.append((subscriber, callback))
-    callback(currencyCoins)
+    callback(coins)
   }
   
   func unsubscribe(subscriber: Subscriber) {
@@ -104,7 +104,7 @@ class CoinsStore: CurrencyFetcher {
   }
   
   private func notifySubscribers() {
-    subscribers.forEach { $0.1(currencyCoins) }
+    subscribers.forEach { $0.1(coins) }
   }
 }
 
