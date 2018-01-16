@@ -48,10 +48,10 @@ class HoldingsViewController: UITableViewController {
     let currencyValue = coin.lastPrice
     let holdingsValue = holdingsAmount * currencyValue
     
-    holdingsCell.textLabel?.text = holdingName
-    holdingsCell.detailTextLabel?.text = "\(holdingsAmount)"
-    holdingsCell.updateValue(forLabel: holdingsCell.amountLabel, previousValue: holdingsCell.holdingValue, newValue: holdingsValue, displayValue: "$ \(holdingsValue)")
-    holdingsCell.amountLabel.text = "$ \(holdingsValue)"
+    holdingsCell.currencyLabel?.text = holdingName
+    holdingsCell.audAmountLabel?.text = "$ \(holdingsAmount)"
+    holdingsCell.holdingsAmountLabel.text = "\(holdingsAmount) \(currency.rawValue)"
+    holdingsCell.updateValue(forLabel: holdingsCell.audAmountLabel, previousValue: holdingsCell.holdingValue, newValue: holdingsValue, displayValue: "$ \(holdingsValue)")    
     holdingsCell.holdingValue = holdingsValue
     
     return cell
@@ -93,7 +93,8 @@ class HoldingsViewController: UITableViewController {
 }
 
 class HoldingsCell: UITableViewCell {
-  @IBOutlet var amountLabel: UILabel!
-  
+  @IBOutlet var audAmountLabel: UILabel!
+  @IBOutlet var currencyLabel: UILabel!
+  @IBOutlet var holdingsAmountLabel: UILabel!
   var holdingValue: Float = 0
 }
