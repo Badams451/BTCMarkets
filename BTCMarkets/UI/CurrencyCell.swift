@@ -32,23 +32,17 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher {
   @IBOutlet var volumeLabel: UILabel!
   
   private var coin: Coin?
-  
-  var socketManager: SocketManager = SocketManager(socketURL: URL(string: "https://socket.btcmarkets.net")!,  config: [.compress, .secure(true), .forceWebsockets(true)])
-  lazy var socket: SocketIOClient? = {
-    return socketManager.defaultSocket
-  }()
+  private var subscriberId: String?
+  private var coinsStore: CoinsStore?
+  private var currencyForStore: [Currency: CoinsStore] {
+    return [
+      .aud: CoinsStoreAud.sharedInstance,
+      .btc: CoinsStoreBtc.sharedInstance
+    ]
+  }
 
   override func prepareForReuse() {
-    self.coin = nil
-    
-    priceLabel.text = "-"
-    bidLabel.text = "-"
-    askLabel.text = "-"
-    
-    socket?.disconnect()
-    socketManager = SocketManager(socketURL: URL(string: "https://socket.btcmarkets.net")!,  config: [.compress, .secure(true), .forceWebsockets(true)])
-    socket = socketManager.defaultSocket
-    
+    resetState()
     super.prepareForReuse()
   }
 
@@ -56,17 +50,22 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher {
     currencyLabel.text = "\(instrument.rawValue)/\(currency.rawValue)"
     coinNameLabel.text = instrument.coinName
     
-    self.fetchCurrency(currency: currency, instrument: instrument).then { coin -> Void in
-      guard let coin = coin else {
+    let store = currencyForStore[currency]
+    let subscriberId = "\(instrument.rawValue)-\(currency.rawValue)"
+    
+    store?.subscribe(subscriber: subscriberId) { [weak self] coins in
+      guard let coin = coins[instrument] else {
         return
       }
-
+      
+      
       DispatchQueue.main.async {
-        self.updateUI(coin: coin)
+        self?.updateUI(coin: coin)
       }
-
-      self.setupSocket(currency: currency, instrument: instrument)
-    }.catch { error in print(error) }
+    }
+    
+    self.subscriberId = subscriberId
+    self.coinsStore = store
   }
   
   private func updateUI(coin: Coin) {
@@ -97,22 +96,20 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher {
     }
   }
   
-  private func setupSocket(currency: Currency, instrument: Currency) {
-    socket?.on(clientEvent: .connect) { [weak self] _, _ in
-      let channelName = "Ticker-BTCMarkets-\(instrument.rawValue)-\(currency.rawValue)"
-      self?.socket?.emit("join", with: [channelName])
-    }
+  private func resetState() {
+    priceLabel.text = "-"
+    bidLabel.text = "-"
+    askLabel.text = "-"
+    coin = nil
     
-    socket?.on("newTicker") { [weak self] data, ack in
-      guard let json = data.first as? JSONResponse, var coin = Coin(JSON: json) else {
-        return
-      }
-      coin.normaliseValues()
-      
-      self?.updateUI(coin: coin)
-    }
-    
-    socket?.connect()
+    guard let subscriberId = subscriberId else { return }
+    coinsStore?.unsubscribe(subscriber: subscriberId)
+    coinsStore = nil
+    self.subscriberId = nil
+  }
+  
+  deinit {
+    resetState()
   }
 }
 
