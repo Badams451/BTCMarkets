@@ -61,6 +61,7 @@ class CoinsStore: CurrencyFetcher {
         
         self.currencyCoins[currency] = coin
         self.setupSocket(currency: self.currency)
+        self.notifySubscribers()
       }.catch { error in print(error) }
     }
   }
@@ -100,6 +101,10 @@ class CoinsStore: CurrencyFetcher {
     if let subscriberIndex = (subscribers.index { return $0.0 == subscriber }) {
       subscribers.remove(at: subscriberIndex)
     }
+  }
+  
+  private func notifySubscribers() {
+    subscribers.forEach { $0.1(currencyCoins) }
   }
 }
 
