@@ -8,12 +8,44 @@
 
 import UIKit
 
-private let reuseIdentifier = "HoldingsViewControllerCell"
+enum HoldingItemType {
+  case currency
+  case equity
+}
+
+private protocol HoldingItem {
+  var reuseIdentifier: String { get }
+  var type: HoldingItemType { get }
+}
+
+extension Currency: HoldingItem {
+  var reuseIdentifier: String {
+    return "HoldingsCell"
+  }
+  
+  var type: HoldingItemType {
+    return .currency
+  }
+}
+
+private struct TotalEquityItem: HoldingItem {
+  var reuseIdentifier: String {
+    return "EquityCell"
+  }
+  
+  var type: HoldingItemType {
+    return .equity
+  }
+}
 
 class HoldingsViewController: UITableViewController {
-  let holdingTypes = Currency.allExceptAud
-  let holdingsStore = HoldingsStore.sharedInstance
-  let currencyStoreAud = CoinsStoreAud.sharedInstance
+  private let holdingItems = Currency.allExceptAud
+  private let totalEquityItem = TotalEquityItem()
+  private let holdingsStore = HoldingsStore.sharedInstance
+  private let currencyStoreAud = CoinsStoreAud.sharedInstance
+  private var allItems: [HoldingItem]  {
+    return holdingItems + [totalEquityItem]
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -32,35 +64,57 @@ class HoldingsViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return holdingTypes.count
+    return allItems.count
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
-    let currency = holdingTypes[indexPath.row]
+    let item = allItems[indexPath.row]
     
-    guard let coin = currencyStoreAud.coin(forCurrency: currency),
-          let holdingsCell = cell as? HoldingsCell else {
-      return cell
+    let cell = tableView.dequeueReusableCell(withIdentifier: item.reuseIdentifier, for: indexPath)
+    
+    switch item.type {
+    case .currency:
+      let currency = holdingItems[indexPath.row]
+      guard let coin = currencyStoreAud.coin(forCurrency: currency),
+        let holdingsCell = cell as? HoldingsCell else {
+          return cell
+      }
+      let holdingName = currency.rawValue.uppercased()
+      let holdingsAmount = holdingsStore.holdingsAmount(forCurrency: currency)
+      let currencyValue = coin.lastPrice
+      let holdingsValue = holdingsAmount * currencyValue
+      
+      holdingsCell.currencyLabel?.text = holdingName
+      holdingsCell.audAmountLabel?.text = "$ \(holdingsAmount)"
+      holdingsCell.holdingsAmountLabel.text = "\(holdingsAmount) \(currency.rawValue)"
+      holdingsCell.updateValue(forLabel: holdingsCell.audAmountLabel, previousValue: holdingsCell.holdingValue, newValue: holdingsValue, displayValue: "$ \(holdingsValue)")
+      holdingsCell.holdingValue = holdingsValue
+    case .equity:
+      let coins = Currency.allExceptAud.flatMap { currencyStoreAud.coin(forCurrency: $0) }
+      
+      let value = coins.reduce(0) { (acc, coin) -> Float in
+        guard let currency = Currency(rawValue: coin.instrument) else {
+          return acc
+        }
+        
+        return acc + coin.lastPrice * holdingsStore.holdingsAmount(forCurrency: currency)
+      }
+      
+      guard let equityCell = cell as? EquityCell else { return cell }
+      equityCell.equityAmountLabel.text = "$ \(value)"
     }
-    let holdingName = currency.rawValue.uppercased()
-    let holdingsAmount = holdingsStore.holdingsAmount(forCurrency: currency)
-    let currencyValue = coin.lastPrice
-    let holdingsValue = holdingsAmount * currencyValue
-    
-    holdingsCell.currencyLabel?.text = holdingName
-    holdingsCell.audAmountLabel?.text = "$ \(holdingsAmount)"
-    holdingsCell.holdingsAmountLabel.text = "\(holdingsAmount) \(currency.rawValue)"
-    holdingsCell.updateValue(forLabel: holdingsCell.audAmountLabel, previousValue: holdingsCell.holdingValue, newValue: holdingsValue, displayValue: "$ \(holdingsValue)")    
-    holdingsCell.holdingValue = holdingsValue
     
     return cell
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
+    
+    let item = allItems[indexPath.row]
+    guard item.type == .currency else { return }
+    
     let alert = UIAlertController(title: "Holdings amount", message: "Enter holdings amount", preferredStyle: .alert)
-    let currency = holdingTypes[indexPath.row]
+    let currency = holdingItems[indexPath.row]
     let holdingsAmount = holdingsStore.holdingsAmount(forCurrency: currency)
     
     alert.addTextField { textField in
@@ -98,4 +152,8 @@ class HoldingsCell: UITableViewCell {
   @IBOutlet var currencyLabel: UILabel!
   @IBOutlet var holdingsAmountLabel: UILabel!
   var holdingValue: Float = 0
+}
+
+class EquityCell: UITableViewCell {
+  @IBOutlet var equityAmountLabel: UILabel!
 }

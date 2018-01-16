@@ -340,7 +340,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HoldingsViewControllerCell" rowHeight="87" id="Mty-w8-W9S" customClass="HoldingsCell" customModule="BTCMarkets" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HoldingsCell" rowHeight="87" id="Mty-w8-W9S" customClass="HoldingsCell" customModule="BTCMarkets" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="87"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mty-w8-W9S" id="Yav-9u-f2V">
@@ -348,19 +348,19 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Holding" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cng-oo-BDO">
-                                            <rect key="frame" x="275" y="46" width="60" height="21"/>
+                                            <rect key="frame" x="295" y="46" width="60" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AUD value" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tu7-nN-Szr">
-                                            <rect key="frame" x="255" y="17" width="80" height="21"/>
+                                            <rect key="frame" x="275" y="17" width="80" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currency" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bM0-aH-AEn">
-                                            <rect key="frame" x="26" y="33" width="71" height="21"/>
+                                            <rect key="frame" x="20" y="33" width="71" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -370,11 +370,11 @@
                                         <constraint firstItem="cng-oo-BDO" firstAttribute="trailing" secondItem="tu7-nN-Szr" secondAttribute="trailing" id="0ax-ch-VgQ"/>
                                         <constraint firstAttribute="bottom" secondItem="cng-oo-BDO" secondAttribute="bottom" constant="19.5" id="H8d-aZ-iXR"/>
                                         <constraint firstItem="bM0-aH-AEn" firstAttribute="centerY" secondItem="Yav-9u-f2V" secondAttribute="centerY" id="K0J-cQ-Fdi"/>
-                                        <constraint firstAttribute="trailing" secondItem="tu7-nN-Szr" secondAttribute="trailing" constant="40" id="U7a-FY-6kp"/>
+                                        <constraint firstAttribute="trailing" secondItem="tu7-nN-Szr" secondAttribute="trailing" constant="20" id="U7a-FY-6kp"/>
                                         <constraint firstItem="cng-oo-BDO" firstAttribute="top" secondItem="tu7-nN-Szr" secondAttribute="bottom" constant="8" id="ais-xw-ARr"/>
                                         <constraint firstItem="tu7-nN-Szr" firstAttribute="top" secondItem="Yav-9u-f2V" secondAttribute="top" constant="17" id="f8q-hy-W1y"/>
                                         <constraint firstItem="cng-oo-BDO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bM0-aH-AEn" secondAttribute="trailing" constant="8" symbolic="YES" id="jhg-FB-8vt"/>
-                                        <constraint firstItem="bM0-aH-AEn" firstAttribute="leading" secondItem="Yav-9u-f2V" secondAttribute="leading" constant="26" id="lM1-9Y-0cK"/>
+                                        <constraint firstItem="bM0-aH-AEn" firstAttribute="leading" secondItem="Yav-9u-f2V" secondAttribute="leading" constant="20" id="lM1-9Y-0cK"/>
                                         <constraint firstItem="tu7-nN-Szr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bM0-aH-AEn" secondAttribute="trailing" constant="8" symbolic="YES" id="tQ7-cn-xsd"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -382,6 +382,38 @@
                                     <outlet property="audAmountLabel" destination="tu7-nN-Szr" id="rvE-wO-EMq"/>
                                     <outlet property="currencyLabel" destination="bM0-aH-AEn" id="y2z-3m-SFy"/>
                                     <outlet property="holdingsAmountLabel" destination="cng-oo-BDO" id="iBP-Lh-F1N"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EquityCell" id="L0Z-dn-VQA" customClass="EquityCell" customModule="BTCMarkets" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="115" width="375" height="87"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="L0Z-dn-VQA" id="P7h-T7-4dJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="86.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Estimated Equity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1a7-2j-zVN">
+                                            <rect key="frame" x="20" y="33" width="170" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HzI-Fv-BGz">
+                                            <rect key="frame" x="313" y="33" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="HzI-Fv-BGz" firstAttribute="centerY" secondItem="P7h-T7-4dJ" secondAttribute="centerY" id="A3k-GK-j1I"/>
+                                        <constraint firstAttribute="trailing" secondItem="HzI-Fv-BGz" secondAttribute="trailing" constant="20" id="Nyq-DK-nZh"/>
+                                        <constraint firstItem="HzI-Fv-BGz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1a7-2j-zVN" secondAttribute="trailing" constant="50" id="TRX-Yh-xcp"/>
+                                        <constraint firstItem="1a7-2j-zVN" firstAttribute="leading" secondItem="P7h-T7-4dJ" secondAttribute="leading" constant="20" id="ZLo-ih-lnn"/>
+                                        <constraint firstItem="1a7-2j-zVN" firstAttribute="centerY" secondItem="P7h-T7-4dJ" secondAttribute="centerY" id="aSB-nB-zp0"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="equityAmountLabel" destination="HzI-Fv-BGz" id="9QB-qg-cXs"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
