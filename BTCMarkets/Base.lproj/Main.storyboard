@@ -312,6 +312,7 @@
                             <constraint firstItem="A3s-CI-XOm" firstAttribute="top" secondItem="Hfb-u6-zi3" secondAttribute="bottom" constant="8" id="Fij-EJ-Nwk"/>
                             <constraint firstItem="Hfb-u6-zi3" firstAttribute="top" secondItem="pWx-nS-oBD" secondAttribute="top" constant="22" id="ZaC-Ng-SWB"/>
                             <constraint firstItem="A3s-CI-XOm" firstAttribute="leading" secondItem="Hfb-u6-zi3" secondAttribute="leading" id="Zxe-Re-LoO"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Hfb-u6-zi3" secondAttribute="trailing" constant="20" symbolic="YES" id="jyp-SG-Xlp"/>
                             <constraint firstItem="Hfb-u6-zi3" firstAttribute="leading" secondItem="pWx-nS-oBD" secondAttribute="leading" constant="20" id="vWb-dF-VRY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pWx-nS-oBD"/>
