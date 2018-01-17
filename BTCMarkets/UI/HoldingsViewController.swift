@@ -102,6 +102,7 @@ class HoldingsViewController: UITableViewController {
       guard let equityCell = cell as? EquityCell else { return cell }
 
       equityCell.updateValue(forLabel: equityCell.equityAmountLabel, previousValue: equityCell.equityValue, newValue: value, displayValue: "$ \(value)")
+      equityCell.equityValue = value
     }
     
     return cell
