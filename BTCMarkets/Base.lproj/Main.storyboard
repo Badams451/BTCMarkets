@@ -229,7 +229,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wJk-dg-GIb">
-                                <rect key="frame" x="0.0" y="132" width="375" height="486"/>
+                                <rect key="frame" x="0.0" y="132" width="375" height="535"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProfileCurrencyCell" id="KYX-6k-KZ7">
@@ -290,21 +290,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hfb-u6-zi3">
+                                <rect key="frame" x="20" y="86" width="141" height="29"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A3s-CI-XOm">
-                                <rect key="frame" x="62.5" y="335.5" width="250" height="60"/>
+                                <rect key="frame" x="20" y="123" width="335" height="55"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="0Qn-Na-6Ov"/>
-                                    <constraint firstAttribute="height" constant="60" id="eKl-yJ-g4k"/>
+                                    <constraint firstAttribute="height" constant="55" id="mhY-Sg-b7X"/>
                                 </constraints>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="A3s-CI-XOm" firstAttribute="centerX" secondItem="pWx-nS-oBD" secondAttribute="centerX" id="WJN-35-p4X"/>
-                            <constraint firstItem="A3s-CI-XOm" firstAttribute="centerY" secondItem="pWx-nS-oBD" secondAttribute="centerY" id="wFC-AS-FhT"/>
+                            <constraint firstItem="pWx-nS-oBD" firstAttribute="trailing" secondItem="A3s-CI-XOm" secondAttribute="trailing" constant="20" id="AAR-aR-Kjp"/>
+                            <constraint firstItem="A3s-CI-XOm" firstAttribute="top" secondItem="Hfb-u6-zi3" secondAttribute="bottom" constant="8" id="Fij-EJ-Nwk"/>
+                            <constraint firstItem="Hfb-u6-zi3" firstAttribute="top" secondItem="pWx-nS-oBD" secondAttribute="top" constant="22" id="ZaC-Ng-SWB"/>
+                            <constraint firstItem="A3s-CI-XOm" firstAttribute="leading" secondItem="Hfb-u6-zi3" secondAttribute="leading" id="Zxe-Re-LoO"/>
+                            <constraint firstItem="Hfb-u6-zi3" firstAttribute="leading" secondItem="pWx-nS-oBD" secondAttribute="leading" constant="20" id="vWb-dF-VRY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pWx-nS-oBD"/>
                     </view>
@@ -321,7 +329,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x9R-wZ-rbb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4076" y="-9"/>
+            <point key="canvasLocation" x="4076" y="-9.4452773613193415"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="bDP-y9-yEa">
@@ -460,6 +468,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="neP-kr-VnA"/>
+        <segue reference="ulw-37-Efd"/>
     </inferredMetricsTieBreakers>
 </document>
