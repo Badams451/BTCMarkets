@@ -20,7 +20,7 @@ extension UITableViewCell {
       return
     }
     
-    let color: UIColor = previousValue < newValue ? .green : .red
+    let color: UIColor = previousValue < newValue ? UIColor.darkGreen : UIColor.darkRed
     
     label.text = displayValue
     label.textColor = color
@@ -30,5 +30,15 @@ extension UITableViewCell {
         label.textColor = .black
       }, completion: nil)
     }
+  }
+}
+
+private extension UIColor {
+  static var darkGreen: UIColor {
+    return UIColor(red: 0, green: 78/255.0, blue: 0, alpha: 1.0)
+  }
+  
+  static var darkRed: UIColor {
+    return UIColor(red: 170/255.0, green: 58/255.0, blue: 58/255.0, alpha: 1.0)
   }
 }
