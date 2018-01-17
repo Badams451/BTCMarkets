@@ -86,7 +86,7 @@ class HoldingsViewController: UITableViewController {
       
       holdingsCell.currencyLabel?.text = holdingName
       holdingsCell.holdingsAmountLabel.text = "\(holdingsAmount) \(currency.rawValue)"
-      holdingsCell.updateValue(forLabel: holdingsCell.audAmountLabel, previousValue: holdingsCell.holdingValue, newValue: holdingsValue, displayValue: "$ \(holdingsValue)")
+      holdingsCell.updateValue(forLabel: holdingsCell.audAmountLabel, previousValue: holdingsCell.holdingValue, newValue: holdingsValue, displayValue: "$ \(holdingsValue.dollarValue)")
       holdingsCell.holdingValue = holdingsValue
     case .equity:
       let coins = Currency.allExceptAud.flatMap { currencyStoreAud.coin(forCurrency: $0) }
@@ -101,7 +101,7 @@ class HoldingsViewController: UITableViewController {
       
       guard let equityCell = cell as? EquityCell else { return cell }
 
-      equityCell.updateValue(forLabel: equityCell.equityAmountLabel, previousValue: equityCell.equityValue, newValue: value, displayValue: "$ \(value)")
+      equityCell.updateValue(forLabel: equityCell.equityAmountLabel, previousValue: equityCell.equityValue, newValue: value, displayValue: "$ \(value.dollarValue)")
       equityCell.equityValue = value
     }
     

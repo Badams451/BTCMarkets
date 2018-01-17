@@ -53,15 +53,15 @@ struct Coin: Mappable {
 
 extension Coin {
   var displayPrice: String {
-    return lastPrice != 0 ? "$\(lastPrice)" : ""
+    return lastPrice != 0 ? "$\(lastPrice.dollarValue)" : ""
   }
   
   var displayBestBid: String {
-    return bestBid != 0 ? "Bid: \(bestBid)" : ""
+    return bestBid != 0 ? "Bid: \(bestBid.dollarValue)" : ""
   }
   
   var displayBestAsk: String {
-    return bestAsk != 0 ? "Ask: \(bestAsk)" : ""
+    return bestAsk != 0 ? "Ask: \(bestAsk.dollarValue)" : ""
   }
   
   var displayVolume: String {
