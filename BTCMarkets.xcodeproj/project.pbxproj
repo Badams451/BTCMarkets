@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DD01767B200F5FF80059A325 /* Float+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD01767A200F5FF80059A325 /* Float+Common.swift */; };
+		DD01767B200F5FF80059A325 /* Double+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD01767A200F5FF80059A325 /* Double+Common.swift */; };
 		DD49F4F62008BA8100B1D6C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD49F4F52008BA8100B1D6C0 /* AppDelegate.swift */; };
 		DD49F4FB2008BA8100B1D6C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD49F4F92008BA8100B1D6C0 /* Main.storyboard */; };
 		DD49F4FD2008BA8100B1D6C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD49F4FC2008BA8100B1D6C0 /* Assets.xcassets */; };
@@ -35,7 +35,7 @@
 		5FD50184459837F763BDDF39 /* Pods-BTCMarkets.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTCMarkets.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BTCMarkets/Pods-BTCMarkets.debug.xcconfig"; sourceTree = "<group>"; };
 		BB74316BDE7FFD505F6A644B /* Pods-BTCMarkets.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTCMarkets.release.xcconfig"; path = "Pods/Target Support Files/Pods-BTCMarkets/Pods-BTCMarkets.release.xcconfig"; sourceTree = "<group>"; };
 		CF064DAD14E469472E151A06 /* Pods_BTCMarkets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BTCMarkets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DD01767A200F5FF80059A325 /* Float+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+Common.swift"; sourceTree = "<group>"; };
+		DD01767A200F5FF80059A325 /* Double+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Common.swift"; sourceTree = "<group>"; };
 		DD49F4F22008BA8100B1D6C0 /* BTCMarkets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BTCMarkets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD49F4F52008BA8100B1D6C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD49F4FA2008BA8100B1D6C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -153,7 +153,7 @@
 				DD86089C200C675900883E8C /* UIViewController+Common.swift */,
 				DDCE9ADA200E326D008B582C /* UITableViewCell+Common.swift */,
 				DD86089E200C6C1F00883E8C /* Segues.swift */,
-				DD01767A200F5FF80059A325 /* Float+Common.swift */,
+				DD01767A200F5FF80059A325 /* Double+Common.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -318,7 +318,7 @@
 				DDCE9AD9200E1BB1008B582C /* CoinsStore.swift in Sources */,
 				DD49F4F62008BA8100B1D6C0 /* AppDelegate.swift in Sources */,
 				DD86089F200C6C1F00883E8C /* Segues.swift in Sources */,
-				DD01767B200F5FF80059A325 /* Float+Common.swift in Sources */,
+				DD01767B200F5FF80059A325 /* Double+Common.swift in Sources */,
 				DD86089B200C670500883E8C /* NewProfileViewController.swift in Sources */,
 				DD86089D200C675900883E8C /* UIViewController+Common.swift in Sources */,
 			);
