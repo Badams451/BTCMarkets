@@ -53,18 +53,18 @@ struct Coin: Mappable {
 
 extension Coin {
   var displayPrice: String {
-    return lastPrice != 0 ? "\(lastPrice.dollarValue)" : ""
+    return !lastPrice.isZero ? "\(lastPrice.dollarValue)" : ""
   }
   
   var displayBestBid: String {
-    return bestBid != 0 ? "Bid: \(bestBid.dollarValue)" : ""
+    return !bestBid.isZero ? "\(bestBid.dollarValue)" : ""
   }
   
   var displayBestAsk: String {
-    return bestAsk != 0 ? "Ask: \(bestAsk.dollarValue)" : ""
+    return !bestAsk.isZero ? "\(bestAsk.dollarValue)" : ""
   }
   
   var displayVolume: String {
-    return volume24h != 0 ? "Vol(24h): \(volume24h)" : ""
+    return volume24h != 0 ? "\(volume24h)" : ""
   }
 }
