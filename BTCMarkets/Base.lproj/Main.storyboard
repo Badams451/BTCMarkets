@@ -26,14 +26,14 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="134.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BTC/AUD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCs-Wq-XBf">
-                                            <rect key="frame" x="20" y="11" width="73" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bitcoin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCs-Wq-XBf">
+                                            <rect key="frame" x="20" y="11" width="57" height="21"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BitCoin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dHm-05-kEJ">
-                                            <rect key="frame" x="20" y="40" width="55.5" height="20.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BTC/AUD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dHm-05-kEJ">
+                                            <rect key="frame" x="20" y="40" width="73" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -84,8 +84,8 @@
                                 <connections>
                                     <outlet property="askLabel" destination="yKz-tO-Vvz" id="rmB-Eb-6TB"/>
                                     <outlet property="bidLabel" destination="VPh-QC-mZl" id="6ac-Md-gED"/>
-                                    <outlet property="coinNameLabel" destination="dHm-05-kEJ" id="paM-Og-KHf"/>
-                                    <outlet property="currencyLabel" destination="CCs-Wq-XBf" id="Xlb-YX-I4Q"/>
+                                    <outlet property="coinNameLabel" destination="CCs-Wq-XBf" id="on5-nP-3oA"/>
+                                    <outlet property="currencyLabel" destination="dHm-05-kEJ" id="UWq-Jz-fEy"/>
                                     <outlet property="priceLabel" destination="I5b-PX-VjO" id="zZ5-W1-te3"/>
                                     <outlet property="volumeLabel" destination="hLN-9h-spd" id="kHI-7p-ppf"/>
                                 </connections>
@@ -360,7 +360,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currency" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bM0-aH-AEn">
-                                            <rect key="frame" x="20" y="33" width="71" height="21"/>
+                                            <rect key="frame" x="20" y="33" width="70.5" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
