@@ -10,9 +10,9 @@ import Foundation
 import ObjectMapper
 
 struct Coin: Mappable {
-  var bestBid: Float = 0
-  var bestAsk: Float = 0
-  var lastPrice: Float = 0
+  var bestBid: Double = 0
+  var bestAsk: Double = 0
+  var lastPrice: Double = 0
   var currency: String = ""
   var instrument: String = ""
   var timeStamp: Int = 0
@@ -40,7 +40,7 @@ struct Coin: Mappable {
     volume24h /= 100000000
   }
   
-  private func normalise(value: Float?) -> Float? {
+  private func normalise(value: Double?) -> Double? {
     guard let value = value else { return nil }
     return value / 100000000
   }
@@ -53,7 +53,7 @@ struct Coin: Mappable {
 
 extension Coin {
   var displayPrice: String {
-    return lastPrice != 0 ? "$\(lastPrice.dollarValue)" : ""
+    return lastPrice != 0 ? "\(lastPrice.dollarValue)" : ""
   }
   
   var displayBestBid: String {

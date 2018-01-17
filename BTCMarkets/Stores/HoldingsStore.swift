@@ -12,7 +12,7 @@ private let holdingsKey = "holdings"
 
 class HoldingsStore {
   typealias Subscriber = String
-  typealias Holdings = [Currency: Float]
+  typealias Holdings = [Currency: Double]
   typealias HoldingsChanged = (Holdings) -> Void
   
   private var holdings: Holdings = Holdings() {
@@ -43,7 +43,7 @@ class HoldingsStore {
   }
   
   private func createDefaultHoldings() {
-    var holdings = [Currency: Float]()
+    var holdings = [Currency: Double]()
     Currency.allValues.forEach { holdings[$0] = 0 }
     self.holdings = holdings
     persistHoldings()
@@ -54,12 +54,12 @@ class HoldingsStore {
     userDefaults.set(encodedHoldings, forKey: holdingsKey)
   }
   
-  func storeHolding(currency: Currency, amount: Float) {
+  func storeHolding(currency: Currency, amount: Double) {
     holdings[currency] = amount
     persistHoldings()
   }
   
-  func holdingsAmount(forCurrency currency: Currency) -> Float {
+  func holdingsAmount(forCurrency currency: Currency) -> Double {
     return holdings[currency] ?? 0
   }
   

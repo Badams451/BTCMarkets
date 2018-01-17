@@ -9,7 +9,7 @@
 import UIKit
 
 extension UITableViewCell {
-  func updateValue(forLabel label: UILabel, previousValue: Float?, newValue: Float?, displayValue: String) {
+  func updateValue(forLabel label: UILabel, previousValue: Double?, newValue: Double?, displayValue: String) {
     guard let previousValue = previousValue, let newValue = newValue else {
       label.text = displayValue
       return

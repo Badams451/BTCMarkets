@@ -1,5 +1,5 @@
 //
-//  Float+Common.swift
+//  Double+Common.swift
 //  BTCMarkets
 //
 //  Created by Stephen Yao on 17/1/18.
@@ -8,9 +8,13 @@
 
 import Foundation
 
-extension Float {
+extension Double {
   var dollarValue: String {
-    return String(format: "%.2f", self)
+    let formatter = NumberFormatter()
+    formatter.locale = Locale.current
+    formatter.numberStyle = .currency
+    
+    return formatter.string(for: self) ?? ""
   }
   
   var holdingsValue: String {
@@ -18,6 +22,8 @@ extension Float {
       return "0"
     }
     
-    return "\(self)"
+    let isWholeNumber = self.truncatingRemainder(dividingBy: 1) == 0
+    let value = isWholeNumber ? String(format: "%.0f", self) : "\(self)"
+    return value
   }
 }
