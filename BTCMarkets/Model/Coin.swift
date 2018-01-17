@@ -53,6 +53,10 @@ struct Coin: Mappable {
 
 extension Coin {
   var displayPrice: String {
+    if self.currency == Currency.btc.rawValue {
+      return lastPrice.btcValue
+    }
+    
     return !lastPrice.isZero ? "\(lastPrice.dollarValue)" : ""
   }
   

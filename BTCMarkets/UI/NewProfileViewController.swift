@@ -12,6 +12,13 @@ class NewProfileViewController: UIViewController {
 
   @IBOutlet var textField: UITextField!
   
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    textField.borderStyle = .none
+    textField.becomeFirstResponder()
+  }
+  
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let profileName = textField.text else {
       displayAlert(message: "Profile must have a name")

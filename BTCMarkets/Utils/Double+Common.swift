@@ -17,6 +17,14 @@ extension Double {
     return formatter.string(for: self) ?? ""
   }
   
+  var btcValue: String {
+    if self.isZero {
+      return "0 BTC"
+    }
+    
+    return "\(self) BTC"
+  }
+  
   var holdingsValue: String {
     if self.isZero {
       return "0"
