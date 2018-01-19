@@ -1,5 +1,5 @@
 //
-//  ProfilesViewController.swift
+//  TickersViewController.swift
 //  BTCMarkets
 //
 //  Created by Stephen Yao on 14/1/18.
@@ -8,19 +8,19 @@
 
 import UIKit
 
-class ProfilesViewController: UITableViewController {
-  let applicationData = ProfileStore.sharedInstance
-  var profiles: [Profile] {
-    return applicationData.profiles
+class TickersViewController: UITableViewController {
+  let applicationData = TickerStore.sharedInstance
+  var tickers: [Ticker] {
+    return applicationData.tickers
   }
   
-  var selectedProfile: Profile? {
-    return applicationData.selectedProfile
+  var selectedTicker: Ticker? {
+    return applicationData.selectedTicker
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()    
-    applicationData.subscribeProfileChange(target: String(describing: self)) { [weak self] profiles in
+    applicationData.subscribeTickerChange(target: String(describing: self)) { [weak self] tickers in
       self?.tableView.reloadData()
     }
   }
@@ -38,28 +38,28 @@ class ProfilesViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return profiles.count
+    return tickers.count
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "ProfilesViewCell", for: indexPath)
-    let profile = profiles[indexPath.row]
+    let cell = tableView.dequeueReusableCell(withIdentifier: "TickersViewCell", for: indexPath)
+    let ticker = tickers[indexPath.row]
     
-    if profile.profileName == selectedProfile?.profileName {
+    if ticker.tickerName == selectedTicker?.tickerName {
       cell.accessoryType = .checkmark
     } else {
       cell.accessoryType = .none
     }
     
-    cell.textLabel?.text = "\(profile.profileName)"
+    cell.textLabel?.text = "\(ticker.tickerName)"
     
     return cell
   }
   
   override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
     let deleteAction = UIContextualAction(style: .normal, title: "Delete") { (action, view, success) in
-      let profile = self.profiles[indexPath.row]
-      self.applicationData.delete(profile: profile)
+      let ticker = self.tickers[indexPath.row]
+      self.applicationData.delete(ticker: ticker)
     }
     
     deleteAction.backgroundColor = .red
@@ -68,8 +68,8 @@ class ProfilesViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let profile = self.profiles[indexPath.row]
-    applicationData.setSelectedProfile(profile: profile)
+    let ticker = self.tickers[indexPath.row]
+    applicationData.setSelectedTicker(ticker: ticker)
     self.dismiss(animated: true, completion: nil)
   }
 }

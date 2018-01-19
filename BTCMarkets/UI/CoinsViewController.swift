@@ -11,26 +11,26 @@ import PromiseKit
 import ObjectMapper
 
 class CoinsViewController: UITableViewController {
-  private let applicationData = ProfileStore.sharedInstance
+  private let applicationData = TickerStore.sharedInstance
   private var instruments: [Currency] = [.btc, .ltc, .xrp, .eth, .bch]
   
-  private var profile: Profile {
-    return applicationData.selectedProfile ?? applicationData.defaultProfile
+  private var ticker: Ticker {
+    return applicationData.selectedTicker ?? applicationData.defaultTicker
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    navigationItem.title = profile.profileName
-    applicationData.subscribeSelectedProfile(target: String(describing: self)) { [weak self] _ in
-      self?.navigationItem.title = self?.profile.profileName
+    navigationItem.title = ticker.tickerName
+    applicationData.subscribeSelectedTicker(target: String(describing: self)) { [weak self] _ in
+      self?.navigationItem.title = self?.ticker.tickerName
       self?.tableView.reloadData()
     }
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == CoinToConfigureProfileSegue {
-      if let configureProfileViewController = segue.destination as? ConfigureProfileViewController {
-        configureProfileViewController.configure(withProfile: profile)
+    if segue.identifier == CoinToConfigureTickerSegue {
+      if let configureTickerViewController = segue.destination as? ConfigureTickerViewController {
+        configureTickerViewController.configure(withTicker: ticker)
       }
     }
   }
@@ -42,7 +42,7 @@ class CoinsViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return profile.instruments.count
+    return ticker.instruments.count
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -52,7 +52,7 @@ class CoinsViewController: UITableViewController {
       return cell
     }
     
-    currencyCell.configure(currency: profile.currency, instrument: profile.instruments[indexPath.row])
+    currencyCell.configure(currency: ticker.currency, instrument: ticker.instruments[indexPath.row])
     
     return currencyCell
   }

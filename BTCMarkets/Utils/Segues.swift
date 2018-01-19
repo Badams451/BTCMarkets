@@ -8,5 +8,5 @@
 
 import Foundation
 
-let NewProfileToConfigureProfileSegue = "NewToConfigureProfileSegue"
-let CoinToConfigureProfileSegue = "CoinToConfigureProfileSegue"
+let NewTickerToConfigureTickerSegue = "NewToConfigureTickerSegue"
+let CoinToConfigureTickerSegue = "CoinToConfigureTickerSegue"

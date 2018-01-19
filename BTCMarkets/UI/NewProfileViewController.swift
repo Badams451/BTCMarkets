@@ -1,5 +1,5 @@
 //
-//  NewProfileViewController.swift
+//  NewTickerViewController.swift
 //  BTCMarkets
 //
 //  Created by Stephen Yao on 15/1/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewProfileViewController: UIViewController {
+class NewTickerViewController: UIViewController {
 
   @IBOutlet var textField: UITextField!
   
@@ -20,15 +20,15 @@ class NewProfileViewController: UIViewController {
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    guard let profileName = textField.text else {
-      displayAlert(message: "Profile must have a name")
+    guard let tickerName = textField.text else {
+      displayAlert(message: "Ticker must have a name")
       return
     }
     
-    let profile = Profile(profileName: profileName, currency: .aud, instruments: Currency.allValues.filter { $0 != .aud })    
+    let ticker = Ticker(tickerName: tickerName, currency: .aud, instruments: Currency.allValues.filter { $0 != .aud })    
     
-    if let configureProfileViewController = segue.destination as? ConfigureProfileViewController {
-      configureProfileViewController.configure(withProfile: profile)
+    if let configureTickerViewController = segue.destination as? ConfigureTickerViewController {
+      configureTickerViewController.configure(withTicker: ticker)
     }
     
     super.prepare(for: segue, sender: sender)

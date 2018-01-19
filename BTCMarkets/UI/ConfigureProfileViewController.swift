@@ -1,5 +1,5 @@
 //
-//  NewProfileViewController.swift
+//  NewTickerViewController.swift
 //  BTCMarkets
 //
 //  Created by Stephen Yao on 15/1/18.
@@ -20,12 +20,12 @@ private enum CurrencySegmentedControlIndex: Int {
   }
 }
 
-class ConfigureProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ConfigureTickerViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
   @IBOutlet private var currencySegmentedControl: UISegmentedControl!
   @IBOutlet private var instrumentsTableView: UITableView!
   
-  private let applicationData = ProfileStore.sharedInstance
-  private var profile: Profile?
+  private let applicationData = TickerStore.sharedInstance
+  private var ticker: Ticker?
   private var selectedCurrencies: Set<Currency> = Set()
   
   private var possibleInstruments: [Currency] {
@@ -42,22 +42,22 @@ class ConfigureProfileViewController: UIViewController, UITableViewDataSource, U
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    guard let profile = profile else { return }
+    guard let ticker = ticker else { return }
     
     currencySegmentedControl.addTarget(self, action: #selector(loadTableView), for: .valueChanged)
-    currencySegmentedControl.selectedSegmentIndex = getSelectedSegmentIndex(forProfile: profile).rawValue
-    selectedCurrencies = Set(profile.instruments)
-    navigationItem.title = profile.profileName
+    currencySegmentedControl.selectedSegmentIndex = getSelectedSegmentIndex(forTicker: ticker).rawValue
+    selectedCurrencies = Set(ticker.instruments)
+    navigationItem.title = ticker.tickerName
   }
   
   // MARK: Configure
   
-  func configure(withProfile profile: Profile) {
-    self.profile = profile
+  func configure(withTicker ticker: Ticker) {
+    self.ticker = ticker
   }
   
-  private func getSelectedSegmentIndex(forProfile profile: Profile) -> CurrencySegmentedControlIndex {
-    switch profile.currency {
+  private func getSelectedSegmentIndex(forTicker ticker: Ticker) -> CurrencySegmentedControlIndex {
+    switch ticker.currency {
     case .aud: return .aud
     case .btc: return .btc
     default: return .aud
@@ -79,7 +79,7 @@ class ConfigureProfileViewController: UIViewController, UITableViewDataSource, U
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCurrencyCell", for: indexPath)
+    let cell = tableView.dequeueReusableCell(withIdentifier: "TickerCurrencyCell", for: indexPath)
     let currency = possibleInstruments[indexPath.row]
     
     cell.textLabel?.text = possibleInstruments[indexPath.row].coinName
@@ -113,13 +113,13 @@ class ConfigureProfileViewController: UIViewController, UITableViewDataSource, U
   }
   
   @IBAction func saveTapped(_ sender: Any) {
-    guard let profile = profile else {
-      displayAlert(message: "No profile was configured. Please try again.")
+    guard let ticker = ticker else {
+      displayAlert(message: "No ticker was configured. Please try again.")
       return
     }
     
-    if profile.profileName.isEmpty {
-      displayAlert(message: "Profile must have a name")
+    if ticker.tickerName.isEmpty {
+      displayAlert(message: "Ticker must have a name")
     }
 
     guard let selectedIndex = CurrencySegmentedControlIndex(rawValue: currencySegmentedControl.selectedSegmentIndex) else {
@@ -129,9 +129,9 @@ class ConfigureProfileViewController: UIViewController, UITableViewDataSource, U
     
     let selectedInstruments = possibleInstruments.filter { selectedCurrencies.contains($0) }
 
-    let updatedProfile = Profile(profileName: profile.profileName, currency: selectedIndex.currency, instruments: selectedInstruments)
-    applicationData.addOrUpdateProfile(profile: updatedProfile)
-    applicationData.setSelectedProfile(profile: updatedProfile)
+    let updatedTicker = Ticker(tickerName: ticker.tickerName, currency: selectedIndex.currency, instruments: selectedInstruments)
+    applicationData.addOrUpdateTicker(ticker: updatedTicker)
+    applicationData.setSelectedTicker(ticker: updatedTicker)
     navigationController?.popToRootViewController(animated: true)
   }
 }
