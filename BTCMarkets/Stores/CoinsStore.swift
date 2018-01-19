@@ -65,7 +65,7 @@ class CoinsStore: CurrencyFetcher {
       }.catch { error in print(error) }
     }
   }
-  
+
   private func setupSocket(currency: Currency) {
     let instruments = Currency.allExceptAud
     
