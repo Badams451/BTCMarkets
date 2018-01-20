@@ -132,7 +132,7 @@
                                 <segue destination="2KE-Yo-bPh" kind="presentation" id="FRf-nJ-as8"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="km9-2u-dFA">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" style="plain" id="km9-2u-dFA">
                             <connections>
                                 <segue destination="P6C-o9-W8N" kind="show" identifier="CoinToConfigureTickerSegue" id="neP-kr-VnA"/>
                             </connections>

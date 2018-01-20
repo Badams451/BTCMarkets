@@ -17,6 +17,11 @@ class TickersViewController: UITableViewController {
   var selectedTicker: Ticker? {
     return applicationData.selectedTicker
   }
+
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    self.navigationItem.rightBarButtonItem?.isEnabled = true
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()    
