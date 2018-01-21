@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oNl-X4-r5s">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Premium Feature View Controller-->
+        <scene sceneID="ZK7-3Y-Znt">
+            <objects>
+                <viewController storyboardIdentifier="PremiumFeatureStoryBoard" id="oNl-X4-r5s" customClass="PremiumFeatureViewController" customModule="BTCMarkets" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uQ3-X7-SWT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This feature is only available in the pro version of the app." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YIz-3g-Hdx">
+                                <rect key="frame" x="16" y="36" width="343" height="62.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QOp-KU-Gnq">
+                                <rect key="frame" x="139" y="225" width="97" height="30"/>
+                                <state key="normal" title="Purhcase now"/>
+                                <connections>
+                                    <action selector="purchaseButtonTapped:" destination="oNl-X4-r5s" eventType="touchUpInside" id="td5-v3-mNW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lyf-n4-rZe">
+                                <rect key="frame" x="147" y="318" width="81" height="30"/>
+                                <state key="normal" title="Maybe later"/>
+                                <connections>
+                                    <action selector="laterButtonTapped:" destination="oNl-X4-r5s" eventType="touchUpInside" id="NUO-bP-ByK"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="lyf-n4-rZe" firstAttribute="centerX" secondItem="FWT-7W-foc" secondAttribute="centerX" id="8vW-U1-VTL"/>
+                            <constraint firstItem="QOp-KU-Gnq" firstAttribute="top" secondItem="YIz-3g-Hdx" secondAttribute="bottom" constant="126.5" id="Avi-mT-mvW"/>
+                            <constraint firstItem="lyf-n4-rZe" firstAttribute="top" secondItem="QOp-KU-Gnq" secondAttribute="bottom" constant="63" id="S0c-hy-3CQ"/>
+                            <constraint firstItem="FWT-7W-foc" firstAttribute="trailing" secondItem="YIz-3g-Hdx" secondAttribute="trailing" constant="16" id="jBy-7z-ddA"/>
+                            <constraint firstItem="YIz-3g-Hdx" firstAttribute="leading" secondItem="FWT-7W-foc" secondAttribute="leading" constant="16" id="oQh-Jm-KVc"/>
+                            <constraint firstItem="YIz-3g-Hdx" firstAttribute="top" secondItem="FWT-7W-foc" secondAttribute="top" constant="16" id="s4s-RC-EDo"/>
+                            <constraint firstItem="QOp-KU-Gnq" firstAttribute="centerX" secondItem="FWT-7W-foc" secondAttribute="centerX" id="tuh-Ym-kvG"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="FWT-7W-foc"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OO0-lS-ieT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-220" y="65.217391304347828"/>
+        </scene>
+    </scenes>
+</document>

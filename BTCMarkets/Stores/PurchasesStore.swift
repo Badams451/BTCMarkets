@@ -16,24 +16,11 @@ protocol PremiumFeature: class {
 }
 
 extension PremiumFeature {
-  func showProVersionScreen() {
-    let proVersionViewController = UIViewController()
-    if let viewController = self as? UIViewController {
-      viewController.present(proVersionViewController, animated: true, completion: nil)
-    }
-  }
-
-  func dismissProVersionScreen() {
-    if let viewController = self as? UIViewController {
-      viewController.dismiss(animated: true, completion: nil)
-    }
-  }
-
   private func proVersionStatusChanged(hasProVersion: Bool) {
     if hasProVersion {
-      showProVersionScreen()
-    } else {
       dismissProVersionScreen()
+    } else {
+      showProVersionScreen()
     }
   }
 
@@ -61,7 +48,7 @@ final class PurchasesStore {
 
   func subscribe(subscriber: Subscriber, callback: @escaping PurchasesChanged) {
     subscribers.append((subscriber, callback))
-    callback(true)
+    callback(false)
   }
 
   func unsubscribe(subscriber: Subscriber) {

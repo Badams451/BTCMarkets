@@ -38,7 +38,8 @@ private struct TotalEquityItem: HoldingItem {
   }
 }
 
-class HoldingsViewController: UITableViewController {
+class HoldingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+  @IBOutlet private var tableView: UITableView!
   private let holdingItems = Currency.allExceptAud
   private let totalEquityItem = TotalEquityItem()
   private let holdingsStore = HoldingsStore.sharedInstance
@@ -57,17 +58,19 @@ class HoldingsViewController: UITableViewController {
     currencyStoreAud.subscribe(subscriber: String(describing: self)) { [weak self] _ in
       self?.tableView.reloadData()
     }
+
+    self.subscribeToPurchasesStore()
   }
   
-  override func numberOfSections(in tableView: UITableView) -> Int {
+  func numberOfSections(in tableView: UITableView) -> Int {
     return 1
   }
   
-  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return allItems.count
   }
   
-  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let item = allItems[indexPath.row]
     
     let cell = tableView.dequeueReusableCell(withIdentifier: item.reuseIdentifier, for: indexPath)
@@ -108,7 +111,7 @@ class HoldingsViewController: UITableViewController {
     return cell
   }
   
-  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
     
     let item = allItems[indexPath.row]
@@ -145,6 +148,35 @@ class HoldingsViewController: UITableViewController {
   deinit {
     holdingsStore.unsubscribe(subscriber: String(describing: self))
     currencyStoreAud.unsubscribe(subscriber: String(describing: self))
+  }
+}
+
+extension HoldingsViewController: PremiumFeature {
+  var describer: String {
+    return "HoldingsViewController"
+  }
+
+  func showProVersionScreen() {
+    let storyboard = UIStoryboard(name: PremiumFeatureViewController.storyboardName, bundle: nil)
+    guard let premiumFeaturesViewController = storyboard.instantiateInitialViewController() else {
+      return
+    }
+
+    self.view.addSubview(premiumFeaturesViewController.view)
+    self.addChildViewController(premiumFeaturesViewController)
+    premiumFeaturesViewController.didMove(toParentViewController: self)
+
+    premiumFeaturesViewController.view.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+    premiumFeaturesViewController.view.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+    premiumFeaturesViewController.view.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+    premiumFeaturesViewController.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+  }
+
+  func dismissProVersionScreen() {
+    let premiumFeaturesViewController = self.childViewControllers.first { ($0 as? PremiumFeatureViewController) != nil }
+    premiumFeaturesViewController?.willMove(toParentViewController: nil)
+    premiumFeaturesViewController?.view.removeFromSuperview()
+    premiumFeaturesViewController?.removeFromParentViewController()
   }
 }
 

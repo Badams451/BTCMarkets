@@ -363,7 +363,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="xZ8-pu-U9F" kind="relationship" relationship="rootViewController" id="w0t-2X-OXm"/>
+                        <segue destination="OVF-IU-bjo" kind="relationship" relationship="rootViewController" id="fLA-4p-2JO"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tTK-CQ-fvy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -371,101 +371,117 @@
             <point key="canvasLocation" x="-145.59999999999999" y="891.45427286356824"/>
         </scene>
         <!--Holdings-->
-        <scene sceneID="EwC-n0-MTJ">
+        <scene sceneID="INC-46-mpo">
             <objects>
-                <tableViewController id="xZ8-pu-U9F" customClass="HoldingsViewController" customModule="BTCMarkets" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="87" sectionHeaderHeight="28" sectionFooterHeight="28" id="xkw-q2-qZS">
+                <viewController id="OVF-IU-bjo" customClass="HoldingsViewController" customModule="BTCMarkets" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Sh3-za-sbq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="87" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="M9f-jj-YJQ">
+                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HoldingsCell" rowHeight="87" id="GZN-1b-n8k" customClass="HoldingsCell" customModule="BTCMarkets" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="87"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GZN-1b-n8k" id="ItQ-lF-hEc">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="86.666666666666671"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Holding" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KtP-qC-ert">
+                                                    <rect key="frame" x="295" y="46" width="60" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AUD value" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fg6-24-Uah">
+                                                    <rect key="frame" x="272" y="17" width="83" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currency" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="787-Bk-ZxP">
+                                                    <rect key="frame" x="20" y="33" width="76" height="21"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="fg6-24-Uah" secondAttribute="trailing" constant="20" id="5eS-AC-TWf"/>
+                                                <constraint firstAttribute="bottom" secondItem="KtP-qC-ert" secondAttribute="bottom" constant="19.5" id="6ap-4Q-4bu"/>
+                                                <constraint firstItem="787-Bk-ZxP" firstAttribute="centerY" secondItem="ItQ-lF-hEc" secondAttribute="centerY" id="CGj-bq-gcN"/>
+                                                <constraint firstItem="fg6-24-Uah" firstAttribute="top" secondItem="ItQ-lF-hEc" secondAttribute="top" constant="17" id="KpB-ae-6O5"/>
+                                                <constraint firstItem="fg6-24-Uah" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="787-Bk-ZxP" secondAttribute="trailing" constant="8" symbolic="YES" id="Oqi-x6-Qdq"/>
+                                                <constraint firstItem="787-Bk-ZxP" firstAttribute="leading" secondItem="ItQ-lF-hEc" secondAttribute="leading" constant="20" id="Xcq-k1-4tp"/>
+                                                <constraint firstItem="KtP-qC-ert" firstAttribute="trailing" secondItem="fg6-24-Uah" secondAttribute="trailing" id="iyQ-8X-xBu"/>
+                                                <constraint firstItem="KtP-qC-ert" firstAttribute="top" secondItem="fg6-24-Uah" secondAttribute="bottom" constant="8" id="oCr-l1-A0l"/>
+                                                <constraint firstItem="KtP-qC-ert" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="787-Bk-ZxP" secondAttribute="trailing" constant="8" symbolic="YES" id="ziz-bS-ivd"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="audAmountLabel" destination="fg6-24-Uah" id="q2g-bM-nIJ"/>
+                                            <outlet property="currencyLabel" destination="787-Bk-ZxP" id="MSh-yy-eL8"/>
+                                            <outlet property="holdingsAmountLabel" destination="KtP-qC-ert" id="dPv-nh-FMT"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EquityCell" id="LdI-Sh-HLm" customClass="EquityCell" customModule="BTCMarkets" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="115" width="375" height="87"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LdI-Sh-HLm" id="tgv-ji-smB">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="86.666666666666671"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Equity (AUD)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rz7-FI-KzZ">
+                                                    <rect key="frame" x="20.000000000000007" y="33" width="106.66666666666669" height="21"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AUD value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hz5-c7-g2S">
+                                                    <rect key="frame" x="272" y="33" width="83" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Rz7-FI-KzZ" firstAttribute="leading" secondItem="tgv-ji-smB" secondAttribute="leading" constant="20" id="EQO-Wh-qLw"/>
+                                                <constraint firstItem="hz5-c7-g2S" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Rz7-FI-KzZ" secondAttribute="trailing" constant="50" id="KoQ-Ic-WYL"/>
+                                                <constraint firstItem="Rz7-FI-KzZ" firstAttribute="centerY" secondItem="tgv-ji-smB" secondAttribute="centerY" id="LHA-jX-IzJ"/>
+                                                <constraint firstAttribute="trailing" secondItem="hz5-c7-g2S" secondAttribute="trailing" constant="20" id="YF1-a7-YTN"/>
+                                                <constraint firstItem="hz5-c7-g2S" firstAttribute="centerY" secondItem="tgv-ji-smB" secondAttribute="centerY" id="dQV-cK-18U"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="equityAmountLabel" destination="hz5-c7-g2S" id="hpV-6c-ua7"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="OVF-IU-bjo" id="ARs-Pg-hNS"/>
+                                    <outlet property="delegate" destination="OVF-IU-bjo" id="wzw-IR-3yX"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HoldingsCell" rowHeight="87" id="Mty-w8-W9S" customClass="HoldingsCell" customModule="BTCMarkets" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="87"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mty-w8-W9S" id="Yav-9u-f2V">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="86.666666666666671"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Holding" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cng-oo-BDO">
-                                            <rect key="frame" x="295" y="46" width="60" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AUD value" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tu7-nN-Szr">
-                                            <rect key="frame" x="272" y="17" width="83" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currency" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bM0-aH-AEn">
-                                            <rect key="frame" x="20" y="33" width="76" height="21"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="cng-oo-BDO" firstAttribute="trailing" secondItem="tu7-nN-Szr" secondAttribute="trailing" id="0ax-ch-VgQ"/>
-                                        <constraint firstAttribute="bottom" secondItem="cng-oo-BDO" secondAttribute="bottom" constant="19.5" id="H8d-aZ-iXR"/>
-                                        <constraint firstItem="bM0-aH-AEn" firstAttribute="centerY" secondItem="Yav-9u-f2V" secondAttribute="centerY" id="K0J-cQ-Fdi"/>
-                                        <constraint firstAttribute="trailing" secondItem="tu7-nN-Szr" secondAttribute="trailing" constant="20" id="U7a-FY-6kp"/>
-                                        <constraint firstItem="cng-oo-BDO" firstAttribute="top" secondItem="tu7-nN-Szr" secondAttribute="bottom" constant="8" id="ais-xw-ARr"/>
-                                        <constraint firstItem="tu7-nN-Szr" firstAttribute="top" secondItem="Yav-9u-f2V" secondAttribute="top" constant="17" id="f8q-hy-W1y"/>
-                                        <constraint firstItem="cng-oo-BDO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bM0-aH-AEn" secondAttribute="trailing" constant="8" symbolic="YES" id="jhg-FB-8vt"/>
-                                        <constraint firstItem="bM0-aH-AEn" firstAttribute="leading" secondItem="Yav-9u-f2V" secondAttribute="leading" constant="20" id="lM1-9Y-0cK"/>
-                                        <constraint firstItem="tu7-nN-Szr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bM0-aH-AEn" secondAttribute="trailing" constant="8" symbolic="YES" id="tQ7-cn-xsd"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="audAmountLabel" destination="tu7-nN-Szr" id="rvE-wO-EMq"/>
-                                    <outlet property="currencyLabel" destination="bM0-aH-AEn" id="y2z-3m-SFy"/>
-                                    <outlet property="holdingsAmountLabel" destination="cng-oo-BDO" id="iBP-Lh-F1N"/>
-                                </connections>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EquityCell" id="L0Z-dn-VQA" customClass="EquityCell" customModule="BTCMarkets" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="115" width="375" height="87"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="L0Z-dn-VQA" id="P7h-T7-4dJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="86.666666666666671"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Equity (AUD)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1a7-2j-zVN">
-                                            <rect key="frame" x="20.000000000000007" y="33" width="106.66666666666669" height="21"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AUD value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HzI-Fv-BGz">
-                                            <rect key="frame" x="272" y="33" width="83" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="HzI-Fv-BGz" firstAttribute="centerY" secondItem="P7h-T7-4dJ" secondAttribute="centerY" id="A3k-GK-j1I"/>
-                                        <constraint firstAttribute="trailing" secondItem="HzI-Fv-BGz" secondAttribute="trailing" constant="20" id="Nyq-DK-nZh"/>
-                                        <constraint firstItem="HzI-Fv-BGz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1a7-2j-zVN" secondAttribute="trailing" constant="50" id="TRX-Yh-xcp"/>
-                                        <constraint firstItem="1a7-2j-zVN" firstAttribute="leading" secondItem="P7h-T7-4dJ" secondAttribute="leading" constant="20" id="ZLo-ih-lnn"/>
-                                        <constraint firstItem="1a7-2j-zVN" firstAttribute="centerY" secondItem="P7h-T7-4dJ" secondAttribute="centerY" id="aSB-nB-zp0"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="equityAmountLabel" destination="HzI-Fv-BGz" id="9QB-qg-cXs"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="xZ8-pu-U9F" id="baJ-h9-j9a"/>
-                            <outlet property="delegate" destination="xZ8-pu-U9F" id="wft-5e-UkK"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Holdings" id="QAb-mf-UDq"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qd0-2w-JIO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <constraints>
+                            <constraint firstItem="M9f-jj-YJQ" firstAttribute="leading" secondItem="W2A-ih-icv" secondAttribute="leading" id="3z5-NT-jd1"/>
+                            <constraint firstItem="W2A-ih-icv" firstAttribute="top" secondItem="M9f-jj-YJQ" secondAttribute="top" id="Ptg-xJ-8Ue"/>
+                            <constraint firstItem="M9f-jj-YJQ" firstAttribute="bottom" secondItem="W2A-ih-icv" secondAttribute="bottom" id="okK-ar-bjb"/>
+                            <constraint firstItem="W2A-ih-icv" firstAttribute="trailing" secondItem="M9f-jj-YJQ" secondAttribute="trailing" id="taF-LZ-RoW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="W2A-ih-icv"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Holdings" id="Mwo-xU-lX4"/>
+                    <connections>
+                        <outlet property="tableView" destination="M9f-jj-YJQ" id="Ecr-jm-9ZO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l3D-G7-tvn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="960.79999999999995" y="859.52023988005999"/>
+            <point key="canvasLocation" x="1705" y="1093"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
