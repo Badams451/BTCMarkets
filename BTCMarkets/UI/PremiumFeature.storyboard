@@ -51,6 +51,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="FWT-7W-foc"/>
                     </view>
+                    <connections>
+                        <outlet property="purchaseButton" destination="QOp-KU-Gnq" id="Xoy-ON-VjC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OO0-lS-ieT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
