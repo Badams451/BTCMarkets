@@ -35,3 +35,19 @@ extension Double {
     return value
   }
 }
+
+extension Date {
+  func oneYearLater() -> Date {
+    var offsetComponents = DateComponents()
+    offsetComponents.year = 1
+
+    let calendar = Calendar.current
+    if let result = calendar.date(byAdding: offsetComponents, to: self) {
+      return result
+    } else {
+      // This should never happen, but we'll try to handle it gracefully
+      let secondsPerYear: TimeInterval = 60 * 60 * 24 * 365
+      return Date().addingTimeInterval(secondsPerYear)
+    }
+  }
+}
