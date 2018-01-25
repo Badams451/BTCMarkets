@@ -143,11 +143,11 @@
             </objects>
             <point key="canvasLocation" x="1276" y="-9.4452773613193415"/>
         </scene>
-        <!--Tracker-->
+        <!--Ticker-->
         <scene sceneID="9nh-66-loL">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TUy-03-JTe" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Tracker" id="mtv-gh-xYp"/>
+                    <tabBarItem key="tabBarItem" title="Ticker" image="tab-ticker" id="mtv-gh-xYp"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8F7-Iq-Szs">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -484,6 +484,9 @@
             <point key="canvasLocation" x="1705" y="1093"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tab-ticker" width="24" height="24"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="neP-kr-VnA"/>
     </inferredMetricsTieBreakers>
