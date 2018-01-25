@@ -170,6 +170,8 @@ extension HoldingsViewController: PremiumFeature {
     premiumFeaturesViewController.view.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
     premiumFeaturesViewController.view.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
     premiumFeaturesViewController.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+    
+    navigationController?.setNavigationBarHidden(true, animated: false)
   }
 
   func dismissProVersionScreen() {
@@ -177,6 +179,8 @@ extension HoldingsViewController: PremiumFeature {
     premiumFeaturesViewController?.willMove(toParentViewController: nil)
     premiumFeaturesViewController?.view.removeFromSuperview()
     premiumFeaturesViewController?.removeFromParentViewController()
+    
+    navigationController?.setNavigationBarHidden(false, animated: false)
   }
 }
 

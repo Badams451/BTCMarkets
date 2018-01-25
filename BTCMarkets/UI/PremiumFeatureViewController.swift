@@ -12,25 +12,48 @@ import StoreKit
 class PremiumFeatureViewController: UIViewController {
   static let storyboardName = "PremiumFeature"
   @IBOutlet var purchaseButton: UIButton!
-
+  @IBOutlet var restoreButton: UIButton!
+  @IBOutlet var activityIndicator: UIActivityIndicatorView!
+  
   let inAppPurchase: InAppPurchase = InAppPurchase()
   let store = PurchasesStore.sharedInstance
 
-  @IBAction func laterButtonTapped(_ sender: Any) {
-    if let parent = self.parent as? PremiumFeature {
-      parent.dismissProVersionScreen()
+  @IBAction func purchaseButtonTapped(_ sender: Any) {
+    showLoadingState()
+    inAppPurchase.purchaseProVersion() { [weak self] in
+      self?.hideLoadingState()
     }
   }
 
-  @IBAction func purchaseButtonTapped(_ sender: Any) {
-    inAppPurchase.purchaseProVersion()
+  @IBAction func restoreButtonTapped(_ sender: Any) {
+    showLoadingState()
+    inAppPurchase.restorePurchase() { [weak self] in
+      self?.hideLoadingState()
+    }
   }
-
+  
+  private func showLoadingState() {
+    activityIndicator.startAnimating()
+    purchaseButton.isEnabled = false
+    restoreButton.isEnabled = false
+  }
+  
+  private func hideLoadingState() {
+    activityIndicator.stopAnimating()
+    purchaseButton.isEnabled = true
+    restoreButton.isEnabled = true
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-
+    
+    showLoadingState()
     inAppPurchase.fetchProducts() { [weak self] in
-      self?.purchaseButton.setTitle("Buy \($0.localizedTitle) for \($0.price.floatValue) per year", for: .normal)
+      self?.hideLoadingState()
+      
+      let subscriptionPeriod = $0.subscriptionPeriod?.subscriptionPeriodDescription ?? "period"
+      
+      self?.purchaseButton.setTitle("Subscribe now - \($0.price.doubleValue.dollarValue) per \(subscriptionPeriod)", for: .normal)
     }
   }
 }

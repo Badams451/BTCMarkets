@@ -40,15 +40,26 @@ private let productIdentifier = "com.btcmarkets.pro.version"
 final class InAppPurchase: NSObject {
 
   typealias ProductRequestCompletion = (SKProduct) -> Void
+  typealias ProductPurchaseCompletion = () -> Void
+  typealias ProductRestoreCompletion = () -> Void
 
   var productsRequest: SKProductsRequest?
   var product: SKProduct?
   var productRequestCompletion: ProductRequestCompletion?
+  var productPurchaseCompletion: ProductPurchaseCompletion?
   let purchasesStore: PurchasesStore = PurchasesStore.sharedInstance
+  
 
   override init() {
     super.init()
     SKPaymentQueue.default().add(self)
+  }
+  
+  deinit {
+    SKPaymentQueue.default().remove(self)
+    productsRequest?.delegate = nil
+    productRequestCompletion = nil
+    productPurchaseCompletion = nil
   }
 }
 
@@ -59,8 +70,7 @@ extension InAppPurchase: SKProductsRequestDelegate {
     productsRequest = SKProductsRequest(productIdentifiers: Set([productIdentifier]))
     productsRequest!.delegate = self
     productsRequest!.start()
-
-    self.productRequestCompletion = completion
+    productRequestCompletion = completion
   }
 
   func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
@@ -69,14 +79,46 @@ extension InAppPurchase: SKProductsRequestDelegate {
     productRequestCompletion?(product)
   }
 
-  func purchaseProVersion() {
+  func purchaseProVersion(completion: @escaping ProductPurchaseCompletion) {
     guard let product = product else { return }
     let payment = SKPayment(product: product)
     SKPaymentQueue.default().add(payment)
+    productPurchaseCompletion = completion
   }
 
-  func restorePurchase() {
-    SKPaymentQueue.default().restoreCompletedTransactions()
+  func restorePurchase(completion: @escaping ProductRestoreCompletion) {
+    SKPaymentQueue.default().restoreCompletedTransactions()    
+    productPurchaseCompletion = completion
+  }
+}
+
+extension SKProductSubscriptionPeriod {
+  var subscriptionInterval: TimeInterval {
+    var numberOfHours = 0
+    switch self.unit {
+    case .day: numberOfHours = 24
+    case .week: numberOfHours = 24 * 7
+    case .month: numberOfHours = 24 * 31
+    case .year: numberOfHours = 24 * 366
+    }
+    
+    let numberOfSeconds = numberOfHours * 60 * 60
+    let totalTimeInterval = numberOfSeconds * self.numberOfUnits
+    return TimeInterval(totalTimeInterval)
+  }
+  
+  var subscriptionPeriodDescription: String {
+    let numberOfUnits = self.numberOfUnits
+    let prefix = numberOfUnits > 0 ? "\(numberOfUnits) " : ""
+    let suffix = numberOfUnits > 1 ? "s" : ""
+    var body = ""
+    switch self.unit {
+    case .day: body = "Day"
+    case .week: body = "Week"
+    case .month: body = "Month"
+    case .year: body = "Year"
+    }
+    return "\(prefix)\(body)\(suffix)"
   }
 }
 
@@ -85,32 +127,40 @@ extension InAppPurchase: SKPaymentTransactionObserver {
     for transaction in transactions {
       switch (transaction.transactionState) {
       case .purchased:
+        guard let transactionDate = transaction.transactionDate,
+              let subscriptionExpiryInterval = product?.subscriptionPeriod?.subscriptionInterval else {
+          return
+        }
+
+        let expiryDate = transactionDate.addingTimeInterval(subscriptionExpiryInterval)
+        purchasesStore.setPurchasedState(purchased: true, expiry: expiryDate)
+        SKPaymentQueue.default().finishTransaction(transaction)
         print("purchased")
-        guard let transactionDate = transaction.transactionDate else {
-          return
-        }
-
-        let expiryDate = transactionDate.oneYearLater()
-        purchasesStore.setPurchasedState(purchased: true, expiry: expiryDate)
-        SKPaymentQueue.default().finishTransaction(transaction)
-      case .failed:
-        print("fail")
-        SKPaymentQueue.default().finishTransaction(transaction)
       case .restored:
-        print("restored")
-        guard let transactionDate = transaction.transactionDate else {
-          return
+        guard let transactionDate = transaction.original?.transactionDate,
+              let subscriptionExpiryInterval = product?.subscriptionPeriod?.subscriptionInterval else {
+          break
         }
-
-        let expiryDate = transactionDate.oneYearLater()
-        purchasesStore.setPurchasedState(purchased: true, expiry: expiryDate)
+        
+        let expiryDate = transactionDate.addingTimeInterval(subscriptionExpiryInterval)
+        let now = Date()
+        
+        if now.timeIntervalSince(expiryDate) < 0 {
+          purchasesStore.setPurchasedState(purchased: true, expiry: expiryDate)          
+        }
         SKPaymentQueue.default().finishTransaction(transaction)
+        print("restored")
+      case .failed:
+        SKPaymentQueue.default().finishTransaction(transaction)
+        print("failed")
+        return
       case .deferred:
-        print("deferred")
+        return
       case .purchasing:
-        print("purchasing")
+        return
       }
     }
+    productPurchaseCompletion?()
   }
 }
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oNl-X4-r5s">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,44 +15,77 @@
             <objects>
                 <viewController storyboardIdentifier="PremiumFeatureStoryBoard" id="oNl-X4-r5s" customClass="PremiumFeatureViewController" customModule="BTCMarkets" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uQ3-X7-SWT">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This feature is only available in the pro version of the app." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YIz-3g-Hdx">
-                                <rect key="frame" x="16" y="36" width="343" height="62.5"/>
+                                <rect key="frame" x="24" y="36" width="272" height="93.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QOp-KU-Gnq">
-                                <rect key="frame" x="139" y="225" width="97" height="30"/>
-                                <state key="normal" title="Purhcase now"/>
+                                <rect key="frame" x="20" y="355" width="280" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.51442962572850859" blue="0.96674543619155884" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Mqq-CW-JIE"/>
+                                    <constraint firstAttribute="width" constant="280" id="wtZ-K9-7Qy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Subscribe now">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="purchaseButtonTapped:" destination="oNl-X4-r5s" eventType="touchUpInside" id="td5-v3-mNW"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lyf-n4-rZe">
-                                <rect key="frame" x="147" y="318" width="81" height="30"/>
-                                <state key="normal" title="Maybe later"/>
+                                <rect key="frame" x="64.5" y="420" width="191" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <state key="normal" title="Restore previous purchase"/>
                                 <connections>
-                                    <action selector="laterButtonTapped:" destination="oNl-X4-r5s" eventType="touchUpInside" id="NUO-bP-ByK"/>
+                                    <action selector="restoreButtonTapped:" destination="oNl-X4-r5s" eventType="touchUpInside" id="bIc-3t-83Q"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Purchase the pro version to use this feature and support future development of the app. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FFg-vP-d4l">
+                                <rect key="frame" x="24" y="146" width="272" height="72"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="KuR-1g-Kho">
+                                <rect key="frame" x="150" y="240" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="lyf-n4-rZe" firstAttribute="centerX" secondItem="FWT-7W-foc" secondAttribute="centerX" id="8vW-U1-VTL"/>
-                            <constraint firstItem="QOp-KU-Gnq" firstAttribute="top" secondItem="YIz-3g-Hdx" secondAttribute="bottom" constant="126.5" id="Avi-mT-mvW"/>
-                            <constraint firstItem="lyf-n4-rZe" firstAttribute="top" secondItem="QOp-KU-Gnq" secondAttribute="bottom" constant="63" id="S0c-hy-3CQ"/>
-                            <constraint firstItem="FWT-7W-foc" firstAttribute="trailing" secondItem="YIz-3g-Hdx" secondAttribute="trailing" constant="16" id="jBy-7z-ddA"/>
-                            <constraint firstItem="YIz-3g-Hdx" firstAttribute="leading" secondItem="FWT-7W-foc" secondAttribute="leading" constant="16" id="oQh-Jm-KVc"/>
+                            <constraint firstItem="FFg-vP-d4l" firstAttribute="top" secondItem="YIz-3g-Hdx" secondAttribute="bottom" constant="16.5" id="OIx-kz-rf8"/>
+                            <constraint firstItem="FFg-vP-d4l" firstAttribute="width" secondItem="YIz-3g-Hdx" secondAttribute="width" id="RS2-So-36X"/>
+                            <constraint firstItem="FWT-7W-foc" firstAttribute="bottom" secondItem="lyf-n4-rZe" secondAttribute="bottom" constant="30" id="T5w-7e-e4i"/>
+                            <constraint firstItem="FFg-vP-d4l" firstAttribute="leading" secondItem="YIz-3g-Hdx" secondAttribute="leading" id="X7N-ml-zg9">
+                                <string key="userLabel">Purchase the pro version to use this feature and support future development of the app.  Upon purchase the payment will be charged to your iTunes Connect account. The subscription to the pro version of the app is on an auto renewal basis and will auto renew unless turned off 24 hours prior. Your account will be charged within 24 hours of the current subscription period..leading = This feature is only available in the pro version of the app..leading</string>
+                            </constraint>
+                            <constraint firstItem="KuR-1g-Kho" firstAttribute="centerY" secondItem="FWT-7W-foc" secondAttribute="centerY" id="XgA-Q6-xFg"/>
+                            <constraint firstItem="KuR-1g-Kho" firstAttribute="centerX" secondItem="FWT-7W-foc" secondAttribute="centerX" id="ZOA-Ce-OKf"/>
+                            <constraint firstItem="QOp-KU-Gnq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="FFg-vP-d4l" secondAttribute="bottom" priority="995" constant="20" id="fo0-6Q-Fd8"/>
+                            <constraint firstItem="FWT-7W-foc" firstAttribute="trailing" secondItem="YIz-3g-Hdx" secondAttribute="trailing" constant="24" id="jBy-7z-ddA"/>
+                            <constraint firstItem="YIz-3g-Hdx" firstAttribute="leading" secondItem="FWT-7W-foc" secondAttribute="leading" constant="24" id="oQh-Jm-KVc"/>
+                            <constraint firstItem="lyf-n4-rZe" firstAttribute="top" secondItem="QOp-KU-Gnq" secondAttribute="bottom" constant="15" id="rFB-qC-ZeJ"/>
                             <constraint firstItem="YIz-3g-Hdx" firstAttribute="top" secondItem="FWT-7W-foc" secondAttribute="top" constant="16" id="s4s-RC-EDo"/>
                             <constraint firstItem="QOp-KU-Gnq" firstAttribute="centerX" secondItem="FWT-7W-foc" secondAttribute="centerX" id="tuh-Ym-kvG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="FWT-7W-foc"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="KuR-1g-Kho" id="QVq-AH-zzZ"/>
                         <outlet property="purchaseButton" destination="QOp-KU-Gnq" id="Xoy-ON-VjC"/>
+                        <outlet property="restoreButton" destination="lyf-n4-rZe" id="JCm-ul-FWA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OO0-lS-ieT" userLabel="First Responder" sceneMemberID="firstResponder"/>
