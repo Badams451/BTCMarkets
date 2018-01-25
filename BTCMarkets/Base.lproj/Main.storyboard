@@ -355,7 +355,7 @@
         <scene sceneID="tc1-8h-0Dk">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="A82-88-CDH" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Holdings" id="RlD-rP-S9o"/>
+                    <tabBarItem key="tabBarItem" title="Holdings" image="tab-holdings" id="RlD-rP-S9o"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ht0-f3-PPM">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -485,6 +485,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="tab-holdings" width="24" height="24"/>
         <image name="tab-ticker" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
