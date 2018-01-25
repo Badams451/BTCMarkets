@@ -51,9 +51,11 @@ class PremiumFeatureViewController: UIViewController {
     inAppPurchase.fetchProducts() { [weak self] in
       self?.hideLoadingState()
       
-      let subscriptionPeriod = $0.subscriptionPeriod?.subscriptionPeriodDescription ?? "period"
+      guard let product = $0 else { return }
       
-      self?.purchaseButton.setTitle("Subscribe now - \($0.price.doubleValue.dollarValue) per \(subscriptionPeriod)", for: .normal)
+      let subscriptionPeriod = product.subscriptionPeriod?.subscriptionPeriodDescription ?? "period"
+      
+      self?.purchaseButton.setTitle("Subscribe now - \(product.price.doubleValue.dollarValue) per \(subscriptionPeriod)", for: .normal)
     }
   }
 }

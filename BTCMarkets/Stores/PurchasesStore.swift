@@ -34,12 +34,12 @@ extension PremiumFeature {
   }
 }
 
-private let productIdentifier = "com.btcmarkets.pro.version"
+private let productIdentifier = "com.btcmarkets.pro.version.subscription"
 
 
 final class InAppPurchase: NSObject {
 
-  typealias ProductRequestCompletion = (SKProduct) -> Void
+  typealias ProductRequestCompletion = (SKProduct?) -> Void
   typealias ProductPurchaseCompletion = () -> Void
   typealias ProductRestoreCompletion = () -> Void
 
@@ -74,7 +74,10 @@ extension InAppPurchase: SKProductsRequestDelegate {
   }
 
   func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-    guard let product = response.products.first else { return }
+    guard let product = response.products.first else {
+      productRequestCompletion?(nil)
+      return
+    }
     self.product = product
     productRequestCompletion?(product)
   }
@@ -161,6 +164,8 @@ extension InAppPurchase: SKPaymentTransactionObserver {
     }
     productPurchaseCompletion?()
   }
+  
+  
 }
 
 
