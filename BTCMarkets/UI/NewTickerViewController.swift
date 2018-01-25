@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewTickerViewController: UIViewController {
+class NewTickerViewController: UIViewController, UITextFieldDelegate {
 
   @IBOutlet var textField: UITextField!
   
@@ -16,7 +16,15 @@ class NewTickerViewController: UIViewController {
     super.viewDidLoad()
     
     textField.borderStyle = .none
+    textField.returnKeyType = .next    
+    textField.autocapitalizationType = .words
     textField.becomeFirstResponder()
+  }
+  
+  func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+    self.performSegue(withIdentifier: NewToConfigureTickerSegue, sender: nil)
+
+    return true
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

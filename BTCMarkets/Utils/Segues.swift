@@ -10,3 +10,4 @@ import Foundation
 
 let NewTickerToConfigureTickerSegue = "NewToConfigureTickerSegue"
 let CoinToConfigureTickerSegue = "CoinToConfigureTickerSegue"
+let NewToConfigureTickerSegue = "NewToConfigureTickerSegue"
