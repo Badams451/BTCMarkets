@@ -52,9 +52,9 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FFg-vP-d4l">
-                                <rect key="frame" x="24" y="155" width="272" height="233"/>
-                                <mutableString key="text">Purchase the pro version to use this feature and support future development of the app.  Your subscription will be automatically renewed and charged to your iTunes account unless cancelled within 24 hours prior to the period of the subscription.  You can manage your  subscriptions any time by viewing your Apple ID from the iTunes and App Store option from the Settings app on your phone.</mutableString>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <rect key="frame" x="24" y="155" width="272" height="234"/>
+                                <mutableString key="text">Purchase the pro version of this app to be able to enter and track your holdings across your crypto currencies in real time. Watch your total equity rise and fall according to the crypto market.  Your subscription will be automatically renewed and charged to your iTunes account unless cancelled within 24 hours prior to the period of the subscription.  You can manage your  subscriptions any time by viewing your Apple ID from the iTunes and App Store option from the Settings app on your phone.</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
