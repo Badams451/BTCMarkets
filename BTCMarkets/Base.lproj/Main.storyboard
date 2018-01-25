@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Coins View Controller-->
+        <!--BTC Markets-->
         <scene sceneID="MSN-4C-GJm">
             <objects>
                 <tableViewController storyboardIdentifier="CoinsViewController" id="Xoy-S1-v5W" customClass="CoinsViewController" customModule="BTCMarkets" customModuleProvider="target" sceneMemberID="viewController">
@@ -126,7 +126,7 @@
                             <outlet property="delegate" destination="Xoy-S1-v5W" id="Op7-sF-KNi"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Md5-2I-vmy">
+                    <navigationItem key="navigationItem" title="BTC Markets" id="Md5-2I-vmy">
                         <barButtonItem key="leftBarButtonItem" title="Tickers" id="UAo-ws-MhO">
                             <connections>
                                 <segue destination="2KE-Yo-bPh" kind="presentation" id="FRf-nJ-as8"/>
@@ -149,8 +149,8 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TUy-03-JTe" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Ticker" image="tab-ticker" id="mtv-gh-xYp"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8F7-Iq-Szs">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="8F7-Iq-Szs">
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -167,8 +167,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2KE-Yo-bPh" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gVv-44-NPA">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="gVv-44-NPA">
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -229,7 +229,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wJk-dg-GIb">
-                                <rect key="frame" x="0.0" y="156" width="375" height="573"/>
+                                <rect key="frame" x="0.0" y="208" width="375" height="521"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TickerCurrencyCell" id="KYX-6k-KZ7">
@@ -247,7 +247,7 @@
                                 </connections>
                             </tableView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="RTP-4J-qWA">
-                                <rect key="frame" x="145" y="108" width="85" height="29"/>
+                                <rect key="frame" x="145" y="160" width="85" height="29"/>
                                 <segments>
                                     <segment title="AUD"/>
                                     <segment title="BTC"/>
@@ -291,13 +291,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ticker name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hfb-u6-zi3">
-                                <rect key="frame" x="20" y="110" width="137" height="29"/>
+                                <rect key="frame" x="20" y="162" width="137" height="29"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A3s-CI-XOm">
-                                <rect key="frame" x="20" y="147" width="335" height="55"/>
+                                <rect key="frame" x="20" y="199" width="335" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="mhY-Sg-b7X"/>
                                 </constraints>
@@ -357,8 +357,8 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="A82-88-CDH" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Holdings" image="tab-holdings" id="RlD-rP-S9o"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ht0-f3-PPM">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="ht0-f3-PPM">
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -379,7 +379,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="87" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="M9f-jj-YJQ">
-                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
+                                <rect key="frame" x="0.0" y="140" width="375" height="589"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HoldingsCell" rowHeight="87" id="GZN-1b-n8k" customClass="HoldingsCell" customModule="BTCMarkets" customModuleProvider="target">
