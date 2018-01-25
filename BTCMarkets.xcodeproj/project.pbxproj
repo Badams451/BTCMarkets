@@ -18,7 +18,7 @@
 		DD49F5002008BA8100B1D6C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD49F4FE2008BA8100B1D6C0 /* LaunchScreen.storyboard */; };
 		DD49F5082008C3F800B1D6C0 /* TickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD49F5072008C3F800B1D6C0 /* TickerViewController.swift */; };
 		DD860899200C1A4400883E8C /* ConfigureProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD860898200C1A4400883E8C /* ConfigureProfileViewController.swift */; };
-		DD86089B200C670500883E8C /* NewProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD86089A200C670500883E8C /* NewProfileViewController.swift */; };
+		DD86089B200C670500883E8C /* NewTickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD86089A200C670500883E8C /* NewTickerViewController.swift */; };
 		DD86089D200C675900883E8C /* UIViewController+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD86089C200C675900883E8C /* UIViewController+Common.swift */; };
 		DD86089F200C6C1F00883E8C /* Segues.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD86089E200C6C1F00883E8C /* Segues.swift */; };
 		DDA3FA5D2008CABF002FAA41 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA3FA5C2008CABF002FAA41 /* API.swift */; };
@@ -52,7 +52,7 @@
 		DD49F5012008BA8100B1D6C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD49F5072008C3F800B1D6C0 /* TickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerViewController.swift; sourceTree = "<group>"; };
 		DD860898200C1A4400883E8C /* ConfigureProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureProfileViewController.swift; sourceTree = "<group>"; };
-		DD86089A200C670500883E8C /* NewProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProfileViewController.swift; sourceTree = "<group>"; };
+		DD86089A200C670500883E8C /* NewTickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTickerViewController.swift; sourceTree = "<group>"; };
 		DD86089C200C675900883E8C /* UIViewController+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Common.swift"; sourceTree = "<group>"; };
 		DD86089E200C6C1F00883E8C /* Segues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segues.swift; sourceTree = "<group>"; };
 		DDA3FA5C2008CABF002FAA41 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -140,7 +140,7 @@
 				DDF8CA2F2008E8E900C010D7 /* CurrencyCell.swift */,
 				DD49F5072008C3F800B1D6C0 /* TickerViewController.swift */,
 				DDCA592E200B5C8A00389148 /* TickersViewController.swift */,
-				DD86089A200C670500883E8C /* NewProfileViewController.swift */,
+				DD86089A200C670500883E8C /* NewTickerViewController.swift */,
 				DD860898200C1A4400883E8C /* ConfigureProfileViewController.swift */,
 				DDD70B9B200CC08A000C6AF6 /* HoldingsViewController.swift */,
 				04E3EE5C2013E33100DEE6C9 /* PremiumFeatureViewController.swift */,
@@ -339,7 +339,7 @@
 				DD49F4F62008BA8100B1D6C0 /* AppDelegate.swift in Sources */,
 				DD86089F200C6C1F00883E8C /* Segues.swift in Sources */,
 				DD01767B200F5FF80059A325 /* Numbers+Common.swift in Sources */,
-				DD86089B200C670500883E8C /* NewProfileViewController.swift in Sources */,
+				DD86089B200C670500883E8C /* NewTickerViewController.swift in Sources */,
 				04E3EE5B20135D1800DEE6C9 /* PurchasesStore.swift in Sources */,
 				DD86089D200C675900883E8C /* UIViewController+Common.swift in Sources */,
 			);
