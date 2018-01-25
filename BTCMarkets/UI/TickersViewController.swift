@@ -9,13 +9,13 @@
 import UIKit
 
 class TickersViewController: UITableViewController {
-  let applicationData = TickerStore.sharedInstance
+  let tickerStore = TickerStore.sharedInstance
   var tickers: [Ticker] {
-    return applicationData.tickers
+    return tickerStore.tickers
   }
   
   var selectedTicker: Ticker? {
-    return applicationData.selectedTicker
+    return tickerStore.selectedTicker
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -25,13 +25,13 @@ class TickersViewController: UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()    
-    applicationData.subscribeTickerChange(target: String(describing: self)) { [weak self] tickers in
+    tickerStore.subscribeTickerChange(target: String(describing: self)) { [weak self] tickers in
       self?.tableView.reloadData()
     }
   }
   
   deinit {
-    applicationData.unsubscribe(target: String(describing: self))
+    tickerStore.unsubscribe(target: String(describing: self))
   }
 
   @IBAction func closeButtonTapped(_ sender: Any) {
@@ -64,7 +64,7 @@ class TickersViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
     let deleteAction = UIContextualAction(style: .normal, title: "Delete") { (action, view, success) in
       let ticker = self.tickers[indexPath.row]
-      self.applicationData.delete(ticker: ticker)
+      self.tickerStore.delete(ticker: ticker)
     }
     
     deleteAction.backgroundColor = .red
@@ -74,7 +74,7 @@ class TickersViewController: UITableViewController {
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let ticker = self.tickers[indexPath.row]
-    applicationData.setSelectedTicker(ticker: ticker)
+    tickerStore.setSelectedTicker(ticker: ticker)
     self.dismiss(animated: true, completion: nil)
   }
 }

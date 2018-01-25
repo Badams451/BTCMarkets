@@ -10,7 +10,7 @@ import UIKit
 import PromiseKit
 import ObjectMapper
 
-class CoinsViewController: UITableViewController {
+class TickerViewController: UITableViewController {
   private let applicationData = TickerStore.sharedInstance
   private var instruments: [Currency] = [.btc, .ltc, .xrp, .eth, .bch]
   
