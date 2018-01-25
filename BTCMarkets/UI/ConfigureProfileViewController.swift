@@ -132,6 +132,11 @@ class ConfigureTickerViewController: UIViewController, UITableViewDataSource, UI
     let updatedTicker = Ticker(tickerName: ticker.tickerName, currency: selectedIndex.currency, instruments: selectedInstruments)
     applicationData.addOrUpdateTicker(ticker: updatedTicker)
     applicationData.setSelectedTicker(ticker: updatedTicker)
-    navigationController?.popToRootViewController(animated: true)
+    
+    if presentingViewController != nil {
+      self.dismiss(animated: true, completion: nil)
+    } else {
+      navigationController?.popToRootViewController(animated: true)      
+    }
   }
 }
