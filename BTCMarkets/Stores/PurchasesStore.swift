@@ -153,7 +153,6 @@ extension InAppPurchase: SKPaymentTransactionObserver {
       case .failed:
         SKPaymentQueue.default().finishTransaction(transaction)
         print("failed")
-        return
       case .deferred:
         return
       case .purchasing:
