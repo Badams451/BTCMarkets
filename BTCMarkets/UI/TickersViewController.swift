@@ -64,6 +64,13 @@ class TickersViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
     let deleteAction = UIContextualAction(style: .normal, title: "Delete") { (action, view, success) in
       let ticker = self.tickers[indexPath.row]
+      if ticker.tickerName == self.selectedTicker?.tickerName {
+        let alert = UIAlertController(title: "Error", message: "Cannot delete selected ticker", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alert.addAction(ok)
+        self.present(alert, animated: true, completion: nil)
+        return
+      }
       self.tickerStore.delete(ticker: ticker)
     }
     
