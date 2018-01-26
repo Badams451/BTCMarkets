@@ -80,6 +80,7 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher {
     priceLabel.text = "-"
     bidLabel.text = "-"
     askLabel.text = "-"
+    volumeLabel.text = "-"
     coin = nil
     
     guard let subscriberId = subscriberId else { return }
