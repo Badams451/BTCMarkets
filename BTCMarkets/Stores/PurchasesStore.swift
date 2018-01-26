@@ -164,8 +164,6 @@ extension InAppPurchase: SKPaymentTransactionObserver {
     }
     productPurchaseCompletion?()
   }
-  
-  
 }
 
 

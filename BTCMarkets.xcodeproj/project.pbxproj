@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		04E3EE572012391500DEE6C9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E3EE562012391500DEE6C9 /* StoreKit.framework */; };
 		04E3EE5B20135D1800DEE6C9 /* PurchasesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E3EE5A20135D1800DEE6C9 /* PurchasesStore.swift */; };
 		04E3EE5D2013E33100DEE6C9 /* PremiumFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E3EE5C2013E33100DEE6C9 /* PremiumFeatureViewController.swift */; };
 		04E3EE5F2013E38600DEE6C9 /* PremiumFeature.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E3EE5E2013E38600DEE6C9 /* PremiumFeature.storyboard */; };
@@ -36,7 +35,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		04E3EE562012391500DEE6C9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		04E3EE5A20135D1800DEE6C9 /* PurchasesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesStore.swift; sourceTree = "<group>"; };
 		04E3EE5C2013E33100DEE6C9 /* PremiumFeatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumFeatureViewController.swift; sourceTree = "<group>"; };
 		04E3EE5E2013E38600DEE6C9 /* PremiumFeature.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PremiumFeature.storyboard; sourceTree = "<group>"; };
@@ -74,7 +72,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4F641AD3192CB40B5366946 /* Pods_BTCMarkets.framework in Frameworks */,
-				04E3EE572012391500DEE6C9 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,7 +90,6 @@
 		B03E0B21324A42E022FF491F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				04E3EE562012391500DEE6C9 /* StoreKit.framework */,
 				CF064DAD14E469472E151A06 /* Pods_BTCMarkets.framework */,
 			);
 			name = Frameworks;
@@ -219,7 +215,7 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};

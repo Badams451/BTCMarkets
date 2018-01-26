@@ -58,8 +58,6 @@ class HoldingsViewController: UIViewController, UITableViewDelegate, UITableView
     currencyStoreAud.subscribe(subscriber: String(describing: self)) { [weak self] _ in
       self?.tableView.reloadData()
     }
-
-    self.subscribeToPurchasesStore()
   }
   
   func numberOfSections(in tableView: UITableView) -> Int {
@@ -151,38 +149,38 @@ class HoldingsViewController: UIViewController, UITableViewDelegate, UITableView
   }
 }
 
-extension HoldingsViewController: PremiumFeature {
-  var describer: String {
-    return "HoldingsViewController"
-  }
-
-  func showProVersionScreen() {
-    let storyboard = UIStoryboard(name: PremiumFeatureViewController.storyboardName, bundle: nil)
-    guard let premiumFeaturesViewController = storyboard.instantiateInitialViewController() else {
-      return
-    }
-
-    self.view.addSubview(premiumFeaturesViewController.view)
-    self.addChildViewController(premiumFeaturesViewController)
-    premiumFeaturesViewController.didMove(toParentViewController: self)
-
-    premiumFeaturesViewController.view.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-    premiumFeaturesViewController.view.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-    premiumFeaturesViewController.view.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-    premiumFeaturesViewController.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-    
-    navigationController?.setNavigationBarHidden(true, animated: false)
-  }
-
-  func dismissProVersionScreen() {
-    let premiumFeaturesViewController = self.childViewControllers.first { ($0 as? PremiumFeatureViewController) != nil }
-    premiumFeaturesViewController?.willMove(toParentViewController: nil)
-    premiumFeaturesViewController?.view.removeFromSuperview()
-    premiumFeaturesViewController?.removeFromParentViewController()
-    
-    navigationController?.setNavigationBarHidden(false, animated: false)
-  }
-}
+//extension HoldingsViewController: PremiumFeature {
+//  var describer: String {
+//    return "HoldingsViewController"
+//  }
+//
+//  func showProVersionScreen() {
+//    let storyboard = UIStoryboard(name: PremiumFeatureViewController.storyboardName, bundle: nil)
+//    guard let premiumFeaturesViewController = storyboard.instantiateInitialViewController() else {
+//      return
+//    }
+//
+//    self.view.addSubview(premiumFeaturesViewController.view)
+//    self.addChildViewController(premiumFeaturesViewController)
+//    premiumFeaturesViewController.didMove(toParentViewController: self)
+//
+//    premiumFeaturesViewController.view.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+//    premiumFeaturesViewController.view.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+//    premiumFeaturesViewController.view.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+//    premiumFeaturesViewController.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+//
+//    navigationController?.setNavigationBarHidden(true, animated: false)
+//  }
+//
+//  func dismissProVersionScreen() {
+//    let premiumFeaturesViewController = self.childViewControllers.first { ($0 as? PremiumFeatureViewController) != nil }
+//    premiumFeaturesViewController?.willMove(toParentViewController: nil)
+//    premiumFeaturesViewController?.view.removeFromSuperview()
+//    premiumFeaturesViewController?.removeFromParentViewController()
+//
+//    navigationController?.setNavigationBarHidden(false, animated: false)
+//  }
+//}
 
 class HoldingsCell: UITableViewCell {
   @IBOutlet var audAmountLabel: UILabel!
