@@ -42,7 +42,7 @@
 		BB74316BDE7FFD505F6A644B /* Pods-BTCMarkets.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTCMarkets.release.xcconfig"; path = "Pods/Target Support Files/Pods-BTCMarkets/Pods-BTCMarkets.release.xcconfig"; sourceTree = "<group>"; };
 		CF064DAD14E469472E151A06 /* Pods_BTCMarkets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BTCMarkets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD01767A200F5FF80059A325 /* Numbers+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Numbers+Common.swift"; sourceTree = "<group>"; };
-		DD49F4F22008BA8100B1D6C0 /* BTCMarkets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BTCMarkets.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD49F4F22008BA8100B1D6C0 /* BTC Companion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BTC Companion.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD49F4F52008BA8100B1D6C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD49F4FA2008BA8100B1D6C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DD49F4FC2008BA8100B1D6C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -108,7 +108,7 @@
 		DD49F4F32008BA8100B1D6C0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DD49F4F22008BA8100B1D6C0 /* BTCMarkets.app */,
+				DD49F4F22008BA8100B1D6C0 /* BTC Companion.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -197,7 +197,7 @@
 			);
 			name = BTCMarkets;
 			productName = BTCMarkets;
-			productReference = DD49F4F22008BA8100B1D6C0 /* BTCMarkets.app */;
+			productReference = DD49F4F22008BA8100B1D6C0 /* BTC Companion.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -480,7 +480,7 @@
 				INFOPLIST_FILE = BTCMarkets/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.btcmarkets.app;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "BTC Companion";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -496,7 +496,7 @@
 				INFOPLIST_FILE = BTCMarkets/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.btcmarkets.app;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "BTC Companion";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
