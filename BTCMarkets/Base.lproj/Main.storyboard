@@ -13,13 +13,13 @@
         <!--BTC Markets-->
         <scene sceneID="MSN-4C-GJm">
             <objects>
-                <tableViewController storyboardIdentifier="CoinsViewController" id="Xoy-S1-v5W" customClass="TickerViewController" customModule="BTCMarkets" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CoinsViewController" id="Xoy-S1-v5W" customClass="TickerViewController" customModule="BTC_Companion" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="135" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="eSu-nS-lGN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CurrencyCellIdentifier" rowHeight="135" id="fA3-kz-li1" customClass="CurrencyCell" customModule="BTCMarkets" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CurrencyCellIdentifier" rowHeight="135" id="fA3-kz-li1" customClass="CurrencyCell" customModule="BTC_Companion" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="135"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fA3-kz-li1" id="fl7-hn-SeM">
@@ -44,8 +44,8 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLN-9h-spd">
-                                            <rect key="frame" x="329" y="94.666666666666671" width="30" height="16"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLN-9h-spd">
+                                            <rect key="frame" x="352.66666666666669" y="94.666666666666671" width="6.3333333333333144" height="16"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -183,7 +183,7 @@
         <!--Tickers-->
         <scene sceneID="5X7-lB-3O6">
             <objects>
-                <tableViewController id="RNU-7P-EuN" customClass="TickersViewController" customModule="BTCMarkets" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="RNU-7P-EuN" customClass="TickersViewController" customModule="BTC_Companion" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="Agn-KR-7BP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -232,13 +232,13 @@
         <!--Title-->
         <scene sceneID="lHY-bw-7yr">
             <objects>
-                <viewController id="P6C-o9-W8N" customClass="ConfigureTickerViewController" customModule="BTCMarkets" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="P6C-o9-W8N" customClass="ConfigureTickerViewController" customModule="BTC_Companion" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yWP-cB-OB3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wJk-dg-GIb">
-                                <rect key="frame" x="0.0" y="208" width="375" height="570"/>
+                                <rect key="frame" x="0.0" y="208" width="375" height="521"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TickerCurrencyCell" id="KYX-6k-KZ7">
@@ -294,7 +294,7 @@
         <!--New Ticker-->
         <scene sceneID="nmB-Da-tXa">
             <objects>
-                <viewController id="a7B-d5-S51" customClass="NewTickerViewController" customModule="BTCMarkets" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="a7B-d5-S51" customClass="NewTickerViewController" customModule="BTC_Companion" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nCL-E6-ocL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -382,7 +382,7 @@
         <!--Holdings-->
         <scene sceneID="INC-46-mpo">
             <objects>
-                <viewController id="OVF-IU-bjo" customClass="HoldingsViewController" customModule="BTCMarkets" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="OVF-IU-bjo" customClass="HoldingsViewController" customModule="BTC_Companion" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Sh3-za-sbq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -391,7 +391,7 @@
                                 <rect key="frame" x="0.0" y="140" width="375" height="589"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HoldingsCell" rowHeight="87" id="GZN-1b-n8k" customClass="HoldingsCell" customModule="BTCMarkets" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HoldingsCell" rowHeight="87" id="GZN-1b-n8k" customClass="HoldingsCell" customModule="BTC_Companion" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="87"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GZN-1b-n8k" id="ItQ-lF-hEc">
@@ -435,7 +435,7 @@
                                             <outlet property="holdingsAmountLabel" destination="KtP-qC-ert" id="dPv-nh-FMT"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EquityCell" id="LdI-Sh-HLm" customClass="EquityCell" customModule="BTCMarkets" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EquityCell" id="LdI-Sh-HLm" customClass="EquityCell" customModule="BTC_Companion" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="115" width="375" height="87"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LdI-Sh-HLm" id="tgv-ji-smB">
@@ -498,6 +498,6 @@
         <image name="tab-ticker" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ulw-37-Efd"/>
+        <segue reference="neP-kr-VnA"/>
     </inferredMetricsTieBreakers>
 </document>
