@@ -12,8 +12,9 @@ enum Currency: String, Codable {
   case aud = "AUD"
   case btc = "BTC"
   case ltc = "LTC"
-  case xrp = "XRP"
   case eth = "ETH"
+  case etc = "ETC"
+  case xrp = "XRP"
   case bch = "BCH"
   
   var coinName: String {
@@ -21,17 +22,18 @@ enum Currency: String, Codable {
     case .aud: return "AUD"
     case .btc: return "Bitcoin"
     case .ltc: return "Litecoin"
-    case .xrp: return "Ripple"
     case .eth: return "Ethereum"
+    case .etc: return "Eth-Classic"
+    case .xrp: return "Ripple"
     case .bch: return "BCash"
     }
   }
   
   static var allValues: [Currency] {
-    return [.aud, .btc, .ltc, .xrp, .eth, .bch]
+    return [.aud, .btc, .ltc, .eth, .etc, .xrp, .bch]
   }
   
   static var allExceptAud: [Currency] {
-    return [.btc, .ltc, .xrp, .eth, .bch]
+    return [.btc, .ltc, eth, .etc, .xrp, .bch]
   }
 }
