@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Mixpanel
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     CoinsStoreAud.sharedInstance.start()
     CoinsStoreBtc.sharedInstance.start()
+    
+    Mixpanel.initialize(token: "c55a5b7d4a857b39d09adc41d446ebc7")
+    
     return true
   }
 

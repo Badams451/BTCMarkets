@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Mixpanel
 
 class NewTickerViewController: UIViewController, UITextFieldDelegate {
 
@@ -19,6 +20,7 @@ class NewTickerViewController: UIViewController, UITextFieldDelegate {
     textField.returnKeyType = .next    
     textField.autocapitalizationType = .words
     textField.becomeFirstResponder()
+    Mixpanel.mainInstance().track(event: "new:ticker:viewed")
   }
   
   func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {

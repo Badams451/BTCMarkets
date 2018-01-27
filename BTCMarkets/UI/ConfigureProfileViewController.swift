@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Mixpanel
 
 private enum CurrencySegmentedControlIndex: Int {
   case aud = 0
@@ -135,8 +136,10 @@ class ConfigureTickerViewController: UIViewController, UITableViewDataSource, UI
     
     if presentingViewController != nil {
       self.dismiss(animated: true, completion: nil)
+      Mixpanel.mainInstance().track(event: "new:ticker:created")
     } else {
-      navigationController?.popToRootViewController(animated: true)      
+      navigationController?.popToRootViewController(animated: true)
+      Mixpanel.mainInstance().track(event: "ticker:edit:saved")
     }
   }
 }

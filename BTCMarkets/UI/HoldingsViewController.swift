@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Mixpanel
 
 enum HoldingItemType {
   case currency
@@ -58,6 +59,8 @@ class HoldingsViewController: UIViewController, UITableViewDelegate, UITableView
     currencyStoreAud.subscribe(subscriber: String(describing: self)) { [weak self] _ in
       self?.tableView.reloadData()
     }
+    
+    Mixpanel.mainInstance().track(event: "holdings:view")
   }
   
   func numberOfSections(in tableView: UITableView) -> Int {
@@ -141,6 +144,7 @@ class HoldingsViewController: UIViewController, UITableViewDelegate, UITableView
     alert.addAction(ok)
     
     present(alert, animated: true, completion: nil)
+    Mixpanel.mainInstance().track(event: "holdings:cell:tap:\(currency.coinName)")
   }
   
   deinit {

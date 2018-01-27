@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Mixpanel
 
 class TickersViewController: UITableViewController {
   let tickerStore = TickerStore.sharedInstance
@@ -28,6 +29,7 @@ class TickersViewController: UITableViewController {
     tickerStore.subscribeTickerChange(target: String(describing: self)) { [weak self] tickers in
       self?.tableView.reloadData()
     }
+    Mixpanel.mainInstance().track(event: "tickers:view")
   }
   
   deinit {
