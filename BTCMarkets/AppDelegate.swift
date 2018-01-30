@@ -18,8 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     CoinsStoreAud.sharedInstance.start()
     CoinsStoreBtc.sharedInstance.start()
     
-    Mixpanel.initialize(token: "c55a5b7d4a857b39d09adc41d446ebc7")
-    
+    #if DEBUG
+    #else
+      Mixpanel.initialize(token: "c55a5b7d4a857b39d09adc41d446ebc7")
+    #endif
+        
     return true
   }
 

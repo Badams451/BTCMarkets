@@ -28,8 +28,8 @@ class TickersViewController: UITableViewController {
     super.viewDidLoad()    
     tickerStore.subscribeTickerChange(target: String(describing: self)) { [weak self] tickers in
       self?.tableView.reloadData()
-    }
-    Mixpanel.mainInstance().track(event: "tickers:view")
+    }    
+    Analytics.trackEvent(forName: tickersViewEvent)
   }
   
   deinit {

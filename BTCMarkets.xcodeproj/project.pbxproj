@@ -16,6 +16,7 @@
 		DD49F4FD2008BA8100B1D6C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD49F4FC2008BA8100B1D6C0 /* Assets.xcassets */; };
 		DD49F5002008BA8100B1D6C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD49F4FE2008BA8100B1D6C0 /* LaunchScreen.storyboard */; };
 		DD49F5082008C3F800B1D6C0 /* TickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD49F5072008C3F800B1D6C0 /* TickerViewController.swift */; };
+		DD8396B82020729C00B8C541 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8396B72020729C00B8C541 /* Analytics.swift */; };
 		DD860899200C1A4400883E8C /* ConfigureProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD860898200C1A4400883E8C /* ConfigureProfileViewController.swift */; };
 		DD86089B200C670500883E8C /* NewTickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD86089A200C670500883E8C /* NewTickerViewController.swift */; };
 		DD86089D200C675900883E8C /* UIViewController+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD86089C200C675900883E8C /* UIViewController+Common.swift */; };
@@ -25,6 +26,8 @@
 		DDCA5931200B5E2300389148 /* TickerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCA5930200B5E2300389148 /* TickerStore.swift */; };
 		DDCE9AD9200E1BB1008B582C /* CoinsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE9AD8200E1BB1008B582C /* CoinsStore.swift */; };
 		DDCE9ADB200E326D008B582C /* UITableViewCell+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE9ADA200E326D008B582C /* UITableViewCell+Common.swift */; };
+		DDD5A014201D9BD8008DE2D4 /* CoinHistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD5A013201D9BD8008DE2D4 /* CoinHistoryStore.swift */; };
+		DDD5A017201D9BFF008DE2D4 /* CurrencyFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD5A016201D9BFF008DE2D4 /* CurrencyFetcher.swift */; };
 		DDD70B96200CBB69000C6AF6 /* Ticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD70B95200CBB69000C6AF6 /* Ticker.swift */; };
 		DDD70B98200CBB7E000C6AF6 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD70B97200CBB7E000C6AF6 /* Currency.swift */; };
 		DDD70B9A200CBC1F000C6AF6 /* HoldingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD70B99200CBC1F000C6AF6 /* HoldingsStore.swift */; };
@@ -49,6 +52,7 @@
 		DD49F4FF2008BA8100B1D6C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DD49F5012008BA8100B1D6C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD49F5072008C3F800B1D6C0 /* TickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerViewController.swift; sourceTree = "<group>"; };
+		DD8396B72020729C00B8C541 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		DD860898200C1A4400883E8C /* ConfigureProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureProfileViewController.swift; sourceTree = "<group>"; };
 		DD86089A200C670500883E8C /* NewTickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTickerViewController.swift; sourceTree = "<group>"; };
 		DD86089C200C675900883E8C /* UIViewController+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Common.swift"; sourceTree = "<group>"; };
@@ -58,6 +62,8 @@
 		DDCA5930200B5E2300389148 /* TickerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerStore.swift; sourceTree = "<group>"; };
 		DDCE9AD8200E1BB1008B582C /* CoinsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsStore.swift; sourceTree = "<group>"; };
 		DDCE9ADA200E326D008B582C /* UITableViewCell+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Common.swift"; sourceTree = "<group>"; };
+		DDD5A013201D9BD8008DE2D4 /* CoinHistoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinHistoryStore.swift; sourceTree = "<group>"; };
+		DDD5A016201D9BFF008DE2D4 /* CurrencyFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyFetcher.swift; sourceTree = "<group>"; };
 		DDD70B95200CBB69000C6AF6 /* Ticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticker.swift; sourceTree = "<group>"; };
 		DDD70B97200CBB7E000C6AF6 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		DDD70B99200CBC1F000C6AF6 /* HoldingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoldingsStore.swift; sourceTree = "<group>"; };
@@ -116,18 +122,28 @@
 		DD49F4F42008BA8100B1D6C0 /* BTCMarkets */ = {
 			isa = PBXGroup;
 			children = (
+				DDD5A015201D9BEC008DE2D4 /* Network */,
 				DDD70B9D200CC94F000C6AF6 /* Stores */,
 				DDD70B94200CBA97000C6AF6 /* Utils */,
 				DDD70B93200CBA8A000C6AF6 /* Model */,
 				DDD70B92200CBA7A000C6AF6 /* UI */,
 				DD49F4F52008BA8100B1D6C0 /* AppDelegate.swift */,
-				DDA3FA5C2008CABF002FAA41 /* API.swift */,
+				DD8396B72020729C00B8C541 /* Analytics.swift */,
 				DD49F4FC2008BA8100B1D6C0 /* Assets.xcassets */,
 				DD49F4F92008BA8100B1D6C0 /* Main.storyboard */,
 				DD49F4FE2008BA8100B1D6C0 /* LaunchScreen.storyboard */,
 				DD49F5012008BA8100B1D6C0 /* Info.plist */,
 			);
 			path = BTCMarkets;
+			sourceTree = "<group>";
+		};
+		DDD5A015201D9BEC008DE2D4 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				DDA3FA5C2008CABF002FAA41 /* API.swift */,
+				DDD5A016201D9BFF008DE2D4 /* CurrencyFetcher.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		DDD70B92200CBA7A000C6AF6 /* UI */ = {
@@ -172,6 +188,7 @@
 				DDCA5930200B5E2300389148 /* TickerStore.swift */,
 				DDD70B99200CBC1F000C6AF6 /* HoldingsStore.swift */,
 				DDCE9AD8200E1BB1008B582C /* CoinsStore.swift */,
+				DDD5A013201D9BD8008DE2D4 /* CoinHistoryStore.swift */,
 				04E3EE5A20135D1800DEE6C9 /* PurchasesStore.swift */,
 			);
 			path = Stores;
@@ -328,16 +345,19 @@
 				DD49F5082008C3F800B1D6C0 /* TickerViewController.swift in Sources */,
 				DD860899200C1A4400883E8C /* ConfigureProfileViewController.swift in Sources */,
 				DDCA5931200B5E2300389148 /* TickerStore.swift in Sources */,
+				DDD5A017201D9BFF008DE2D4 /* CurrencyFetcher.swift in Sources */,
 				DDD70B9C200CC08A000C6AF6 /* HoldingsViewController.swift in Sources */,
 				DDA3FA5D2008CABF002FAA41 /* API.swift in Sources */,
 				DDCA592F200B5C8A00389148 /* TickersViewController.swift in Sources */,
 				04E3EE5D2013E33100DEE6C9 /* PremiumFeatureViewController.swift in Sources */,
+				DD8396B82020729C00B8C541 /* Analytics.swift in Sources */,
 				DDD70B98200CBB7E000C6AF6 /* Currency.swift in Sources */,
 				DDCE9AD9200E1BB1008B582C /* CoinsStore.swift in Sources */,
 				DD49F4F62008BA8100B1D6C0 /* AppDelegate.swift in Sources */,
 				DD86089F200C6C1F00883E8C /* Segues.swift in Sources */,
 				DD01767B200F5FF80059A325 /* Numbers+Common.swift in Sources */,
 				DD86089B200C670500883E8C /* NewTickerViewController.swift in Sources */,
+				DDD5A014201D9BD8008DE2D4 /* CoinHistoryStore.swift in Sources */,
 				04E3EE5B20135D1800DEE6C9 /* PurchasesStore.swift in Sources */,
 				DD86089D200C675900883E8C /* UIViewController+Common.swift in Sources */,
 			);

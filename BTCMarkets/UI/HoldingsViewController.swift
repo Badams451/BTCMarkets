@@ -49,6 +49,11 @@ class HoldingsViewController: UIViewController, UITableViewDelegate, UITableView
     return holdingItems + [totalEquityItem]
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    Analytics.trackEvent(forName: holdingsViewEvent)
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -59,8 +64,6 @@ class HoldingsViewController: UIViewController, UITableViewDelegate, UITableView
     currencyStoreAud.subscribe(subscriber: String(describing: self)) { [weak self] _ in
       self?.tableView.reloadData()
     }
-    
-    Mixpanel.mainInstance().track(event: "holdings:view")
   }
   
   func numberOfSections(in tableView: UITableView) -> Int {
@@ -152,39 +155,6 @@ class HoldingsViewController: UIViewController, UITableViewDelegate, UITableView
     currencyStoreAud.unsubscribe(subscriber: String(describing: self))
   }
 }
-
-//extension HoldingsViewController: PremiumFeature {
-//  var describer: String {
-//    return "HoldingsViewController"
-//  }
-//
-//  func showProVersionScreen() {
-//    let storyboard = UIStoryboard(name: PremiumFeatureViewController.storyboardName, bundle: nil)
-//    guard let premiumFeaturesViewController = storyboard.instantiateInitialViewController() else {
-//      return
-//    }
-//
-//    self.view.addSubview(premiumFeaturesViewController.view)
-//    self.addChildViewController(premiumFeaturesViewController)
-//    premiumFeaturesViewController.didMove(toParentViewController: self)
-//
-//    premiumFeaturesViewController.view.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-//    premiumFeaturesViewController.view.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-//    premiumFeaturesViewController.view.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-//    premiumFeaturesViewController.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-//
-//    navigationController?.setNavigationBarHidden(true, animated: false)
-//  }
-//
-//  func dismissProVersionScreen() {
-//    let premiumFeaturesViewController = self.childViewControllers.first { ($0 as? PremiumFeatureViewController) != nil }
-//    premiumFeaturesViewController?.willMove(toParentViewController: nil)
-//    premiumFeaturesViewController?.view.removeFromSuperview()
-//    premiumFeaturesViewController?.removeFromParentViewController()
-//
-//    navigationController?.setNavigationBarHidden(false, animated: false)
-//  }
-//}
 
 class HoldingsCell: UITableViewCell {
   @IBOutlet var audAmountLabel: UILabel!

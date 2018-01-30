@@ -20,7 +20,11 @@ class NewTickerViewController: UIViewController, UITextFieldDelegate {
     textField.returnKeyType = .next    
     textField.autocapitalizationType = .words
     textField.becomeFirstResponder()
-    Mixpanel.mainInstance().track(event: "new:ticker:viewed")
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    Analytics.trackEvent(forName: newTickerViewedEvent)
   }
   
   func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {

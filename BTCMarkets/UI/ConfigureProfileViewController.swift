@@ -135,11 +135,11 @@ class ConfigureTickerViewController: UIViewController, UITableViewDataSource, UI
     applicationData.setSelectedTicker(ticker: updatedTicker)
     
     if presentingViewController != nil {
-      self.dismiss(animated: true, completion: nil)
-      Mixpanel.mainInstance().track(event: "new:ticker:created")
+      self.dismiss(animated: true, completion: nil)      
+      Analytics.trackEvent(forName: newTickerCreatedEvent)
     } else {
       navigationController?.popToRootViewController(animated: true)
-      Mixpanel.mainInstance().track(event: "ticker:edit:saved")
+      Analytics.trackEvent(forName: tickerEditSavedEvent)
     }
   }
 }

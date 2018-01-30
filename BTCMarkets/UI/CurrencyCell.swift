@@ -7,21 +7,6 @@
 //
 
 import UIKit
-import PromiseKit
-import SocketIO
-
-protocol CurrencyFetcher {
-  func fetchCurrency(currency: Currency, instrument: Currency) -> Promise<Coin?>
-}
-
-extension CurrencyFetcher {
-  func fetchCurrency(currency: Currency, instrument: Currency) -> Promise<Coin?> {
-    let api = RestfulAPI()
-    return api.tick(currency: currency.rawValue, instrument: instrument.rawValue).then { json in
-      Coin(JSON: json)
-    }
-  }
-}
 
 class CurrencyCell: UITableViewCell, CurrencyFetcher {
   @IBOutlet var priceLabel: UILabel!

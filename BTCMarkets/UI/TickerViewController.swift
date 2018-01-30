@@ -19,6 +19,11 @@ class TickerViewController: UITableViewController {
     return applicationData.selectedTicker ?? applicationData.defaultTicker
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    Analytics.trackEvent(forName: tickerViewEvent)
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     navigationItem.title = ticker.tickerName
@@ -26,14 +31,13 @@ class TickerViewController: UITableViewController {
       self?.navigationItem.title = self?.ticker.tickerName
       self?.tableView.reloadData()
     }
-    Mixpanel.mainInstance().track(event: "ticker:view")
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == CoinToConfigureTickerSegue {
       if let configureTickerViewController = segue.destination as? ConfigureTickerViewController {
         configureTickerViewController.configure(withTicker: ticker)
-        Mixpanel.mainInstance().track(event: "ticker:edit:tapped")
+        Analytics.trackEvent(forName: tickerEditEvent)        
       }
     }
   }
