@@ -21,9 +21,9 @@ enum APIError: Error {
   case malformedJson
 }
 
-
 protocol API {
   func tick(currency: String, instrument: String) -> Promise<JSONResponse>
+  func tickerHistory(from: TimeInterval, to: TimeInterval)
 }
 
 extension API {
@@ -52,7 +52,11 @@ extension API {
       
       task.resume()
     }
-  }  
+  }
+  
+  func tickerHistory(from: TimeInterval, to: TimeInterval) {
+    
+  }
 }
 
 class RestfulAPI: API {}

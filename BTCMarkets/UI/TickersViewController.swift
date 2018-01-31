@@ -11,11 +11,11 @@ import Mixpanel
 
 class TickersViewController: UITableViewController {
   let tickerStore = TickerStore.sharedInstance
-  var tickers: [Ticker] {
+  var tickers: [TickerProfile] {
     return tickerStore.tickers
   }
   
-  var selectedTicker: Ticker? {
+  var selectedTicker: TickerProfile? {
     return tickerStore.selectedTicker
   }
 

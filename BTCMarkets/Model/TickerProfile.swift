@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Ticker: Codable {
+struct TickerProfile: Codable {
   var tickerName: String
   var currency: Currency
   var instruments: [Currency]

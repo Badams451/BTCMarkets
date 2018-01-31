@@ -39,7 +39,7 @@ class NewTickerViewController: UIViewController, UITextFieldDelegate {
       return
     }
     
-    let ticker = Ticker(tickerName: tickerName, currency: .aud, instruments: Currency.allValues.filter { $0 != .aud })    
+    let ticker = TickerProfile(tickerName: tickerName, currency: .aud, instruments: Currency.allValues.filter { $0 != .aud })    
     
     if let configureTickerViewController = segue.destination as? ConfigureTickerViewController {
       configureTickerViewController.configure(withTicker: ticker)

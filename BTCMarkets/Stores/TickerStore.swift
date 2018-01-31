@@ -12,26 +12,26 @@ private let tickersKey = "tickers"
 private let selectedTickerKey = "selectedTicker"
 
 class TickerStore {
-  typealias TickersChanged = ([Ticker]) -> Void
-  typealias SelectedTickerChanged = (Ticker?) -> Void
+  typealias TickersChanged = ([TickerProfile]) -> Void
+  typealias SelectedTickerChanged = (TickerProfile?) -> Void
   typealias Subscriber = String
   
   static var sharedInstance: TickerStore = TickerStore()
   private var tickerSubscribers: [(Subscriber, TickersChanged)] = []
   private var selectedTickerSubscribers: [(Subscriber, SelectedTickerChanged)] = []
-  let defaultTicker = Ticker(tickerName: "Ticker", currency: .aud, instruments: [.btc, .ltc, .eth, .xrp, .bch])
+  let defaultTicker = TickerProfile(tickerName: "Ticker", currency: .aud, instruments: [.btc, .ltc, .eth, .xrp, .bch])
   
   init() {
     retrieveTickers()
   }
   
-  var tickers: [Ticker] = [] {
+  var tickers: [TickerProfile] = [] {
     didSet {
       tickerSubscribers.forEach { subscriber in subscriber.1(tickers) }
     }
   }
   
-  var selectedTicker: Ticker? {
+  var selectedTicker: TickerProfile? {
     guard let tickerName = UserDefaults.standard.object(forKey: selectedTickerKey) as? String else {
       return nil
     }
@@ -47,7 +47,7 @@ class TickerStore {
       return
     }
     
-    guard let decodedTickers = (try? PropertyListDecoder().decode(Array<Ticker>.self, from: encodedTickers)) else {
+    guard let decodedTickers = (try? PropertyListDecoder().decode(Array<TickerProfile>.self, from: encodedTickers)) else {
       return
     }
     
@@ -65,7 +65,7 @@ extension TickerStore {
     userDefaults.set(encodedTickers, forKey: tickersKey)
   }
   
-  func addOrUpdateTicker(ticker: Ticker) {
+  func addOrUpdateTicker(ticker: TickerProfile) {
     if let existingTickerIndex = (tickers.index { $0.tickerName == ticker.tickerName }) {
       tickers.remove(at: existingTickerIndex)
     }
@@ -73,13 +73,13 @@ extension TickerStore {
     saveTickers()
   }
   
-  func setSelectedTicker(ticker: Ticker) {
+  func setSelectedTicker(ticker: TickerProfile) {
     let userDefaults = UserDefaults.standard
     userDefaults.set(ticker.tickerName, forKey: selectedTickerKey)
     selectedTickerSubscribers.forEach { $0.1(selectedTicker) }
   }
   
-  func delete(ticker: Ticker) {
+  func delete(ticker: TickerProfile) {
     let index = tickers.index { $0.tickerName == ticker.tickerName }
     
     if let index = index {

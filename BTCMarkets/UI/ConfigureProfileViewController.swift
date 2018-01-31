@@ -26,7 +26,7 @@ class ConfigureTickerViewController: UIViewController, UITableViewDataSource, UI
   @IBOutlet private var instrumentsTableView: UITableView!
   
   private let applicationData = TickerStore.sharedInstance
-  private var ticker: Ticker?
+  private var ticker: TickerProfile?
   private var selectedCurrencies: Set<Currency> = Set()
   
   private var possibleInstruments: [Currency] {
@@ -53,11 +53,11 @@ class ConfigureTickerViewController: UIViewController, UITableViewDataSource, UI
   
   // MARK: Configure
   
-  func configure(withTicker ticker: Ticker) {
+  func configure(withTicker ticker: TickerProfile) {
     self.ticker = ticker
   }
   
-  private func getSelectedSegmentIndex(forTicker ticker: Ticker) -> CurrencySegmentedControlIndex {
+  private func getSelectedSegmentIndex(forTicker ticker: TickerProfile) -> CurrencySegmentedControlIndex {
     switch ticker.currency {
     case .aud: return .aud
     case .btc: return .btc
@@ -130,7 +130,7 @@ class ConfigureTickerViewController: UIViewController, UITableViewDataSource, UI
     
     let selectedInstruments = possibleInstruments.filter { selectedCurrencies.contains($0) }
 
-    let updatedTicker = Ticker(tickerName: ticker.tickerName, currency: selectedIndex.currency, instruments: selectedInstruments)
+    let updatedTicker = TickerProfile(tickerName: ticker.tickerName, currency: selectedIndex.currency, instruments: selectedInstruments)
     applicationData.addOrUpdateTicker(ticker: updatedTicker)
     applicationData.setSelectedTicker(ticker: updatedTicker)
     
