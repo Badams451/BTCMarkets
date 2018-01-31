@@ -23,7 +23,7 @@ enum APIError: Error {
 
 protocol API {
   func tick(currency: String, instrument: String) -> Promise<JSONResponse>
-  func tickerHistory(from: TimeInterval, to: TimeInterval)
+  func tickerHistory(from: Int, to: Int, forTimeWindow timeWindow: TimeWindow, currency: String, instrument: String) -> Promise<JSONResponse>
 }
 
 extension API {
@@ -54,8 +54,31 @@ extension API {
     }
   }
   
-  func tickerHistory(from: TimeInterval, to: TimeInterval) {
-    
+  func tickerHistory(from: Int, to: Int, forTimeWindow timeWindow: TimeWindow, currency: String, instrument: String) -> Promise<JSONResponse> {
+    let url = URL(string: "https://btcmarkets.net/data/market/BTCMarkets/\(instrument)/\(currency)/tickByTime?timeWindow=\(timeWindow.rawValue)&since=\(from)&_=\(to)")!
+    let session = URLSession(configuration: .default)
+
+    return Promise { fulfill, reject in
+      let task = session.dataTask(with: url) { data, response, error in
+        if let error = error {
+          reject(error)
+        }
+        
+        guard let data = data else {
+          reject(APIError.server)
+          return
+        }
+        
+        guard let json = (try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments)) as? JSONResponse else {
+          reject(APIError.malformedJson)
+          return
+        }
+        
+        fulfill(json)
+      }
+      
+      task.resume()
+    }
   }
 }
 
