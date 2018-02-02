@@ -8,4 +8,5 @@ target 'BTCMarkets' do
   pod 'ObjectMapper'
   pod 'Socket.IO-Client-Swift', '~> 13.1.0'
   pod 'Mixpanel-swift'
+  pod 'Charts'
 end
