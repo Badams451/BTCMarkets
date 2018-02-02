@@ -13,7 +13,6 @@ import Mixpanel
 
 class TickerViewController: UITableViewController {
   private let applicationData = TickerStore.sharedInstance
-  private var instruments: [Currency] = [.btc, .ltc, .xrp, .eth, .bch]
   
   private var ticker: TickerProfile {
     return applicationData.selectedTicker ?? applicationData.defaultTicker
@@ -39,6 +38,18 @@ class TickerViewController: UITableViewController {
         configureTickerViewController.configure(withTicker: ticker)
         Analytics.trackEvent(forName: tickerEditEvent)        
       }
+    } else if segue.identifier == TickerToCoinDetailSegue {
+      if let coinDetailViewController = segue.destination as? CoinDetailViewController {
+        guard let indexPath = tableView.indexPathForSelectedRow else {
+          return
+        }
+        
+        let currency = ticker.currency
+        let instrument = ticker.instruments[indexPath.row]
+        
+        coinDetailViewController.currency = currency
+        coinDetailViewController.instrument = instrument
+      }
     }
   }
   
@@ -62,6 +73,10 @@ class TickerViewController: UITableViewController {
     currencyCell.configure(currency: ticker.currency, instrument: ticker.instruments[indexPath.row])
     
     return currencyCell
+  }
+
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
   }
   
   deinit {

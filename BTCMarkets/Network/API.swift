@@ -11,9 +11,6 @@ import PromiseKit
 
 typealias JSONResponse = [String: Any]
 
-private let scheme = "https"
-private let baseURLString = "timetableapi.ptv.vic.gov.au"
-
 enum APIError: Error {
   case badURL
   case parser

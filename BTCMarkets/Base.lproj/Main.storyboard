@@ -14,16 +14,16 @@
         <scene sceneID="MSN-4C-GJm">
             <objects>
                 <tableViewController storyboardIdentifier="CoinsViewController" id="Xoy-S1-v5W" customClass="TickerViewController" customModule="BTC_Companion" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="135" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="eSu-nS-lGN">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="135" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="eSu-nS-lGN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CurrencyCellIdentifier" rowHeight="135" id="fA3-kz-li1" customClass="CurrencyCell" customModule="BTC_Companion" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CurrencyCellIdentifier" rowHeight="135" id="fA3-kz-li1" customClass="CurrencyCell" customModule="BTC_Companion" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="135"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fA3-kz-li1" id="fl7-hn-SeM">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="134.66666666666666"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="134.66666666666666"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bitcoin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCs-Wq-XBf">
@@ -39,13 +39,13 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I5b-PX-VjO">
-                                            <rect key="frame" x="349" y="10.999999999999996" width="10" height="50.666666666666657"/>
+                                            <rect key="frame" x="315" y="10.999999999999996" width="10" height="50.666666666666657"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLN-9h-spd">
-                                            <rect key="frame" x="352.66666666666669" y="94.666666666666671" width="6.3333333333333144" height="16"/>
+                                            <rect key="frame" x="318.66666666666669" y="94.666666666666671" width="6.3333333333333144" height="16"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -75,7 +75,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Volume (24h)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMX-5P-lal">
-                                            <rect key="frame" x="280.66666666666669" y="72" width="78.333333333333314" height="14.666666666666671"/>
+                                            <rect key="frame" x="246.66666666666666" y="72" width="78.333333333333343" height="14.666666666666671"/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -118,6 +118,7 @@
                                     <outlet property="currencyLabel" destination="dHm-05-kEJ" id="UWq-Jz-fEy"/>
                                     <outlet property="priceLabel" destination="I5b-PX-VjO" id="zZ5-W1-te3"/>
                                     <outlet property="volumeLabel" destination="hLN-9h-spd" id="kHI-7p-ppf"/>
+                                    <segue destination="dp1-t6-YBy" kind="show" identifier="TickerToCoinDetailSegue" id="J92-ow-nVT"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -142,6 +143,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e1b-za-ngQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1276" y="-9.4452773613193415"/>
+        </scene>
+        <!--Coin Detail View Controller-->
+        <scene sceneID="2nz-09-oxQ">
+            <objects>
+                <viewController id="dp1-t6-YBy" customClass="CoinDetailViewController" customModule="BTC_Companion" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kP0-4R-EVx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Hg3-Pm-4nG"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bOF-wd-EDu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2097" y="-804"/>
         </scene>
         <!--Ticker-->
         <scene sceneID="9nh-66-loL">

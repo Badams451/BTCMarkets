@@ -33,6 +33,7 @@
 		DDD70B98200CBB7E000C6AF6 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD70B97200CBB7E000C6AF6 /* Currency.swift */; };
 		DDD70B9A200CBC1F000C6AF6 /* HoldingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD70B99200CBC1F000C6AF6 /* HoldingsStore.swift */; };
 		DDD70B9C200CC08A000C6AF6 /* HoldingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD70B9B200CC08A000C6AF6 /* HoldingsViewController.swift */; };
+		DDE1B91E202475210079EF6D /* CoinDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE1B91D202475210079EF6D /* CoinDetailViewController.swift */; };
 		DDF8CA2E2008E8A900C010D7 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF8CA2D2008E8A900C010D7 /* Coin.swift */; };
 		DDF8CA302008E8E900C010D7 /* CurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF8CA2F2008E8E900C010D7 /* CurrencyCell.swift */; };
 		F4F641AD3192CB40B5366946 /* Pods_BTCMarkets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF064DAD14E469472E151A06 /* Pods_BTCMarkets.framework */; };
@@ -70,6 +71,7 @@
 		DDD70B97200CBB7E000C6AF6 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		DDD70B99200CBC1F000C6AF6 /* HoldingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoldingsStore.swift; sourceTree = "<group>"; };
 		DDD70B9B200CC08A000C6AF6 /* HoldingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoldingsViewController.swift; sourceTree = "<group>"; };
+		DDE1B91D202475210079EF6D /* CoinDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailViewController.swift; sourceTree = "<group>"; };
 		DDF8CA2D2008E8A900C010D7 /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 		DDF8CA2F2008E8E900C010D7 /* CurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -159,6 +161,7 @@
 				DDD70B9B200CC08A000C6AF6 /* HoldingsViewController.swift */,
 				04E3EE5C2013E33100DEE6C9 /* PremiumFeatureViewController.swift */,
 				04E3EE5E2013E38600DEE6C9 /* PremiumFeature.storyboard */,
+				DDE1B91D202475210079EF6D /* CoinDetailViewController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				DD49F5082008C3F800B1D6C0 /* TickerViewController.swift in Sources */,
 				DD860899200C1A4400883E8C /* ConfigureProfileViewController.swift in Sources */,
 				DDCA5931200B5E2300389148 /* TickerStore.swift in Sources */,
+				DDE1B91E202475210079EF6D /* CoinDetailViewController.swift in Sources */,
 				DDD5A017201D9BFF008DE2D4 /* CurrencyFetcher.swift in Sources */,
 				DDD70B9C200CC08A000C6AF6 /* HoldingsViewController.swift in Sources */,
 				DDA3FA5D2008CABF002FAA41 /* API.swift in Sources */,

@@ -21,39 +21,7 @@ class TickersViewController: UITableViewController {
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    self.navigationItem.rightBarButtonItem?.isEnabled = true
-    
-    let api = RestfulAPI()
-    
-    let from = Int(Date().timeIntervalSince1970 - 24*60*60)
-    let to = Int(Date().timeIntervalSince1970)
-    
-    api.tickerHistory(from: from, to: to, forTimeWindow: .minute, currency: "AUD", instrument: "BTC").then { response -> Void in
-      guard let data = response["ticks"] as? [[Int]] else {
-        return
-      }
-
-      let ticks = data.flatMap { tickData -> Tick? in
-        guard tickData.count == 6 else {
-          return nil
-        }
-        
-        let timestamp = tickData[0].doubleValue
-        let open = tickData[1].doubleValue
-        let high = tickData[2].doubleValue
-        let close = tickData[3].doubleValue
-        let low = tickData[4].doubleValue
-        let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
-        
-        return Tick(low: low, high: high, open: open, close: close, date: date)
-      }
-      
-      print(ticks)
-      
-    }.catch { error in
-      print(error)
-    }
-    
+    self.navigationItem.rightBarButtonItem?.isEnabled = true    
   }
   
   override func viewDidLoad() {
@@ -68,6 +36,10 @@ class TickersViewController: UITableViewController {
     tickerStore.unsubscribe(target: String(describing: self))
   }
 
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    print("prepare")
+  }
+  
   @IBAction func closeButtonTapped(_ sender: Any) {
     dismiss(animated: true, completion: nil)
   }
