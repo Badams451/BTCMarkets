@@ -20,6 +20,7 @@ PODS:
   - Socket.IO-Client-Swift (13.1.1):
     - Starscream (~> 3.0.2)
   - Starscream (3.0.3)
+  - SwiftDate (4.5.1)
 
 DEPENDENCIES:
   - Charts
@@ -27,6 +28,7 @@ DEPENDENCIES:
   - ObjectMapper
   - PromiseKit
   - Socket.IO-Client-Swift (~> 13.1.0)
+  - SwiftDate (~> 4.5.0)
 
 SPEC CHECKSUMS:
   Charts: 45cdc985b764c838b35ee47eb1365d15735f6d1a
@@ -35,7 +37,8 @@ SPEC CHECKSUMS:
   PromiseKit: fbb52a0d154402c57eeb6eccd36dd7724fcf6117
   Socket.IO-Client-Swift: f22222913f29801e30ae0df712db663ec096edc2
   Starscream: dfb1b3f39506717ee52b67fb48de0c8269504cbc
+  SwiftDate: 7b56d42a221f582047287deb256b23fc5ed49a60
 
-PODFILE CHECKSUM: 9105142876c2905479b7e8d451bbb31ba99af596
+PODFILE CHECKSUM: 60130d06c35ffa717aecc7cc856af7e6216e58cb
 
 COCOAPODS: 1.3.1
