@@ -18,12 +18,46 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    periodSegmentedControl.addTarget(self, action: #selector(periodSegmentControlSelected(segmentControl:)), for: .valueChanged)
+    fetchAndDisplayTickerHistory(forTimeWindow: .hour)
+  }
+  
+  func chartScaled(_ chartView: ChartViewBase, scaleX: CGFloat, scaleY: CGFloat) {
+  }
+  
+  func chartTranslated(_ chartView: ChartViewBase, dX: CGFloat, dY: CGFloat) {
+  }
+  
+  @objc func periodSegmentControlSelected(segmentControl: UISegmentedControl) {
+    switch segmentControl.selectedSegmentIndex {
+    case 0:
+      fetchAndDisplayTickerHistory(forTimeWindow: .minute)
+    case 1:
+      fetchAndDisplayTickerHistory(forTimeWindow: .hour)
+    case 2:
+      fetchAndDisplayTickerHistory(forTimeWindow: .day)
+    case 3:
+      fetchAndDisplayTickerHistory(forTimeWindow: .day)
+    default:
+      return
+    }
+  }
+  
+  private func fetchAndDisplayTickerHistory(forTimeWindow timeWindow: TimeWindow) {
     let api = RestfulAPI()
     
-    let from = Int(Date().timeIntervalSince1970 - 24*60*60)
+    func getStartingTime() -> Int {
+      switch timeWindow {
+      case .hour: return Int(Date().timeIntervalSince1970 - 24*60*60)
+      case .minute: return Int(Date().timeIntervalSince1970 - 60*60)
+      case .day: return Int(Date().timeIntervalSince1970 - 24*60*60*30)
+      }
+    }
+    
+    let from = getStartingTime()
     let to = Int(Date().timeIntervalSince1970)
     
-    api.tickerHistory(from: from, to: to, forTimeWindow: .hour, currency: currency.rawValue, instrument: instrument.rawValue).then { response -> Void in
+    api.tickerHistory(from: from, to: to, forTimeWindow: timeWindow, currency: currency.rawValue, instrument: instrument.rawValue).then { response -> Void in
       guard let data = response["ticks"] as? [[Int]] else {
         return
       }
@@ -90,15 +124,9 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
         self.candleStickChartView.setVisibleXRangeMinimum(8.0)
         self.candleStickChartView.moveViewToX(24.0)
       }
-    }.catch { error in
-      print(error)
+      }.catch { error in
+        print(error)
     }
-  }
-  
-  func chartScaled(_ chartView: ChartViewBase, scaleX: CGFloat, scaleY: CGFloat) {
-  }
-  
-  func chartTranslated(_ chartView: ChartViewBase, dX: CGFloat, dY: CGFloat) {
   }
 }
 
