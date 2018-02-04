@@ -16,6 +16,7 @@ enum TimeWindow: String {
 }
 
 struct Tick {
+  var timestamp: Double = 0
   var low: Double = 0
   var high: Double = 0
   var open: Double = 0
