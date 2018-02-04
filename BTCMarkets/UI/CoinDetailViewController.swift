@@ -13,6 +13,7 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
   var currency: Currency!
   var instrument: Currency!
   @IBOutlet var candleStickChartView: CandleStickChartView!
+  @IBOutlet var periodSegmentedControl: UISegmentedControl!
   
   override func viewDidLoad() {
     super.viewDidLoad()
