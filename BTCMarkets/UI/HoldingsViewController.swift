@@ -147,7 +147,7 @@ class HoldingsViewController: UIViewController, UITableViewDelegate, UITableView
     alert.addAction(ok)
     
     present(alert, animated: true, completion: nil)
-    Mixpanel.mainInstance().track(event: "holdings:cell:tap:\(currency.coinName)")
+    Analytics.trackEvent(forName: "holdings:cell:tap:\(currency.coinName)")
   }
   
   deinit {
