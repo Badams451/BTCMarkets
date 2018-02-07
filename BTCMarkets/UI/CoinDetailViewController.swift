@@ -9,7 +9,7 @@
 import UIKit
 import Charts
 
-private enum SegmentControlIndex: Int {
+enum TimePeriod: Int {
   case day = 0
   case week = 1
   case month = 2
@@ -24,12 +24,16 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
   @IBOutlet var candleStickChartView: CandleStickChartView!
   @IBOutlet var periodSegmentedControl: UISegmentedControl!
   
-  private var timeWindowForSelectedSegment: TimeWindow {
-    guard let segmentControlIndex = SegmentControlIndex(rawValue: periodSegmentedControl.selectedSegmentIndex) else {
-      return .hour
+  private var timePeriodForSegmentControl: TimePeriod {
+    guard let timePeriod = TimePeriod(rawValue: periodSegmentedControl.selectedSegmentIndex) else {
+      return .day
     }
     
-    switch segmentControlIndex {
+    return timePeriod
+  }
+  
+  private var timeWindowForSelectedSegment: TimeWindow {
+    switch self.timePeriodForSegmentControl {
     case .day: return .hour
     case .week: return .day
     case .month: return .day
@@ -37,11 +41,7 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
   }
   
   private var startTimeForSelectedSegment: TimeInterval {
-    guard let segmentControlIndex = SegmentControlIndex(rawValue: periodSegmentedControl.selectedSegmentIndex) else {
-      return TimeInterval.minusOneDay
-    }
-    
-    switch segmentControlIndex {
+    switch self.timePeriodForSegmentControl {
     case .day: return TimeInterval.minusOneDay
     case .week: return TimeInterval.minusOneWeek
     case .month: return TimeInterval.minusOneMonth
@@ -59,7 +59,7 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
     onSegmentControlSelected(segmentControl: periodSegmentedControl)
     store.subscribe(subscriber: subscriberId) { [weak self] _ in
       guard let strongSelf = self else { return }
-      let ticks = strongSelf.store.ticks(forTimeWindow: strongSelf.timeWindowForSelectedSegment, currency: strongSelf.currency, instrument: strongSelf.instrument)
+      let ticks = strongSelf.store.ticks(forTimeWindow: strongSelf.timePeriodForSegmentControl, currency: strongSelf.currency, instrument: strongSelf.instrument)
       strongSelf.drawCandlestickChart(forTicks: ticks)
     }
   }
@@ -85,7 +85,7 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
     let timeWindow: TimeWindow = timeWindowForSelectedSegment
     let startingTime: TimeInterval = startTimeForSelectedSegment
     
-    store.fetchTickerHistory(forTimeWindow: timeWindow, startingTime: startingTime, currency: currency, instrument: instrument)
+    store.fetchTickerHistory(forTimeWindow: timeWindow, timePeriod: timePeriodForSegmentControl, startingTime: startingTime, currency: currency, instrument: instrument)
   }
   
   private func drawCandlestickChart(forTicks ticks: [Tick]) {

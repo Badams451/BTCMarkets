@@ -13,7 +13,7 @@ private let tickerAmountNormalisationFactor: Double = 100000000
 
 final class TickHistoryStore {
   
-  typealias TicksForTimeWindow = [TimeWindow : [Tick]]
+  typealias TicksForTimeWindow = [TimePeriod : [Tick]]
   typealias CurrencyInstrumentPair = String
   typealias TickStore = [CurrencyInstrumentPair: TicksForTimeWindow]
   typealias CurrencyInstrumentTimeWindow = String
@@ -27,10 +27,6 @@ final class TickHistoryStore {
   private let timeUntilStaleCache: TimeInterval = 1.minutes
   private var tickStore = TickStore()
   
-  private var timeIntervalNow: TimeInterval {
-    return Date().timeIntervalSinceNow
-  }
-  
   func subscribe(subscriber: Subscriber, callback: @escaping TicksChanged) {
     subscribers.append((subscriber, callback))
     callback(tickStore)
@@ -42,7 +38,7 @@ final class TickHistoryStore {
     }
   }
   
-  func ticks(forTimeWindow timeWindow: TimeWindow, currency: Currency, instrument: Currency) -> [Tick] {
+  func ticks(forTimeWindow timeWindow: TimePeriod, currency: Currency, instrument: Currency) -> [Tick] {
     let currencyInstrumentPair = "\(currency.rawValue)\(instrument.rawValue)"
     guard let ticksForTimeWindow = tickStore[currencyInstrumentPair] else {
       return []
@@ -55,7 +51,7 @@ final class TickHistoryStore {
     return ticks
   }
   
-  func store(ticks: [Tick], forTimeWindow timeWindow: TimeWindow, currency: Currency, instrument: Instrument) {
+  func store(ticks: [Tick], forTimeWindow timeWindow: TimePeriod, currency: Currency, instrument: Instrument) {
     let currencyInstrumentPair = "\(currency.rawValue)\(instrument.rawValue)"
     if let _ = tickStore[currencyInstrumentPair] {
       tickStore[currencyInstrumentPair]![timeWindow] = ticks
@@ -64,7 +60,7 @@ final class TickHistoryStore {
       tickStore[currencyInstrumentPair]![timeWindow] = ticks
     }
     
-    tickUpdatedStore["\(currency.rawValue)\(instrument.rawValue)\(timeWindow.rawValue)"] = timeIntervalNow
+    tickUpdatedStore["\(currency.rawValue)\(instrument.rawValue)\(timeWindow.rawValue)"] = TimeInterval.now
     notifySubscribers()
   }
   
@@ -72,16 +68,16 @@ final class TickHistoryStore {
     subscribers.forEach { $0.1(tickStore) }
   }
   
-  func fetchTickerHistory(forTimeWindow timeWindow: TimeWindow, startingTime: TimeInterval, currency: Currency, instrument: Instrument) {
+  func fetchTickerHistory(forTimeWindow timeWindow: TimeWindow, timePeriod: TimePeriod, startingTime: TimeInterval, currency: Currency, instrument: Instrument) {
     
     let dataCachedKey = "\(currency.rawValue)\(instrument.rawValue)\(timeWindow.rawValue)"
-    if let lastUpdate = tickUpdatedStore[dataCachedKey], lastUpdate > timeIntervalNow - timeUntilStaleCache {
+    if let lastUpdate = tickUpdatedStore[dataCachedKey], lastUpdate > TimeInterval.now - timeUntilStaleCache {
       notifySubscribers()
       return
     }
     
     let api = RestfulAPI()
-    let endTime = Date().timeIntervalSince1970
+    let endTime = TimeInterval.now
     
     api.tickerHistory(from: startingTime.intValue,
                       to: endTime.intValue,
@@ -97,7 +93,8 @@ final class TickHistoryStore {
           return true
         }
         
-        return timestamp / timestampNormalisationFactor.intValue < Int(startingTime)
+        let normalisedTimestamp = timestamp.doubleValue / timestampNormalisationFactor
+        return normalisedTimestamp < startingTime
       }
                         
       let ticks = filteredData.flatMap { tickData -> Tick? in
@@ -115,7 +112,7 @@ final class TickHistoryStore {
         return Tick(timestamp: timestamp, low: low, high: high, open: open, close: close, date: date)
       }
       
-      self.store(ticks: ticks, forTimeWindow: timeWindow, currency: currency, instrument: instrument)
+      self.store(ticks: ticks, forTimeWindow: timePeriod, currency: currency, instrument: instrument)
     }.catch { error in
       print("Could not fetch ticker history: \(error)")
     }

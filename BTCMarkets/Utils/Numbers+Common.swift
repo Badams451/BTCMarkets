@@ -58,7 +58,7 @@ extension Date {
 
 extension TimeInterval {
   static var now:  TimeInterval {
-    return Date().timeIntervalSinceNow
+    return Date().timeIntervalSince1970
   }
   
   static var minusOneDay: TimeInterval {
@@ -66,7 +66,7 @@ extension TimeInterval {
   }
   
   static var minusOneWeek: TimeInterval {
-    return now - (24 * 60 * 60).doubleValue
+    return now - (7 * 24 * 60 * 60).doubleValue
   }
   
   static var minusOneMonth: TimeInterval {
