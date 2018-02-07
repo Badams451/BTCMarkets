@@ -12,6 +12,7 @@ private let timestampNormalisationFactor: Double = 1000
 private let tickerAmountNormalisationFactor: Double = 100000000
 
 final class TickHistoryStore {
+  
   typealias TicksForTimeWindow = [TimeWindow : [Tick]]
   typealias CurrencyInstrumentPair = String
   typealias TickStore = [CurrencyInstrumentPair: TicksForTimeWindow]
@@ -20,11 +21,11 @@ final class TickHistoryStore {
   typealias Instrument = Currency
   typealias TicksChanged = (TickStore) -> Void
   
-  static var sharedInstance: CoinsStoreBtc = CoinsStoreBtc()
+  static var sharedInstance: TickHistoryStore = TickHistoryStore()
   private var subscribers: [(Subscriber, TicksChanged)] = []
   private var tickUpdatedStore: [CurrencyInstrumentTimeWindow: TimeInterval] = [:]
   private let timeUntilStaleCache: TimeInterval = 1.minutes
-  private(set) var tickStore = TickStore()
+  private var tickStore = TickStore()
   
   private var timeIntervalNow: TimeInterval {
     return Date().timeIntervalSinceNow
@@ -41,7 +42,7 @@ final class TickHistoryStore {
     }
   }
   
-  func tickers(forTimeWindow timeWindow: TimeWindow, currency: Currency, instrument: Currency) -> [Tick] {
+  func ticks(forTimeWindow timeWindow: TimeWindow, currency: Currency, instrument: Currency) -> [Tick] {
     let currencyInstrumentPair = "\(currency.rawValue)\(instrument.rawValue)"
     guard let ticksForTimeWindow = tickStore[currencyInstrumentPair] else {
       return []

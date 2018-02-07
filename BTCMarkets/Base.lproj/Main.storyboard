@@ -160,9 +160,8 @@
                                 </constraints>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="9xR-g1-Xad">
-                                <rect key="frame" x="122" y="336" width="131" height="29"/>
+                                <rect key="frame" x="138.66666666666666" y="336" width="98" height="29"/>
                                 <segments>
-                                    <segment title="1h"/>
                                     <segment title="1d"/>
                                     <segment title="1w"/>
                                     <segment title="1m"/>

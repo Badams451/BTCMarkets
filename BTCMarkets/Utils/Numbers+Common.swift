@@ -56,6 +56,24 @@ extension Date {
   }
 }
 
+extension TimeInterval {
+  static var now:  TimeInterval {
+    return Date().timeIntervalSinceNow
+  }
+  
+  static var minusOneDay: TimeInterval {
+    return now - (24 * 60 * 60).doubleValue
+  }
+  
+  static var minusOneWeek: TimeInterval {
+    return now - (24 * 60 * 60).doubleValue
+  }
+  
+  static var minusOneMonth: TimeInterval {
+    return now - (30 * 24 * 60 * 60).doubleValue
+  }
+}
+
 extension Int {
   var doubleValue: Double {
     return Double(self)
