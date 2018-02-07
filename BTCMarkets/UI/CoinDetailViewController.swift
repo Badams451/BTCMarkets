@@ -59,7 +59,7 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
     onSegmentControlSelected(segmentControl: periodSegmentedControl)
     store.subscribe(subscriber: subscriberId) { [weak self] _ in
       guard let strongSelf = self else { return }
-      let ticks = strongSelf.store.ticks(forTimeWindow: strongSelf.timePeriodForSegmentControl, currency: strongSelf.currency, instrument: strongSelf.instrument)
+      let ticks = strongSelf.store.ticks(forTimePeriod: strongSelf.timePeriodForSegmentControl, currency: strongSelf.currency, instrument: strongSelf.instrument)
       strongSelf.drawCandlestickChart(forTicks: ticks)
     }
   }

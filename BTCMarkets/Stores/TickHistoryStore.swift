@@ -38,29 +38,29 @@ final class TickHistoryStore {
     }
   }
   
-  func ticks(forTimeWindow timeWindow: TimePeriod, currency: Currency, instrument: Currency) -> [Tick] {
+  func ticks(forTimePeriod timePeriod: TimePeriod, currency: Currency, instrument: Currency) -> [Tick] {
     let currencyInstrumentPair = "\(currency.rawValue)\(instrument.rawValue)"
     guard let ticksForTimeWindow = tickStore[currencyInstrumentPair] else {
       return []
     }
     
-    guard let ticks = ticksForTimeWindow[timeWindow] else {
+    guard let ticks = ticksForTimeWindow[timePeriod] else {
       return []
     }
     
     return ticks
   }
   
-  func store(ticks: [Tick], forTimeWindow timeWindow: TimePeriod, currency: Currency, instrument: Instrument) {
+  func store(ticks: [Tick], forTimePeriod timePeriod: TimePeriod, currency: Currency, instrument: Instrument) {
     let currencyInstrumentPair = "\(currency.rawValue)\(instrument.rawValue)"
     if let _ = tickStore[currencyInstrumentPair] {
-      tickStore[currencyInstrumentPair]![timeWindow] = ticks
+      tickStore[currencyInstrumentPair]![timePeriod] = ticks
     } else {
       tickStore[currencyInstrumentPair] = TicksForTimeWindow()
-      tickStore[currencyInstrumentPair]![timeWindow] = ticks
+      tickStore[currencyInstrumentPair]![timePeriod] = ticks
     }
     
-    tickUpdatedStore["\(currency.rawValue)\(instrument.rawValue)\(timeWindow.rawValue)"] = TimeInterval.now
+    tickUpdatedStore["\(currency.rawValue)\(instrument.rawValue)\(timePeriod.rawValue)"] = TimeInterval.now
     notifySubscribers()
   }
   
@@ -112,7 +112,7 @@ final class TickHistoryStore {
         return Tick(timestamp: timestamp, low: low, high: high, open: open, close: close, date: date)
       }
       
-      self.store(ticks: ticks, forTimeWindow: timePeriod, currency: currency, instrument: instrument)
+      self.store(ticks: ticks, forTimePeriod: timePeriod, currency: currency, instrument: instrument)
     }.catch { error in
       print("Could not fetch ticker history: \(error)")
     }
