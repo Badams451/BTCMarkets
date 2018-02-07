@@ -20,9 +20,17 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
   var currency: Currency!
   var instrument: Currency!
   private let store = TickHistoryStore.sharedInstance
+  private var currentDatesOnXAxis: [Date] = []
   
   @IBOutlet var candleStickChartView: CandleStickChartView!
   @IBOutlet var periodSegmentedControl: UISegmentedControl!
+  @IBOutlet var candleStickSelectedLabel: UILabel!
+  
+  private var dateFormatterForXAxis: DateFormatter {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "dd/MM HH:mm"
+    return formatter
+  }
   
   private var timePeriodForSegmentControl: TimePeriod {
     guard let timePeriod = TimePeriod(rawValue: periodSegmentedControl.selectedSegmentIndex) else {
@@ -61,6 +69,7 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
       guard let strongSelf = self else { return }
       let ticks = strongSelf.store.ticks(forTimePeriod: strongSelf.timePeriodForSegmentControl, currency: strongSelf.currency, instrument: strongSelf.instrument)
       strongSelf.drawCandlestickChart(forTicks: ticks)
+      strongSelf.currentDatesOnXAxis = ticks.flatMap { $0.date }
     }
   }
   
@@ -75,10 +84,11 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
   }
   
   func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-    print((entry as? CandleChartDataEntry)?.low ?? "")
-    print((entry as? CandleChartDataEntry)?.high ?? "")
-    print((entry as? CandleChartDataEntry)?.open ?? "")
-    print((entry as? CandleChartDataEntry)?.close ?? "")
+    guard let entry = entry as? CandleChartDataEntry else { return }
+    
+    let date = currentDatesOnXAxis[entry.x.intValue]
+    let dateString = dateFormatterForXAxis.string(from: date)
+    candleStickSelectedLabel.text = "Open: \(entry.open.dollarValue)\nClose: \(entry.close.dollarValue)\nLow: \(entry.low.dollarValue)\nHigh: \(entry.high.dollarValue)\nAt: \(dateString)"
   }
   
   @objc func onSegmentControlSelected(segmentControl: UISegmentedControl) {
