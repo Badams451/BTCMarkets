@@ -34,6 +34,10 @@ extension Double {
     let value = isWholeNumber ? String(format: "%.0f", self) : "\(self)"
     return value
   }
+  
+  var intValue: Int {
+    return Int(self)
+  }
 }
 
 extension Date {
@@ -55,5 +59,9 @@ extension Date {
 extension Int {
   var doubleValue: Double {
     return Double(self)
+  }
+  
+  var minutes: TimeInterval {
+    return self.doubleValue * 60.doubleValue
   }
 }

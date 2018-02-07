@@ -75,7 +75,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Volume (24h)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMX-5P-lal">
-                                            <rect key="frame" x="246.66666666666663" y="72" width="78.333333333333343" height="14.666666666666671"/>
+                                            <rect key="frame" x="246.66666666666666" y="72" width="78.333333333333343" height="14.666666666666671"/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -153,11 +153,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tva-aG-Tee" customClass="CandleStickChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="140" width="375" height="289"/>
+                                <rect key="frame" x="0.0" y="140" width="375" height="180"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="XXd-kx-hsa"/>
+                                </constraints>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="9xR-g1-Xad">
-                                <rect key="frame" x="122" y="468" width="131" height="29"/>
+                                <rect key="frame" x="122" y="336" width="131" height="29"/>
                                 <segments>
                                     <segment title="1h"/>
                                     <segment title="1d"/>
@@ -170,10 +173,9 @@
                         <constraints>
                             <constraint firstItem="9xR-g1-Xad" firstAttribute="centerX" secondItem="Hg3-Pm-4nG" secondAttribute="centerX" id="SgK-a9-x7H"/>
                             <constraint firstItem="Tva-aG-Tee" firstAttribute="top" secondItem="Hg3-Pm-4nG" secondAttribute="top" id="Vi4-2q-2GG"/>
-                            <constraint firstItem="9xR-g1-Xad" firstAttribute="top" secondItem="Tva-aG-Tee" secondAttribute="bottom" constant="39" id="ZCD-Hw-6lG"/>
+                            <constraint firstItem="9xR-g1-Xad" firstAttribute="top" secondItem="Tva-aG-Tee" secondAttribute="bottom" constant="16" id="ZCD-Hw-6lG"/>
                             <constraint firstItem="Tva-aG-Tee" firstAttribute="leading" secondItem="Hg3-Pm-4nG" secondAttribute="leading" id="bc7-Ip-Vge"/>
                             <constraint firstItem="Hg3-Pm-4nG" firstAttribute="trailing" secondItem="Tva-aG-Tee" secondAttribute="trailing" id="reP-QL-Pdy"/>
-                            <constraint firstItem="Hg3-Pm-4nG" firstAttribute="bottom" secondItem="9xR-g1-Xad" secondAttribute="bottom" constant="233" id="v3J-T8-Pt2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Hg3-Pm-4nG"/>
                     </view>

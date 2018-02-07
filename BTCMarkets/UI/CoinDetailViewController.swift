@@ -19,7 +19,7 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
     super.viewDidLoad()
     
     periodSegmentedControl.addTarget(self, action: #selector(periodSegmentControlSelected(segmentControl:)), for: .valueChanged)
-    fetchAndDisplayTickerHistory(forTimeWindow: .hour)
+    fetchAndDisplayTickerHistory(forTimeWindow: .hour, startingTime:  Date().timeIntervalSince1970 - 24*60*60)
   }
   
   func chartScaled(_ chartView: ChartViewBase, scaleX: CGFloat, scaleY: CGFloat) {
@@ -28,36 +28,33 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
   func chartTranslated(_ chartView: ChartViewBase, dX: CGFloat, dY: CGFloat) {
   }
   
+  func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
+    print((entry as? CandleChartDataEntry)?.low)
+    print((entry as? CandleChartDataEntry)?.high)
+    print((entry as? CandleChartDataEntry)?.open)
+    print((entry as? CandleChartDataEntry)?.close)
+  }
+  
   @objc func periodSegmentControlSelected(segmentControl: UISegmentedControl) {
     switch segmentControl.selectedSegmentIndex {
     case 0:
-      fetchAndDisplayTickerHistory(forTimeWindow: .minute)
+      fetchAndDisplayTickerHistory(forTimeWindow: .minute, startingTime: Date().timeIntervalSince1970 - 60*60)
     case 1:
-      fetchAndDisplayTickerHistory(forTimeWindow: .hour)
+      fetchAndDisplayTickerHistory(forTimeWindow: .hour, startingTime: Date().timeIntervalSince1970 - 24*60*60)
     case 2:
-      fetchAndDisplayTickerHistory(forTimeWindow: .day)
+      fetchAndDisplayTickerHistory(forTimeWindow: .hour, startingTime: Date().timeIntervalSince1970 - 24*60*60*7)
     case 3:
-      fetchAndDisplayTickerHistory(forTimeWindow: .day)
+      fetchAndDisplayTickerHistory(forTimeWindow: .day, startingTime:  Date().timeIntervalSince1970 - 24 * 60 * 60 * 30)
     default:
       return
     }
   }
   
-  private func fetchAndDisplayTickerHistory(forTimeWindow timeWindow: TimeWindow) {
+  private func fetchAndDisplayTickerHistory(forTimeWindow timeWindow: TimeWindow, startingTime: TimeInterval) {
     let api = RestfulAPI()
-    
-    func getStartingTime() -> Int {
-      switch timeWindow {
-      case .hour: return Int(Date().timeIntervalSince1970 - 24*60*60)
-      case .minute: return Int(Date().timeIntervalSince1970 - 60*60)
-      case .day: return Int(Date().timeIntervalSince1970 - 24*60*60*30)
-      }
-    }
-    
-    let from = getStartingTime()
     let to = Int(Date().timeIntervalSince1970)
     
-    api.tickerHistory(from: from, to: to, forTimeWindow: timeWindow, currency: currency.rawValue, instrument: instrument.rawValue).then { response -> Void in
+    api.tickerHistory(from: Int(startingTime), to: to, forTimeWindow: timeWindow, currency: currency.rawValue, instrument: instrument.rawValue).then { response -> Void in
       guard let data = response["ticks"] as? [[Int]] else {
         return
       }
@@ -67,7 +64,7 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
           return true
         }
         
-        return timestamp / 1000 < from
+        return timestamp / 1000 < Int(startingTime)
       }
       
       let ticks = filteredData.flatMap { tickData -> Tick? in
@@ -76,21 +73,33 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
         }
         
         let timestamp = tickData[0].doubleValue / 1000
-        let open = tickData[1].doubleValue
-        let high = tickData[2].doubleValue
-        let low = tickData[3].doubleValue
-        let close = tickData[4].doubleValue
+        let open = tickData[1].doubleValue / 100000000
+        let high = tickData[2].doubleValue / 100000000
+        let low = tickData[3].doubleValue / 100000000
+        let close = tickData[4].doubleValue / 100000000
         let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
         
         return Tick(timestamp: timestamp, low: low, high: high, open: open, close: close, date: date)
       }
       
+      let splitTicks = ticks.chunks(7)
+      
+      let aggregatedTicks = splitTicks.map { ticks -> Tick in
+        let time = ticks.first?.timestamp
+        let open = ticks.first?.open
+        let close = ticks.last?.close
+        let high = ticks.map { $0.high }.max()
+        let low = ticks.map { $0.low }.min()
+        return Tick(timestamp: time!, low: low!, high: high!, open: open!, close: close!, date: ticks.first!.date!)
+      }
+      
       DispatchQueue.main.async {
+//        var ticks = aggregatedTicks
         let values = (0..<ticks.count).map { (i) -> CandleChartDataEntry in
-          let high = ticks[i].high / 100000000 // Double(arc4random_uniform(9) + 8)
-          let low = ticks[i].low / 100000000 // Double(arc4random_uniform(9) + 8)
-          let open = ticks[i].open / 100000000 // Double(arc4random_uniform(6) + 1)
-          let close = ticks[i].close / 100000000 // Double(arc4random_uniform(6) + 1)
+          let high = ticks[i].high
+          let low = ticks[i].low
+          let open = ticks[i].open
+          let close = ticks[i].close
           
           return CandleChartDataEntry(x: Double(i), shadowH: high, shadowL: low, open: open, close: close, icon: nil)
         }
@@ -106,7 +115,7 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
         dataSet.decreasingFilled = true
         dataSet.increasingColor = UIColor(red: 72/255, green: 121/255, blue: 31/255, alpha: 1)
         dataSet.increasingFilled = true
-        dataSet.neutralColor = .blue
+        dataSet.neutralColor = dataSet.decreasingColor
         dataSet.drawValuesEnabled = false
         
         self.candleStickChartView.doubleTapToZoomEnabled = false
@@ -118,14 +127,19 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
         self.candleStickChartView.leftAxis.valueFormatter = AUDValueFormatter()
         self.candleStickChartView.delegate = self
         self.candleStickChartView.legend.enabled = false
-        
-        self.candleStickChartView.zoom(scaleX: 3.0, scaleY: 1.0, x: 0, y: 0)
         self.candleStickChartView.data = CandleChartData(dataSet: dataSet)
         self.candleStickChartView.setVisibleXRangeMinimum(8.0)
-        self.candleStickChartView.moveViewToX(24.0)
       }
-      }.catch { error in
-        print(error)
+    }.catch { error in
+      print(error)
+    }
+  }
+}
+
+private extension Array {
+  func chunks(_ chunkSize: Int) -> [[Element]] {
+    return stride(from: 0, to: self.count, by: chunkSize).map {
+      Array(self[$0..<Swift.min($0 + chunkSize, self.count)])
     }
   }
 }
