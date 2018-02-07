@@ -70,7 +70,7 @@ final class TickHistoryStore {
   
   func fetchTickerHistory(forTimeWindow timeWindow: TimeWindow, timePeriod: TimePeriod, startingTime: TimeInterval, currency: Currency, instrument: Instrument) {
     
-    let dataCachedKey = "\(currency.rawValue)\(instrument.rawValue)\(timeWindow.rawValue)"
+    let dataCachedKey = "\(currency.rawValue)\(instrument.rawValue)\(timePeriod.rawValue)"
     if let lastUpdate = tickUpdatedStore[dataCachedKey], lastUpdate > TimeInterval.now - timeUntilStaleCache {
       notifySubscribers()
       return
