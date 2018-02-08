@@ -52,6 +52,9 @@ final class TickHistoryStore {
   }
   
   func store(ticks: [Tick], forTimePeriod timePeriod: TimePeriod, currency: Currency, instrument: Instrument) {
+    let needsAggregation = timePeriod == .week || timePeriod == .month
+    let chunkSize = self.chunkSize(forTimePeriod: timePeriod)
+    let ticks = needsAggregation ? aggregateTicks(for: ticks, chunkSize: chunkSize) : ticks
     let currencyInstrumentPair = "\(currency.rawValue)\(instrument.rawValue)"
     if let _ = tickStore[currencyInstrumentPair] {
       tickStore[currencyInstrumentPair]![timePeriod] = ticks
@@ -60,8 +63,30 @@ final class TickHistoryStore {
       tickStore[currencyInstrumentPair]![timePeriod] = ticks
     }
     
-    tickUpdatedStore["\(currency.rawValue)\(instrument.rawValue)\(timePeriod.rawValue)"] = TimeInterval.now
+    tickUpdatedStore["\(currency.rawValue)\(instrument.rawValue)\(timePeriod.rawValue)"] = .now
     notifySubscribers()
+  }
+  
+  private func chunkSize(forTimePeriod timePeriod: TimePeriod) -> Int {
+    switch timePeriod {
+    case .day: return 1
+    case .week: return 6
+    case .month: return 12
+    }
+  }
+  
+  private func aggregateTicks(for ticks:[Tick], chunkSize: Int) -> [Tick] {
+    let splitTicks = ticks.chunks(chunkSize)
+    let aggregatedTicks = splitTicks.map { ticks -> Tick in
+      let time = ticks.first?.timestamp
+      let open = ticks.first?.open
+      let close = ticks.last?.close
+      let high = ticks.map { $0.high }.max()
+      let low = ticks.map { $0.low }.min()
+      return Tick(timestamp: time!, low: low!, high: high!, open: open!, close: close!, date: ticks.first!.date!)
+    }
+    
+    return aggregatedTicks
   }
   
   private func notifySubscribers() {
@@ -115,6 +140,15 @@ final class TickHistoryStore {
       self.store(ticks: ticks, forTimePeriod: timePeriod, currency: currency, instrument: instrument)
     }.catch { error in
       print("Could not fetch ticker history: \(error)")
+    }
+  }
+}
+
+
+private extension Array {
+  func chunks(_ chunkSize: Int) -> [[Element]] {
+    return stride(from: 0, to: self.count, by: chunkSize).map {
+      Array(self[$0..<Swift.min($0 + chunkSize, self.count)])
     }
   }
 }

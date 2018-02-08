@@ -43,8 +43,8 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
   private var timeWindowForSelectedSegment: TimeWindow {
     switch self.timePeriodForSegmentControl {
     case .day: return .hour
-    case .week: return .day
-    case .month: return .day
+    case .week: return .hour
+    case .month: return .hour
     }
   }
   
@@ -133,14 +133,6 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
     self.candleStickChartView.legend.enabled = false
     self.candleStickChartView.data = CandleChartData(dataSet: dataSet)
     self.candleStickChartView.setVisibleXRangeMinimum(8.0)
-  }
-}
-
-private extension Array {
-  func chunks(_ chunkSize: Int) -> [[Element]] {
-    return stride(from: 0, to: self.count, by: chunkSize).map {
-      Array(self[$0..<Swift.min($0 + chunkSize, self.count)])
-    }
   }
 }
 
