@@ -153,11 +153,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tva-aG-Tee" customClass="CandleStickChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="250" width="375" height="412"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="0.0" y="250" width="375" height="403"/>
+                                <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.86274509799999999" alpha="0.6014019692" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="9xR-g1-Xad">
-                                <rect key="frame" x="138.66666666666666" y="678" width="98" height="29"/>
+                                <rect key="frame" x="138.66666666666666" y="669" width="98" height="29"/>
                                 <segments>
                                     <segment title="1d"/>
                                     <segment title="1w"/>
@@ -209,6 +209,13 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="huV-6e-Lzr" userLabel="Divider">
+                                        <rect key="frame" x="0.0" y="109" width="375" height="1"/>
+                                        <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.86274509799999999" alpha="0.6014019692" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="IGI-Rm-nxL"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="ozH-jd-l7I" firstAttribute="leading" secondItem="REb-I5-Ss6" secondAttribute="trailing" constant="15" id="3sO-Xj-jPO"/>
@@ -223,12 +230,15 @@
                                     <constraint firstItem="NMW-Oq-POx" firstAttribute="top" secondItem="Xhx-Dk-LL0" secondAttribute="top" constant="12" id="NG7-yS-l2l"/>
                                     <constraint firstItem="Fnf-e5-kEM" firstAttribute="leading" secondItem="NMW-Oq-POx" secondAttribute="leading" id="NzR-Rl-rxF"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Fnf-e5-kEM" secondAttribute="trailing" constant="20" symbolic="YES" id="UTa-Xg-Gdy"/>
+                                    <constraint firstItem="huV-6e-Lzr" firstAttribute="leading" secondItem="Xhx-Dk-LL0" secondAttribute="leading" id="Uj5-yN-jF2"/>
                                     <constraint firstItem="Ia7-6O-ZsY" firstAttribute="leading" secondItem="NMW-Oq-POx" secondAttribute="leading" id="Zop-bM-gKE"/>
                                     <constraint firstItem="REb-I5-Ss6" firstAttribute="top" secondItem="Ia7-6O-ZsY" secondAttribute="bottom" constant="8" id="bDe-zZ-R2u"/>
                                     <constraint firstItem="Fnf-e5-kEM" firstAttribute="top" secondItem="REb-I5-Ss6" secondAttribute="bottom" constant="5" id="bJN-6e-nnk"/>
                                     <constraint firstItem="Ia7-6O-ZsY" firstAttribute="top" secondItem="NMW-Oq-POx" secondAttribute="bottom" constant="8" id="g9J-Vn-145"/>
+                                    <constraint firstAttribute="bottom" secondItem="huV-6e-Lzr" secondAttribute="bottom" id="mOL-We-ZG1"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ozH-jd-l7I" secondAttribute="trailing" constant="20" symbolic="YES" id="ovo-lw-Syd"/>
                                     <constraint firstItem="kjh-vy-Y75" firstAttribute="top" secondItem="a1J-4d-I65" secondAttribute="top" id="tnW-Lq-ro6"/>
+                                    <constraint firstAttribute="trailing" secondItem="huV-6e-Lzr" secondAttribute="trailing" id="vC3-T6-RxK"/>
                                     <constraint firstItem="kjh-vy-Y75" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Xhx-Dk-LL0" secondAttribute="leading" constant="20" symbolic="YES" id="wJj-tw-hAg"/>
                                     <constraint firstItem="REb-I5-Ss6" firstAttribute="leading" secondItem="NMW-Oq-POx" secondAttribute="leading" id="zui-CC-MTw"/>
                                 </constraints>
@@ -241,7 +251,7 @@
                             <constraint firstItem="Xhx-Dk-LL0" firstAttribute="top" secondItem="Hg3-Pm-4nG" secondAttribute="top" id="Nc0-zO-tSj"/>
                             <constraint firstItem="9xR-g1-Xad" firstAttribute="centerX" secondItem="Hg3-Pm-4nG" secondAttribute="centerX" id="SgK-a9-x7H"/>
                             <constraint firstItem="9xR-g1-Xad" firstAttribute="top" secondItem="Tva-aG-Tee" secondAttribute="bottom" constant="16" id="ZCD-Hw-6lG"/>
-                            <constraint firstItem="Hg3-Pm-4nG" firstAttribute="bottom" secondItem="9xR-g1-Xad" secondAttribute="bottom" constant="23" id="ZwC-Ld-loE"/>
+                            <constraint firstItem="Hg3-Pm-4nG" firstAttribute="bottom" secondItem="9xR-g1-Xad" secondAttribute="bottom" constant="32" id="ZwC-Ld-loE"/>
                             <constraint firstItem="Tva-aG-Tee" firstAttribute="leading" secondItem="Hg3-Pm-4nG" secondAttribute="leading" id="bc7-Ip-Vge"/>
                             <constraint firstItem="Hg3-Pm-4nG" firstAttribute="trailing" secondItem="Tva-aG-Tee" secondAttribute="trailing" id="reP-QL-Pdy"/>
                             <constraint firstItem="Tva-aG-Tee" firstAttribute="top" secondItem="Xhx-Dk-LL0" secondAttribute="bottom" id="uRA-dg-sOu"/>
