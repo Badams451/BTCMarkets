@@ -49,7 +49,7 @@ class TickerViewController: UITableViewController {
         
         coinDetailViewController.currency = currency
         coinDetailViewController.instrument = instrument
-        coinDetailViewController.navigationItem.title = instrument.coinName
+        coinDetailViewController.navigationItem.title = "\(instrument.coinName) Price"
       }
     }
   }

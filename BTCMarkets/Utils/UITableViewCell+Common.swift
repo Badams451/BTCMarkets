@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UITableViewCell {
+extension UIResponder {
   func updateValue(forLabel label: UILabel, previousValue: Double?, newValue: Double?, displayValue: String) {
     guard let previousValue = previousValue, let newValue = newValue else {
       label.text = displayValue
@@ -30,15 +30,5 @@ extension UITableViewCell {
         label.textColor = .black
       }, completion: nil)
     }
-  }
-}
-
-private extension UIColor {
-  static var darkGreen: UIColor {
-    return UIColor(red: 0, green: 78/255.0, blue: 0, alpha: 1.0)
-  }
-  
-  static var darkRed: UIColor {
-    return UIColor(red: 170/255.0, green: 58/255.0, blue: 58/255.0, alpha: 1.0)
   }
 }

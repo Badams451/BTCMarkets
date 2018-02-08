@@ -19,12 +19,20 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
   
   var currency: Currency!
   var instrument: Currency!
-  private let store = TickHistoryStore.sharedInstance
+  private let tickHistoryStore = TickHistoryStore.sharedInstance
+  private let coinStore = CoinsStoreAud.sharedInstance
   private var currentDatesOnXAxis: [Date] = []
+  private var coin: Coin?
   
   @IBOutlet var candleStickChartView: CandleStickChartView!
   @IBOutlet var periodSegmentedControl: UISegmentedControl!
-  @IBOutlet var candleStickSelectedLabel: UILabel!
+  @IBOutlet var currentPriceLabel: UILabel!
+  
+  @IBOutlet var openLabel: UILabel!
+  @IBOutlet var closeLabel: UILabel!
+  @IBOutlet var lowLabel: UILabel!
+  @IBOutlet var highLabel: UILabel!
+  @IBOutlet var timelabel: UILabel!
   
   private var dateFormatterForXAxis: DateFormatter {
     let formatter = DateFormatter()
@@ -65,16 +73,24 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
     
     periodSegmentedControl.addTarget(self, action: #selector(onSegmentControlSelected), for: .valueChanged)
     onSegmentControlSelected(segmentControl: periodSegmentedControl)
-    store.subscribe(subscriber: subscriberId) { [weak self] _ in
+    tickHistoryStore.subscribe(subscriber: subscriberId) { [weak self] _ in
       guard let strongSelf = self else { return }
-      let ticks = strongSelf.store.ticks(forTimePeriod: strongSelf.timePeriodForSegmentControl, currency: strongSelf.currency, instrument: strongSelf.instrument)
+      let ticks = strongSelf.tickHistoryStore.ticks(forTimePeriod: strongSelf.timePeriodForSegmentControl, currency: strongSelf.currency, instrument: strongSelf.instrument)
       strongSelf.drawCandlestickChart(forTicks: ticks)
       strongSelf.currentDatesOnXAxis = ticks.flatMap { $0.date }
+    }
+    
+    coinStore.subscribe(subscriber: subscriberId) { [weak self] coinCollection in
+      guard let strongSelf = self else { return }
+      guard let updatedCoin = coinCollection[strongSelf.instrument] else { return }
+      strongSelf.updateValue(forLabel: strongSelf.currentPriceLabel, previousValue: strongSelf.coin?.lastPrice, newValue: updatedCoin.lastPrice, displayValue: "Current: \(updatedCoin.displayPrice)")
+      strongSelf.coin = updatedCoin
     }
   }
   
   deinit {
-    store.unsubscribe(subscriber: subscriberId)
+    tickHistoryStore.unsubscribe(subscriber: subscriberId)
+    coinStore.unsubscribe(subscriber: subscriberId)
   }
   
   func chartScaled(_ chartView: ChartViewBase, scaleX: CGFloat, scaleY: CGFloat) {
@@ -88,14 +104,19 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
     
     let date = currentDatesOnXAxis[entry.x.intValue]
     let dateString = dateFormatterForXAxis.string(from: date)
-    candleStickSelectedLabel.text = "Open: \(entry.open.dollarValue)\nClose: \(entry.close.dollarValue)\nLow: \(entry.low.dollarValue)\nHigh: \(entry.high.dollarValue)\nAt: \(dateString)"
+    openLabel.text = "Open: \(entry.open.dollarValue)"
+    closeLabel.text = "Close: \(entry.close.dollarValue)"
+    lowLabel.text = "Low: \(entry.low.dollarValue)"
+    highLabel.text = "High: \(entry.high.dollarValue)"
+    timelabel.text = "At: \(dateString)"
+    timelabel.isHidden = false
   }
   
   @objc func onSegmentControlSelected(segmentControl: UISegmentedControl) {
     let timeWindow: TimeWindow = timeWindowForSelectedSegment
     let startingTime: TimeInterval = startTimeForSelectedSegment
     
-    store.fetchTickerHistory(forTimeWindow: timeWindow, timePeriod: timePeriodForSegmentControl, startingTime: startingTime, currency: currency, instrument: instrument)
+    tickHistoryStore.fetchTickerHistory(forTimeWindow: timeWindow, timePeriod: timePeriodForSegmentControl, startingTime: startingTime, currency: currency, instrument: instrument)
   }
   
   private func drawCandlestickChart(forTicks ticks: [Tick]) {
@@ -114,11 +135,11 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
     dataSet.setColor(UIColor(white: 80/255, alpha: 1))
     dataSet.drawIconsEnabled = false
     dataSet.shadowWidth = 3.0
-    dataSet.shadowColorSameAsCandle = true
-    dataSet.decreasingColor = UIColor(red: 135/255, green: 15/255, blue: 35/255, alpha: 1)
+    dataSet.decreasingColor = UIColor.darkRed
+    dataSet.increasingColor = UIColor.darkGreen
     dataSet.decreasingFilled = true
-    dataSet.increasingColor = UIColor(red: 72/255, green: 121/255, blue: 31/255, alpha: 1)
     dataSet.increasingFilled = true
+    dataSet.shadowColorSameAsCandle = true
     dataSet.neutralColor = dataSet.decreasingColor
     dataSet.drawValuesEnabled = false
     
