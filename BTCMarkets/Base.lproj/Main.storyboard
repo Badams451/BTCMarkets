@@ -153,17 +153,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tva-aG-Tee" customClass="CandleStickChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="250" width="375" height="403"/>
+                                <rect key="frame" x="0.0" y="250" width="375" height="463"/>
                                 <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.86274509799999999" alpha="0.6014019692" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="9xR-g1-Xad">
-                                <rect key="frame" x="138.66666666666666" y="669" width="98" height="29"/>
-                                <segments>
-                                    <segment title="1d"/>
-                                    <segment title="1w"/>
-                                    <segment title="1m"/>
-                                </segments>
-                            </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xhx-Dk-LL0">
                                 <rect key="frame" x="0.0" y="140" width="375" height="110"/>
                                 <subviews>
@@ -216,11 +208,20 @@
                                             <constraint firstAttribute="height" constant="1" id="IGI-Rm-nxL"/>
                                         </constraints>
                                     </view>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="9xR-g1-Xad">
+                                        <rect key="frame" x="261" y="12" width="98" height="29"/>
+                                        <segments>
+                                            <segment title="1d"/>
+                                            <segment title="1w"/>
+                                            <segment title="1m"/>
+                                        </segments>
+                                    </segmentedControl>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="ozH-jd-l7I" firstAttribute="leading" secondItem="REb-I5-Ss6" secondAttribute="trailing" constant="15" id="3sO-Xj-jPO"/>
                                     <constraint firstItem="a1J-4d-I65" firstAttribute="leading" secondItem="ozH-jd-l7I" secondAttribute="leading" id="4bf-zL-2Kl"/>
                                     <constraint firstItem="a1J-4d-I65" firstAttribute="top" secondItem="Fnf-e5-kEM" secondAttribute="top" id="5eS-iL-Vg6"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ia7-6O-ZsY" secondAttribute="trailing" constant="20" symbolic="YES" id="5wI-hN-AZy"/>
                                     <constraint firstItem="ozH-jd-l7I" firstAttribute="top" secondItem="REb-I5-Ss6" secondAttribute="top" id="8Rq-HD-2Dy"/>
                                     <constraint firstItem="NMW-Oq-POx" firstAttribute="leading" secondItem="Xhx-Dk-LL0" secondAttribute="leading" constant="16" id="BGg-Z7-T2n"/>
                                     <constraint firstAttribute="height" constant="110" id="CX3-kP-5eB"/>
@@ -229,12 +230,15 @@
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="NMW-Oq-POx" secondAttribute="trailing" constant="20" symbolic="YES" id="J2l-Ih-Ani"/>
                                     <constraint firstItem="NMW-Oq-POx" firstAttribute="top" secondItem="Xhx-Dk-LL0" secondAttribute="top" constant="12" id="NG7-yS-l2l"/>
                                     <constraint firstItem="Fnf-e5-kEM" firstAttribute="leading" secondItem="NMW-Oq-POx" secondAttribute="leading" id="NzR-Rl-rxF"/>
+                                    <constraint firstItem="9xR-g1-Xad" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Xhx-Dk-LL0" secondAttribute="leading" constant="20" symbolic="YES" id="OPA-4o-JvR"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Fnf-e5-kEM" secondAttribute="trailing" constant="20" symbolic="YES" id="UTa-Xg-Gdy"/>
                                     <constraint firstItem="huV-6e-Lzr" firstAttribute="leading" secondItem="Xhx-Dk-LL0" secondAttribute="leading" id="Uj5-yN-jF2"/>
+                                    <constraint firstItem="9xR-g1-Xad" firstAttribute="trailing" secondItem="kjh-vy-Y75" secondAttribute="trailing" id="Vc1-ge-js0"/>
                                     <constraint firstItem="Ia7-6O-ZsY" firstAttribute="leading" secondItem="NMW-Oq-POx" secondAttribute="leading" id="Zop-bM-gKE"/>
                                     <constraint firstItem="REb-I5-Ss6" firstAttribute="top" secondItem="Ia7-6O-ZsY" secondAttribute="bottom" constant="8" id="bDe-zZ-R2u"/>
                                     <constraint firstItem="Fnf-e5-kEM" firstAttribute="top" secondItem="REb-I5-Ss6" secondAttribute="bottom" constant="5" id="bJN-6e-nnk"/>
                                     <constraint firstItem="Ia7-6O-ZsY" firstAttribute="top" secondItem="NMW-Oq-POx" secondAttribute="bottom" constant="8" id="g9J-Vn-145"/>
+                                    <constraint firstItem="9xR-g1-Xad" firstAttribute="top" secondItem="NMW-Oq-POx" secondAttribute="top" id="lMI-GI-VYa"/>
                                     <constraint firstAttribute="bottom" secondItem="huV-6e-Lzr" secondAttribute="bottom" id="mOL-We-ZG1"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ozH-jd-l7I" secondAttribute="trailing" constant="20" symbolic="YES" id="ovo-lw-Syd"/>
                                     <constraint firstItem="kjh-vy-Y75" firstAttribute="top" secondItem="a1J-4d-I65" secondAttribute="top" id="tnW-Lq-ro6"/>
@@ -248,10 +252,10 @@
                         <constraints>
                             <constraint firstItem="Xhx-Dk-LL0" firstAttribute="leading" secondItem="Hg3-Pm-4nG" secondAttribute="leading" id="42p-vQ-RC1"/>
                             <constraint firstItem="Hg3-Pm-4nG" firstAttribute="trailing" secondItem="Xhx-Dk-LL0" secondAttribute="trailing" id="5g1-p8-uj9"/>
+                            <constraint firstItem="Hg3-Pm-4nG" firstAttribute="bottom" secondItem="Tva-aG-Tee" secondAttribute="bottom" constant="16" id="Mp5-pD-5SE">
+                                <variation key="widthClass=regular" constant="0.0"/>
+                            </constraint>
                             <constraint firstItem="Xhx-Dk-LL0" firstAttribute="top" secondItem="Hg3-Pm-4nG" secondAttribute="top" id="Nc0-zO-tSj"/>
-                            <constraint firstItem="9xR-g1-Xad" firstAttribute="centerX" secondItem="Hg3-Pm-4nG" secondAttribute="centerX" id="SgK-a9-x7H"/>
-                            <constraint firstItem="9xR-g1-Xad" firstAttribute="top" secondItem="Tva-aG-Tee" secondAttribute="bottom" constant="16" id="ZCD-Hw-6lG"/>
-                            <constraint firstItem="Hg3-Pm-4nG" firstAttribute="bottom" secondItem="9xR-g1-Xad" secondAttribute="bottom" constant="32" id="ZwC-Ld-loE"/>
                             <constraint firstItem="Tva-aG-Tee" firstAttribute="leading" secondItem="Hg3-Pm-4nG" secondAttribute="leading" id="bc7-Ip-Vge"/>
                             <constraint firstItem="Hg3-Pm-4nG" firstAttribute="trailing" secondItem="Tva-aG-Tee" secondAttribute="trailing" id="reP-QL-Pdy"/>
                             <constraint firstItem="Tva-aG-Tee" firstAttribute="top" secondItem="Xhx-Dk-LL0" secondAttribute="bottom" id="uRA-dg-sOu"/>
