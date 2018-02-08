@@ -38,6 +38,10 @@ extension Double {
   var intValue: Int {
     return Int(self)
   }
+  
+  func stringValue(forDecimalPlaces decimalPlaces: Int) -> String {
+    return String(format: "%.\(decimalPlaces)f", arguments: [self])
+  }
 }
 
 extension Date {

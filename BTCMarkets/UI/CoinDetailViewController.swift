@@ -13,6 +13,14 @@ enum TimePeriod: Int {
   case day = 0
   case week = 1
   case month = 2
+  
+  var priceChangeDescription: String {
+    switch self {
+    case .day: return "today"
+    case .week: return "this week"
+    case .month: return "this month"
+    }
+  }
 }
 
 class CoinDetailViewController: UIViewController, ChartViewDelegate {
@@ -22,7 +30,7 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
   private let tickHistoryStore = TickHistoryStore.sharedInstance
   private let coinStore = CoinsStoreAud.sharedInstance
   private var currentDatesOnXAxis: [Date] = []
-  private var coin: Coin?
+  private var coin: Coin?  
   
   @IBOutlet var candleStickChartView: CandleStickChartView!
   @IBOutlet var periodSegmentedControl: UISegmentedControl!
@@ -33,6 +41,7 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
   @IBOutlet var lowLabel: UILabel!
   @IBOutlet var highLabel: UILabel!
   @IBOutlet var timelabel: UILabel!
+  @IBOutlet var priceDifferenceLabel: UILabel!
   
   private var dateFormatterForXAxis: DateFormatter {
     let formatter = DateFormatter()
@@ -68,6 +77,25 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
     return String(describing: self)
   }
   
+  private func updatePriceDifferenceLabel(forTicks ticks: [Tick]) {
+    guard let first = ticks.first, let last = ticks.last else {
+      return
+    }
+    
+    guard let timePeriod = TimePeriod(rawValue: periodSegmentedControl.selectedSegmentIndex) else {
+      return
+    }
+    
+    let difference = last.close - first.open
+    let percentChanged = (difference / last.close) * 100
+    let percentChangedString = percentChanged.stringValue(forDecimalPlaces: 2)
+    let unit = timePeriod.priceChangeDescription
+    
+    priceDifferenceLabel.isHidden = false
+    priceDifferenceLabel.text = "\(difference.dollarValue) (\(percentChangedString)%) \(unit)"
+    priceDifferenceLabel.textColor = difference >= 0 ? UIColor.darkGreen : UIColor.darkRed
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -78,6 +106,7 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
       let ticks = strongSelf.tickHistoryStore.ticks(forTimePeriod: strongSelf.timePeriodForSegmentControl, currency: strongSelf.currency, instrument: strongSelf.instrument)
       strongSelf.drawCandlestickChart(forTicks: ticks)
       strongSelf.currentDatesOnXAxis = ticks.flatMap { $0.date }
+      strongSelf.updatePriceDifferenceLabel(forTicks: ticks)
     }
     
     coinStore.subscribe(subscriber: subscriberId) { [weak self] coinCollection in
