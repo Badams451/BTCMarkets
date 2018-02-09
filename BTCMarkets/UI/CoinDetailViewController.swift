@@ -83,6 +83,10 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
     return "As at: \(dateFormatterForXAxis.string(from: date))"
   }
   
+  private var currencyInstrumentPair: String {
+    return "\(currency.rawValue)\(instrument.rawValue)"
+  }
+  
   private func updatePriceDifferenceLabel() {
     guard let open = openPriceForTimePeriod, let coin = coin else {
       return
@@ -111,7 +115,7 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
     
     tickHistoryStore.subscribe(subscriber: subscriberId) { [weak self] tickStore in
       guard let strongSelf = self else { return }
-      guard let data = tickStore["\(strongSelf.currency.rawValue)\(strongSelf.instrument.rawValue)"],
+      guard let data = tickStore[strongSelf.currencyInstrumentPair],
             let ticks = data[strongSelf.timePeriodForSegmentControl] else {
         return
       }
@@ -131,6 +135,12 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
       strongSelf.coin = updatedCoin
       strongSelf.updatePriceDifferenceLabel()
     }
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    let eventName = String(format: "\(coinDetailViewEvent):%@", currencyInstrumentPair)
+    Analytics.trackEvent(forName: eventName)
   }
   
   deinit {

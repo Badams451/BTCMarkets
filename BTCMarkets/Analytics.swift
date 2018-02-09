@@ -15,6 +15,7 @@ let newTickerViewedEvent = "new:ticker:viewed"
 let newTickerCreatedEvent = "new:ticker:created"
 let tickerEditSavedEvent = "ticker:edit:saved"
 let holdingsViewEvent = "holdings:view"
+let coinDetailViewEvent = "coin:detail:view"
 
 class Analytics {
   static func trackEvent(forName name: String) {
