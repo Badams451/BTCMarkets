@@ -110,9 +110,9 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
     
     tickHistoryStore.subscribe(subscriber: subscriberId) { [weak self] tickStore in
       guard let strongSelf = self else { return }
-      guard let data = tickStore["\(strongSelf.currency.rawValue)\(strongSelf.instrument.rawValue)"], let ticks = data[strongSelf.timePeriodForSegmentControl] else {
+      guard let data = tickStore["\(strongSelf.currency.rawValue)\(strongSelf.instrument.rawValue)"],
+            let ticks = data[strongSelf.timePeriodForSegmentControl] else {
         return
-        
       }
       
       strongSelf.candleStickChartView.isHidden = false
