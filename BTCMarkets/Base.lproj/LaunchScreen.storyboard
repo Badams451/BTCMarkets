@@ -18,14 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BTC Markets Companion" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0yO-az-Vvh">
-                                <rect key="frame" x="55" y="297.5" width="266.5" height="27.5"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BTC_logo_1024px_3" translatesAutoresizingMaskIntoConstraints="NO" id="W2m-AW-HdW">
-                                <rect key="frame" x="157" y="204" width="60" height="60"/>
+                                <rect key="frame" x="157" y="313.5" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="6dR-4Q-80y"/>
                                     <constraint firstAttribute="width" constant="60" id="Maw-1D-uDy"/>
@@ -34,10 +28,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="nuW-Sd-2KN" firstAttribute="bottom" secondItem="0yO-az-Vvh" secondAttribute="bottom" constant="342" id="L4t-dt-20f"/>
-                            <constraint firstItem="0yO-az-Vvh" firstAttribute="top" secondItem="W2m-AW-HdW" secondAttribute="bottom" constant="33.5" id="M9e-LS-zxL"/>
-                            <constraint firstItem="0yO-az-Vvh" firstAttribute="centerX" secondItem="nuW-Sd-2KN" secondAttribute="centerX" id="Stv-Xs-Jf7"/>
                             <constraint firstItem="W2m-AW-HdW" firstAttribute="centerX" secondItem="nuW-Sd-2KN" secondAttribute="centerX" id="a8o-aX-tz6"/>
+                            <constraint firstItem="W2m-AW-HdW" firstAttribute="centerY" secondItem="nuW-Sd-2KN" secondAttribute="centerY" id="vOf-nx-sBR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nuW-Sd-2KN"/>
                     </view>

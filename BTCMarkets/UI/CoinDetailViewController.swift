@@ -42,6 +42,7 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
   @IBOutlet var highLabel: UILabel!
   @IBOutlet var timelabel: UILabel!
   @IBOutlet var priceDifferenceLabel: UILabel!
+  @IBOutlet var activityIndicator: UIActivityIndicatorView!
   
   private var dateFormatterForXAxis: DateFormatter {
     let formatter = DateFormatter()
@@ -107,9 +108,15 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
     onSegmentControlSelected(segmentControl: periodSegmentedControl)
     timelabel.text = stringForDate(date: Date())
     
-    tickHistoryStore.subscribe(subscriber: subscriberId) { [weak self] _ in
+    tickHistoryStore.subscribe(subscriber: subscriberId) { [weak self] tickStore in
       guard let strongSelf = self else { return }
-      let ticks = strongSelf.tickHistoryStore.ticks(forTimePeriod: strongSelf.timePeriodForSegmentControl, currency: strongSelf.currency, instrument: strongSelf.instrument)
+      guard let data = tickStore["\(strongSelf.currency.rawValue)\(strongSelf.instrument.rawValue)"], let ticks = data[strongSelf.timePeriodForSegmentControl] else {
+        return
+        
+      }
+      
+      strongSelf.candleStickChartView.isHidden = false
+      strongSelf.activityIndicator.stopAnimating()
       strongSelf.drawCandlestickChart(forTicks: ticks)
       strongSelf.currentDatesOnXAxis = ticks.flatMap { $0.date }
       strongSelf.updatePriceDifferenceLabel(forTicks: ticks)
@@ -127,13 +134,7 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
     tickHistoryStore.unsubscribe(subscriber: subscriberId)
     coinStore.unsubscribe(subscriber: subscriberId)
   }
-  
-  func chartScaled(_ chartView: ChartViewBase, scaleX: CGFloat, scaleY: CGFloat) {
-  }
-  
-  func chartTranslated(_ chartView: ChartViewBase, dX: CGFloat, dY: CGFloat) {
-  }
-  
+
   func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
     guard let entry = entry as? CandleChartDataEntry else { return }
     
