@@ -151,7 +151,7 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
     tickHistoryStore.unsubscribe(subscriber: subscriberId)
     coinStore.unsubscribe(subscriber: subscriberId)
     
-    if userStatsStore.coinDetailViewedCount > 5 {
+    if userStatsStore.coinDetailViewedCount % 10 == 0 {
       SKStoreReviewController.requestReview()
     }
   }
