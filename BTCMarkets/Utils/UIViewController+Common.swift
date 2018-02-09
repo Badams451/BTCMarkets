@@ -9,6 +9,10 @@
 import UIKit
 
 extension UIViewController {
+  var splitViewIsCollapsed: Bool {
+    return self.splitViewController?.isCollapsed == true
+  }
+  
   func displayAlert(message: String) {
     let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
     let action = UIAlertAction(title: "Ok", style: .default, handler: nil)

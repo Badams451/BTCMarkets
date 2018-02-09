@@ -17,7 +17,7 @@ class TickerViewController: UITableViewController {
   private var ticker: TickerProfile {
     return applicationData.selectedTicker ?? applicationData.defaultTicker
   }
-  
+
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     Analytics.trackEvent(forName: tickerViewEvent)
@@ -32,21 +32,32 @@ class TickerViewController: UITableViewController {
     }
   }
   
+  override func viewDidAppear(_ animated: Bool) {
+    if !splitViewIsCollapsed {
+      self.performSegue(withIdentifier: TickerToCoinDetailSegue, sender: self)
+      let indexPath = IndexPath(row: 0, section: 0)
+      tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+    }
+    
+    super.viewDidAppear(animated)
+
+  }
+  
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == CoinToConfigureTickerSegue {
       if let configureTickerViewController = segue.destination as? ConfigureTickerViewController {
         configureTickerViewController.configure(withTicker: ticker)
-        Analytics.trackEvent(forName: tickerEditEvent)        
+        Analytics.trackEvent(forName: tickerEditEvent)
       }
     } else if segue.identifier == TickerToCoinDetailSegue {
       if let coinDetailViewController = segue.destination as? CoinDetailViewController {
         guard let indexPath = tableView.indexPathForSelectedRow else {
           return
         }
-        
+
         let currency = ticker.currency
         let instrument = ticker.instruments[indexPath.row]
-        
+
         coinDetailViewController.currency = currency
         coinDetailViewController.instrument = instrument
         coinDetailViewController.navigationItem.title = "\(instrument.coinName) Price"
@@ -73,11 +84,11 @@ class TickerViewController: UITableViewController {
     
     currencyCell.configure(currency: ticker.currency, instrument: ticker.instruments[indexPath.row])
     
-    return currencyCell
-  }
-
-  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    if splitViewIsCollapsed {
+      currencyCell.accessoryType = .disclosureIndicator
+    }
     
+    return currencyCell
   }
   
   deinit {

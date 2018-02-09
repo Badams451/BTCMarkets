@@ -25,8 +25,8 @@ enum TimePeriod: Int {
 
 class CoinDetailViewController: UIViewController, ChartViewDelegate {
   
-  var currency: Currency!
-  var instrument: Currency!
+  var currency: Currency! = .aud
+  var instrument: Currency! = .btc
   private let tickHistoryStore = TickHistoryStore.sharedInstance
   private let coinStore = CoinsStoreAud.sharedInstance
   private var currentDatesOnXAxis: [Date] = []
