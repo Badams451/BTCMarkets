@@ -36,6 +36,7 @@
 		DDD9329D202C7A8900F98531 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD9329C202C7A8900F98531 /* Colors.swift */; };
 		DDE1B91E202475210079EF6D /* CoinDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE1B91D202475210079EF6D /* CoinDetailViewController.swift */; };
 		DDE8BCF6202D056C006F06D0 /* TickerSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE8BCF5202D056C006F06D0 /* TickerSplitViewController.swift */; };
+		DDE8BD2C202D7E2A006F06D0 /* UserStatisticsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE8BD2B202D7E2A006F06D0 /* UserStatisticsStore.swift */; };
 		DDF8CA2E2008E8A900C010D7 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF8CA2D2008E8A900C010D7 /* Coin.swift */; };
 		DDF8CA302008E8E900C010D7 /* CurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF8CA2F2008E8E900C010D7 /* CurrencyCell.swift */; };
 		F4F641AD3192CB40B5366946 /* Pods_BTCMarkets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF064DAD14E469472E151A06 /* Pods_BTCMarkets.framework */; };
@@ -76,6 +77,7 @@
 		DDD9329C202C7A8900F98531 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		DDE1B91D202475210079EF6D /* CoinDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailViewController.swift; sourceTree = "<group>"; };
 		DDE8BCF5202D056C006F06D0 /* TickerSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerSplitViewController.swift; sourceTree = "<group>"; };
+		DDE8BD2B202D7E2A006F06D0 /* UserStatisticsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatisticsStore.swift; sourceTree = "<group>"; };
 		DDF8CA2D2008E8A900C010D7 /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 		DDF8CA2F2008E8E900C010D7 /* CurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -202,6 +204,7 @@
 				DDCE9AD8200E1BB1008B582C /* CoinsStore.swift */,
 				04E3EE5A20135D1800DEE6C9 /* PurchasesStore.swift */,
 				DD0FA601202AF91C00C99AF5 /* TickHistoryStore.swift */,
+				DDE8BD2B202D7E2A006F06D0 /* UserStatisticsStore.swift */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				DDA3FA5D2008CABF002FAA41 /* API.swift in Sources */,
 				DDCA592F200B5C8A00389148 /* TickersViewController.swift in Sources */,
 				04E3EE5D2013E33100DEE6C9 /* PremiumFeatureViewController.swift in Sources */,
+				DDE8BD2C202D7E2A006F06D0 /* UserStatisticsStore.swift in Sources */,
 				DD8396B82020729C00B8C541 /* Analytics.swift in Sources */,
 				DDE8BCF6202D056C006F06D0 /* TickerSplitViewController.swift in Sources */,
 				DDD70B98200CBB7E000C6AF6 /* Currency.swift in Sources */,

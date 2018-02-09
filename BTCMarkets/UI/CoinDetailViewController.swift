@@ -8,6 +8,7 @@
 
 import UIKit
 import Charts
+import StoreKit
 
 enum TimePeriod: Int {
   case day = 0
@@ -32,6 +33,7 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
   private var currentDatesOnXAxis: [Date] = []
   private var coin: Coin?
   private var openPriceForTimePeriod: Double?
+  private let userStatsStore = UserStatisticsStore.sharedInstance
   
   @IBOutlet var candleStickChartView: CandleStickChartView!
   @IBOutlet var periodSegmentedControl: UISegmentedControl!
@@ -135,6 +137,8 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
       strongSelf.coin = updatedCoin
       strongSelf.updatePriceDifferenceLabel()
     }
+    
+    userStatsStore.incrementStatistic(forKey: appStatsCoinDetailViewedKey)
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -146,6 +150,10 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
   deinit {
     tickHistoryStore.unsubscribe(subscriber: subscriberId)
     coinStore.unsubscribe(subscriber: subscriberId)
+    
+    if userStatsStore.coinDetailViewedCount > 5 {
+      SKStoreReviewController.requestReview()
+    }
   }
 
   func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {

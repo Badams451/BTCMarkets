@@ -8,11 +8,13 @@
 
 import UIKit
 import Mixpanel
+import StoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
+  private let userStatsStore = UserStatisticsStore.sharedInstance
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     CoinsStoreAud.sharedInstance.start()
@@ -29,7 +31,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func applicationDidBecomeActive(_ application: UIApplication) {
     CoinsStoreAud.sharedInstance.start()
     CoinsStoreBtc.sharedInstance.start()
+    UserStatisticsStore.sharedInstance.incrementStatistic(forKey: appStatsAppBecomeActiveKey)
+    
+    if userStatsStore.appDidBecomeActiveCount > 30 {
+      SKStoreReviewController.requestReview()
+    }
   }
-
 }
 

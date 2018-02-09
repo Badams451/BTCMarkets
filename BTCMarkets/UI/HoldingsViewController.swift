@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Mixpanel
+import StoreKit
 
 enum HoldingItemType {
   case currency
@@ -44,6 +44,7 @@ class HoldingsViewController: UIViewController, UITableViewDelegate, UITableView
   private let holdingItems = Currency.allExceptAud
   private let totalEquityItem = TotalEquityItem()
   private let holdingsStore = HoldingsStore.sharedInstance
+  private let userStatsStore = UserStatisticsStore.sharedInstance
   private let currencyStoreAud = CoinsStoreAud.sharedInstance
   private var allItems: [HoldingItem]  {
     return holdingItems + [totalEquityItem]
@@ -141,6 +142,11 @@ class HoldingsViewController: UIViewController, UITableViewDelegate, UITableView
       }
       
       self?.holdingsStore.storeHolding(currency: currency, amount: amount)
+      self?.userStatsStore.incrementStatistic(forKey: appStatsHoldingsEnteredKey)
+      
+      if let holdingsEnteredCount = self?.userStatsStore.holdingsEnteredCount, holdingsEnteredCount > 5 {
+        SKStoreReviewController.requestReview()
+      }
     }
     
     alert.addAction(cancel)
