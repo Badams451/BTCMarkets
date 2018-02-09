@@ -30,7 +30,8 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
   private let tickHistoryStore = TickHistoryStore.sharedInstance
   private let coinStore = CoinsStoreAud.sharedInstance
   private var currentDatesOnXAxis: [Date] = []
-  private var coin: Coin?  
+  private var coin: Coin?
+  private var openPriceForTimePeriod: Double?
   
   @IBOutlet var candleStickChartView: CandleStickChartView!
   @IBOutlet var periodSegmentedControl: UISegmentedControl!
@@ -82,8 +83,8 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
     return "As at: \(dateFormatterForXAxis.string(from: date))"
   }
   
-  private func updatePriceDifferenceLabel(forTicks ticks: [Tick]) {
-    guard let first = ticks.first, let last = ticks.last else {
+  private func updatePriceDifferenceLabel() {
+    guard let open = openPriceForTimePeriod, let coin = coin else {
       return
     }
     
@@ -91,8 +92,8 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
       return
     }
     
-    let difference = last.close - first.open
-    let percentChanged = (difference / last.close) * 100
+    let difference = coin.lastPrice - open
+    let percentChanged = (difference / coin.lastPrice) * 100
     let percentChangedString = percentChanged.stringValue(forDecimalPlaces: 2)
     let unit = timePeriod.priceChangeDescription
     
@@ -119,7 +120,8 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
       strongSelf.activityIndicator.stopAnimating()
       strongSelf.drawCandlestickChart(forTicks: ticks)
       strongSelf.currentDatesOnXAxis = ticks.flatMap { $0.date }
-      strongSelf.updatePriceDifferenceLabel(forTicks: ticks)
+      strongSelf.openPriceForTimePeriod = ticks.first?.open
+      strongSelf.updatePriceDifferenceLabel()
     }
     
     coinStore.subscribe(subscriber: subscriberId) { [weak self] coinCollection in
@@ -127,6 +129,7 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
       guard let updatedCoin = coinCollection[strongSelf.instrument] else { return }
       strongSelf.updateValue(forLabel: strongSelf.currentPriceLabel, previousValue: strongSelf.coin?.lastPrice, newValue: updatedCoin.lastPrice, displayValue: "\(updatedCoin.displayPrice)")
       strongSelf.coin = updatedCoin
+      strongSelf.updatePriceDifferenceLabel()
     }
   }
   
