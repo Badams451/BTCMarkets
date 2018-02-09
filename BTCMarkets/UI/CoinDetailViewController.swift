@@ -77,6 +77,10 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
     return String(describing: self)
   }
   
+  private func stringForDate(date: Date) -> String {
+    return "As at: \(dateFormatterForXAxis.string(from: date))"
+  }
+  
   private func updatePriceDifferenceLabel(forTicks ticks: [Tick]) {
     guard let first = ticks.first, let last = ticks.last else {
       return
@@ -101,6 +105,8 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
     
     periodSegmentedControl.addTarget(self, action: #selector(onSegmentControlSelected), for: .valueChanged)
     onSegmentControlSelected(segmentControl: periodSegmentedControl)
+    timelabel.text = stringForDate(date: Date())
+    
     tickHistoryStore.subscribe(subscriber: subscriberId) { [weak self] _ in
       guard let strongSelf = self else { return }
       let ticks = strongSelf.tickHistoryStore.ticks(forTimePeriod: strongSelf.timePeriodForSegmentControl, currency: strongSelf.currency, instrument: strongSelf.instrument)
@@ -132,13 +138,11 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
     guard let entry = entry as? CandleChartDataEntry else { return }
     
     let date = currentDatesOnXAxis[entry.x.intValue]
-    let dateString = dateFormatterForXAxis.string(from: date)
     openLabel.text = "Open: \(entry.open.dollarValue)"
     closeLabel.text = "Close: \(entry.close.dollarValue)"
     lowLabel.text = "Low: \(entry.low.dollarValue)"
     highLabel.text = "High: \(entry.high.dollarValue)"
-    timelabel.text = "At: \(dateString)"
-    timelabel.isHidden = false
+    timelabel.text = stringForDate(date: date)
   }
   
   @objc func onSegmentControlSelected(segmentControl: UISegmentedControl) {
