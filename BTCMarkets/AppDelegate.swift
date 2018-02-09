@@ -32,14 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     CoinsStoreAud.sharedInstance.start()
     CoinsStoreBtc.sharedInstance.start()
     UserStatisticsStore.sharedInstance.incrementStatistic(forKey: appStatsAppBecomeActiveKey)
-    
-    print(userStatsStore.appDidBecomeActiveCount)
-    print(userStatsStore.coinDetailViewedCount)
-    print(userStatsStore.holdingsEnteredCount)
-    
-    if userStatsStore.appDidBecomeActiveCount % 30 == 0 {
-      SKStoreReviewController.requestReview()
-    }
+    AppReview.requestReview()
   }
 }
 

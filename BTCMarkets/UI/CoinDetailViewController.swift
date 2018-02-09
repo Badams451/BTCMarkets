@@ -151,9 +151,7 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
     tickHistoryStore.unsubscribe(subscriber: subscriberId)
     coinStore.unsubscribe(subscriber: subscriberId)
     
-    if userStatsStore.coinDetailViewedCount % 10 == 0 {
-      SKStoreReviewController.requestReview()
-    }
+    AppReview.requestReview()
   }
 
   func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {

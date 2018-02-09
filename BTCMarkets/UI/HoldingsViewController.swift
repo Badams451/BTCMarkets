@@ -144,9 +144,7 @@ class HoldingsViewController: UIViewController, UITableViewDelegate, UITableView
       self?.holdingsStore.storeHolding(currency: currency, amount: amount)
       self?.userStatsStore.incrementStatistic(forKey: appStatsHoldingsEnteredKey)
       
-      if let holdingsEnteredCount = self?.userStatsStore.holdingsEnteredCount, holdingsEnteredCount % 5 == 0 {
-        SKStoreReviewController.requestReview()
-      }
+      AppReview.requestReview()
     }
     
     alert.addAction(cancel)
