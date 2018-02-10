@@ -59,15 +59,11 @@ class HoldingsViewController: UIViewController, UITableViewDelegate, UITableView
     super.viewDidLoad()
     
     holdingsStore.subscribe(subscriber: String(describing: self)) { [weak self] _ in
-      DispatchQueue.main.async {        
-        self?.tableView.reloadData()
-      }
+      self?.tableView.reloadData()
     }
     
     currencyStoreAud.subscribe(subscriber: String(describing: self)) { [weak self] _ in
-      DispatchQueue.main.async {
-        self?.tableView.reloadData()
-      }
+      self?.tableView.reloadData()
     }
   }
   

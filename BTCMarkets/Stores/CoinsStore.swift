@@ -62,7 +62,9 @@ class CoinsStore: CurrencyFetcher {
           
           self.coins[currency] = coin
           self.setupSocket(currency: self.currency)
-          self.notifySubscribers()
+          DispatchQueue.main.async {
+            self.notifySubscribers()
+          }
         }
       }.catch { error in print(error) }
     }
@@ -89,7 +91,9 @@ class CoinsStore: CurrencyFetcher {
         
         coin.normaliseValues()
         strongSelf.coins[currency] = coin
-        strongSelf.subscribers.forEach { $0.1(strongSelf.coins) }
+        DispatchQueue.main.async {
+          strongSelf.subscribers.forEach { $0.1(strongSelf.coins) }
+        }
       }
     }
     

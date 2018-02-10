@@ -43,10 +43,7 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher {
         return
       }
 
-
-      DispatchQueue.main.async {
-        self?.updateUI(coin: coin)
-      }
+      self?.updateUI(coin: coin)
     }
     
     self.subscriberId = subscriberId
