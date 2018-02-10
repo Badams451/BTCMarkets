@@ -131,11 +131,13 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
     }
     
     coinStore.subscribe(subscriber: subscriberId) { [weak self] coinCollection in
-      guard let strongSelf = self else { return }
-      guard let updatedCoin = coinCollection[strongSelf.instrument] else { return }
-      strongSelf.updateValue(forLabel: strongSelf.currentPriceLabel, previousValue: strongSelf.coin?.lastPrice, newValue: updatedCoin.lastPrice, displayValue: "\(updatedCoin.displayPrice)")
-      strongSelf.coin = updatedCoin
-      strongSelf.updatePriceDifferenceLabel()
+      DispatchQueue.main.async {        
+        guard let strongSelf = self else { return }
+        guard let updatedCoin = coinCollection[strongSelf.instrument] else { return }
+        strongSelf.updateValue(forLabel: strongSelf.currentPriceLabel, previousValue: strongSelf.coin?.lastPrice, newValue: updatedCoin.lastPrice, displayValue: "\(updatedCoin.displayPrice)")
+        strongSelf.coin = updatedCoin
+        strongSelf.updatePriceDifferenceLabel()
+      }
     }
     
     userStatsStore.incrementStatistic(forKey: appStatsCoinDetailViewedKey)
