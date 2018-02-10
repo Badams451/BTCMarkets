@@ -55,13 +55,15 @@ class CoinsStore: CurrencyFetcher {
     
     promises.forEach { promise in
       promise.then { coin -> Void in
-        guard let coin = coin, let currency = Currency(rawValue: coin.instrument) else {
-          return
+        DispatchQueue.global().async {          
+          guard let coin = coin, let currency = Currency(rawValue: coin.instrument) else {
+            return
+          }
+          
+          self.coins[currency] = coin
+          self.setupSocket(currency: self.currency)
+          self.notifySubscribers()
         }
-        
-        self.coins[currency] = coin
-        self.setupSocket(currency: self.currency)
-        self.notifySubscribers()
       }.catch { error in print(error) }
     }
   }
@@ -77,16 +79,18 @@ class CoinsStore: CurrencyFetcher {
     }
     
     socket?.on("newTicker") { [weak self] data, ack in
-      guard let strongSelf = self,
-        let json = data.first as? JSONResponse,
-        var coin = Coin(JSON: json),
-        let currency = Currency(rawValue: coin.instrument) else {
-          return
+      DispatchQueue.global().async {
+        guard let strongSelf = self,
+          let json = data.first as? JSONResponse,
+          var coin = Coin(JSON: json),
+          let currency = Currency(rawValue: coin.instrument) else {
+            return
+        }
+        
+        coin.normaliseValues()
+        strongSelf.coins[currency] = coin
+        strongSelf.subscribers.forEach { $0.1(strongSelf.coins) }
       }
-      
-      coin.normaliseValues()
-      strongSelf.coins[currency] = coin
-      strongSelf.subscribers.forEach { $0.1(strongSelf.coins) }
     }
     
     socket?.connect()

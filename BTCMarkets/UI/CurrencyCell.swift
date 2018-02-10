@@ -42,8 +42,8 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher {
       guard let coin = coins[instrument] else {
         return
       }
-      
-      
+
+
       DispatchQueue.main.async {
         self?.updateUI(coin: coin)
       }
