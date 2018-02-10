@@ -55,7 +55,6 @@ class CoinsStore: CurrencyFetcher {
     
     promises.forEach { promise in
       promise.then { coin -> Void in
-        DispatchQueue.global().async {          
           guard let coin = coin, let currency = Currency(rawValue: coin.instrument) else {
             return
           }
@@ -65,7 +64,6 @@ class CoinsStore: CurrencyFetcher {
           DispatchQueue.main.async {
             self.notifySubscribers()
           }
-        }
       }.catch { error in print(error) }
     }
   }
