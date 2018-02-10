@@ -10,4 +10,6 @@ target 'BTCMarkets' do
   pod 'Mixpanel-swift'
   pod 'Charts'
   pod 'SwiftDate', '~> 4.5.0'
+  pod 'Fabric'
+  pod 'Crashlytics'
 end

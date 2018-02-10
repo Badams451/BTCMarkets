@@ -225,6 +225,7 @@
 				DD49F4F02008BA8100B1D6C0 /* Resources */,
 				1A9B970DC8EC73268FBE39B3 /* [CP] Embed Pods Frameworks */,
 				B0F5A54CEB0D1B6DB26B8159 /* [CP] Copy Pods Resources */,
+				DD9E2584202F5F60001300C3 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -351,6 +352,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BTCMarkets/Pods-BTCMarkets-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		DD9E2584202F5F60001300C3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 5178dfcb34b1f3d0b9a498aea8f7682a50847bea 7bef0fb82fdd8fa453c657664d0e70ef095257c23d24deb4ed504fe46e3abb8f";
 		};
 /* End PBXShellScriptBuildPhase section */
 

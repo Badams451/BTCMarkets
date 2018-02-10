@@ -9,6 +9,8 @@
 import UIKit
 import Mixpanel
 import StoreKit
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   private let userStatsStore = UserStatisticsStore.sharedInstance
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    Fabric.with([Crashlytics.self])
+    
     CoinsStoreAud.sharedInstance.start()
     CoinsStoreBtc.sharedInstance.start()
     
@@ -24,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     #else
       Mixpanel.initialize(token: "c55a5b7d4a857b39d09adc41d446ebc7")
     #endif
-        
+    
     return true
   }
 
