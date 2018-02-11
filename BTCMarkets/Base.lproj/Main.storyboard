@@ -7,7 +7,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -119,10 +118,7 @@
                                     <outlet property="currencyLabel" destination="dHm-05-kEJ" id="UWq-Jz-fEy"/>
                                     <outlet property="priceLabel" destination="I5b-PX-VjO" id="zZ5-W1-te3"/>
                                     <outlet property="volumeLabel" destination="hLN-9h-spd" id="kHI-7p-ppf"/>
-                                    <segue destination="dp1-t6-YBy" kind="show" identifier="TickerToCoinDetailSegue" action="showDetailViewController:sender:" id="sNq-gs-B0b">
-                                        <segue key="commit" inheritsFrom="parent" id="t3x-5z-DiY"/>
-                                        <segue key="preview" inheritsFrom="commit" id="jCE-Wi-g64"/>
-                                    </segue>
+                                    <segue destination="dp1-t6-YBy" kind="show" identifier="TickerToCoinDetailSegue" action="showDetailViewController:sender:" id="sNq-gs-B0b"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -548,7 +544,7 @@
                                 <rect key="frame" x="0.0" y="140" width="375" height="589"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HoldingsCell" rowHeight="87" id="GZN-1b-n8k" customClass="HoldingsCell" customModule="BTC_Companion" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HoldingsCell" rowHeight="87" id="GZN-1b-n8k" customClass="HoldingsCell" customModule="BTC_Companion" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="87"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GZN-1b-n8k" id="ItQ-lF-hEc">
@@ -592,7 +588,7 @@
                                             <outlet property="holdingsAmountLabel" destination="KtP-qC-ert" id="dPv-nh-FMT"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EquityCell" id="LdI-Sh-HLm" customClass="EquityCell" customModule="BTC_Companion" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EquityCell" id="LdI-Sh-HLm" customClass="EquityCell" customModule="BTC_Companion" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="115" width="375" height="87"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LdI-Sh-HLm" id="tgv-ji-smB">
