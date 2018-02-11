@@ -20,10 +20,22 @@ class AppReview {
       let holdingsThresholdMet = store.holdingsEnteredCount % holdingsEnteredThreshold == 0
       let appDidBecomeActiveThresholdMet = store.appDidBecomeActiveCount % appDidBecomeActiveThreshold == 0
       let coinDetailThresholdMet = store.coinDetailViewedCount % coinDetailViewedThreshold == 0
+    
+      if holdingsThresholdMet {
+        store.incrementStatistic(forKey: appStatsHoldingsEnteredKey)
+      }
       
+      if appDidBecomeActiveThresholdMet {
+        store.incrementStatistic(forKey: appStatsAppBecomeActiveKey)
+      }
+      
+      if coinDetailThresholdMet {
+        store.incrementStatistic(forKey: appStatsCoinDetailViewedKey)
+      }
+    
       if holdingsThresholdMet || appDidBecomeActiveThresholdMet || coinDetailThresholdMet {
-        SKStoreReviewController.requestReview()
-      }      
+        SKStoreReviewController.requestReview()        
+      }
     #endif
   }
 }
