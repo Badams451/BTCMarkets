@@ -16,6 +16,7 @@ let newTickerCreatedEvent = "new:ticker:created"
 let tickerEditSavedEvent = "ticker:edit:saved"
 let holdingsViewEvent = "holdings:view"
 let coinDetailViewEvent = "coin:detail:view"
+let tickerConfigureCurrencySelected = "ticker:configure:currency:selected:"
 
 class Analytics {
   static func trackEvent(forName name: String) {

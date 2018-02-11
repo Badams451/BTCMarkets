@@ -58,6 +58,8 @@ class ConfigureTickerViewController: UIViewController, UITableViewDataSource, UI
   }
   
   private func getSelectedSegmentIndex(forTicker ticker: TickerProfile) -> CurrencySegmentedControlIndex {
+    Analytics.trackEvent(forName: String(format: "\(tickerConfigureCurrencySelected):%@", ticker.currency.rawValue))
+    
     switch ticker.currency {
     case .aud: return .aud
     case .btc: return .btc
