@@ -118,7 +118,6 @@
                                     <outlet property="currencyLabel" destination="dHm-05-kEJ" id="UWq-Jz-fEy"/>
                                     <outlet property="priceLabel" destination="I5b-PX-VjO" id="zZ5-W1-te3"/>
                                     <outlet property="volumeLabel" destination="hLN-9h-spd" id="kHI-7p-ppf"/>
-                                    <segue destination="dp1-t6-YBy" kind="show" identifier="TickerToCoinDetailSegue" action="showDetailViewController:sender:" id="sNq-gs-B0b"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -128,11 +127,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="BTC Markets" id="Md5-2I-vmy">
-                        <barButtonItem key="leftBarButtonItem" title="Tickers" id="UAo-ws-MhO">
-                            <connections>
-                                <segue destination="2KE-Yo-bPh" kind="presentation" id="FRf-nJ-as8"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Edit" style="plain" id="km9-2u-dFA">
                             <connections>
                                 <segue destination="P6C-o9-W8N" kind="show" identifier="CoinToConfigureTickerSegue" id="neP-kr-VnA"/>
@@ -153,14 +147,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="rWo-xe-mZ3">
-                                <rect key="frame" x="178" y="484" width="20" height="20"/>
+                                <rect key="frame" x="178" y="458" width="20" height="20"/>
                             </activityIndicatorView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tva-aG-Tee" customClass="CandleStickChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="275" width="375" height="438"/>
+                                <rect key="frame" x="0.0" y="223" width="375" height="490"/>
                                 <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.86274509799999999" alpha="0.6014019692" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xhx-Dk-LL0" userLabel="Info Container View">
-                                <rect key="frame" x="0.0" y="140" width="375" height="135"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="135"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMW-Oq-POx">
                                         <rect key="frame" x="16" y="12.000000000000002" width="11" height="26.666666666666671"/>
@@ -315,73 +309,6 @@
             </objects>
             <point key="canvasLocation" x="-665" y="37"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="AGX-Lt-bcW">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2KE-Yo-bPh" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="gVv-44-NPA">
-                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="RNU-7P-EuN" kind="relationship" relationship="rootViewController" id="OVp-ff-Lw5"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Bmo-fI-jQg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2672.8000000000002" y="438.53073463268368"/>
-        </scene>
-        <!--Tickers-->
-        <scene sceneID="5X7-lB-3O6">
-            <objects>
-                <tableViewController id="RNU-7P-EuN" customClass="TickersViewController" customModule="BTC_Companion" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="Agn-KR-7BP">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TickersViewCell" textLabel="yJF-eq-zzI" style="IBUITableViewCellStyleDefault" id="GdC-IC-fph">
-                                <rect key="frame" x="0.0" y="28" width="375" height="60"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GdC-IC-fph" id="Q3d-Bw-5bw">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59.666666666666664"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Ticker name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yJF-eq-zzI">
-                                            <rect key="frame" x="16" y="0.0" width="343" height="59.666666666666664"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="RNU-7P-EuN" id="3w8-5M-JPY"/>
-                            <outlet property="delegate" destination="RNU-7P-EuN" id="LS8-1p-1rH"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Tickers" id="jVP-nf-X0v">
-                        <barButtonItem key="leftBarButtonItem" title="Close" id="SBt-xA-sTX">
-                            <connections>
-                                <action selector="closeButtonTapped:" destination="RNU-7P-EuN" id="Yaj-iS-3LB"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="New" id="DUy-oL-9H7">
-                            <connections>
-                                <segue destination="a7B-d5-S51" kind="show" id="ZX2-KL-u23"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NZS-CF-3ZA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3407" y="-9"/>
-        </scene>
         <!--Title-->
         <scene sceneID="lHY-bw-7yr">
             <objects>
@@ -444,56 +371,6 @@
             </objects>
             <point key="canvasLocation" x="3626" y="-1116"/>
         </scene>
-        <!--New Ticker-->
-        <scene sceneID="nmB-Da-tXa">
-            <objects>
-                <viewController id="a7B-d5-S51" customClass="NewTickerViewController" customModule="BTC_Companion" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="nCL-E6-ocL">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ticker name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hfb-u6-zi3">
-                                <rect key="frame" x="20" y="162" width="137" height="29"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A3s-CI-XOm">
-                                <rect key="frame" x="20" y="199" width="335" height="55"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="mhY-Sg-b7X"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="pWx-nS-oBD" firstAttribute="trailing" secondItem="A3s-CI-XOm" secondAttribute="trailing" constant="20" id="AAR-aR-Kjp"/>
-                            <constraint firstItem="A3s-CI-XOm" firstAttribute="top" secondItem="Hfb-u6-zi3" secondAttribute="bottom" constant="8" id="Fij-EJ-Nwk"/>
-                            <constraint firstItem="Hfb-u6-zi3" firstAttribute="top" secondItem="pWx-nS-oBD" secondAttribute="top" constant="22" id="ZaC-Ng-SWB"/>
-                            <constraint firstItem="A3s-CI-XOm" firstAttribute="leading" secondItem="Hfb-u6-zi3" secondAttribute="leading" id="Zxe-Re-LoO"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Hfb-u6-zi3" secondAttribute="trailing" constant="20" symbolic="YES" id="jyp-SG-Xlp"/>
-                            <constraint firstItem="Hfb-u6-zi3" firstAttribute="leading" secondItem="pWx-nS-oBD" secondAttribute="leading" constant="20" id="vWb-dF-VRY"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="pWx-nS-oBD"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="New Ticker" id="PPf-9H-d8Q">
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="twF-Iq-S3r">
-                            <connections>
-                                <segue destination="P6C-o9-W8N" kind="show" identifier="NewToConfigureTickerSegue" id="ulw-37-Efd"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="textField" destination="A3s-CI-XOm" id="Fqh-Df-k5S"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x9R-wZ-rbb" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4076" y="-9.4452773613193415"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="bDP-y9-yEa">
             <objects>
@@ -544,7 +421,7 @@
                                 <rect key="frame" x="0.0" y="140" width="375" height="589"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HoldingsCell" rowHeight="87" id="GZN-1b-n8k" customClass="HoldingsCell" customModule="BTC_Companion" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HoldingsCell" rowHeight="87" id="GZN-1b-n8k" customClass="HoldingsCell" customModule="BTC_Companion" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="87"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GZN-1b-n8k" id="ItQ-lF-hEc">
@@ -588,7 +465,7 @@
                                             <outlet property="holdingsAmountLabel" destination="KtP-qC-ert" id="dPv-nh-FMT"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EquityCell" id="LdI-Sh-HLm" customClass="EquityCell" customModule="BTC_Companion" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EquityCell" id="LdI-Sh-HLm" customClass="EquityCell" customModule="BTC_Companion" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="115" width="375" height="87"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LdI-Sh-HLm" id="tgv-ji-smB">
@@ -668,8 +545,4 @@
         <image name="tab-holdings" width="24" height="24"/>
         <image name="tab-ticker" width="24" height="24"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="neP-kr-VnA"/>
-        <segue reference="sNq-gs-B0b"/>
-    </inferredMetricsTieBreakers>
 </document>
