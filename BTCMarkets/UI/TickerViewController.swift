@@ -51,7 +51,7 @@ class TickerViewController: UITableViewController {
       }
     } else if segue.identifier == TickerToCoinDetailSegue {
       if let coinDetailViewController = segue.destination as? CoinDetailViewController {
-        guard let indexPath = tableView.indexPathForSelectedRow else {
+        guard let cell = sender as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) else {
           return
         }
 
