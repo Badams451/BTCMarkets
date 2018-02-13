@@ -17,6 +17,7 @@ let tickerEditSavedEvent = "ticker:edit:saved"
 let holdingsViewEvent = "holdings:view"
 let coinDetailViewEvent = "coin:detail:view"
 let tickerConfigureCurrencySelected = "ticker:configure:currency:selected:"
+let segueEvent = "app:segue:"
 
 class Analytics {
   static func trackEvent(forName name: String) {

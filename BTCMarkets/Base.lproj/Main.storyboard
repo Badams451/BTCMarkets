@@ -120,8 +120,8 @@
                                     <outlet property="priceLabel" destination="I5b-PX-VjO" id="zZ5-W1-te3"/>
                                     <outlet property="volumeLabel" destination="hLN-9h-spd" id="kHI-7p-ppf"/>
                                     <segue destination="dp1-t6-YBy" kind="show" identifier="TickerToCoinDetailSegue" action="showDetailViewController:sender:" id="sNq-gs-B0b">
-                                        <segue key="commit" inheritsFrom="parent" id="IbG-kb-rQB"/>
-                                        <segue key="preview" inheritsFrom="commit" id="n0B-8R-avz"/>
+                                        <segue key="commit" destination="dp1-t6-YBy" kind="show" identifier="TickerToCoinDetailPopSegue" action="showDetailViewController:sender:" id="IbG-kb-rQB"/>
+                                        <segue key="preview" destination="dp1-t6-YBy" identifier="TickerToCoinDetailPeekSegue" id="n0B-8R-avz"/>
                                     </segue>
                                 </connections>
                             </tableViewCell>

@@ -49,7 +49,9 @@ class TickerViewController: UITableViewController {
         configureTickerViewController.configure(withTicker: ticker)
         Analytics.trackEvent(forName: tickerEditEvent)
       }
-    } else if segue.identifier == TickerToCoinDetailSegue {
+    } else if segue.identifier == TickerToCoinDetailSegue
+      || segue.identifier == TickerToCoinDetailPeekSegue
+      || segue.identifier == TickerToCoinDetailPopSegue {
       if let coinDetailViewController = segue.destination as? CoinDetailViewController {
         guard let cell = sender as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) else {
           return
@@ -61,6 +63,8 @@ class TickerViewController: UITableViewController {
         coinDetailViewController.currency = currency
         coinDetailViewController.instrument = instrument
         coinDetailViewController.navigationItem.title = "\(instrument.coinName) Price"
+        
+        Analytics.trackEvent(forName: String(format: "\(segueEvent)%@", segue.identifier!))
       }
     }
   }
