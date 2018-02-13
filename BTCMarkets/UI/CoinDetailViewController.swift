@@ -82,7 +82,7 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
   }
   
   private func stringForDate(date: Date) -> String {
-    return "As at: \(dateFormatterForXAxis.string(from: date))"
+    return "At: \(dateFormatterForXAxis.string(from: date))"
   }
   
   private var currencyInstrumentPair: String {
