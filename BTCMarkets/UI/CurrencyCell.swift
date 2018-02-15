@@ -8,17 +8,24 @@
 
 import UIKit
 
-class CurrencyCell: UITableViewCell, CurrencyFetcher {
+class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator {
   @IBOutlet var priceLabel: UILabel!
   @IBOutlet var bidLabel: UILabel!
   @IBOutlet var askLabel: UILabel!
   @IBOutlet var currencyLabel: UILabel!
   @IBOutlet var coinNameLabel: UILabel!
   @IBOutlet var volumeLabel: UILabel!
+  @IBOutlet var priceDifferenceLabel: UILabel!
   
-  private var coin: Coin?
+  var coin: Coin?
+  var openingPrice: Double?
+  var timePeriod: TimePeriod {
+    return .day
+  }
+  
   private var subscriberId: String?
   private var coinsStore: CoinsStore?
+  private var tickHistoryStore = TickHistoryStore.sharedInstance
   private var currencyForStore: [Currency: CoinsStore] {
     return [
       .aud: CoinsStoreAud.sharedInstance,
@@ -43,8 +50,23 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher {
         return
       }
 
+      self?.coin = coin
       self?.updateUI(coin: coin)
     }
+    
+    tickHistoryStore.subscribe(subscriber: subscriberId) { [weak self] tickStore in
+      let currencyInstrumentPair = "\(currency.rawValue)\(instrument.rawValue)"
+      
+      guard let strongSelf = self else { return }
+      guard let data = tickStore[currencyInstrumentPair],
+            let ticks = data[strongSelf.timePeriod] else {
+          return
+      }
+
+      strongSelf.openingPrice = ticks.first?.open
+    }
+    
+    tickHistoryStore.fetchTickerHistory(forTimeWindow: .day, timePeriod: .day, startingTime: .minusOneDay, currency: currency, instrument: instrument)
     
     self.subscriberId = subscriberId
     self.coinsStore = store
@@ -55,7 +77,8 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher {
     updateValue(forLabel: bidLabel, previousValue: self.coin?.bestBid, newValue: coin.bestBid, displayValue: coin.displayBestBid)
     updateValue(forLabel: askLabel, previousValue: self.coin?.bestAsk, newValue: coin.bestAsk, displayValue: coin.displayBestAsk)
     volumeLabel.text = coin.displayVolume
-    self.coin = coin
+    priceDifferenceLabel.text = self.formattedPriceDifference
+    priceDifferenceLabel.textColor = self.formattedPriceColor
   }
   
   private func resetState() {
@@ -66,6 +89,7 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher {
     coin = nil
     
     guard let subscriberId = subscriberId else { return }
+    tickHistoryStore.unsubscribe(subscriber: subscriberId)
     coinsStore?.unsubscribe(subscriber: subscriberId)
     coinsStore = nil
     self.subscriberId = nil

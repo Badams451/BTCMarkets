@@ -17,6 +17,7 @@
 		DD49F4FD2008BA8100B1D6C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD49F4FC2008BA8100B1D6C0 /* Assets.xcassets */; };
 		DD49F5002008BA8100B1D6C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD49F4FE2008BA8100B1D6C0 /* LaunchScreen.storyboard */; };
 		DD49F5082008C3F800B1D6C0 /* TickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD49F5072008C3F800B1D6C0 /* TickerViewController.swift */; };
+		DD741A2D2035A7050065CFAE /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD741A2C2035A7050065CFAE /* Common.swift */; };
 		DD8396B82020729C00B8C541 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8396B72020729C00B8C541 /* Analytics.swift */; };
 		DD860899200C1A4400883E8C /* ConfigureProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD860898200C1A4400883E8C /* ConfigureProfileViewController.swift */; };
 		DD86089D200C675900883E8C /* UIViewController+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD86089C200C675900883E8C /* UIViewController+Common.swift */; };
@@ -25,7 +26,7 @@
 		DDC79E4C2021A4A400D90B41 /* Tick.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC79E4B2021A4A400D90B41 /* Tick.swift */; };
 		DDCA5931200B5E2300389148 /* TickerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCA5930200B5E2300389148 /* TickerStore.swift */; };
 		DDCE9AD9200E1BB1008B582C /* CoinsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE9AD8200E1BB1008B582C /* CoinsStore.swift */; };
-		DDCE9ADB200E326D008B582C /* UITableViewCell+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE9ADA200E326D008B582C /* UITableViewCell+Common.swift */; };
+		DDCE9ADB200E326D008B582C /* UIResponder+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE9ADA200E326D008B582C /* UIResponder+Common.swift */; };
 		DDD5A017201D9BFF008DE2D4 /* CurrencyFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD5A016201D9BFF008DE2D4 /* CurrencyFetcher.swift */; };
 		DDD70B96200CBB69000C6AF6 /* TickerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD70B95200CBB69000C6AF6 /* TickerProfile.swift */; };
 		DDD70B98200CBB7E000C6AF6 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD70B97200CBB7E000C6AF6 /* Currency.swift */; };
@@ -57,6 +58,7 @@
 		DD49F4FF2008BA8100B1D6C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DD49F5012008BA8100B1D6C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD49F5072008C3F800B1D6C0 /* TickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerViewController.swift; sourceTree = "<group>"; };
+		DD741A2C2035A7050065CFAE /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		DD8396B72020729C00B8C541 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		DD860898200C1A4400883E8C /* ConfigureProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureProfileViewController.swift; sourceTree = "<group>"; };
 		DD86089C200C675900883E8C /* UIViewController+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Common.swift"; sourceTree = "<group>"; };
@@ -65,7 +67,7 @@
 		DDC79E4B2021A4A400D90B41 /* Tick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tick.swift; sourceTree = "<group>"; };
 		DDCA5930200B5E2300389148 /* TickerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerStore.swift; sourceTree = "<group>"; };
 		DDCE9AD8200E1BB1008B582C /* CoinsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsStore.swift; sourceTree = "<group>"; };
-		DDCE9ADA200E326D008B582C /* UITableViewCell+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Common.swift"; sourceTree = "<group>"; };
+		DDCE9ADA200E326D008B582C /* UIResponder+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+Common.swift"; sourceTree = "<group>"; };
 		DDD5A016201D9BFF008DE2D4 /* CurrencyFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyFetcher.swift; sourceTree = "<group>"; };
 		DDD70B95200CBB69000C6AF6 /* TickerProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerProfile.swift; sourceTree = "<group>"; };
 		DDD70B97200CBB7E000C6AF6 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
@@ -185,10 +187,11 @@
 			isa = PBXGroup;
 			children = (
 				DD86089C200C675900883E8C /* UIViewController+Common.swift */,
-				DDCE9ADA200E326D008B582C /* UITableViewCell+Common.swift */,
+				DDCE9ADA200E326D008B582C /* UIResponder+Common.swift */,
 				DD86089E200C6C1F00883E8C /* Segues.swift */,
 				DD01767A200F5FF80059A325 /* Numbers+Common.swift */,
 				DDD9329C202C7A8900F98531 /* Colors.swift */,
+				DD741A2C2035A7050065CFAE /* Common.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -365,7 +368,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDCE9ADB200E326D008B582C /* UITableViewCell+Common.swift in Sources */,
+				DDCE9ADB200E326D008B582C /* UIResponder+Common.swift in Sources */,
 				DDC79E4C2021A4A400D90B41 /* Tick.swift in Sources */,
 				DDD70B9A200CBC1F000C6AF6 /* HoldingsStore.swift in Sources */,
 				DDF8CA302008E8E900C010D7 /* CurrencyCell.swift in Sources */,
@@ -385,6 +388,7 @@
 				DDD70B98200CBB7E000C6AF6 /* Currency.swift in Sources */,
 				DDCE9AD9200E1BB1008B582C /* CoinsStore.swift in Sources */,
 				DD49F4F62008BA8100B1D6C0 /* AppDelegate.swift in Sources */,
+				DD741A2D2035A7050065CFAE /* Common.swift in Sources */,
 				DD86089F200C6C1F00883E8C /* Segues.swift in Sources */,
 				DD0FA602202AF91C00C99AF5 /* TickHistoryStore.swift in Sources */,
 				DDD9329D202C7A8900F98531 /* Colors.swift in Sources */,

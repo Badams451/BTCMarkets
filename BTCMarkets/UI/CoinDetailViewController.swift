@@ -24,15 +24,21 @@ enum TimePeriod: Int {
   }
 }
 
-class CoinDetailViewController: UIViewController, ChartViewDelegate {
-  
+class CoinDetailViewController: UIViewController, PriceDifferenceCalculator, ChartViewDelegate {
   var currency: Currency! = .aud
   var instrument: Currency! = .btc
+  var coin: Coin?
+  var openingPrice: Double?
+  var timePeriod: TimePeriod {
+    guard let timePeriod = TimePeriod(rawValue: periodSegmentedControl.selectedSegmentIndex) else {
+      return .day
+    }
+    return timePeriod
+  }
+  
   private let tickHistoryStore = TickHistoryStore.sharedInstance
   private let coinStore = CoinsStoreAud.sharedInstance
   private var currentDatesOnXAxis: [Date] = []
-  private var coin: Coin?
-  private var openPriceForTimePeriod: Double?
   private let userStatsStore = UserStatisticsStore.sharedInstance
   
   @IBOutlet var candleStickChartView: CandleStickChartView!
@@ -90,22 +96,11 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
   }
   
   private func updatePriceDifferenceLabel() {
-    guard let open = openPriceForTimePeriod, let coin = coin else {
-      return
-    }
-    
-    guard let timePeriod = TimePeriod(rawValue: periodSegmentedControl.selectedSegmentIndex) else {
-      return
-    }
-    
-    let difference = coin.lastPrice - open
-    let percentChanged = (difference / coin.lastPrice) * 100
-    let percentChangedString = percentChanged.stringValue(forDecimalPlaces: 2)
-    let unit = timePeriod.priceChangeDescription
+    let difference = self.priceDifference
     
     priceDifferenceLabel.isHidden = false
-    priceDifferenceLabel.text = "\(difference.dollarValue) (\(percentChangedString)%) \(unit)"
-    priceDifferenceLabel.textColor = difference >= 0 ? UIColor.darkGreen : UIColor.darkRed
+    priceDifferenceLabel.text = self.formattedPriceDifference
+    priceDifferenceLabel.textColor = self.formattedPriceColor
   }
   
   override func viewDidLoad() {
@@ -126,7 +121,7 @@ class CoinDetailViewController: UIViewController, ChartViewDelegate {
       strongSelf.activityIndicator.stopAnimating()
       strongSelf.drawCandlestickChart(forTicks: ticks)
       strongSelf.currentDatesOnXAxis = ticks.flatMap { $0.date }
-      strongSelf.openPriceForTimePeriod = ticks.first?.open
+      strongSelf.openingPrice = ticks.first?.open
       strongSelf.updatePriceDifferenceLabel()
     }
     
