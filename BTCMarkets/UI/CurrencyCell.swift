@@ -66,7 +66,7 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator 
       strongSelf.openingPrice = ticks.first?.open
     }
     
-    tickHistoryStore.fetchTickerHistory(forTimeWindow: .day, timePeriod: .day, startingTime: .minusOneDay, currency: currency, instrument: instrument)
+    tickHistoryStore.fetchTickerHistory(forTimeWindow: .hour, timePeriod: .day, startingTime: .minusOneDay, currency: currency, instrument: instrument)
     
     self.subscriberId = subscriberId
     self.coinsStore = store
