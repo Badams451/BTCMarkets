@@ -94,52 +94,53 @@ final class TickHistoryStore {
   }
   
   func fetchTickerHistory(forTimeWindow timeWindow: TimeWindow, timePeriod: TimePeriod, startingTime: TimeInterval, currency: Currency, instrument: Instrument) {
-    
-    let dataCachedKey = "\(currency.rawValue)\(instrument.rawValue)\(timePeriod.rawValue)\(timeWindow.rawValue)"
-    if let lastUpdate = tickUpdatedStore[dataCachedKey], lastUpdate > TimeInterval.now - timeUntilStaleCache {
-      notifySubscribers()
-      return
-    }
-    
-    let api = RestfulAPI()
-    let endTime = TimeInterval.now
-    
-    api.tickerHistory(from: startingTime.intValue,
-                      to: endTime.intValue,
-                      forTimeWindow: timeWindow,
-                      currency: currency.rawValue,
-                      instrument: instrument.rawValue).then { response -> Void in
-      guard let data = response["ticks"] as? [[Int]] else {
+    DispatchQueue.global().async {
+      let dataCachedKey = "\(currency.rawValue)\(instrument.rawValue)\(timePeriod.rawValue)\(timeWindow.rawValue)"
+      if let lastUpdate = self.tickUpdatedStore[dataCachedKey], lastUpdate > TimeInterval.now - self.timeUntilStaleCache {
+        self.notifySubscribers()
         return
       }
-                        
-      let filteredData = data.drop { array in
-        guard let timestamp = array.first else {
-          return true
-        }
-        
-        let normalisedTimestamp = timestamp.doubleValue / timestampNormalisationFactor
-        return normalisedTimestamp < startingTime
-      }
-                        
-      let ticks = filteredData.flatMap { tickData -> Tick? in
-        guard tickData.count == 6 else {
-          return nil
-        }
-        
-        let timestamp = tickData[0].doubleValue / timestampNormalisationFactor
-        let open = tickData[1].doubleValue / tickerAmountNormalisationFactor
-        let high = tickData[2].doubleValue / tickerAmountNormalisationFactor
-        let low = tickData[3].doubleValue / tickerAmountNormalisationFactor
-        let close = tickData[4].doubleValue / tickerAmountNormalisationFactor
-        let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
-        
-        return Tick(timestamp: timestamp, low: low, high: high, open: open, close: close, date: date)
-      }
       
-      self.store(ticks: ticks, forTimePeriod: timePeriod, currency: currency, instrument: instrument)
-    }.catch { error in
-      print("Could not fetch ticker history: \(error)")
+      let api = RestfulAPI()
+      let endTime = TimeInterval.now
+      
+      api.tickerHistory(from: startingTime.intValue,
+                        to: endTime.intValue,
+                        forTimeWindow: timeWindow,
+                        currency: currency.rawValue,
+                        instrument: instrument.rawValue).then { response -> Void in
+                          guard let data = response["ticks"] as? [[Int]] else {
+                            return
+                          }
+                          
+                          let filteredData = data.drop { array in
+                            guard let timestamp = array.first else {
+                              return true
+                            }
+                            
+                            let normalisedTimestamp = timestamp.doubleValue / timestampNormalisationFactor
+                            return normalisedTimestamp < startingTime
+                          }
+                          
+                          let ticks = filteredData.flatMap { tickData -> Tick? in
+                            guard tickData.count == 6 else {
+                              return nil
+                            }
+                            
+                            let timestamp = tickData[0].doubleValue / timestampNormalisationFactor
+                            let open = tickData[1].doubleValue / tickerAmountNormalisationFactor
+                            let high = tickData[2].doubleValue / tickerAmountNormalisationFactor
+                            let low = tickData[3].doubleValue / tickerAmountNormalisationFactor
+                            let close = tickData[4].doubleValue / tickerAmountNormalisationFactor
+                            let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
+                            
+                            return Tick(timestamp: timestamp, low: low, high: high, open: open, close: close, date: date)
+                          }
+                          
+                          self.store(ticks: ticks, forTimePeriod: timePeriod, currency: currency, instrument: instrument)
+        }.catch { error in
+          print("Could not fetch ticker history: \(error)")
+      }
     }
   }
 }
