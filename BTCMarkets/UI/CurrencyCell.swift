@@ -62,7 +62,7 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator 
           return
       }
       
-      strongSelf.setOpeningPriceForStartOfDay(fromTicks: ticks)
+      strongSelf.setOpeningPriceFor(timePeriod: .day, fromTicks: ticks)
     }
     
     tickHistoryStore.fetchTickerHistory(forTimeWindow: .hour, timePeriod: .day, startingTime: .minusOneDay, currency: currency, instrument: instrument)

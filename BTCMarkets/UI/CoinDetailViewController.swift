@@ -18,8 +18,8 @@ enum TimePeriod: Int {
   var priceChangeDescription: String {
     switch self {
     case .day: return "today"
-    case .week: return "this week"
-    case .month: return "this month"
+    case .week: return "past week"
+    case .month: return "past month"
     }
   }
 }
@@ -119,7 +119,7 @@ class CoinDetailViewController: UIViewController, PriceDifferenceCalculator, Cha
       strongSelf.activityIndicator.stopAnimating()
       strongSelf.drawCandlestickChart(forTicks: ticks)
       strongSelf.currentDatesOnXAxis = ticks.flatMap { $0.date }
-      strongSelf.setOpeningPriceForStartOfDay(fromTicks: ticks)
+      strongSelf.setOpeningPriceFor(timePeriod: strongSelf.timePeriod, fromTicks: ticks)
       strongSelf.updatePriceDifferenceLabel()
     }
     
