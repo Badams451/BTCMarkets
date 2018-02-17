@@ -17,6 +17,7 @@ protocol PriceDifferenceCalculator {
   var percentageDifference: Double { get }
   var formattedPriceDifference: String { get }
   var formattedPriceColor: UIColor { get }
+  mutating func setOpeningPriceForStartOfDay(fromTicks ticks: [Tick])
 }
 
 extension PriceDifferenceCalculator {
@@ -42,5 +43,14 @@ extension PriceDifferenceCalculator {
   
   var formattedPriceColor: UIColor {
     return percentageDifference >= 0 ? UIColor.darkGreen : UIColor.darkRed
+  }
+  
+  mutating func setOpeningPriceForStartOfDay(fromTicks ticks: [Tick]) {
+    let startOfDay = Calendar.current.startOfDay(for: Date())
+    let timestamp = startOfDay.timeIntervalSince1970
+    
+    if let tick = (ticks.first { $0.timestamp > timestamp }) {
+      self.openingPrice = tick.open
+    }
   }
 }

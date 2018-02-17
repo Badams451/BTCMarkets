@@ -57,13 +57,13 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator 
     tickHistoryStore.subscribe(subscriber: subscriberId) { [weak self] tickStore in
       let currencyInstrumentPair = "\(currency.rawValue)\(instrument.rawValue)"
       
-      guard let strongSelf = self else { return }
+      guard var strongSelf = self else { return }
       guard let data = tickStore[currencyInstrumentPair],
             let ticks = data[strongSelf.timePeriod] else {
           return
       }
-
-      strongSelf.openingPrice = ticks.first?.open
+      
+      strongSelf.setOpeningPriceForStartOfDay(fromTicks: ticks)
     }
     
     tickHistoryStore.fetchTickerHistory(forTimeWindow: .hour, timePeriod: .day, startingTime: .minusOneDay, currency: currency, instrument: instrument)

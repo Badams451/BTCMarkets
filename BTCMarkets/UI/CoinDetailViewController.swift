@@ -96,8 +96,6 @@ class CoinDetailViewController: UIViewController, PriceDifferenceCalculator, Cha
   }
   
   private func updatePriceDifferenceLabel() {
-    let difference = self.priceDifference
-    
     priceDifferenceLabel.isHidden = false
     priceDifferenceLabel.text = self.formattedPriceDifference
     priceDifferenceLabel.textColor = self.formattedPriceColor
@@ -111,7 +109,7 @@ class CoinDetailViewController: UIViewController, PriceDifferenceCalculator, Cha
     timelabel.text = stringForDate(date: Date())
     
     tickHistoryStore.subscribe(subscriber: subscriberId) { [weak self] tickStore in
-      guard let strongSelf = self else { return }
+      guard var strongSelf = self else { return }
       guard let data = tickStore[strongSelf.currencyInstrumentPair],
             let ticks = data[strongSelf.timePeriodForSegmentControl] else {
         return
@@ -121,7 +119,7 @@ class CoinDetailViewController: UIViewController, PriceDifferenceCalculator, Cha
       strongSelf.activityIndicator.stopAnimating()
       strongSelf.drawCandlestickChart(forTicks: ticks)
       strongSelf.currentDatesOnXAxis = ticks.flatMap { $0.date }
-      strongSelf.openingPrice = ticks.first?.open
+      strongSelf.setOpeningPriceForStartOfDay(fromTicks: ticks)
       strongSelf.updatePriceDifferenceLabel()
     }
     
