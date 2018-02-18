@@ -34,7 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func applicationDidBecomeActive(_ application: UIApplication) {
     CoinsStoreAud.sharedInstance.start()
-    CoinsStoreBtc.sharedInstance.start()
     UserStatisticsStore.sharedInstance.incrementStatistic(forKey: appStatsAppBecomeActiveKey)
     AppReview.requestReview()
   }

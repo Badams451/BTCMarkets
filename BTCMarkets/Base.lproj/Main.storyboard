@@ -330,7 +330,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wJk-dg-GIb">
-                                <rect key="frame" x="0.0" y="208" width="375" height="521"/>
+                                <rect key="frame" x="0.0" y="140" width="375" height="589"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TickerCurrencyCell" id="KYX-6k-KZ7">
@@ -347,23 +347,14 @@
                                     <outlet property="delegate" destination="P6C-o9-W8N" id="Jor-NV-Y9D"/>
                                 </connections>
                             </tableView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="RTP-4J-qWA">
-                                <rect key="frame" x="145" y="160" width="85" height="29"/>
-                                <segments>
-                                    <segment title="AUD"/>
-                                    <segment title="BTC"/>
-                                </segments>
-                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Mlh-O9-7Fi" firstAttribute="trailing" secondItem="wJk-dg-GIb" secondAttribute="trailing" id="7Ic-fd-yKI"/>
-                            <constraint firstItem="RTP-4J-qWA" firstAttribute="centerX" secondItem="Mlh-O9-7Fi" secondAttribute="centerX" id="Mri-Jh-Gj0"/>
-                            <constraint firstItem="wJk-dg-GIb" firstAttribute="top" secondItem="RTP-4J-qWA" secondAttribute="bottom" constant="20" id="X1y-uF-XbP"/>
+                            <constraint firstItem="wJk-dg-GIb" firstAttribute="top" secondItem="Mlh-O9-7Fi" secondAttribute="top" id="FGC-A6-qKh"/>
                             <constraint firstItem="wJk-dg-GIb" firstAttribute="leading" secondItem="Mlh-O9-7Fi" secondAttribute="leading" id="fEf-CJ-ItK"/>
                             <constraint firstItem="wJk-dg-GIb" firstAttribute="centerX" secondItem="Mlh-O9-7Fi" secondAttribute="centerX" id="fxV-Zi-mhA"/>
                             <constraint firstItem="Mlh-O9-7Fi" firstAttribute="bottom" secondItem="wJk-dg-GIb" secondAttribute="bottom" id="mxG-79-GDD"/>
-                            <constraint firstItem="RTP-4J-qWA" firstAttribute="top" secondItem="Mlh-O9-7Fi" secondAttribute="top" constant="20" id="yny-kF-fRo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Mlh-O9-7Fi"/>
                     </view>
@@ -375,7 +366,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="currencySegmentedControl" destination="RTP-4J-qWA" id="JZR-1L-POk"/>
                         <outlet property="instrumentsTableView" destination="wJk-dg-GIb" id="VFc-mG-sx6"/>
                     </connections>
                 </viewController>
