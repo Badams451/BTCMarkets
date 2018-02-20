@@ -59,9 +59,5 @@ extension PriceDifferenceCalculator {
         self.openingPrice = tick.open
       }
     }
-    
-    if let tick = (ticks.first { $0.timestamp > timestamp }) {
-      self.openingPrice = tick.open
-    }
   }
 }
