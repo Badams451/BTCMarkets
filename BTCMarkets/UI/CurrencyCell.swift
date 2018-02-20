@@ -50,8 +50,8 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator 
         return
       }
 
-      self?.coin = coin
       self?.updateUI(coin: coin)
+      self?.coin = coin
     }
     
     tickHistoryStore.subscribe(subscriber: subscriberId) { [weak self] tickStore in
