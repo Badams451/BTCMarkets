@@ -8,18 +8,18 @@
 
 import StoreKit
 
-private let holdingsEnteredThreshold = 5
-private let appDidBecomeActiveThreshold = 10
-private let coinDetailViewedThreshold = 5
+private let holdingsEnteredThreshold = 15
+private let appDidBecomeActiveThreshold = 40
+private let coinDetailViewedThreshold = 15
 
 class AppReview {
   static func requestReview() {
     #if DEBUG
     #else
       let store = UserStatisticsStore.sharedInstance
-      let holdingsThresholdMet = store.holdingsEnteredCount % holdingsEnteredThreshold == 0
-      let appDidBecomeActiveThresholdMet = store.appDidBecomeActiveCount % appDidBecomeActiveThreshold == 0
-      let coinDetailThresholdMet = store.coinDetailViewedCount % coinDetailViewedThreshold == 0
+      let holdingsThresholdMet = store.holdingsEnteredCount % holdingsEnteredThreshold == 0 && store.holdingsEnteredCount != 0
+      let appDidBecomeActiveThresholdMet = store.appDidBecomeActiveCount % appDidBecomeActiveThreshold == 0 && store.appDidBecomeActiveCount != 0
+      let coinDetailThresholdMet = store.coinDetailViewedCount % coinDetailViewedThreshold == 0 && store.coinDetailViewedCount != 0
     
       if holdingsThresholdMet {
         store.incrementStatistic(forKey: appStatsHoldingsEnteredKey)
