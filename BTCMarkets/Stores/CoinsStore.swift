@@ -86,7 +86,7 @@ class CoinsStore: CurrencyFetcher {
         }
         
         coin.normaliseValues()
-        DispatchQueue.main.sync {
+        DispatchQueue.main.async {
           strongSelf.coins[currency] = coin
           strongSelf.subscribers.forEach { $0.1(strongSelf.coins) }
         }
