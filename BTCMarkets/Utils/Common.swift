@@ -13,35 +13,43 @@ protocol PriceDifferenceCalculator {
   var coin: Coin? { get set }
   var timePeriod: TimePeriod { get }
   
-  var priceDifference: Double { get }
-  var percentageDifference: Double { get }
+  var priceDifference: Double? { get }
+  var percentageDifference: Double? { get }
   var formattedPriceDifference: String { get }
   var formattedPriceColor: UIColor { get }
   mutating func setOpeningPriceFor(timePeriod: TimePeriod, fromTicks ticks: [Tick])
 }
 
 extension PriceDifferenceCalculator {
-  var priceDifference: Double {
+  var priceDifference: Double? {
     guard let coin = coin, let openingPrice = openingPrice else {
-      return 0
+      return nil
     }
     
     return coin.lastPrice - openingPrice
   }
   
-  var percentageDifference: Double {
-    guard let coin = coin else {
-      return 0
+  var percentageDifference: Double? {
+    guard let coin = coin, let priceDifference = priceDifference else {
+      return nil
     }
     return (priceDifference / coin.lastPrice) * 100
   }
   
   var formattedPriceDifference: String {    
-    let percentChangedString = percentageDifference.stringValue(forDecimalPlaces: 2)
+    guard let percentChangedString = percentageDifference?.stringValue(forDecimalPlaces: 2),
+          let priceDifference = priceDifference else {
+      return "-"
+    }
+    
     return "\(priceDifference.dollarValue) (\(percentChangedString)%) \(timePeriod.priceChangeDescription)"
   }
   
   var formattedPriceColor: UIColor {
+    guard let percentageDifference = percentageDifference else {
+      return UIColor.black
+    }
+    
     return percentageDifference >= 0 ? UIColor.darkGreen : UIColor.darkRed
   }
   
