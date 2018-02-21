@@ -19,7 +19,7 @@ class TickerStore {
   static var sharedInstance: TickerStore = TickerStore()
   private var tickerSubscribers: [(Subscriber, TickersChanged)] = []
   private var selectedTickerSubscribers: [(Subscriber, SelectedTickerChanged)] = []
-  let defaultTicker = TickerProfile(tickerName: "Ticker", currency: .aud, instruments: [.btc, .ltc, .eth, .xrp, .bch])
+  let defaultTicker = TickerProfile(tickerName: "Ticker", currency: .aud, instruments: [.btc, .ltc, .eth, .etc, .xrp, .bch])
   
   init() {
     retrieveTickers()
