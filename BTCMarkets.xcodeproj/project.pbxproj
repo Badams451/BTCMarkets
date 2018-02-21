@@ -23,6 +23,7 @@
 		DD86089D200C675900883E8C /* UIViewController+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD86089C200C675900883E8C /* UIViewController+Common.swift */; };
 		DD86089F200C6C1F00883E8C /* Segues.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD86089E200C6C1F00883E8C /* Segues.swift */; };
 		DDA3FA5D2008CABF002FAA41 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA3FA5C2008CABF002FAA41 /* API.swift */; };
+		DDBD0A7F203D90450000E649 /* PriceHistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBD0A7E203D90450000E649 /* PriceHistoryStore.swift */; };
 		DDC79E4C2021A4A400D90B41 /* Tick.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC79E4B2021A4A400D90B41 /* Tick.swift */; };
 		DDCA5931200B5E2300389148 /* TickerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCA5930200B5E2300389148 /* TickerStore.swift */; };
 		DDCE9AD9200E1BB1008B582C /* CoinsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE9AD8200E1BB1008B582C /* CoinsStore.swift */; };
@@ -64,6 +65,7 @@
 		DD86089C200C675900883E8C /* UIViewController+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Common.swift"; sourceTree = "<group>"; };
 		DD86089E200C6C1F00883E8C /* Segues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segues.swift; sourceTree = "<group>"; };
 		DDA3FA5C2008CABF002FAA41 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		DDBD0A7E203D90450000E649 /* PriceHistoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceHistoryStore.swift; sourceTree = "<group>"; };
 		DDC79E4B2021A4A400D90B41 /* Tick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tick.swift; sourceTree = "<group>"; };
 		DDCA5930200B5E2300389148 /* TickerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerStore.swift; sourceTree = "<group>"; };
 		DDCE9AD8200E1BB1008B582C /* CoinsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsStore.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				04E3EE5A20135D1800DEE6C9 /* PurchasesStore.swift */,
 				DD0FA601202AF91C00C99AF5 /* TickHistoryStore.swift */,
 				DDE8BD2B202D7E2A006F06D0 /* UserStatisticsStore.swift */,
+				DDBD0A7E203D90450000E649 /* PriceHistoryStore.swift */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				DDE8BD2E202DC565006F06D0 /* AppReview.swift in Sources */,
 				04E3EE5B20135D1800DEE6C9 /* PurchasesStore.swift in Sources */,
 				DD86089D200C675900883E8C /* UIViewController+Common.swift in Sources */,
+				DDBD0A7F203D90450000E649 /* PriceHistoryStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

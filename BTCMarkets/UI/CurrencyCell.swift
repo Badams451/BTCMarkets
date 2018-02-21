@@ -32,6 +32,7 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator 
       .btc: CoinsStoreBtc.sharedInstance
     ]
   }
+  private var priceHistoryStore = PriceHistoryStore.sharedInstance
 
   override func prepareForReuse() {
     resetState()
@@ -46,12 +47,13 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator 
     let subscriberId = "\(instrument.rawValue)-\(currency.rawValue)"
     
     store?.subscribe(subscriber: subscriberId) { [weak self] coins in
-      guard let coin = coins[instrument] else {
+      guard let updatedCoin = coins[instrument] else {
         return
       }
-
-      self?.updateUI(coin: coin)
-      self?.coin = coin
+      
+      let previousCoin = self?.coin
+      self?.coin = updatedCoin
+      self?.updateUI(previousCoin: previousCoin, updatedCoin: updatedCoin)
     }
     
     tickHistoryStore.subscribe(subscriber: subscriberId) { [weak self] tickStore in
@@ -61,8 +63,16 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator 
         let ticks = data[strongSelf.timePeriod] else {
           return
       }
-      
+
       strongSelf.setOpeningPriceFor(timePeriod: strongSelf.timePeriod, fromTicks: ticks)
+      
+      if let price = strongSelf.openingPrice {
+        strongSelf.priceHistoryStore.update(price: price, forCurrency: currency)
+      }
+    }
+    
+    if let price = priceHistoryStore.pastDayPriceHistory[currency] {
+      self.openingPrice = price
     }
     
     tickHistoryStore.fetchTickerHistory(forTimeWindow: .hour, timePeriod: .day, startingTime: .minusOneDay, currency: currency, instrument: instrument)
@@ -71,11 +81,11 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator 
     self.coinsStore = store
   }
   
-  private func updateUI(coin: Coin) {
-    updateValue(forLabel: priceLabel, previousValue: self.coin?.lastPrice, newValue: coin.lastPrice, displayValue: coin.displayPrice)
-    updateValue(forLabel: bidLabel, previousValue: self.coin?.bestBid, newValue: coin.bestBid, displayValue: coin.displayBestBid)
-    updateValue(forLabel: askLabel, previousValue: self.coin?.bestAsk, newValue: coin.bestAsk, displayValue: coin.displayBestAsk)
-    volumeLabel.text = coin.displayVolume
+  private func updateUI(previousCoin: Coin?, updatedCoin: Coin) {
+    updateValue(forLabel: priceLabel, previousValue: previousCoin?.lastPrice, newValue: updatedCoin.lastPrice, displayValue: updatedCoin.displayPrice)
+    updateValue(forLabel: bidLabel, previousValue: previousCoin?.bestBid, newValue: updatedCoin.bestBid, displayValue: updatedCoin.displayBestBid)
+    updateValue(forLabel: askLabel, previousValue: previousCoin?.bestAsk, newValue: updatedCoin.bestAsk, displayValue: updatedCoin.displayBestAsk)
+    volumeLabel.text = updatedCoin.displayVolume
     priceDifferenceLabel.text = self.formattedPriceDifference
     priceDifferenceLabel.textColor = self.formattedPriceColor
   }
@@ -85,6 +95,7 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator 
     bidLabel.text = "-"
     askLabel.text = "-"
     volumeLabel.text = "-"
+    priceDifferenceLabel.text = "-"
     coin = nil
     
     guard let subscriberId = subscriberId else { return }

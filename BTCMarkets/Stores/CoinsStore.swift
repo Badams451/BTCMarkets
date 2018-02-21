@@ -32,7 +32,7 @@ class CoinsStore: CurrencyFetcher {
   typealias CoinCollectionChanged = (CoinCollection) -> Void
   
   private var subscribers: [(Subscriber, CoinCollectionChanged)] = []
-  private var coins: CoinCollection = CoinCollection()
+  private var coins: CoinCollection = CoinCollection()  
   
   // Abstract implementation. Must override.
   var currency: Currency! {
