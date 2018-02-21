@@ -51,6 +51,18 @@ struct Coin: Mappable {
   }
 }
 
+extension Coin: Equatable {
+  static func == (lhs: Coin, rhs: Coin) -> Bool {
+    return
+      lhs.bestBid == rhs.bestBid &&
+      lhs.bestAsk == rhs.bestAsk &&
+      lhs.lastPrice == rhs.lastPrice &&
+      lhs.currency == rhs.currency &&
+      lhs.instrument == rhs.instrument &&
+      lhs.volume24h == rhs.volume24h    
+  }
+}
+
 extension Coin {
   var displayPrice: String {
     if self.currency == Currency.btc.rawValue {

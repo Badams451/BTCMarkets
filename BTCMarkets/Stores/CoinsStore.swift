@@ -71,7 +71,7 @@ class CoinsStore: CurrencyFetcher {
     
     socket?.on(clientEvent: .connect) { [weak self] data, ack in
       instruments.forEach { instrument in
-        let channelName = "Ticker-BTCMarkets-\(instrument.rawValue)-\(currency.rawValue)"
+        let channelName = "Ticker-BTCMarkets-\(instrument)-\(currency.rawValue)"
         self?.socket?.emit("join", with: [channelName])
       }
     }
@@ -86,6 +86,11 @@ class CoinsStore: CurrencyFetcher {
         }
         
         coin.normaliseValues()
+        
+        if let previousCoin = strongSelf.coins[currency], previousCoin == coin {
+          return
+        }
+        
         DispatchQueue.main.async {
           strongSelf.coins[currency] = coin
           strongSelf.subscribers.forEach { $0.1(strongSelf.coins) }
