@@ -71,7 +71,7 @@ class CoinsStore: CurrencyFetcher {
     
     socket?.on(clientEvent: .connect) { [weak self] data, ack in
       instruments.forEach { instrument in
-        let channelName = "Ticker-BTCMarkets-\(instrument)-\(currency.rawValue)"
+        let channelName = "Ticker-BTCMarkets-\(instrument.rawValue)-\(currency.rawValue)"
         self?.socket?.emit("join", with: [channelName])
       }
     }
