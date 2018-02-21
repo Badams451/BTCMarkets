@@ -65,6 +65,7 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator 
       }
 
       strongSelf.setOpeningPriceFor(timePeriod: strongSelf.timePeriod, fromTicks: ticks)
+      strongSelf.updatePriceDifferenceLabel()
       
       if let price = strongSelf.openingPrice {
         strongSelf.priceHistoryStore.update(price: price, forCurrency: currency)
@@ -86,6 +87,10 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator 
     updateValue(forLabel: bidLabel, previousValue: previousCoin?.bestBid, newValue: updatedCoin.bestBid, displayValue: updatedCoin.displayBestBid)
     updateValue(forLabel: askLabel, previousValue: previousCoin?.bestAsk, newValue: updatedCoin.bestAsk, displayValue: updatedCoin.displayBestAsk)
     volumeLabel.text = updatedCoin.displayVolume
+    updatePriceDifferenceLabel()
+  }
+  
+  private func updatePriceDifferenceLabel() {
     priceDifferenceLabel.text = self.formattedPriceDifference
     priceDifferenceLabel.textColor = self.formattedPriceColor
   }
@@ -96,6 +101,7 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator 
     askLabel.text = "-"
     volumeLabel.text = "-"
     priceDifferenceLabel.text = "-"
+    openingPrice = nil
     coin = nil
     
     guard let subscriberId = subscriberId else { return }
