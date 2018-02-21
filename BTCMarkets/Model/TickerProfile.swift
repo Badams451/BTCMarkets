@@ -19,21 +19,21 @@ struct TickerProfile: Codable {
   
   init(tickerName: String, currency: Currency, instruments: [Currency]) {
     self.tickerName = tickerName
-    self.currency = currency
+    self.currency = .aud
     self.instruments = instruments
   }
   
   init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     tickerName = try container.decode(String.self, forKey: .tickerName)
-    currency = try container.decode(Currency.self, forKey: .currency)
+    currency = .aud
     instruments = try container.decode(Array<Currency>.self, forKey: .instruments)
   }
   
   func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(tickerName, forKey: .tickerName)
-    try container.encode(currency, forKey: .currency)
+    try container.encode(Currency.aud, forKey: .currency)
     try container.encode(instruments, forKey: .instruments)
   }
 }
