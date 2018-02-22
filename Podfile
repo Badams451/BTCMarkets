@@ -12,3 +12,16 @@ target 'BTCMarkets' do
   pod 'Fabric'
   pod 'Crashlytics'
 end
+
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        plist_buddy = "/usr/libexec/PlistBuddy"
+        plist = "Pods/Target Support Files/#{target}/Info.plist"
+
+        puts "Add armv7 to #{target} to make it pass iTC verification."
+
+        `#{plist_buddy} -c "Add UIRequiredDeviceCapabilities array" "#{plist}"`
+        `#{plist_buddy} -c "Add UIRequiredDeviceCapabilities:0 string armv7" "#{plist}"`
+        `#{plist_buddy} -c "Add UIRequiredDeviceCapabilities:1 string arm64" "#{plist}"`
+    end
+end
