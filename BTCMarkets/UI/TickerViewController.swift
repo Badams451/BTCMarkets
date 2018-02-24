@@ -87,11 +87,7 @@ class TickerViewController: UITableViewController {
     }
     
     currencyCell.configure(currency: ticker.currency, instrument: ticker.instruments[indexPath.row])
-    
-    if splitViewIsCollapsed {
-      currencyCell.accessoryType = .disclosureIndicator
-    }
-    
+
     return currencyCell
   }
   
