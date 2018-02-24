@@ -51,7 +51,9 @@ class CoinDetailViewController: UIViewController, PriceDifferenceCalculator, Cha
   @IBOutlet var highLabel: UILabel!
   @IBOutlet var timelabel: UILabel!
   @IBOutlet var priceDifferenceLabel: UILabel!
-  @IBOutlet var activityIndicator: UIActivityIndicatorView!
+  @IBOutlet var bidAmountLabel: UILabel!
+  @IBOutlet var askAmountLabel: UILabel!
+  @IBOutlet var volumeAmountLabel: UILabel!
   
   private var dateFormatterForXAxis: DateFormatter {
     let formatter = DateFormatter()
@@ -116,7 +118,6 @@ class CoinDetailViewController: UIViewController, PriceDifferenceCalculator, Cha
       }
       
       strongSelf.candleStickChartView.isHidden = false
-      strongSelf.activityIndicator.stopAnimating()
       strongSelf.drawCandlestickChart(forTicks: ticks)
       strongSelf.currentDatesOnXAxis = ticks.flatMap { $0.date }
       strongSelf.setOpeningPriceFor(timePeriod: strongSelf.timePeriod, fromTicks: ticks)
@@ -127,11 +128,20 @@ class CoinDetailViewController: UIViewController, PriceDifferenceCalculator, Cha
       guard let strongSelf = self else { return }
       guard let updatedCoin = coinCollection[strongSelf.instrument] else { return }
       strongSelf.updateValue(forLabel: strongSelf.currentPriceLabel, previousValue: strongSelf.coin?.lastPrice, newValue: updatedCoin.lastPrice, displayValue: "\(updatedCoin.displayPrice)")
+      
+      let previousCoin = strongSelf.coin
       strongSelf.coin = updatedCoin
       strongSelf.updatePriceDifferenceLabel()
+      strongSelf.updateBidAskVolLabels(previousCoin: previousCoin, updatedCoin: updatedCoin)
     }
     
     userStatsStore.incrementStatistic(forKey: appStatsCoinDetailViewedKey)
+  }
+  
+  private func updateBidAskVolLabels(previousCoin: Coin?, updatedCoin: Coin) {
+    updateValue(forLabel: bidAmountLabel, previousValue: previousCoin?.bestBid, newValue: updatedCoin.bestBid, displayValue: updatedCoin.displayBestBid)
+    updateValue(forLabel: askAmountLabel, previousValue: previousCoin?.bestAsk, newValue: updatedCoin.bestAsk, displayValue: updatedCoin.displayBestAsk)
+    volumeAmountLabel.text = updatedCoin.displayVolume
   }
   
   override func viewWillAppear(_ animated: Bool) {
