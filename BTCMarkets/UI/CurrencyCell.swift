@@ -94,7 +94,7 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator 
 
   private func drawLineChart(forTicks ticks:[Tick]) {
     let chartData = ticks.enumerated().map { (index, tick) -> ChartDataEntry in
-      return ChartDataEntry(x: Double(index), y: tick.low)
+      return ChartDataEntry(x: Double(index), y: tick.close)
     }
     
     let dataSet = LineChartDataSet(values: chartData, label: nil)
