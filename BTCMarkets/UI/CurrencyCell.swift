@@ -10,11 +10,8 @@ import UIKit
 
 class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator {
   @IBOutlet var priceLabel: UILabel!
-  @IBOutlet var bidLabel: UILabel!
-  @IBOutlet var askLabel: UILabel!
   @IBOutlet var currencyLabel: UILabel!
   @IBOutlet var coinNameLabel: UILabel!
-  @IBOutlet var volumeLabel: UILabel!
   @IBOutlet var priceDifferenceLabel: UILabel!
   
   var coin: Coin?
@@ -84,9 +81,6 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator 
   
   private func updateUI(previousCoin: Coin?, updatedCoin: Coin) {
     updateValue(forLabel: priceLabel, previousValue: previousCoin?.lastPrice, newValue: updatedCoin.lastPrice, displayValue: updatedCoin.displayPrice)
-    updateValue(forLabel: bidLabel, previousValue: previousCoin?.bestBid, newValue: updatedCoin.bestBid, displayValue: updatedCoin.displayBestBid)
-    updateValue(forLabel: askLabel, previousValue: previousCoin?.bestAsk, newValue: updatedCoin.bestAsk, displayValue: updatedCoin.displayBestAsk)
-    volumeLabel.text = updatedCoin.displayVolume
     updatePriceDifferenceLabel()
   }
   
@@ -97,9 +91,6 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator 
   
   private func resetState() {
     priceLabel.text = "-"
-    bidLabel.text = "-"
-    askLabel.text = "-"
-    volumeLabel.text = "-"
     priceDifferenceLabel.text = "-"
     openingPrice = nil
     coin = nil

@@ -41,44 +41,8 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I5b-PX-VjO">
-                                            <rect key="frame" x="349" y="-16.666666666666668" width="10" height="78.333333333333329"/>
+                                            <rect key="frame" x="349" y="9.3333333333333339" width="10" height="26.333333333333329"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLN-9h-spd">
-                                            <rect key="frame" x="352.66666666666669" y="94.666666666666671" width="6.3333333333333144" height="16"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yKz-tO-Vvz">
-                                            <rect key="frame" x="120.66666666666667" y="92" width="6" height="20"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VPh-QC-mZl">
-                                            <rect key="frame" x="20" y="92" width="6" height="20"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YhC-tO-F3p">
-                                            <rect key="frame" x="20" y="69" width="20.666666666666671" height="20"/>
-                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ask" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GkR-fB-0yb">
-                                            <rect key="frame" x="120.66666666666669" y="71" width="23" height="16"/>
-                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Volume (24h)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMX-5P-lal">
-                                            <rect key="frame" x="280.66666666666669" y="72" width="78.333333333333314" height="14.666666666666671"/>
-                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -91,44 +55,22 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="I5b-PX-VjO" firstAttribute="centerY" secondItem="CCs-Wq-XBf" secondAttribute="centerY" id="1Bb-ol-EVJ"/>
-                                        <constraint firstItem="hLN-9h-spd" firstAttribute="trailing" secondItem="I5b-PX-VjO" secondAttribute="trailing" id="24H-K6-oni"/>
                                         <constraint firstItem="CCs-Wq-XBf" firstAttribute="top" secondItem="fl7-hn-SeM" secondAttribute="top" constant="11" id="2RW-Aq-HfQ"/>
-                                        <constraint firstItem="vMX-5P-lal" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GkR-fB-0yb" secondAttribute="trailing" constant="40" id="3Ud-BM-5Wl"/>
-                                        <constraint firstItem="vMX-5P-lal" firstAttribute="centerY" secondItem="GkR-fB-0yb" secondAttribute="centerY" id="CXc-1n-QZj"/>
-                                        <constraint firstItem="yKz-tO-Vvz" firstAttribute="top" secondItem="GkR-fB-0yb" secondAttribute="bottom" constant="5" id="DYw-fh-5fd"/>
-                                        <constraint firstItem="yKz-tO-Vvz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="VPh-QC-mZl" secondAttribute="trailing" constant="20" id="DqZ-hO-FCz"/>
                                         <constraint firstAttribute="trailing" secondItem="I5b-PX-VjO" secondAttribute="trailing" constant="16" id="Dr5-O6-0Zl"/>
                                         <constraint firstItem="I5b-PX-VjO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="CCs-Wq-XBf" secondAttribute="trailing" constant="20" id="EHM-UV-79c"/>
-                                        <constraint firstItem="hLN-9h-spd" firstAttribute="centerY" secondItem="yKz-tO-Vvz" secondAttribute="centerY" id="HLR-si-cwI"/>
-                                        <constraint firstItem="VPh-QC-mZl" firstAttribute="leading" secondItem="dHm-05-kEJ" secondAttribute="leading" id="IZs-TW-l2y"/>
-                                        <constraint firstItem="GkR-fB-0yb" firstAttribute="centerY" secondItem="YhC-tO-F3p" secondAttribute="centerY" id="JBK-ya-Xxk"/>
                                         <constraint firstItem="Guv-hm-Xwq" firstAttribute="trailing" secondItem="I5b-PX-VjO" secondAttribute="trailing" id="Jhs-zm-pTM"/>
                                         <constraint firstItem="dHm-05-kEJ" firstAttribute="leading" secondItem="CCs-Wq-XBf" secondAttribute="leading" id="L4R-qY-Ntn"/>
-                                        <constraint firstItem="vMX-5P-lal" firstAttribute="trailing" secondItem="I5b-PX-VjO" secondAttribute="trailing" id="MPh-Sp-aEd"/>
-                                        <constraint firstItem="GkR-fB-0yb" firstAttribute="top" secondItem="dHm-05-kEJ" secondAttribute="bottom" constant="8" id="MVg-wV-Dk7"/>
-                                        <constraint firstItem="YhC-tO-F3p" firstAttribute="leading" secondItem="dHm-05-kEJ" secondAttribute="leading" id="QRd-Qq-8eT"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dHm-05-kEJ" secondAttribute="trailing" constant="20" symbolic="YES" id="UA3-tq-Nbo"/>
-                                        <constraint firstItem="hLN-9h-spd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yKz-tO-Vvz" secondAttribute="trailing" constant="40" id="UZ5-jh-byy"/>
-                                        <constraint firstItem="hLN-9h-spd" firstAttribute="top" secondItem="vMX-5P-lal" secondAttribute="bottom" constant="8" id="YjV-2o-Kcc"/>
-                                        <constraint firstItem="vMX-5P-lal" firstAttribute="top" secondItem="I5b-PX-VjO" secondAttribute="bottom" constant="10.5" id="aS8-a8-W6S"/>
-                                        <constraint firstItem="yKz-tO-Vvz" firstAttribute="leading" secondItem="GkR-fB-0yb" secondAttribute="leading" id="azw-0w-kUk"/>
                                         <constraint firstItem="dHm-05-kEJ" firstAttribute="top" secondItem="CCs-Wq-XBf" secondAttribute="bottom" constant="8" id="r1B-0W-FFz"/>
                                         <constraint firstItem="Guv-hm-Xwq" firstAttribute="centerY" secondItem="dHm-05-kEJ" secondAttribute="centerY" id="rV3-4M-9i8"/>
-                                        <constraint firstItem="YhC-tO-F3p" firstAttribute="top" secondItem="dHm-05-kEJ" secondAttribute="bottom" constant="6" id="rZ8-HZ-sx5"/>
-                                        <constraint firstItem="yKz-tO-Vvz" firstAttribute="centerY" secondItem="VPh-QC-mZl" secondAttribute="centerY" id="s7G-wC-En2"/>
-                                        <constraint firstItem="VPh-QC-mZl" firstAttribute="top" secondItem="YhC-tO-F3p" secondAttribute="bottom" constant="3" id="u6S-Qb-0ef"/>
-                                        <constraint firstItem="GkR-fB-0yb" firstAttribute="leading" secondItem="YhC-tO-F3p" secondAttribute="trailing" constant="80" id="x0K-R2-R8s"/>
                                         <constraint firstItem="CCs-Wq-XBf" firstAttribute="leading" secondItem="fl7-hn-SeM" secondAttribute="leading" constant="20" id="z5n-UO-X2M"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="askLabel" destination="yKz-tO-Vvz" id="rmB-Eb-6TB"/>
-                                    <outlet property="bidLabel" destination="VPh-QC-mZl" id="6ac-Md-gED"/>
                                     <outlet property="coinNameLabel" destination="CCs-Wq-XBf" id="on5-nP-3oA"/>
                                     <outlet property="currencyLabel" destination="dHm-05-kEJ" id="UWq-Jz-fEy"/>
                                     <outlet property="priceDifferenceLabel" destination="Guv-hm-Xwq" id="I2T-iY-Dzu"/>
                                     <outlet property="priceLabel" destination="I5b-PX-VjO" id="zZ5-W1-te3"/>
-                                    <outlet property="volumeLabel" destination="hLN-9h-spd" id="kHI-7p-ppf"/>
                                     <segue destination="dp1-t6-YBy" kind="show" identifier="TickerToCoinDetailSegue" action="showDetailViewController:sender:" id="sNq-gs-B0b">
                                         <segue key="commit" destination="dp1-t6-YBy" kind="show" identifier="TickerToCoinDetailPopSegue" action="showDetailViewController:sender:" id="IbG-kb-rQB"/>
                                         <segue key="preview" destination="dp1-t6-YBy" identifier="TickerToCoinDetailPeekSegue" id="n0B-8R-avz"/>
