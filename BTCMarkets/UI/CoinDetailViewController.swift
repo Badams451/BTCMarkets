@@ -139,7 +139,9 @@ class CoinDetailViewController: UIViewController, PriceDifferenceCalculator, Cha
     coinStore.subscribe(subscriber: subscriberId) { [weak self] coinCollection in
       guard let strongSelf = self else { return }
       guard let updatedCoin = coinCollection[strongSelf.instrument] else { return }
-      strongSelf.updateValue(forLabel: strongSelf.currentPriceLabel, previousValue: strongSelf.coin?.lastPrice, newValue: updatedCoin.lastPrice, displayValue: "\(updatedCoin.displayPrice)")
+      
+      let priceDisplayValue = strongSelf.splitViewIsCollapsed ? "" : "\(updatedCoin.instrument) Price: \(updatedCoin.displayPrice)"      
+      strongSelf.updateValue(forLabel: strongSelf.currentPriceLabel, previousValue: strongSelf.coin?.lastPrice, newValue: updatedCoin.lastPrice, displayValue: priceDisplayValue)
       
       let previousCoin = strongSelf.coin
       strongSelf.coin = updatedCoin
