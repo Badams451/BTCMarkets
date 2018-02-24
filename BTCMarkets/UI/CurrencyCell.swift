@@ -106,9 +106,9 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator 
     dataSet.fillAlpha = 0.26
     dataSet.highlightEnabled = false
     dataSet.drawCircleHoleEnabled = false
-    dataSet.fillColor = .darkRed
+    dataSet.fillColor = self.formattedPriceColor
+    dataSet.setColor(self.formattedPriceColor)
     dataSet.drawFilledEnabled = true
-    dataSet.setColor(.darkRed)
     
     let data = LineChartData(dataSet: dataSet)
     data.setValueTextColor(.white)
