@@ -24,6 +24,18 @@ enum TimePeriod: Int {
   }
 }
 
+private class CoinDetailScrollView: UIScrollView, UIGestureRecognizerDelegate {
+  func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    return false
+  }
+}
+
+class CoinDetailCandleStickChartView: CandleStickChartView {
+  override func gestureRecognizer(_ gestureRecognizer: NSUIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: NSUIGestureRecognizer) -> Bool {
+    return gestureRecognizer.state == .began
+  }
+}
+
 class CoinDetailViewController: UIViewController, PriceDifferenceCalculator, ChartViewDelegate {
   var currency: Currency! = .aud
   var instrument: Currency! = .btc

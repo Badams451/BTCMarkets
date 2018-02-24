@@ -160,7 +160,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HBk-iy-x5L">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HBk-iy-x5L" customClass="CoinDetailScrollView" customModule="BTC_Companion" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="88" width="375" height="641"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="FPU-q0-LqH">
@@ -284,7 +284,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="AXL-vw-JzQ" secondAttribute="trailing" constant="16" id="xMN-dT-OES"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dep-rp-HJ2" customClass="CandleStickChartView" customModule="Charts">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dep-rp-HJ2" customClass="CoinDetailCandleStickChartView" customModule="BTC_Companion" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="216" width="375" height="330"/>
                                                 <color key="backgroundColor" red="0.86274509799999999" green="0.0" blue="0.19405629553203452" alpha="0.95017765409999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
