@@ -32,9 +32,7 @@ class TickerStore {
   }
   
   var selectedTicker: TickerProfile? {
-    guard let tickerName = UserDefaults.standard.object(forKey: selectedTickerKey) as? String else {
-      return nil
-    }
+    let tickerName = "Ticker"
     let ticker = tickers.filter { $0.tickerName == tickerName }.first
     return ticker
   }

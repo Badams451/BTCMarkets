@@ -15,7 +15,7 @@ class TickerViewController: UITableViewController {
   private let applicationData = TickerStore.sharedInstance
   
   private var ticker: TickerProfile {
-    return applicationData.defaultTicker
+    return applicationData.selectedTicker ?? applicationData.defaultTicker
   }
 
   override func viewWillAppear(_ animated: Bool) {
