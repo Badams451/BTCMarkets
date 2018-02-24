@@ -164,10 +164,10 @@
                                 <rect key="frame" x="0.0" y="88" width="375" height="641"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="FPU-q0-LqH">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="673"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="655"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RRE-f7-whG" userLabel="Info Container View">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iag-3a-qud">
                                                         <rect key="frame" x="182.33333333333334" y="7.9999999999999982" width="10.333333333333343" height="26.333333333333329"/>
@@ -181,14 +181,8 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="At: -" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dOW-rJ-UQh">
-                                                        <rect key="frame" x="175.33333333333334" y="64.666666666666657" width="25" height="14.333333333333329"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yfn-E4-xw7" userLabel="Divider">
-                                                        <rect key="frame" x="0.0" y="89" width="375" height="1"/>
+                                                        <rect key="frame" x="0.0" y="65" width="375" height="1"/>
                                                         <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.86274509799999999" alpha="0.95017765409999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="aaX-lJ-esG"/>
@@ -196,11 +190,9 @@
                                                     </view>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstItem="dOW-rJ-UQh" firstAttribute="centerX" secondItem="9Im-gr-wUQ" secondAttribute="centerX" id="9ZH-oC-HJL"/>
-                                                    <constraint firstItem="dOW-rJ-UQh" firstAttribute="top" secondItem="9Im-gr-wUQ" secondAttribute="bottom" constant="8" symbolic="YES" id="EQl-ir-AN7"/>
                                                     <constraint firstAttribute="bottom" secondItem="yfn-E4-xw7" secondAttribute="bottom" id="R8h-am-VSV"/>
                                                     <constraint firstItem="9Im-gr-wUQ" firstAttribute="centerX" secondItem="Iag-3a-qud" secondAttribute="centerX" id="W03-L5-eCi"/>
-                                                    <constraint firstAttribute="height" constant="90" id="aiQ-aa-FtO"/>
+                                                    <constraint firstAttribute="height" constant="66" id="aiQ-aa-FtO"/>
                                                     <constraint firstAttribute="trailing" secondItem="yfn-E4-xw7" secondAttribute="trailing" id="e30-9b-D9P"/>
                                                     <constraint firstItem="Iag-3a-qud" firstAttribute="centerX" secondItem="RRE-f7-whG" secondAttribute="centerX" id="mlZ-sy-33O"/>
                                                     <constraint firstItem="Iag-3a-qud" firstAttribute="top" secondItem="RRE-f7-whG" secondAttribute="top" constant="8.0000000000000018" id="oGW-X0-MGT"/>
@@ -209,61 +201,69 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lW2-8O-KtT" userLabel="Candle Chart Info">
-                                                <rect key="frame" x="0.0" y="90" width="375" height="71"/>
+                                                <rect key="frame" x="0.0" y="66" width="375" height="77"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Open: -" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTX-PA-Jdh">
-                                                        <rect key="frame" x="16.000000000000004" y="16" width="43.333333333333343" height="14.333333333333336"/>
+                                                        <rect key="frame" x="16.000000000000004" y="30.333333333333339" width="43.333333333333343" height="14.333333333333332"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High: -" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ABX-eY-9ym">
-                                                        <rect key="frame" x="16" y="40" width="39" height="14.333333333333336"/>
+                                                        <rect key="frame" x="16" y="54.333333333333343" width="39" height="14.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Close: -" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOh-gN-idS">
-                                                        <rect key="frame" x="314.33333333333331" y="16" width="44.666666666666686" height="14.333333333333336"/>
+                                                        <rect key="frame" x="314.33333333333331" y="30.333333333333339" width="44.666666666666686" height="14.333333333333332"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Low: -" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnp-G6-zDw">
-                                                        <rect key="frame" x="323.66666666666669" y="38.333333333333343" width="35.333333333333314" height="14.333333333333336"/>
+                                                        <rect key="frame" x="323.66666666666669" y="52.666666666666657" width="35.333333333333314" height="14.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v5m-XG-ukf" userLabel="Divider">
-                                                        <rect key="frame" x="0.0" y="70" width="375" height="1"/>
+                                                        <rect key="frame" x="0.0" y="76" width="375" height="1"/>
                                                         <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.86274509799999999" alpha="0.95017765409999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="QG9-ZU-M39"/>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="bHj-jf-AUz"/>
                                                         </constraints>
                                                     </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="At: -" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FVZ-wY-Pvf">
+                                                        <rect key="frame" x="175" y="8" width="25" height="14.333333333333336"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="71" id="5nW-BH-7Ee"/>
+                                                    <constraint firstAttribute="height" constant="77" id="5nW-BH-7Ee"/>
                                                     <constraint firstItem="ABX-eY-9ym" firstAttribute="top" secondItem="RTX-PA-Jdh" secondAttribute="bottom" constant="9.6666666666666714" id="EDw-2Q-kgw"/>
+                                                    <constraint firstItem="FVZ-wY-Pvf" firstAttribute="top" secondItem="lW2-8O-KtT" secondAttribute="top" constant="8" id="Fvd-YQ-0jI"/>
                                                     <constraint firstAttribute="trailing" secondItem="v5m-XG-ukf" secondAttribute="trailing" id="Kou-0i-e1P"/>
-                                                    <constraint firstItem="RTX-PA-Jdh" firstAttribute="top" secondItem="lW2-8O-KtT" secondAttribute="top" constant="16" id="LnE-y2-tAs"/>
                                                     <constraint firstItem="v5m-XG-ukf" firstAttribute="leading" secondItem="lW2-8O-KtT" secondAttribute="leading" id="O5h-vE-R5D"/>
                                                     <constraint firstItem="ABX-eY-9ym" firstAttribute="leading" secondItem="RTX-PA-Jdh" secondAttribute="leading" id="RWh-3q-0hO"/>
                                                     <constraint firstAttribute="bottom" secondItem="v5m-XG-ukf" secondAttribute="bottom" id="Tdm-To-2HB"/>
+                                                    <constraint firstItem="RTX-PA-Jdh" firstAttribute="top" secondItem="FVZ-wY-Pvf" secondAttribute="bottom" constant="8" symbolic="YES" id="TfF-y3-Na3"/>
                                                     <constraint firstAttribute="trailing" secondItem="mOh-gN-idS" secondAttribute="trailing" constant="16" id="b1p-Bq-Bx3"/>
                                                     <constraint firstItem="xnp-G6-zDw" firstAttribute="trailing" secondItem="mOh-gN-idS" secondAttribute="trailing" id="bNp-3X-7om"/>
                                                     <constraint firstItem="mOh-gN-idS" firstAttribute="top" secondItem="RTX-PA-Jdh" secondAttribute="top" id="hOl-Ch-VYN"/>
+                                                    <constraint firstItem="FVZ-wY-Pvf" firstAttribute="centerX" secondItem="lW2-8O-KtT" secondAttribute="centerX" id="nKl-SB-V3R"/>
                                                     <constraint firstItem="xnp-G6-zDw" firstAttribute="top" secondItem="mOh-gN-idS" secondAttribute="bottom" constant="8" id="pGr-UI-JaN"/>
                                                     <constraint firstItem="RTX-PA-Jdh" firstAttribute="leading" secondItem="lW2-8O-KtT" secondAttribute="leading" constant="16" id="szP-HG-RrA"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o6w-ST-mbP" userLabel="Chart Selection View">
-                                                <rect key="frame" x="0.0" y="161" width="375" height="55"/>
+                                                <rect key="frame" x="0.0" y="143" width="375" height="55"/>
                                                 <subviews>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lLE-YC-phn">
-                                                        <rect key="frame" x="16" y="13.666666666666686" width="145" height="29"/>
+                                                        <rect key="frame" x="16" y="13.666666666666657" width="145" height="29"/>
                                                         <segments>
                                                             <segment title="Historical"/>
                                                             <segment title="Candle"/>
@@ -285,14 +285,14 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dep-rp-HJ2" customClass="CoinDetailCandleStickChartView" customModule="BTC_Companion" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="216" width="375" height="330"/>
+                                                <rect key="frame" x="0.0" y="198" width="375" height="330"/>
                                                 <color key="backgroundColor" red="0.86274509799999999" green="0.0" blue="0.19405629553203452" alpha="0.95017765409999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="330" id="OMS-EY-oV9"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uxg-Hg-pS7" userLabel="Segment Control Container">
-                                                <rect key="frame" x="0.0" y="546" width="375" height="55"/>
+                                                <rect key="frame" x="0.0" y="528" width="375" height="55"/>
                                                 <subviews>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="z13-gJ-QOd">
                                                         <rect key="frame" x="137.66666666666666" y="13.666666666666629" width="100" height="29"/>
@@ -314,14 +314,14 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jZf-PC-uWV" userLabel="Divider">
-                                                <rect key="frame" x="0.0" y="601" width="375" height="1"/>
+                                                <rect key="frame" x="0.0" y="583" width="375" height="1"/>
                                                 <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.86274509799999999" alpha="0.95017765409999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="e14-DR-tX0"/>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="QFy-bF-TAH" userLabel="Bid ask volume">
-                                                <rect key="frame" x="0.0" y="602" width="375" height="71"/>
+                                                <rect key="frame" x="0.0" y="584" width="375" height="71"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DgN-k2-TPE" userLabel="Bid Container">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="23"/>
@@ -447,7 +447,7 @@
                         <outlet property="openLabel" destination="RTX-PA-Jdh" id="rVR-7N-F4o"/>
                         <outlet property="periodSegmentedControl" destination="z13-gJ-QOd" id="aXc-Ff-E9q"/>
                         <outlet property="priceDifferenceLabel" destination="9Im-gr-wUQ" id="CJv-uB-qAb"/>
-                        <outlet property="timelabel" destination="dOW-rJ-UQh" id="6sW-6O-Cvs"/>
+                        <outlet property="timelabel" destination="FVZ-wY-Pvf" id="UF7-DA-iJ6"/>
                         <outlet property="volumeAmountLabel" destination="FvS-wY-832" id="tOv-ZY-79U"/>
                     </connections>
                 </viewController>
