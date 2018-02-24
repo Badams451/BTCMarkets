@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -164,7 +165,7 @@
                                 <rect key="frame" x="0.0" y="88" width="375" height="641"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="FPU-q0-LqH">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="655"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="677"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RRE-f7-whG" userLabel="Info Container View">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
@@ -259,40 +260,12 @@
                                                     <constraint firstItem="RTX-PA-Jdh" firstAttribute="leading" secondItem="lW2-8O-KtT" secondAttribute="leading" constant="16" id="szP-HG-RrA"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o6w-ST-mbP" userLabel="Chart Selection View">
-                                                <rect key="frame" x="0.0" y="143" width="375" height="55"/>
-                                                <subviews>
-                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lLE-YC-phn">
-                                                        <rect key="frame" x="16" y="13.666666666666657" width="145" height="29"/>
-                                                        <segments>
-                                                            <segment title="Historical"/>
-                                                            <segment title="Candle"/>
-                                                        </segments>
-                                                    </segmentedControl>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AXL-vw-JzQ">
-                                                        <rect key="frame" x="324" y="10" width="35" height="35"/>
-                                                        <state key="normal" image="button-expand"/>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstItem="AXL-vw-JzQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lLE-YC-phn" secondAttribute="trailing" constant="20" id="2oW-KT-B6n"/>
-                                                    <constraint firstItem="lLE-YC-phn" firstAttribute="leading" secondItem="o6w-ST-mbP" secondAttribute="leading" constant="16" id="4Dv-Fh-bFk"/>
-                                                    <constraint firstItem="lLE-YC-phn" firstAttribute="centerY" secondItem="o6w-ST-mbP" secondAttribute="centerY" id="Zy0-HX-5Ty"/>
-                                                    <constraint firstItem="AXL-vw-JzQ" firstAttribute="centerY" secondItem="o6w-ST-mbP" secondAttribute="centerY" id="hGU-gw-kKJ"/>
-                                                    <constraint firstAttribute="height" constant="55" id="hsV-K2-ggJ"/>
-                                                    <constraint firstAttribute="trailing" secondItem="AXL-vw-JzQ" secondAttribute="trailing" constant="16" id="xMN-dT-OES"/>
-                                                </constraints>
-                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dep-rp-HJ2" customClass="CoinDetailCandleStickChartView" customModule="BTC_Companion" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="198" width="375" height="330"/>
+                                                <rect key="frame" x="0.0" y="143" width="375" height="406"/>
                                                 <color key="backgroundColor" red="0.86274509799999999" green="0.0" blue="0.19405629553203452" alpha="0.95017765409999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="330" id="OMS-EY-oV9"/>
-                                                </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uxg-Hg-pS7" userLabel="Segment Control Container">
-                                                <rect key="frame" x="0.0" y="528" width="375" height="55"/>
+                                                <rect key="frame" x="0.0" y="549" width="375" height="55"/>
                                                 <subviews>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="z13-gJ-QOd">
                                                         <rect key="frame" x="137.66666666666666" y="13.666666666666629" width="100" height="29"/>
@@ -314,14 +287,14 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jZf-PC-uWV" userLabel="Divider">
-                                                <rect key="frame" x="0.0" y="583" width="375" height="1"/>
+                                                <rect key="frame" x="0.0" y="604" width="375" height="1"/>
                                                 <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.86274509799999999" alpha="0.95017765409999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="e14-DR-tX0"/>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="QFy-bF-TAH" userLabel="Bid ask volume">
-                                                <rect key="frame" x="0.0" y="584" width="375" height="71"/>
+                                                <rect key="frame" x="0.0" y="605" width="375" height="72"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DgN-k2-TPE" userLabel="Bid Container">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="23"/>
@@ -412,6 +385,13 @@
                                                             <constraint firstAttribute="trailing" secondItem="FvS-wY-832" secondAttribute="trailing" constant="16" id="Yis-nB-dn8"/>
                                                         </constraints>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fch-47-BJy" userLabel="Divider">
+                                                        <rect key="frame" x="0.0" y="71" width="375" height="1"/>
+                                                        <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.86274509799999999" alpha="0.95017765409999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="1" id="BEj-kz-vpB"/>
+                                                        </constraints>
+                                                    </view>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
@@ -429,6 +409,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Hg3-Pm-4nG" firstAttribute="bottom" secondItem="HBk-iy-x5L" secondAttribute="bottom" id="LUV-fc-Osp"/>
+                            <constraint firstItem="Dep-rp-HJ2" firstAttribute="height" secondItem="kP0-4R-EVx" secondAttribute="height" multiplier="0.5" id="bEh-sg-bF2"/>
                             <constraint firstItem="Hg3-Pm-4nG" firstAttribute="trailing" secondItem="HBk-iy-x5L" secondAttribute="trailing" id="c1P-AY-Sr9"/>
                             <constraint firstItem="HBk-iy-x5L" firstAttribute="top" secondItem="Hg3-Pm-4nG" secondAttribute="top" id="o5l-EA-Sef"/>
                             <constraint firstItem="HBk-iy-x5L" firstAttribute="leading" secondItem="Hg3-Pm-4nG" secondAttribute="leading" id="tur-gM-UVg"/>
@@ -454,14 +435,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bOF-wd-EDu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1496.8" y="-1734.2364532019706"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="l4E-KJ-LNK">
-            <objects>
-                <viewController id="MHF-iM-EDg" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="v8n-nB-3QO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2211" y="-1056"/>
         </scene>
         <!--Ticker Split Scene-->
         <scene sceneID="RT3-Ph-3eY">
@@ -719,7 +692,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="button-expand" width="35" height="35"/>
         <image name="tab-holdings" width="24" height="24"/>
         <image name="tab-ticker" width="24" height="24"/>
     </resources>
