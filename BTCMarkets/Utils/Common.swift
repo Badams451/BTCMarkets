@@ -54,17 +54,16 @@ extension PriceDifferenceCalculator {
   }
   
   mutating func setOpeningPriceFor(timePeriod: TimePeriod, fromTicks ticks: [Tick]) {
-    let date = Calendar.current.startOfDay(for: Date())
-    let timestamp = date.timeIntervalSince1970
+    let timestamp = TimeInterval.minusOneDay
     
     switch timePeriod {
     case .day:
       if let tick = (ticks.first { $0.timestamp > timestamp }) {
-        self.openingPrice = tick.open
+        self.openingPrice = tick.close
       }
     default:
       if let tick = ticks.first {
-        self.openingPrice = tick.open
+        self.openingPrice = tick.close
       }
     }
   }

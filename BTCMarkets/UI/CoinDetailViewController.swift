@@ -17,7 +17,7 @@ enum TimePeriod: Int {
   
   var priceChangeDescription: String {
     switch self {
-    case .day: return "today"
+    case .day: return "past day"
     case .week: return "past week"
     case .month: return "past month"
     }
