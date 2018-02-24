@@ -9,7 +9,7 @@
 import UIKit
 import Charts
 
-class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator {
+class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator, ChartViewDelegate {
   @IBOutlet var priceLabel: UILabel!
   @IBOutlet var currencyLabel: UILabel!
   @IBOutlet var coinNameLabel: UILabel!
@@ -120,6 +120,7 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator 
     self.lineChartView.leftAxis.enabled = false
     self.lineChartView.rightAxis.enabled = false
     self.lineChartView.chartDescription?.enabled = false
+    self.lineChartView.isUserInteractionEnabled = false
   }
   
   private func resetState() {
