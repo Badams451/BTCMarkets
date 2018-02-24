@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import Charts
 
 class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator {
   @IBOutlet var priceLabel: UILabel!
   @IBOutlet var currencyLabel: UILabel!
   @IBOutlet var coinNameLabel: UILabel!
   @IBOutlet var priceDifferenceLabel: UILabel!
+  @IBOutlet var lineChartView: LineChartView!
   
   var coin: Coin?
   var openingPrice: Double?
@@ -62,6 +64,7 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator 
       }
 
       strongSelf.setOpeningPriceFor(timePeriod: strongSelf.timePeriod, fromTicks: ticks)
+      strongSelf.drawLineChart(forTicks: ticks)
       strongSelf.updatePriceDifferenceLabel()
       
       if let price = strongSelf.openingPrice {
@@ -88,6 +91,36 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator 
     priceDifferenceLabel.text = self.formattedPriceDifference
     priceDifferenceLabel.textColor = self.formattedPriceColor
   }
+
+  private func drawLineChart(forTicks ticks:[Tick]) {
+    let chartData = ticks.enumerated().map { (index, tick) -> ChartDataEntry in
+      return ChartDataEntry(x: Double(index), y: tick.low)
+    }
+    
+    let dataSet = LineChartDataSet(values: chartData, label: nil)
+    
+    dataSet.axisDependency = .left
+    dataSet.lineWidth = 1.5
+    dataSet.drawCirclesEnabled = false
+    dataSet.drawValuesEnabled = false
+    dataSet.fillAlpha = 0.26
+    dataSet.highlightEnabled = false
+    dataSet.drawCircleHoleEnabled = false
+    dataSet.fillColor = .darkRed
+    dataSet.drawFilledEnabled = true
+    dataSet.setColor(.darkRed)
+    
+    let data = LineChartData(dataSet: dataSet)
+    data.setValueTextColor(.white)
+    data.setValueFont(.systemFont(ofSize: 9, weight: .light))
+    
+    self.lineChartView.data = data
+    self.lineChartView.legend.enabled = false
+    self.lineChartView.xAxis.enabled = false
+    self.lineChartView.leftAxis.enabled = false
+    self.lineChartView.rightAxis.enabled = false
+    self.lineChartView.chartDescription?.enabled = false
+  }
   
   private func resetState() {
     priceLabel.text = "-"
@@ -101,6 +134,7 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator 
     coinsStore = nil
     self.subscriberId = nil
   }
+  
   
   deinit {
     resetState()

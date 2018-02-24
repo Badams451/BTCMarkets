@@ -28,6 +28,10 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="134.66666666666666"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="omi-gE-J4B" customClass="LineChartView" customModule="Charts">
+                                            <rect key="frame" x="0.0" y="62.000000000000007" width="375" height="72.666666666666686"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bitcoin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCs-Wq-XBf">
                                             <rect key="frame" x="19.999999999999996" y="11" width="63.666666666666657" height="23"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
@@ -56,11 +60,15 @@
                                     <constraints>
                                         <constraint firstItem="I5b-PX-VjO" firstAttribute="centerY" secondItem="CCs-Wq-XBf" secondAttribute="centerY" id="1Bb-ol-EVJ"/>
                                         <constraint firstItem="CCs-Wq-XBf" firstAttribute="top" secondItem="fl7-hn-SeM" secondAttribute="top" constant="11" id="2RW-Aq-HfQ"/>
+                                        <constraint firstAttribute="bottom" secondItem="omi-gE-J4B" secondAttribute="bottom" id="9bs-eU-VP5"/>
+                                        <constraint firstItem="omi-gE-J4B" firstAttribute="top" secondItem="fl7-hn-SeM" secondAttribute="top" constant="62" id="AeB-AA-ya7"/>
+                                        <constraint firstItem="omi-gE-J4B" firstAttribute="leading" secondItem="fl7-hn-SeM" secondAttribute="leading" id="Aek-vr-2as"/>
                                         <constraint firstAttribute="trailing" secondItem="I5b-PX-VjO" secondAttribute="trailing" constant="16" id="Dr5-O6-0Zl"/>
                                         <constraint firstItem="I5b-PX-VjO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="CCs-Wq-XBf" secondAttribute="trailing" constant="20" id="EHM-UV-79c"/>
                                         <constraint firstItem="Guv-hm-Xwq" firstAttribute="trailing" secondItem="I5b-PX-VjO" secondAttribute="trailing" id="Jhs-zm-pTM"/>
                                         <constraint firstItem="dHm-05-kEJ" firstAttribute="leading" secondItem="CCs-Wq-XBf" secondAttribute="leading" id="L4R-qY-Ntn"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dHm-05-kEJ" secondAttribute="trailing" constant="20" symbolic="YES" id="UA3-tq-Nbo"/>
+                                        <constraint firstAttribute="trailing" secondItem="omi-gE-J4B" secondAttribute="trailing" id="nYt-bJ-01t"/>
                                         <constraint firstItem="dHm-05-kEJ" firstAttribute="top" secondItem="CCs-Wq-XBf" secondAttribute="bottom" constant="8" id="r1B-0W-FFz"/>
                                         <constraint firstItem="Guv-hm-Xwq" firstAttribute="centerY" secondItem="dHm-05-kEJ" secondAttribute="centerY" id="rV3-4M-9i8"/>
                                         <constraint firstItem="CCs-Wq-XBf" firstAttribute="leading" secondItem="fl7-hn-SeM" secondAttribute="leading" constant="20" id="z5n-UO-X2M"/>
@@ -69,6 +77,7 @@
                                 <connections>
                                     <outlet property="coinNameLabel" destination="CCs-Wq-XBf" id="on5-nP-3oA"/>
                                     <outlet property="currencyLabel" destination="dHm-05-kEJ" id="UWq-Jz-fEy"/>
+                                    <outlet property="lineChartView" destination="omi-gE-J4B" id="Bdi-pG-VM8"/>
                                     <outlet property="priceDifferenceLabel" destination="Guv-hm-Xwq" id="I2T-iY-Dzu"/>
                                     <outlet property="priceLabel" destination="I5b-PX-VjO" id="zZ5-W1-te3"/>
                                     <segue destination="dp1-t6-YBy" kind="show" identifier="TickerToCoinDetailSegue" action="showDetailViewController:sender:" id="sNq-gs-B0b">
@@ -93,7 +102,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e1b-za-ngQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="249" y="36"/>
+            <point key="canvasLocation" x="248.80000000000001" y="35.467980295566505"/>
         </scene>
         <!--Coin Detail View Controller-->
         <scene sceneID="2nz-09-oxQ">
