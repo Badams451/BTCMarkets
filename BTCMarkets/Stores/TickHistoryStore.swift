@@ -13,9 +13,9 @@ private let tickerAmountNormalisationFactor: Double = 100000000
 
 final class TickHistoryStore {
   
-  typealias TicksForTimeWindow = [TimePeriod : [Tick]]
+  typealias TicksForTimePeriod = [TimePeriod : [Tick]]
   typealias CurrencyInstrumentPair = String
-  typealias TickStore = [CurrencyInstrumentPair: TicksForTimeWindow]
+  typealias TickStore = [CurrencyInstrumentPair: TicksForTimePeriod]
   typealias CurrencyInstrumentTimeWindow = String
   typealias Subscriber = String
   typealias Instrument = Currency
@@ -59,7 +59,7 @@ final class TickHistoryStore {
     if let _ = tickStore[currencyInstrumentPair] {
       tickStore[currencyInstrumentPair]![timePeriod] = ticks
     } else {
-      tickStore[currencyInstrumentPair] = TicksForTimeWindow()
+      tickStore[currencyInstrumentPair] = TicksForTimePeriod()
       tickStore[currencyInstrumentPair]![timePeriod] = ticks
     }
     

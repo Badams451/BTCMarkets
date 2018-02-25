@@ -21,7 +21,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CurrencyCellIdentifier" rowHeight="135" id="fA3-kz-li1" customClass="CurrencyCell" customModule="BTC_Companion" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CurrencyCellIdentifier" rowHeight="135" id="fA3-kz-li1" customClass="CurrencyCell" customModule="BTC_Companion" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="135"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fA3-kz-li1" id="fl7-hn-SeM">
@@ -385,7 +385,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bOF-wd-EDu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1496.8" y="-1734.2364532019706"/>
+            <point key="canvasLocation" x="1618" y="-1030"/>
         </scene>
         <!--Ticker Split Scene-->
         <scene sceneID="RT3-Ph-3eY">
@@ -470,7 +470,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zDG-9T-Tln" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3626" y="-1116"/>
+            <point key="canvasLocation" x="1564" y="57"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="bDP-y9-yEa">
@@ -647,6 +647,6 @@
         <image name="tab-ticker" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sNq-gs-B0b"/>
+        <segue reference="Utx-69-hWH"/>
     </inferredMetricsTieBreakers>
 </document>
