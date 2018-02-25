@@ -13,7 +13,8 @@ private let tickerAmountNormalisationFactor: Double = 100000000
 
 final class TickHistoryStore {
   
-  typealias TicksForTimePeriod = [TimePeriod : [Tick]]
+  typealias TicksForTimeWindow = [TimeWindow: [Tick]]
+  typealias TicksForTimePeriod = [TimePeriod : TicksForTimeWindow]
   typealias CurrencyInstrumentPair = String
   typealias TickStore = [CurrencyInstrumentPair: TicksForTimePeriod]
   typealias CurrencyInstrumentTimeWindow = String
@@ -38,30 +39,39 @@ final class TickHistoryStore {
     }
   }
   
-  func ticks(forTimePeriod timePeriod: TimePeriod, currency: Currency, instrument: Currency) -> [Tick] {
+  func ticks(forTimePeriod timePeriod: TimePeriod, timewindow: TimeWindow, currency: Currency, instrument: Currency) -> [Tick] {
     let currencyInstrumentPair = "\(currency.rawValue)\(instrument.rawValue)"
-    guard let ticksForTimeWindow = tickStore[currencyInstrumentPair] else {
+    guard let ticksForTimePeriod = tickStore[currencyInstrumentPair] else {
       return []
     }
     
-    guard let ticks = ticksForTimeWindow[timePeriod] else {
+    guard let ticksForTimeWindow = ticksForTimePeriod[timePeriod] else {
+      return []
+    }
+    
+    guard let ticks = ticksForTimeWindow[timewindow] else {
       return []
     }
     
     return ticks
   }
   
-  func store(ticks: [Tick], forTimePeriod timePeriod: TimePeriod, currency: Currency, instrument: Instrument) {
+  func store(ticks: [Tick], forTimePeriod timePeriod: TimePeriod, forTimeWindow timeWindow: TimeWindow, currency: Currency, instrument: Instrument) {
     let needsAggregation = timePeriod == .week || timePeriod == .month
     let chunkSize = self.chunkSize(forTimePeriod: timePeriod)
     let ticks = needsAggregation ? aggregateTicks(for: ticks, chunkSize: chunkSize) : ticks
     let currencyInstrumentPair = "\(currency.rawValue)\(instrument.rawValue)"
-    if let _ = tickStore[currencyInstrumentPair] {
-      tickStore[currencyInstrumentPair]![timePeriod] = ticks
-    } else {
+    if tickStore[currencyInstrumentPair] == nil {
       tickStore[currencyInstrumentPair] = TicksForTimePeriod()
-      tickStore[currencyInstrumentPair]![timePeriod] = ticks
     }
+    
+    if tickStore[currencyInstrumentPair]![timePeriod] == nil {
+      tickStore[currencyInstrumentPair]![timePeriod] = TicksForTimeWindow()
+    }
+    
+    tickStore[currencyInstrumentPair]![timePeriod]![timeWindow] = ticks
+    
+    
     
     tickUpdatedStore["\(currency.rawValue)\(instrument.rawValue)\(timePeriod.rawValue)"] = .now
     notifySubscribers()
@@ -137,7 +147,7 @@ final class TickHistoryStore {
                             return Tick(timestamp: timestamp, low: low, high: high, open: open, close: close, date: date)
                           }
                           
-                          self.store(ticks: ticks, forTimePeriod: timePeriod, currency: currency, instrument: instrument)
+                          self.store(ticks: ticks, forTimePeriod: timePeriod, forTimeWindow: timeWindow, currency: currency, instrument: instrument)
         }.catch { error in
           print("Could not fetch ticker history: \(error)")
       }

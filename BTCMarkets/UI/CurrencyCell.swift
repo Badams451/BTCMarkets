@@ -58,18 +58,24 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator,
     tickHistoryStore.subscribe(subscriber: subscriberId) { [weak self] tickStore in
       let currencyInstrumentPair = "\(currency.rawValue)\(instrument.rawValue)"
       guard var strongSelf = self else { return }
-      guard let data = tickStore[currencyInstrumentPair],
-        let ticks = data[strongSelf.timePeriod] else {
-          return
+      guard let data = tickStore[currencyInstrumentPair] else {
+        return
       }
 
-      strongSelf.setOpeningPriceFor(timePeriod: strongSelf.timePeriod, fromTicks: ticks)
-      strongSelf.drawLineChart(forTicks: ticks)
-      strongSelf.updatePriceDifferenceLabel()
+      guard let ticksForChart = data[strongSelf.timePeriod]![TimeWindow.hour] else {
+        return
+      }
       
+      guard let ticksForPrice = data[strongSelf.timePeriod]![TimeWindow.minute] else {
+        return
+      }
+
+      strongSelf.setOpeningPriceFor(timePeriod: strongSelf.timePeriod, fromTicks: ticksForPrice)
+      strongSelf.updatePriceDifferenceLabel()
       if let price = strongSelf.openingPrice {
         strongSelf.priceHistoryStore.update(price: price, forCurrency: currency)
       }
+      strongSelf.drawLineChart(forTicks: ticksForChart)
     }
     
     if let price = priceHistoryStore.pastDayPriceHistory[currency] {
@@ -77,6 +83,7 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator,
     }
     
     tickHistoryStore.fetchTickerHistory(forTimeWindow: .hour, timePeriod: .day, startingTime: .minusOneDay, currency: currency, instrument: instrument)
+    tickHistoryStore.fetchTickerHistory(forTimeWindow: .minute, timePeriod: .day, startingTime: .minusOneDay, currency: currency, instrument: instrument)
     
     self.subscriberId = subscriberId
     self.coinsStore = store

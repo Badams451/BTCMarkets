@@ -81,9 +81,17 @@ class CoinDetailViewController: UIViewController, PriceDifferenceCalculator, Cha
     return timePeriod
   }
   
-  private var timeWindowForSelectedSegment: TimeWindow {
+  private var chartTimeWindowForSelectedSegment: TimeWindow {
     switch self.timePeriodForSegmentControl {
     case .day: return .hour
+    case .week: return .hour
+    case .month: return .hour
+    }
+  }
+  
+  private var priceTimeWindowForSelectedSegment: TimeWindow {
+    switch self.timePeriodForSegmentControl {
+    case .day: return .minute
     case .week: return .hour
     case .month: return .hour
     }
@@ -124,15 +132,18 @@ class CoinDetailViewController: UIViewController, PriceDifferenceCalculator, Cha
     
     tickHistoryStore.subscribe(subscriber: subscriberId) { [weak self] tickStore in
       guard var strongSelf = self else { return }
-      guard let data = tickStore[strongSelf.currencyInstrumentPair],
-            let ticks = data[strongSelf.timePeriodForSegmentControl] else {
+      guard let data = tickStore[strongSelf.currencyInstrumentPair] else { return }
+      guard
+        let ticksForChart = data[strongSelf.timePeriodForSegmentControl]?[strongSelf.chartTimeWindowForSelectedSegment],
+        let ticksForPrice = data[strongSelf.timePeriodForSegmentControl]?[strongSelf.priceTimeWindowForSelectedSegment]
+      else {
         return
       }
       
       strongSelf.candleStickChartView.isHidden = false
-      strongSelf.drawCandlestickChart(forTicks: ticks)
-      strongSelf.currentDatesOnXAxis = ticks.flatMap { $0.date }
-      strongSelf.setOpeningPriceFor(timePeriod: strongSelf.timePeriod, fromTicks: ticks)
+      strongSelf.drawCandlestickChart(forTicks: ticksForChart)
+      strongSelf.currentDatesOnXAxis = ticksForChart.flatMap { $0.date }
+      strongSelf.setOpeningPriceFor(timePeriod: strongSelf.timePeriod, fromTicks: ticksForPrice)
       strongSelf.updatePriceDifferenceLabel()
     }
     
@@ -185,10 +196,13 @@ class CoinDetailViewController: UIViewController, PriceDifferenceCalculator, Cha
   }
   
   @objc func onSegmentControlSelected(segmentControl: UISegmentedControl) {
-    let timeWindow: TimeWindow = timeWindowForSelectedSegment
+    let timeWindowForChart: TimeWindow = chartTimeWindowForSelectedSegment
+    let timeWindowForPrice: TimeWindow = priceTimeWindowForSelectedSegment
     let startingTime: TimeInterval = startTimeForSelectedSegment
-    
-    tickHistoryStore.fetchTickerHistory(forTimeWindow: timeWindow, timePeriod: timePeriodForSegmentControl, startingTime: startingTime, currency: currency, instrument: instrument)
+
+    for timeWindow in [timeWindowForPrice, timeWindowForChart] {
+      tickHistoryStore.fetchTickerHistory(forTimeWindow: timeWindow, timePeriod: timePeriodForSegmentControl, startingTime: startingTime, currency: currency, instrument: instrument)
+    }
   }
   
   private func drawCandlestickChart(forTicks ticks: [Tick]) {

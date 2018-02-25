@@ -47,7 +47,7 @@ extension PriceDifferenceCalculator {
   
   var formattedPriceColor: UIColor {
     guard let percentageDifference = percentageDifference else {
-      return UIColor.black
+      return UIColor.darkGreen
     }
     
     return percentageDifference >= 0 ? UIColor.darkGreen : UIColor.darkRed
