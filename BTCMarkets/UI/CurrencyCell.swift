@@ -62,20 +62,17 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator,
         return
       }
 
-      guard let ticksForChart = data[strongSelf.timePeriod]![TimeWindow.hour] else {
-        return
+      if let ticksForChart = data[strongSelf.timePeriod]![TimeWindow.hour] {
+        strongSelf.drawLineChart(forTicks: ticksForChart)
       }
       
-      guard let ticksForPrice = data[strongSelf.timePeriod]![TimeWindow.minute] else {
-        return
+      if let ticksForPrice = data[strongSelf.timePeriod]![TimeWindow.minute] {
+        strongSelf.setOpeningPriceFor(timePeriod: strongSelf.timePeriod, fromTicks: ticksForPrice)
+        strongSelf.updatePriceDifferenceLabel()
+        if let price = strongSelf.openingPrice {
+          strongSelf.priceHistoryStore.update(price: price, forCurrency: currency)
+        }
       }
-
-      strongSelf.setOpeningPriceFor(timePeriod: strongSelf.timePeriod, fromTicks: ticksForPrice)
-      strongSelf.updatePriceDifferenceLabel()
-      if let price = strongSelf.openingPrice {
-        strongSelf.priceHistoryStore.update(price: price, forCurrency: currency)
-      }
-      strongSelf.drawLineChart(forTicks: ticksForChart)
     }
     
     if let price = priceHistoryStore.pastDayPriceHistory[currency] {

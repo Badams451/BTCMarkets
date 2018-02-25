@@ -133,18 +133,16 @@ class CoinDetailViewController: UIViewController, PriceDifferenceCalculator, Cha
     tickHistoryStore.subscribe(subscriber: subscriberId) { [weak self] tickStore in
       guard var strongSelf = self else { return }
       guard let data = tickStore[strongSelf.currencyInstrumentPair] else { return }
-      guard
-        let ticksForChart = data[strongSelf.timePeriodForSegmentControl]?[strongSelf.chartTimeWindowForSelectedSegment],
-        let ticksForPrice = data[strongSelf.timePeriodForSegmentControl]?[strongSelf.priceTimeWindowForSelectedSegment]
-      else {
-        return
+      if let ticksForChart = data[strongSelf.timePeriodForSegmentControl]?[strongSelf.chartTimeWindowForSelectedSegment] {
+        strongSelf.candleStickChartView.isHidden = false
+        strongSelf.drawCandlestickChart(forTicks: ticksForChart)
+        strongSelf.currentDatesOnXAxis = ticksForChart.flatMap { $0.date }
       }
       
-      strongSelf.candleStickChartView.isHidden = false
-      strongSelf.drawCandlestickChart(forTicks: ticksForChart)
-      strongSelf.currentDatesOnXAxis = ticksForChart.flatMap { $0.date }
-      strongSelf.setOpeningPriceFor(timePeriod: strongSelf.timePeriod, fromTicks: ticksForPrice)
-      strongSelf.updatePriceDifferenceLabel()
+      if let ticksForPrice = data[strongSelf.timePeriodForSegmentControl]?[strongSelf.priceTimeWindowForSelectedSegment] {
+        strongSelf.setOpeningPriceFor(timePeriod: strongSelf.timePeriod, fromTicks: ticksForPrice)
+        strongSelf.updatePriceDifferenceLabel()
+      }
     }
     
     coinStore.subscribe(subscriber: subscriberId) { [weak self] coinCollection in
