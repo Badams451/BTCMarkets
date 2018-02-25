@@ -58,7 +58,7 @@ extension PriceDifferenceCalculator {
     
     switch timePeriod {
     case .day:
-      if let tick = (ticks.first { $0.timestamp > timestamp }) {
+      if let tick = (ticks.first { $0.timestamp >= timestamp }) {
         self.openingPrice = tick.close
       }
     default:
