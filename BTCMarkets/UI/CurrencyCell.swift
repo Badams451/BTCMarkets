@@ -57,28 +57,34 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator,
     }
     
     tickHistoryStore.subscribe(subscriber: subscriberId) { [weak self] tickStore in
-      let currencyInstrumentPair = "\(currency.rawValue)\(instrument.rawValue)"
-      guard var strongSelf = self else { return }
-      guard let data = tickStore[currencyInstrumentPair] else {
-        return
-      }
+      DispatchQueue.main.async {
+        let currencyInstrumentPair = "\(currency.rawValue)\(instrument.rawValue)"
+        guard var strongSelf = self else { return }
+        guard let data = tickStore[currencyInstrumentPair] else {
+          return
+        }
+        
+        guard
+          let ticksForChart = data[strongSelf.timePeriod]![TimeWindow.hour],
+          let ticksForPrice = data[strongSelf.timePeriod]![TimeWindow.minute]
+        else {
+          return
+        }      
+        
+        let priceHistoryStore = strongSelf.priceHistoryStore
+        if priceHistoryStore.pastDayPriceHistory[instrument] == nil || priceHistoryStore.priceIsOutdated {
+          strongSelf.setOpeningPriceFor(timePeriod: strongSelf.timePeriod, fromTicks: ticksForPrice)
+          strongSelf.priceHistoryStore.update(price: strongSelf.openingPrice ?? 0, forCurrency: instrument)
+        }
 
-      if let ticksForChart = data[strongSelf.timePeriod]![TimeWindow.hour] {
+        strongSelf.updatePriceDifferenceLabel()
         strongSelf.activityIndicator.stopAnimating()
         strongSelf.lineChartView.isHidden = false
         strongSelf.drawLineChart(forTicks: ticksForChart)
       }
-      
-      if let ticksForPrice = data[strongSelf.timePeriod]![TimeWindow.minute] {
-        strongSelf.setOpeningPriceFor(timePeriod: strongSelf.timePeriod, fromTicks: ticksForPrice)
-        strongSelf.updatePriceDifferenceLabel()
-        if let price = strongSelf.openingPrice {
-          strongSelf.priceHistoryStore.update(price: price, forCurrency: currency)
-        }
-      }
     }
     
-    if let price = priceHistoryStore.pastDayPriceHistory[currency] {
+    if let price = priceHistoryStore.pastDayPriceHistory[instrument] {
       self.openingPrice = price
     }
     
