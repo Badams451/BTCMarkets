@@ -18,18 +18,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BTC_logo_1024px_3" translatesAutoresizingMaskIntoConstraints="NO" id="W2m-AW-HdW">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch-screen" translatesAutoresizingMaskIntoConstraints="NO" id="cPv-ff-koO">
                                 <rect key="frame" x="157" y="313.5" width="60" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="6dR-4Q-80y"/>
-                                    <constraint firstAttribute="width" constant="60" id="Maw-1D-uDy"/>
+                                    <constraint firstAttribute="height" constant="60" id="JZb-ra-3hB"/>
+                                    <constraint firstAttribute="width" constant="60" id="gAT-HI-VGW"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="W2m-AW-HdW" firstAttribute="centerX" secondItem="nuW-Sd-2KN" secondAttribute="centerX" id="a8o-aX-tz6"/>
-                            <constraint firstItem="W2m-AW-HdW" firstAttribute="centerY" secondItem="nuW-Sd-2KN" secondAttribute="centerY" id="vOf-nx-sBR"/>
+                            <constraint firstItem="cPv-ff-koO" firstAttribute="centerX" secondItem="nuW-Sd-2KN" secondAttribute="centerX" id="8B7-vT-h8E"/>
+                            <constraint firstItem="cPv-ff-koO" firstAttribute="centerY" secondItem="nuW-Sd-2KN" secondAttribute="centerY" id="MUs-Oc-m0o"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nuW-Sd-2KN"/>
                     </view>
@@ -40,6 +40,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="BTC_logo_1024px_3" width="2133" height="2133"/>
+        <image name="launch-screen" width="2133" height="2133"/>
     </resources>
 </document>
