@@ -140,7 +140,9 @@ class CoinDetailViewController: UIViewController, PriceDifferenceCalculator, Cha
       guard let strongSelf = self else { return }
       guard let updatedCoin = coinCollection[strongSelf.instrument] else { return }
       
-      let priceDisplayValue = strongSelf.splitViewIsCollapsed ? "" : "\(updatedCoin.instrument) Price: \(updatedCoin.displayPrice)"      
+      let currency = Currency(rawValue: updatedCoin.instrument)
+      let coinName = currency?.coinName ?? updatedCoin.instrument
+      let priceDisplayValue = strongSelf.splitViewIsCollapsed ? "\(updatedCoin.displayPrice)" : "\(coinName) Price: \(updatedCoin.displayPrice)"
       strongSelf.updateValue(forLabel: strongSelf.currentPriceLabel, previousValue: strongSelf.coin?.lastPrice, newValue: updatedCoin.lastPrice, displayValue: priceDisplayValue)
       
       let previousCoin = strongSelf.coin
