@@ -15,6 +15,7 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator,
   @IBOutlet var coinNameLabel: UILabel!
   @IBOutlet var priceDifferenceLabel: UILabel!
   @IBOutlet var lineChartView: LineChartView!
+  @IBOutlet var activityIndicator: UIActivityIndicatorView!
   
   var coin: Coin?
   var openingPrice: Double?
@@ -63,6 +64,8 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator,
       }
 
       if let ticksForChart = data[strongSelf.timePeriod]![TimeWindow.hour] {
+        strongSelf.activityIndicator.stopAnimating()
+        strongSelf.lineChartView.isHidden = false
         strongSelf.drawLineChart(forTicks: ticksForChart)
       }
       
