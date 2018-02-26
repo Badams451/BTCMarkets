@@ -87,35 +87,36 @@ class CoinsStore: CurrencyFetcher {
           let strongSelf = self,
           let json = data.first as? JSONResponse,
           var coin = Coin(JSON: json),
-          let currency = Currency(rawValue: coin.instrument),
-          let subscriber = (strongSelf.subscribers.first { $0.currency == currency })
+          let currency = Currency(rawValue: coin.instrument)
         else {
           return
         }
         
         coin.normaliseValues()
         
+        let subscribers = (strongSelf.subscribers.filter { $0.currency == currency })
         let previousCoin = strongSelf.coins[currency]
         let priceUpdated = (previousCoin == nil) ? previousCoin!.lastPrice != coin.lastPrice : true
         let coinUpdated = (previousCoin == nil) ? previousCoin! != coin : true
-        let subscriptionType = subscriber.type
         
         DispatchQueue.main.async {
-          
           if coinUpdated {
             strongSelf.coins[currency] = coin
           }
           
-          switch subscriptionType {
-          case .all:
-            if coinUpdated {
-              subscriber.onCoinCollectionChanged(strongSelf.coins)
+          for subscriber in subscribers {
+            let subscriptionType = subscriber.type
+            switch subscriptionType {
+            case .all:
+              if coinUpdated {
+                subscriber.onCoinCollectionChanged(strongSelf.coins)
+              }
+            case .onlyPrice:
+              if priceUpdated {
+                subscriber.onCoinCollectionChanged(strongSelf.coins)
+              }
             }
-          case .onlyPrice:
-            if priceUpdated {
-              subscriber.onCoinCollectionChanged(strongSelf.coins)
-            }
-          }          
+          }
         }
       }
     }
