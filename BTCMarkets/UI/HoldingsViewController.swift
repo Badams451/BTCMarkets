@@ -62,9 +62,14 @@ class HoldingsViewController: UIViewController, UITableViewDelegate, UITableView
       self?.tableView.reloadData()
     }
     
-    currencyStoreAud.subscribe(subscriber: String(describing: self)) { [weak self] _ in
-      self?.tableView.reloadData()
+    for instrument in Currency.allExceptAud {
+      let subscriberId = "\(String(describing: self))-(instrument.rawValue)"
+      
+      currencyStoreAud.subscribe(subscriber: subscriberId, currency: instrument, type: .onlyPrice) { [weak self] _ in
+        self?.tableView.reloadData()
+      }
     }
+
   }
   
   func numberOfSections(in tableView: UITableView) -> Int {
@@ -93,7 +98,7 @@ class HoldingsViewController: UIViewController, UITableViewDelegate, UITableView
       let holdingsValue = holdingsAmount * currencyValue
       
       holdingsCell.currencyLabel?.text = holdingName
-      holdingsCell.holdingsAmountLabel.text = "\(holdingsAmount.holdingsValue) \(currency.rawValue)"
+      holdingsCell.holdingsAmountLabel.text = "\(holdingsAmount.holdingsDisplayString) \(currency.rawValue)"
       holdingsCell.updateValue(forLabel: holdingsCell.audAmountLabel, previousValue: holdingsCell.holdingValue, newValue: holdingsValue, displayValue: "\(holdingsValue.dollarValue)")
       holdingsCell.holdingValue = holdingsValue
     case .equity:
@@ -127,7 +132,7 @@ class HoldingsViewController: UIViewController, UITableViewDelegate, UITableView
     let holdingsAmount = holdingsStore.holdingsAmount(forCurrency: currency)
     
     alert.addTextField { textField in
-      textField.text = "\(holdingsAmount.holdingsValue)"
+      textField.text = "\(holdingsAmount.holdingsDisplayString)"
       textField.keyboardType = .decimalPad
     }
     

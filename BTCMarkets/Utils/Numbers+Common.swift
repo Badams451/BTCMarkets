@@ -25,7 +25,7 @@ extension Double {
     return "\(self) BTC"
   }
   
-  var holdingsValue: String {
+  var holdingsDisplayString: String {
     if self.isZero {
       return "0"
     }

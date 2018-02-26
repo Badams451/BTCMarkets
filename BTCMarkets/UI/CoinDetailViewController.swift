@@ -146,8 +146,8 @@ class CoinDetailViewController: UIViewController, PriceDifferenceCalculator, Cha
         }
       }
     }
-    
-    coinStore.subscribe(subscriber: subscriberId) { [weak self] coinCollection in
+
+    coinStore.subscribe(subscriber: subscriberId, currency: instrument, type: .all) { [weak self] coinCollection in
       guard let strongSelf = self else { return }
       guard let updatedCoin = coinCollection[strongSelf.instrument] else { return }
       

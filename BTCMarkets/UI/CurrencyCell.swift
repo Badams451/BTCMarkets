@@ -46,7 +46,7 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator,
     let store = currencyForStore[currency]
     let subscriberId = "\(instrument.rawValue)-\(currency.rawValue)"
     
-    store?.subscribe(subscriber: subscriberId) { [weak self] coins in
+    store?.subscribe(subscriber: subscriberId, currency: instrument, type: .onlyPrice) { [weak self] coins in
       guard let updatedCoin = coins[instrument] else {
         return
       }
@@ -54,6 +54,7 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator,
       let previousCoin = self?.coin
       self?.coin = updatedCoin
       self?.updateUI(previousCoin: previousCoin, updatedCoin: updatedCoin)
+      self?.tickHistoryStore.fetchTickerHistory(forTimeWindow: .minute, timePeriod: .day, startingTime: .minusOneDay, currency: currency, instrument: instrument)
     }
     
     tickHistoryStore.subscribe(subscriber: subscriberId) { [weak self] tickStore in
@@ -65,8 +66,8 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator,
         }
         
         guard
-          let ticksForChart = data[strongSelf.timePeriod]![TimeWindow.hour],
-          let ticksForPrice = data[strongSelf.timePeriod]![TimeWindow.minute]
+          let ticksForChart = data[strongSelf.timePeriod]?[TimeWindow.hour],
+          let ticksForPrice = data[strongSelf.timePeriod]?[TimeWindow.minute]
         else {
           return
         }      

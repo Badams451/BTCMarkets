@@ -31,7 +31,12 @@ class CoinsStore: CurrencyFetcher {
   typealias Subscriber = String
   typealias CoinCollectionChanged = (CoinCollection) -> Void
   
-  private var subscribers: [(Subscriber, CoinCollectionChanged)] = []
+  enum SubscriptionType {
+    case all
+    case onlyPrice
+  }
+  
+  private var subscribers: [(subscriber: Subscriber, currency: Currency, type: SubscriptionType, onCoinCollectionChanged: CoinCollectionChanged)] = []
   private var coins: CoinCollection = CoinCollection()  
   
   // Abstract implementation. Must override.
@@ -67,7 +72,7 @@ class CoinsStore: CurrencyFetcher {
   }
 
   private func setupSocket(currency: Currency) {
-    let instruments = Currency.allExceptAud
+    let instruments = [Currency.btc]
     
     socket?.on(clientEvent: .connect) { [weak self] data, ack in
       instruments.forEach { instrument in
@@ -78,22 +83,39 @@ class CoinsStore: CurrencyFetcher {
     
     socket?.on("newTicker") { [weak self] data, ack in
       DispatchQueue.global().async {
-        guard let strongSelf = self,
+        guard
+          let strongSelf = self,
           let json = data.first as? JSONResponse,
           var coin = Coin(JSON: json),
-          let currency = Currency(rawValue: coin.instrument) else {
-            return
+          let currency = Currency(rawValue: coin.instrument),
+          let subscriber = (strongSelf.subscribers.first { $0.currency == currency })
+        else {
+          return
         }
         
         coin.normaliseValues()
         
-        if let previousCoin = strongSelf.coins[currency], previousCoin == coin {
-          return
-        }
+        let previousCoin = strongSelf.coins[currency]
+        let priceUpdated = (previousCoin == nil) ? previousCoin!.lastPrice != coin.lastPrice : true
+        let coinUpdated = (previousCoin == nil) ? previousCoin! != coin : true
+        let subscriptionType = subscriber.type
         
         DispatchQueue.main.async {
-          strongSelf.coins[currency] = coin
-          strongSelf.subscribers.forEach { $0.1(strongSelf.coins) }
+          
+          if coinUpdated {
+            strongSelf.coins[currency] = coin
+          }
+          
+          switch subscriptionType {
+          case .all:
+            if coinUpdated {
+              subscriber.onCoinCollectionChanged(strongSelf.coins)
+            }
+          case .onlyPrice:
+            if priceUpdated {
+              subscriber.onCoinCollectionChanged(strongSelf.coins)
+            }
+          }          
         }
       }
     }
@@ -101,11 +123,11 @@ class CoinsStore: CurrencyFetcher {
     socket?.connect()
   }
   
-  func subscribe(subscriber: Subscriber, callback: @escaping CoinCollectionChanged) {
-    subscribers.append((subscriber, callback))
+  func subscribe(subscriber: Subscriber, currency: Currency, type: SubscriptionType, callback: @escaping CoinCollectionChanged) {
+    subscribers.append((subscriber, currency, type, callback))
     callback(coins)
   }
-  
+
   func unsubscribe(subscriber: Subscriber) {
     if let subscriberIndex = (subscribers.index { return $0.0 == subscriber }) {
       subscribers.remove(at: subscriberIndex)
@@ -113,7 +135,7 @@ class CoinsStore: CurrencyFetcher {
   }
   
   private func notifySubscribers() {
-    subscribers.forEach { $0.1(coins) }
+    subscribers.forEach { $0.onCoinCollectionChanged(coins) }
   }
 }
 
