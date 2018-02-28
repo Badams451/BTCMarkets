@@ -22,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     Fabric.with([Crashlytics.self])
     
     CoinsStoreAud.sharedInstance.start()
-    CoinsStoreBtc.sharedInstance.start()
     
     #if DEBUG
     #else

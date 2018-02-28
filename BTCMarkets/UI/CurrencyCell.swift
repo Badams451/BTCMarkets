@@ -54,7 +54,6 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator,
       let previousCoin = self?.coin
       self?.coin = updatedCoin
       self?.updateUI(previousCoin: previousCoin, updatedCoin: updatedCoin)
-      self?.tickHistoryStore.fetchTickerHistory(forTimeWindow: .minute, timePeriod: .day, startingTime: .minusOneDay, currency: currency, instrument: instrument)
     }
     
     tickHistoryStore.subscribe(subscriber: subscriberId) { [weak self] tickStore in
