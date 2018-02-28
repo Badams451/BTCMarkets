@@ -72,7 +72,7 @@ class CoinsStore: CurrencyFetcher {
   }
 
   private func setupSocket(currency: Currency) {
-    let instruments = [Currency.btc]
+    let instruments = Currency.allExceptAud
     
     socket?.on(clientEvent: .connect) { [weak self] data, ack in
       instruments.forEach { instrument in
