@@ -72,10 +72,10 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator,
         }      
         
         let priceHistoryStore = strongSelf.priceHistoryStore
-        if priceHistoryStore.pastDayPriceHistory[instrument] == nil || priceHistoryStore.priceIsOutdated {
-          strongSelf.setOpeningPriceFor(timePeriod: strongSelf.timePeriod, fromTicks: ticksForPrice)
-          strongSelf.priceHistoryStore.update(price: strongSelf.openingPrice ?? 0, forCurrency: instrument)
-        }
+//        if priceHistoryStore.pastDayPriceHistory[instrument] == nil || priceHistoryStore.priceIsOutdated {
+//          strongSelf.setOpeningPriceFor(timePeriod: strongSelf.timePeriod, fromTicks: ticksForPrice)
+//          strongSelf.priceHistoryStore.update(price: strongSelf.openingPrice ?? 0, forCurrency: instrument)
+//        }
 
         strongSelf.updatePriceDifferenceLabel()
         strongSelf.activityIndicator.stopAnimating()
@@ -84,9 +84,9 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator,
       }
     }
     
-    if let price = priceHistoryStore.pastDayPriceHistory[instrument] {
-      self.openingPrice = price
-    }
+//    if let price = priceHistoryStore.pastDayPriceHistory[instrument] {
+//      self.openingPrice = price
+//    }
     
     tickHistoryStore.fetchTickerHistory(forTimeWindow: .hour, timePeriod: .day, startingTime: .minusOneDay, currency: currency, instrument: instrument)
     tickHistoryStore.fetchTickerHistory(forTimeWindow: .minute, timePeriod: .day, startingTime: .minusOneDay, currency: currency, instrument: instrument)
