@@ -39,7 +39,12 @@ final class TickHistoryStore {
     }
   }
   
-  func ticks(forTimePeriod timePeriod: TimePeriod, timewindow: TimeWindow, currency: Currency, instrument: Currency) -> [Tick] {
+  func tick(closestTo timeInterval: TimeInterval, forCurrency instrument: Currency, timePeriod: TimePeriod, timeWindow: TimeWindow) -> Tick? {
+    let ticks = self.ticks(forTimePeriod: timePeriod, timewindow: timeWindow, currency: .aud, instrument: instrument)
+    return ticks.first { return $0.timestamp >= timeInterval }
+  }
+  
+  private func ticks(forTimePeriod timePeriod: TimePeriod, timewindow: TimeWindow, currency: Currency, instrument: Currency) -> [Tick] {
     let currencyInstrumentPair = "\(currency.rawValue)\(instrument.rawValue)"
     guard let ticksForTimePeriod = tickStore[currencyInstrumentPair] else {
       return []
