@@ -35,6 +35,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     CoinsStoreAud.sharedInstance.start()
     UserStatisticsStore.sharedInstance.incrementStatistic(forKey: appStatsAppBecomeActiveKey)
     AppReview.requestReview()
+    
+    for instrument in Currency.allExceptAud {
+      TickHistoryStore.sharedInstance.fetchTickerHistory(forTimeWindow: .hour, timePeriod: .day, startingTime: .minusOneDay, currency: .aud, instrument: instrument)
+      TickHistoryStore.sharedInstance.fetchTickerHistory(forTimeWindow: .minute, timePeriod: .day, startingTime: .minusOneDay, currency: .aud, instrument: instrument)
+    }
   }
 }
 

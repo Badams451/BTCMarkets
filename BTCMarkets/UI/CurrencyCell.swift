@@ -32,7 +32,7 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator,
       .btc: CoinsStoreBtc.sharedInstance
     ]
   }
-  private var priceHistoryStore = PriceHistoryStore.sharedInstance
+  private let priceHistoryStore = DailyPriceHistoryStore.sharedInstance
 
   override func prepareForReuse() {
     resetState()
@@ -59,40 +59,44 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator,
     tickHistoryStore.subscribe(subscriber: subscriberId) { [weak self] tickStore in
       DispatchQueue.main.async {
         let currencyInstrumentPair = "\(currency.rawValue)\(instrument.rawValue)"
-        guard var strongSelf = self else { return }
+        
+        print("ticks updateD")
+        guard let strongSelf = self else { return }
         guard let data = tickStore[currencyInstrumentPair] else {
           return
         }
         
         guard
-          let ticksForChart = data[strongSelf.timePeriod]?[TimeWindow.hour],
-          let ticksForPrice = data[strongSelf.timePeriod]?[TimeWindow.minute]
+          let ticksForChart = data[strongSelf.timePeriod]?[TimeWindow.hour]
         else {
           return
         }      
         
-        let priceHistoryStore = strongSelf.priceHistoryStore
-//        if priceHistoryStore.pastDayPriceHistory[instrument] == nil || priceHistoryStore.priceIsOutdated {
-//          strongSelf.setOpeningPriceFor(timePeriod: strongSelf.timePeriod, fromTicks: ticksForPrice)
-//          strongSelf.priceHistoryStore.update(price: strongSelf.openingPrice ?? 0, forCurrency: instrument)
-//        }
-
-        strongSelf.updatePriceDifferenceLabel()
         strongSelf.activityIndicator.stopAnimating()
         strongSelf.lineChartView.isHidden = false
         strongSelf.drawLineChart(forTicks: ticksForChart)
       }
     }
     
-//    if let price = priceHistoryStore.pastDayPriceHistory[instrument] {
-//      self.openingPrice = price
-//    }
+    if let dailyPriceSubscriberID = dailyPriceHistorySubscriberId(forInstrument: instrument) {
+      priceHistoryStore.subscribe(subscriber: dailyPriceSubscriberID, instrument: instrument) { [weak self] price in
+        DispatchQueue.main.async {
+          self?.openingPrice = price
+          self?.updatePriceDifferenceLabel()
+        }
+      }
+    }
     
     tickHistoryStore.fetchTickerHistory(forTimeWindow: .hour, timePeriod: .day, startingTime: .minusOneDay, currency: currency, instrument: instrument)
     tickHistoryStore.fetchTickerHistory(forTimeWindow: .minute, timePeriod: .day, startingTime: .minusOneDay, currency: currency, instrument: instrument)
     
     self.subscriberId = subscriberId
     self.coinsStore = store
+  }
+  
+  private func dailyPriceHistorySubscriberId(forInstrument instrument: Currency?) -> String? {
+    guard let instrument = instrument else { return nil}
+    return "Currency-cell-\(instrument.rawValue)"
   }
   
   private func updateUI(previousCoin: Coin?, updatedCoin: Coin) {
@@ -140,6 +144,10 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator,
     priceLabel.text = "-"
     priceDifferenceLabel.text = "-"
     openingPrice = nil
+    if let dailyPriceHistoryStoreSubscriberID = dailyPriceHistorySubscriberId(forInstrument: (coin?.instrument).flatMap { Currency(rawValue: $0) }) {
+      priceHistoryStore.unsubscribe(subscriberID: dailyPriceHistoryStoreSubscriberID)
+    }
+    
     coin = nil
     
     guard let subscriberId = subscriberId else { return }
