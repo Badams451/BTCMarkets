@@ -74,11 +74,8 @@ final class TickHistoryStore {
       tickStore[currencyInstrumentPair]![timePeriod] = TicksForTimeWindow()
     }
     
-    tickStore[currencyInstrumentPair]![timePeriod]![timeWindow] = ticks
-    
-    
-    
-    tickUpdatedStore["\(currency.rawValue)\(instrument.rawValue)\(timePeriod.rawValue)"] = .now
+    tickStore[currencyInstrumentPair]![timePeriod]![timeWindow] = ticks 
+    tickUpdatedStore[ "\(currency.rawValue)\(instrument.rawValue)\(timePeriod.rawValue)\(timeWindow.rawValue)"] = .now
     notifySubscribers()
   }
   
@@ -111,7 +108,7 @@ final class TickHistoryStore {
   func fetchTickerHistory(forTimeWindow timeWindow: TimeWindow, timePeriod: TimePeriod, startingTime: TimeInterval, currency: Currency, instrument: Instrument) {
     DispatchQueue.global().async {
       let dataCachedKey = "\(currency.rawValue)\(instrument.rawValue)\(timePeriod.rawValue)\(timeWindow.rawValue)"
-      if let lastUpdate = self.tickUpdatedStore[dataCachedKey], lastUpdate > TimeInterval.now - self.timeUntilStaleCache {
+      if let lastUpdate = self.tickUpdatedStore[dataCachedKey], lastUpdate < TimeInterval.now + self.timeUntilStaleCache {
         self.notifySubscribers()
         return
       }
