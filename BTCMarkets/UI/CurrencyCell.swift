@@ -59,8 +59,7 @@ class CurrencyCell: UITableViewCell, CurrencyFetcher, PriceDifferenceCalculator,
     tickHistoryStore.subscribe(subscriber: subscriberId) { [weak self] tickStore in
       DispatchQueue.main.async {
         let currencyInstrumentPair = "\(currency.rawValue)\(instrument.rawValue)"
-        
-        print("ticks updateD")
+                
         guard let strongSelf = self else { return }
         guard let data = tickStore[currencyInstrumentPair] else {
           return
