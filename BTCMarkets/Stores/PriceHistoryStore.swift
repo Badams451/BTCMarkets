@@ -43,7 +43,6 @@ final class DailyPriceHistoryStore {
     let fireDate = Calendar.current.date(from: components)
     
     let timer = Timer(fire: fireDate!, interval: 60, repeats: true) { _ in
-      print("tick")
       for currency in Currency.allExceptAud {
         if let tick = self.tickHistoryStore.tick(closestTo: TimeInterval.minusOneDay, forCurrency: currency, timePeriod: .day, timeWindow: .minute) {
           self.update(price: tick.close, forInstrument: currency)
