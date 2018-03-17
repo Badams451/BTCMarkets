@@ -11,6 +11,13 @@ target 'BTCMarkets' do
   pod 'Charts'
   pod 'Fabric'
   pod 'Crashlytics'
+  pod 'RxSwift'
+
+  target 'BTCMarkets-Tests' do
+    inherit! :search_paths  
+    pod 'Quick'
+    pod 'Nimble'
+  end
 end
 
 post_install do |installer|
