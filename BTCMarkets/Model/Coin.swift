@@ -20,6 +20,10 @@ struct Coin: Mappable {
   
   init?(map: Map) {
   }
+
+  init(currency: Currency) {
+    self.currency = currency.rawValue
+  }
   
   mutating func mapping(map: Map) {
     bestBid <- map["bestBid"]

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		049EC95E205CAAB3008D8BBD /* CryptoStoreSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049EC95C205CAAAA008D8BBD /* CryptoStoreSpec.swift */; };
+		049EC96A205D38F5008D8BBD /* CryptoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049EC95A205CAA9E008D8BBD /* CryptoStore.swift */; };
 		04E3EE5B20135D1800DEE6C9 /* PurchasesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E3EE5A20135D1800DEE6C9 /* PurchasesStore.swift */; };
 		04E3EE5D2013E33100DEE6C9 /* PremiumFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E3EE5C2013E33100DEE6C9 /* PremiumFeatureViewController.swift */; };
 		04E3EE5F2013E38600DEE6C9 /* PremiumFeature.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E3EE5E2013E38600DEE6C9 /* PremiumFeature.storyboard */; };
@@ -40,16 +42,34 @@
 		DDE8BD2E202DC565006F06D0 /* AppReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE8BD2D202DC565006F06D0 /* AppReview.swift */; };
 		DDF8CA2E2008E8A900C010D7 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF8CA2D2008E8A900C010D7 /* Coin.swift */; };
 		DDF8CA302008E8E900C010D7 /* CurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF8CA2F2008E8E900C010D7 /* CurrencyCell.swift */; };
+		F4CE6770237B49BB19EB2FE0 /* Pods_BTCMarkets_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4FA6B26690C36157DECF4A9 /* Pods_BTCMarkets_Tests.framework */; };
 		F4F641AD3192CB40B5366946 /* Pods_BTCMarkets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF064DAD14E469472E151A06 /* Pods_BTCMarkets.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		049EC954205CA949008D8BBD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD49F4EA2008BA8100B1D6C0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DD49F4F12008BA8100B1D6C0;
+			remoteInfo = BTCMarkets;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		049EC94F205CA949008D8BBD /* BTCMarkets-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BTCMarkets-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		049EC953205CA949008D8BBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		049EC95A205CAA9E008D8BBD /* CryptoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoStore.swift; sourceTree = "<group>"; };
+		049EC95C205CAAAA008D8BBD /* CryptoStoreSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoStoreSpec.swift; sourceTree = "<group>"; };
 		04E3EE5A20135D1800DEE6C9 /* PurchasesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesStore.swift; sourceTree = "<group>"; };
 		04E3EE5C2013E33100DEE6C9 /* PremiumFeatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumFeatureViewController.swift; sourceTree = "<group>"; };
 		04E3EE5E2013E38600DEE6C9 /* PremiumFeature.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PremiumFeature.storyboard; sourceTree = "<group>"; };
+		23A9B870584765DFFB8B88E6 /* Pods-BTCMarkets-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTCMarkets-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BTCMarkets-Tests/Pods-BTCMarkets-Tests.release.xcconfig"; sourceTree = "<group>"; };
+		59D5850958FA2BC850A939DC /* Pods-BTCMarkets-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTCMarkets-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BTCMarkets-Tests/Pods-BTCMarkets-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		5FD50184459837F763BDDF39 /* Pods-BTCMarkets.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTCMarkets.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BTCMarkets/Pods-BTCMarkets.debug.xcconfig"; sourceTree = "<group>"; };
 		BB74316BDE7FFD505F6A644B /* Pods-BTCMarkets.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTCMarkets.release.xcconfig"; path = "Pods/Target Support Files/Pods-BTCMarkets/Pods-BTCMarkets.release.xcconfig"; sourceTree = "<group>"; };
 		CF064DAD14E469472E151A06 /* Pods_BTCMarkets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BTCMarkets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4FA6B26690C36157DECF4A9 /* Pods_BTCMarkets_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BTCMarkets_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD01767A200F5FF80059A325 /* Numbers+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Numbers+Common.swift"; sourceTree = "<group>"; };
 		DD0FA601202AF91C00C99AF5 /* TickHistoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickHistoryStore.swift; sourceTree = "<group>"; };
 		DD49F4F22008BA8100B1D6C0 /* BTC Companion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BTC Companion.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +105,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		049EC94C205CA949008D8BBD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4CE6770237B49BB19EB2FE0 /* Pods_BTCMarkets_Tests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DD49F4EF2008BA8100B1D6C0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -96,11 +124,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		049EC950205CA949008D8BBD /* BTCMarkets-Tests */ = {
+			isa = PBXGroup;
+			children = (
+				049EC953205CA949008D8BBD /* Info.plist */,
+			);
+			path = "BTCMarkets-Tests";
+			sourceTree = "<group>";
+		};
+		049EC959205CAA8C008D8BBD /* RxSwift */ = {
+			isa = PBXGroup;
+			children = (
+				049EC95A205CAA9E008D8BBD /* CryptoStore.swift */,
+				049EC95C205CAAAA008D8BBD /* CryptoStoreSpec.swift */,
+			);
+			path = RxSwift;
+			sourceTree = "<group>";
+		};
 		9D0DABE8CEBDE80F9018D023 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				5FD50184459837F763BDDF39 /* Pods-BTCMarkets.debug.xcconfig */,
 				BB74316BDE7FFD505F6A644B /* Pods-BTCMarkets.release.xcconfig */,
+				59D5850958FA2BC850A939DC /* Pods-BTCMarkets-Tests.debug.xcconfig */,
+				23A9B870584765DFFB8B88E6 /* Pods-BTCMarkets-Tests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -109,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				CF064DAD14E469472E151A06 /* Pods_BTCMarkets.framework */,
+				D4FA6B26690C36157DECF4A9 /* Pods_BTCMarkets_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -117,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				DD49F4F42008BA8100B1D6C0 /* BTCMarkets */,
+				049EC950205CA949008D8BBD /* BTCMarkets-Tests */,
 				DD49F4F32008BA8100B1D6C0 /* Products */,
 				9D0DABE8CEBDE80F9018D023 /* Pods */,
 				B03E0B21324A42E022FF491F /* Frameworks */,
@@ -127,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				DD49F4F22008BA8100B1D6C0 /* BTC Companion.app */,
+				049EC94F205CA949008D8BBD /* BTCMarkets-Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -134,6 +184,7 @@
 		DD49F4F42008BA8100B1D6C0 /* BTCMarkets */ = {
 			isa = PBXGroup;
 			children = (
+				049EC959205CAA8C008D8BBD /* RxSwift */,
 				DDD5A015201D9BEC008DE2D4 /* Network */,
 				DDD70B9D200CC94F000C6AF6 /* Stores */,
 				DDD70B94200CBA97000C6AF6 /* Utils */,
@@ -215,6 +266,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		049EC94E205CA949008D8BBD /* BTCMarkets-Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 049EC958205CA94A008D8BBD /* Build configuration list for PBXNativeTarget "BTCMarkets-Tests" */;
+			buildPhases = (
+				2C2A1EC713AEA43F9E0FB959 /* [CP] Check Pods Manifest.lock */,
+				049EC94B205CA949008D8BBD /* Sources */,
+				049EC94C205CA949008D8BBD /* Frameworks */,
+				049EC94D205CA949008D8BBD /* Resources */,
+				612592910D78428525FEBA78 /* [CP] Embed Pods Frameworks */,
+				6FDE61872BE9232A21284D45 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				049EC955205CA949008D8BBD /* PBXTargetDependency */,
+			);
+			name = "BTCMarkets-Tests";
+			productName = "BTC CompanionTests";
+			productReference = 049EC94F205CA949008D8BBD /* BTCMarkets-Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		DD49F4F12008BA8100B1D6C0 /* BTCMarkets */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DD49F5042008BA8100B1D6C0 /* Build configuration list for PBXNativeTarget "BTCMarkets" */;
@@ -246,6 +318,11 @@
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Stephen Yao";
 				TargetAttributes = {
+					049EC94E205CA949008D8BBD = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = DD49F4F12008BA8100B1D6C0;
+					};
 					DD49F4F12008BA8100B1D6C0 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
@@ -271,11 +348,19 @@
 			projectRoot = "";
 			targets = (
 				DD49F4F12008BA8100B1D6C0 /* BTCMarkets */,
+				049EC94E205CA949008D8BBD /* BTCMarkets-Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		049EC94D205CA949008D8BBD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DD49F4F02008BA8100B1D6C0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -319,6 +404,7 @@
 				"${BUILT_PRODUCTS_DIR}/Mixpanel-swift/Mixpanel.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 			);
@@ -328,12 +414,66 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mixpanel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BTCMarkets/Pods-BTCMarkets-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2C2A1EC713AEA43F9E0FB959 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BTCMarkets-Tests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		612592910D78428525FEBA78 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BTCMarkets-Tests/Pods-BTCMarkets-Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BTCMarkets-Tests/Pods-BTCMarkets-Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6FDE61872BE9232A21284D45 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BTCMarkets-Tests/Pods-BTCMarkets-Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B0F5A54CEB0D1B6DB26B8159 /* [CP] Copy Pods Resources */ = {
@@ -367,6 +507,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		049EC94B205CA949008D8BBD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				049EC95E205CAAB3008D8BBD /* CryptoStoreSpec.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DD49F4EE2008BA8100B1D6C0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -377,6 +525,7 @@
 				DDF8CA302008E8E900C010D7 /* CurrencyCell.swift in Sources */,
 				DDD70B96200CBB69000C6AF6 /* TickerProfile.swift in Sources */,
 				DDF8CA2E2008E8A900C010D7 /* Coin.swift in Sources */,
+				049EC96A205D38F5008D8BBD /* CryptoStore.swift in Sources */,
 				DD49F5082008C3F800B1D6C0 /* TickerViewController.swift in Sources */,
 				DD860899200C1A4400883E8C /* ConfigureProfileViewController.swift in Sources */,
 				DDCA5931200B5E2300389148 /* TickerStore.swift in Sources */,
@@ -405,6 +554,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		049EC955205CA949008D8BBD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DD49F4F12008BA8100B1D6C0 /* BTCMarkets */;
+			targetProxy = 049EC954205CA949008D8BBD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		DD49F4F92008BA8100B1D6C0 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -425,6 +582,40 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		049EC956205CA94A008D8BBD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 59D5850958FA2BC850A939DC /* Pods-BTCMarkets-Tests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XTHK4B78Z7;
+				INFOPLIST_FILE = "BTCMarkets-Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "REA-Group.BTC-CompanionTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BTC Companion.app/BTC Companion";
+			};
+			name = Debug;
+		};
+		049EC957205CA94A008D8BBD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 23A9B870584765DFFB8B88E6 /* Pods-BTCMarkets-Tests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XTHK4B78Z7;
+				INFOPLIST_FILE = "BTCMarkets-Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "REA-Group.BTC-CompanionTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BTC Companion.app/BTC Companion";
+			};
+			name = Release;
+		};
 		DD49F5022008BA8100B1D6C0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -567,6 +758,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		049EC958205CA94A008D8BBD /* Build configuration list for PBXNativeTarget "BTCMarkets-Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				049EC956205CA94A008D8BBD /* Debug */,
+				049EC957205CA94A008D8BBD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		DD49F4ED2008BA8100B1D6C0 /* Build configuration list for PBXProject "BTCMarkets" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
