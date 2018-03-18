@@ -12,9 +12,9 @@ import Nimble
 import RxSwift
 @testable import BTC_Companion
 
-private class MockDataStream: CryptoStoreDataStream {
+private class MockDataStream: CryptoDataStream {
 
-  var callback: CryptoStoreDataStream.OnCryptoUpdated!
+  var callback: CryptoDataStream.OnCryptoUpdated!
 
   func startStreaming() {}
   func stopStreaming() {}

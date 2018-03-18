@@ -9,18 +9,6 @@
 import Foundation
 import RxSwift
 
-protocol CryptoStoreDataStream {
-
-  typealias OnCryptoUpdated = (Currency, Coin) -> Void
-
-  func startStreaming()
-
-  func stopStreaming()
-
-  func setOnCryptoUpdated(callback: @escaping OnCryptoUpdated)
-
-}
-
 struct CryptoUpdateNotifier {
 
   let currency: Currency
@@ -31,11 +19,11 @@ struct CryptoUpdateNotifier {
 
 final class CryptoStore {
 
-  private let dataStream: CryptoStoreDataStream
+  private let dataStream: CryptoDataStream
 
   private var cryptoUpdateNotifiers = [Currency: CryptoUpdateNotifier]()
 
-  init(dataStream: CryptoStoreDataStream) {
+  init(dataStream: CryptoDataStream) {
     self.dataStream = dataStream
     self.dataStream.startStreaming()
     self.dataStream.setOnCryptoUpdated(callback: onCryptoUpdate)
