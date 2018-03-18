@@ -18,12 +18,14 @@ struct CryptoUpdateNotifier {
 }
 
 final class CryptoStore {
+  
+  static let shared: CryptoStore = CryptoStore()
 
   private let dataStream: CryptoDataStream
 
   private var cryptoUpdateNotifiers = [Currency: CryptoUpdateNotifier]()
 
-  init(dataStream: CryptoDataStream) {
+  init(dataStream: CryptoDataStream = CryptoDataStreamer()) {
     self.dataStream = dataStream
     self.dataStream.startStreaming()
     self.dataStream.setOnCryptoUpdated(callback: onCryptoUpdate)
