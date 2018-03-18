@@ -40,6 +40,7 @@ final class CryptoDataStreamer: CryptoDataStream, CurrencyFetcher {
         }
        
         self.onCryptoUpdate?(currency, coin)
+        self.setupSocket()
       }.catch { error in print(error) }
     }
   }
