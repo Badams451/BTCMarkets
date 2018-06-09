@@ -17,6 +17,7 @@ class AppThemeStore {
     case light
     case dark
 
+    static var current: Theme = SettingsStore.sharedInstance.isDarkModeOn ? .dark : .light
     var textColor: UIColor {
       switch self {
       case .light:
@@ -49,7 +50,7 @@ class AppThemeStore {
       case .light:
         return nil
       case .dark:
-        return .white
+        return nil
       }
     }
 
@@ -91,7 +92,7 @@ class AppThemeStore {
   }
 
   @objc func setTheme() {
-    let theme: Theme = SettingsStore.sharedInstance.isDarkModeOn ? .dark : .light
+    let theme: Theme = Theme.current
 
     UITabBar.appearance().barTintColor = theme.barTintcolor
     UITabBar.appearance().barStyle = theme.barStyle

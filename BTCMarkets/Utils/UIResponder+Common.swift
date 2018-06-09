@@ -27,7 +27,7 @@ extension UIResponder {
     
     Timer.scheduledTimer(withTimeInterval: 0.7, repeats: false) { _ in
       UIView.transition(with: label, duration: 0.3, options: [.transitionCrossDissolve, .curveEaseIn], animations: {
-        label.textColor = .black
+        label.textColor = AppThemeStore.Theme.current.textColor
       }, completion: nil)
     }
   }
