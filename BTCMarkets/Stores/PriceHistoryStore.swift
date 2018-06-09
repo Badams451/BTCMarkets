@@ -16,25 +16,9 @@ final class DailyPriceHistoryStore {
   typealias Price = Double  
   typealias SubscriberCallback = (Price) -> Void
   typealias Subscriber = (subscriberID: SubscriberID, currency: Currency, callback: SubscriberCallback)
+  typealias CurrencyInstrumentTimeWindow = ThreadSafeDictionary<Currency, Price>
+  typealias PriceHistoryCollection = ThreadSafeDictionary<Currency, Price>
 
-  class PriceHistoryCollection {
-    private var store: [Currency: Price] = [:]
-    private let accessQueue = DispatchQueue(label: "btc.tickstore.queue")
-
-    subscript(index: Currency) -> Price? {
-      get {
-        return accessQueue.sync {
-          return self.store[index]
-        }
-      }
-      set {
-        accessQueue.async {
-          self.store[index] = newValue
-        }
-      }
-    }
-  }
-  
   private var priceHistoryCollection = PriceHistoryCollection()
   private var subscribers: [Subscriber] = []
   
