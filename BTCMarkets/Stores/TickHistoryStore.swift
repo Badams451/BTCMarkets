@@ -16,11 +16,28 @@ final class TickHistoryStore {
   typealias TicksForTimeWindow = [TimeWindow: [Tick]]
   typealias TicksForTimePeriod = [TimePeriod : TicksForTimeWindow]
   typealias CurrencyInstrumentPair = String
-  typealias TickStore = [CurrencyInstrumentPair: TicksForTimePeriod]
   typealias CurrencyInstrumentTimeWindow = String
   typealias Subscriber = String
   typealias Instrument = Currency
   typealias TicksChanged = (TickStore) -> Void
+
+  class TickStore {
+    private var store: [CurrencyInstrumentPair: TicksForTimePeriod] = [:]
+    private let accessQueue = DispatchQueue(label: "btc.tickstore.queue")
+
+    subscript(index: CurrencyInstrumentPair) -> TicksForTimePeriod? {
+      get {
+        return accessQueue.sync {
+          return store[index]
+        }
+      }
+      set {
+        accessQueue.sync {
+          store[index] = newValue
+        }
+      }
+    }
+  }
   
   static var sharedInstance: TickHistoryStore = TickHistoryStore()
   private var subscribers: [(Subscriber, TicksChanged)] = []
@@ -135,7 +152,7 @@ final class TickHistoryStore {
                               return normalisedTimestamp < startingTime
                             }
                             
-                            let ticks = filteredData.flatMap { tickData -> Tick? in
+                            let ticks = filteredData.compactMap { tickData -> Tick? in
                               guard tickData.count == 6 else {
                                 return nil
                               }

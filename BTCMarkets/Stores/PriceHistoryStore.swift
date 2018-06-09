@@ -13,10 +13,27 @@ final class DailyPriceHistoryStore {
   static var sharedInstance: DailyPriceHistoryStore = DailyPriceHistoryStore()
   private let tickHistoryStore: TickHistoryStore = TickHistoryStore.sharedInstance
   typealias SubscriberID = String
-  typealias Price = Double
-  typealias PriceHistoryCollection = [Currency: Price]
+  typealias Price = Double  
   typealias SubscriberCallback = (Price) -> Void
   typealias Subscriber = (subscriberID: SubscriberID, currency: Currency, callback: SubscriberCallback)
+
+  class PriceHistoryCollection {
+    private var store: [Currency: Price] = [:]
+    private let accessQueue = DispatchQueue(label: "btc.tickstore.queue")
+
+    subscript(index: Currency) -> Price? {
+      get {
+        return accessQueue.sync {
+          return self.store[index]
+        }
+      }
+      set {
+        accessQueue.async {
+          self.store[index] = newValue
+        }
+      }
+    }
+  }
   
   private var priceHistoryCollection = PriceHistoryCollection()
   private var subscribers: [Subscriber] = []
