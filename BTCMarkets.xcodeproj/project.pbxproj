@@ -13,6 +13,8 @@
 		04FD749F20CB72FF005590D1 /* ThreadSafeAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD749E20CB72FF005590D1 /* ThreadSafeAccess.swift */; };
 		04FD74A120CB793E005590D1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD74A020CB793E005590D1 /* SettingsViewController.swift */; };
 		04FD74A320CB7AF2005590D1 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD74A220CB7AF2005590D1 /* SettingsStore.swift */; };
+		04FD74A520CB8563005590D1 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD74A420CB8563005590D1 /* Notifications.swift */; };
+		04FD74A720CB89E5005590D1 /* AppThemeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD74A620CB89E5005590D1 /* AppThemeStore.swift */; };
 		DD01767B200F5FF80059A325 /* Numbers+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD01767A200F5FF80059A325 /* Numbers+Common.swift */; };
 		DD0FA602202AF91C00C99AF5 /* TickHistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0FA601202AF91C00C99AF5 /* TickHistoryStore.swift */; };
 		DD49F4F62008BA8100B1D6C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD49F4F52008BA8100B1D6C0 /* AppDelegate.swift */; };
@@ -53,6 +55,8 @@
 		04FD749E20CB72FF005590D1 /* ThreadSafeAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSafeAccess.swift; sourceTree = "<group>"; };
 		04FD74A020CB793E005590D1 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		04FD74A220CB7AF2005590D1 /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
+		04FD74A420CB8563005590D1 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		04FD74A620CB89E5005590D1 /* AppThemeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppThemeStore.swift; sourceTree = "<group>"; };
 		5FD50184459837F763BDDF39 /* Pods-BTCMarkets.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTCMarkets.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BTCMarkets/Pods-BTCMarkets.debug.xcconfig"; sourceTree = "<group>"; };
 		BB74316BDE7FFD505F6A644B /* Pods-BTCMarkets.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTCMarkets.release.xcconfig"; path = "Pods/Target Support Files/Pods-BTCMarkets/Pods-BTCMarkets.release.xcconfig"; sourceTree = "<group>"; };
 		CF064DAD14E469472E151A06 /* Pods_BTCMarkets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BTCMarkets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -201,6 +205,7 @@
 				DD01767A200F5FF80059A325 /* Numbers+Common.swift */,
 				DDD9329C202C7A8900F98531 /* Colors.swift */,
 				DD741A2C2035A7050065CFAE /* Common.swift */,
+				04FD74A420CB8563005590D1 /* Notifications.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -217,6 +222,7 @@
 				DDBD0A7E203D90450000E649 /* PriceHistoryStore.swift */,
 				04FD749E20CB72FF005590D1 /* ThreadSafeAccess.swift */,
 				04FD74A220CB7AF2005590D1 /* SettingsStore.swift */,
+				04FD74A620CB89E5005590D1 /* AppThemeStore.swift */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -403,7 +409,9 @@
 				DDCE9AD9200E1BB1008B582C /* CoinsStore.swift in Sources */,
 				04FD74A120CB793E005590D1 /* SettingsViewController.swift in Sources */,
 				DD49F4F62008BA8100B1D6C0 /* AppDelegate.swift in Sources */,
+				04FD74A720CB89E5005590D1 /* AppThemeStore.swift in Sources */,
 				DD741A2D2035A7050065CFAE /* Common.swift in Sources */,
+				04FD74A520CB8563005590D1 /* Notifications.swift in Sources */,
 				DD86089F200C6C1F00883E8C /* Segues.swift in Sources */,
 				DD0FA602202AF91C00C99AF5 /* TickHistoryStore.swift in Sources */,
 				DDD9329D202C7A8900F98531 /* Colors.swift in Sources */,

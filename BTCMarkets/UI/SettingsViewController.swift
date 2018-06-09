@@ -22,7 +22,8 @@ class SettingsViewController: UITableViewController {
 
   @IBAction func onDarkSwitchTapped(_ sender: Any) {
     self.settingsStore.toggleDarkMode()
-    print(self.settingsStore.isDarkModeOn)
+
+    NotificationCenter.default.post(name: NotificationName.DarkModeToggledNotification, object: nil)
   }
 
 }

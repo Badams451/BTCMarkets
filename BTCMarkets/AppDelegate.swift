@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     Fabric.with([Crashlytics.self])
     
     CoinsStoreAud.sharedInstance.start()
+    AppThemeStore.sharedInstance.startObserving()
     
     #if DEBUG
     #else
@@ -40,6 +41,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       TickHistoryStore.sharedInstance.fetchTickerHistory(forTimeWindow: .hour, timePeriod: .day, startingTime: .minusOneDay, currency: .aud, instrument: instrument)
       TickHistoryStore.sharedInstance.fetchTickerHistory(forTimeWindow: .minute, timePeriod: .day, startingTime: .minusOneDay, currency: .aud, instrument: instrument)
     }
+  }
+
+  func applicationDidEnterBackground(_ application: UIApplication) {
+    AppThemeStore.sharedInstance.stopObserving()
   }
 }
 
