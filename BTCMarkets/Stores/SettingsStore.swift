@@ -18,7 +18,7 @@ class SettingsStore {
     return userDefaults.bool(forKey: darkModeOnKey)
   }
 
-  func toggleDarkModel() {
+  func toggleDarkMode() {
     userDefaults.set(!isDarkModeOn, forKey: darkModeOnKey)
   }
 }

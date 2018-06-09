@@ -9,5 +9,20 @@
 import UIKit
 
 class SettingsViewController: UITableViewController {
-  
+
+  @IBOutlet var darkModeSwitch: UISwitch!
+
+  private let settingsStore = SettingsStore.sharedInstance
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    self.darkModeSwitch.isOn = settingsStore.isDarkModeOn
+  }
+
+  @IBAction func onDarkSwitchTapped(_ sender: Any) {
+    self.settingsStore.toggleDarkMode()
+    print(self.settingsStore.isDarkModeOn)
+  }
+
 }
