@@ -44,10 +44,10 @@ class AppThemeStore {
       }
     }
 
-    var tintColor: UIColor {
+    var tintColor: UIColor? {
       switch self {
       case .light:
-        return .black
+        return nil
       case .dark:
         return .white
       }
@@ -68,6 +68,15 @@ class AppThemeStore {
         return .black
       case .dark:
         return .white
+      }
+    }
+
+    var cellSelectStyle: UITableViewCellSelectionStyle {
+      switch self {
+      case .light:
+        return .default
+      case .dark:
+        return .none
       }
     }
   }
@@ -92,7 +101,8 @@ class AppThemeStore {
     UINavigationBar.appearance().barTintColor = theme.barTintcolor
     UILabel.appearance().textColor = theme.textColor
     UITableViewCell.appearance().backgroundColor = theme.cellBackgroundColor
-    UIView.appearance().backgroundColor = theme.cellBackgroundColor
+    UITableView.appearance().backgroundColor = theme.cellBackgroundColor
+    UITableViewCell.appearance().selectionStyle = theme.cellSelectStyle
 
     let windows = UIApplication.shared.windows
     for window in windows {
