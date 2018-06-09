@@ -27,7 +27,8 @@ final class CoinsStoreBtc: CoinsStore {
 }
 
 class CoinsStore: CurrencyFetcher {
-  typealias CoinCollection = [Currency: Coin]
+
+  typealias CoinCollection = ThreadSafeDictionary<Currency, Coin>
   typealias Subscriber = String
   typealias CoinCollectionChanged = (CoinCollection) -> Void
   

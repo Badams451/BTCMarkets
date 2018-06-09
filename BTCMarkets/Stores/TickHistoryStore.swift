@@ -20,28 +20,12 @@ final class TickHistoryStore {
   typealias Subscriber = String
   typealias Instrument = Currency
   typealias TicksChanged = (TickStore) -> Void
-
-  class TickStore {
-    private var store: [CurrencyInstrumentPair: TicksForTimePeriod] = [:]
-    private let accessQueue = DispatchQueue(label: "btc.tickstore.queue")
-
-    subscript(index: CurrencyInstrumentPair) -> TicksForTimePeriod? {
-      get {
-        return accessQueue.sync {
-          return store[index]
-        }
-      }
-      set {
-        accessQueue.sync {
-          store[index] = newValue
-        }
-      }
-    }
-  }
+  typealias TickStore = ThreadSafeDictionary<CurrencyInstrumentPair, TicksForTimePeriod>
+  typealias TickUpdatedStore = ThreadSafeDictionary<CurrencyInstrumentTimeWindow, TimeInterval>
   
   static var sharedInstance: TickHistoryStore = TickHistoryStore()
   private var subscribers: [(Subscriber, TicksChanged)] = []
-  private var tickUpdatedStore: [CurrencyInstrumentTimeWindow: TimeInterval] = [:]
+  private var tickUpdatedStore: TickUpdatedStore = TickUpdatedStore()
   private let timeUntilStaleCache: TimeInterval = 1.minutes
   private var tickStore = TickStore()
   
@@ -92,7 +76,7 @@ final class TickHistoryStore {
     }
     
     tickStore[currencyInstrumentPair]![timePeriod]![timeWindow] = ticks 
-    tickUpdatedStore[ "\(currency.rawValue)\(instrument.rawValue)\(timePeriod.rawValue)\(timeWindow.rawValue)"] = .now
+    tickUpdatedStore["\(currency.rawValue)\(instrument.rawValue)\(timePeriod.rawValue)\(timeWindow.rawValue)"] = .now
     notifySubscribers()
   }
   

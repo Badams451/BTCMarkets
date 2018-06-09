@@ -102,7 +102,7 @@ class HoldingsViewController: UIViewController, UITableViewDelegate, UITableView
       holdingsCell.updateValue(forLabel: holdingsCell.audAmountLabel, previousValue: holdingsCell.holdingValue, newValue: holdingsValue, displayValue: "\(holdingsValue.dollarValue)")
       holdingsCell.holdingValue = holdingsValue
     case .equity:
-      let coins = Currency.allExceptAud.flatMap { currencyStoreAud.coin(forCurrency: $0) }
+      let coins = Currency.allExceptAud.compactMap { currencyStoreAud.coin(forCurrency: $0) }
       
       let value = coins.reduce(0) { (acc, coin) -> Double in
         guard let currency = Currency(rawValue: coin.instrument) else {

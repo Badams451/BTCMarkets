@@ -10,6 +10,7 @@
 		04E3EE5B20135D1800DEE6C9 /* PurchasesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E3EE5A20135D1800DEE6C9 /* PurchasesStore.swift */; };
 		04E3EE5D2013E33100DEE6C9 /* PremiumFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E3EE5C2013E33100DEE6C9 /* PremiumFeatureViewController.swift */; };
 		04E3EE5F2013E38600DEE6C9 /* PremiumFeature.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E3EE5E2013E38600DEE6C9 /* PremiumFeature.storyboard */; };
+		04FD749F20CB72FF005590D1 /* ThreadSafeAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD749E20CB72FF005590D1 /* ThreadSafeAccess.swift */; };
 		DD01767B200F5FF80059A325 /* Numbers+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD01767A200F5FF80059A325 /* Numbers+Common.swift */; };
 		DD0FA602202AF91C00C99AF5 /* TickHistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0FA601202AF91C00C99AF5 /* TickHistoryStore.swift */; };
 		DD49F4F62008BA8100B1D6C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD49F4F52008BA8100B1D6C0 /* AppDelegate.swift */; };
@@ -47,6 +48,7 @@
 		04E3EE5A20135D1800DEE6C9 /* PurchasesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesStore.swift; sourceTree = "<group>"; };
 		04E3EE5C2013E33100DEE6C9 /* PremiumFeatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumFeatureViewController.swift; sourceTree = "<group>"; };
 		04E3EE5E2013E38600DEE6C9 /* PremiumFeature.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PremiumFeature.storyboard; sourceTree = "<group>"; };
+		04FD749E20CB72FF005590D1 /* ThreadSafeAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSafeAccess.swift; sourceTree = "<group>"; };
 		5FD50184459837F763BDDF39 /* Pods-BTCMarkets.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTCMarkets.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BTCMarkets/Pods-BTCMarkets.debug.xcconfig"; sourceTree = "<group>"; };
 		BB74316BDE7FFD505F6A644B /* Pods-BTCMarkets.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTCMarkets.release.xcconfig"; path = "Pods/Target Support Files/Pods-BTCMarkets/Pods-BTCMarkets.release.xcconfig"; sourceTree = "<group>"; };
 		CF064DAD14E469472E151A06 /* Pods_BTCMarkets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BTCMarkets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -208,6 +210,7 @@
 				DD0FA601202AF91C00C99AF5 /* TickHistoryStore.swift */,
 				DDE8BD2B202D7E2A006F06D0 /* UserStatisticsStore.swift */,
 				DDBD0A7E203D90450000E649 /* PriceHistoryStore.swift */,
+				04FD749E20CB72FF005590D1 /* ThreadSafeAccess.swift */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 				DDD70B9C200CC08A000C6AF6 /* HoldingsViewController.swift in Sources */,
 				DDA3FA5D2008CABF002FAA41 /* API.swift in Sources */,
 				04E3EE5D2013E33100DEE6C9 /* PremiumFeatureViewController.swift in Sources */,
+				04FD749F20CB72FF005590D1 /* ThreadSafeAccess.swift in Sources */,
 				DDE8BD2C202D7E2A006F06D0 /* UserStatisticsStore.swift in Sources */,
 				DD8396B82020729C00B8C541 /* Analytics.swift in Sources */,
 				DDE8BCF6202D056C006F06D0 /* TickerSplitViewController.swift in Sources */,

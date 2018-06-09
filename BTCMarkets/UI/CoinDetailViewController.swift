@@ -137,7 +137,7 @@ class CoinDetailViewController: UIViewController, PriceDifferenceCalculator, Cha
         if let ticksForChart = data[strongSelf.timePeriodForSegmentControl]?[strongSelf.chartTimeWindowForSelectedSegment] {
           strongSelf.candleStickChartView.isHidden = false
           strongSelf.drawCandlestickChart(forTicks: ticksForChart)
-          strongSelf.currentDatesOnXAxis = ticksForChart.flatMap { $0.date }
+          strongSelf.currentDatesOnXAxis = ticksForChart.compactMap { $0.date }
         }
         
         if let ticksForPrice = data[strongSelf.timePeriodForSegmentControl]?[strongSelf.priceTimeWindowForSelectedSegment] {
@@ -232,7 +232,7 @@ class CoinDetailViewController: UIViewController, PriceDifferenceCalculator, Cha
     self.candleStickChartView.doubleTapToZoomEnabled = false
     self.candleStickChartView.chartDescription = nil
     self.candleStickChartView.xAxis.labelPosition = .bottom
-    self.candleStickChartView.xAxis.valueFormatter = DateValueFormatter(dates: ticks.flatMap { $0.date })
+    self.candleStickChartView.xAxis.valueFormatter = DateValueFormatter(dates: ticks.compactMap { $0.date })
     self.candleStickChartView.scaleYEnabled = false
     self.candleStickChartView.rightAxis.enabled = false
     self.candleStickChartView.leftAxis.valueFormatter = AUDValueFormatter()

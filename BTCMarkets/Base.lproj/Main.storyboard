@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2y7-NO-HgQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2y7-NO-HgQ">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
@@ -87,8 +87,8 @@
                                     <outlet property="lineChartView" destination="omi-gE-J4B" id="Bdi-pG-VM8"/>
                                     <outlet property="priceDifferenceLabel" destination="Guv-hm-Xwq" id="I2T-iY-Dzu"/>
                                     <outlet property="priceLabel" destination="I5b-PX-VjO" id="zZ5-W1-te3"/>
-                                    <segue destination="dp1-t6-YBy" kind="show" identifier="TickerToCoinDetailSegue" action="showDetailViewController:sender:" id="sNq-gs-B0b">
-                                        <segue key="commit" destination="dp1-t6-YBy" kind="show" identifier="TickerToCoinDetailPopSegue" action="showDetailViewController:sender:" id="IbG-kb-rQB"/>
+                                    <segue destination="dp1-t6-YBy" kind="show" identifier="TickerToCoinDetailSegue" id="sNq-gs-B0b">
+                                        <segue key="commit" destination="dp1-t6-YBy" kind="show" identifier="TickerToCoinDetailPopSegue" id="IbG-kb-rQB"/>
                                         <segue key="preview" destination="dp1-t6-YBy" identifier="TickerToCoinDetailPeekSegue" id="n0B-8R-avz"/>
                                     </segue>
                                 </connections>
@@ -135,7 +135,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="% Changed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Im-gr-wUQ">
-                                                        <rect key="frame" x="155.66666666666666" y="42.333333333333343" width="64" height="14.333333333333336"/>
+                                                        <rect key="frame" x="155.33333333333334" y="42.333333333333343" width="64.666666666666657" height="14.333333333333336"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -404,6 +404,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Tq-6N-c6l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-664" y="-1046"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="MdU-nU-bmd">
+            <objects>
+                <viewController title="Settings" id="aNa-lt-SbK" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" id="6NV-WZ-uOO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ElF-Ng-UZq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2177" y="876"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="tsZ-DC-ZPk">
+            <objects>
+                <tableViewController id="ieu-2U-qEd" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="sBx-Uf-SLI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="0CF-8B-n5e">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0CF-8B-n5e" id="dAe-57-Zta">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ieu-2U-qEd" id="lQ5-Fl-esY"/>
+                            <outlet property="delegate" destination="ieu-2U-qEd" id="wER-Wu-5nL"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ro3-7q-O9b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1764" y="869"/>
         </scene>
         <!--Ticker-->
         <scene sceneID="9nh-66-loL">
